@@ -40,6 +40,11 @@
   --gold-d: #8a6c25;
   --indigo: #2a2848;
 
+  /* relation tints (used as rgba components by the faction matrix) */
+  --rel-neg-rgb: 92, 31, 36;
+  --rel-pos-rgb: 45, 74, 53;
+  --rel-zero-rgb: 212, 196, 160;
+
   /* type */
   --display:    'Cinzel', 'Trajan Pro', serif;
   --serif:      'EB Garamond', Georgia, 'Times New Roman', serif;
@@ -53,6 +58,129 @@
   --rule-bold: 2px solid var(--ink-soft);
   --shadow-folio: 0 2px 0 rgba(58,47,36,0.06), 0 8px 24px rgba(58,47,36,0.12);
   --shadow-card: 0 1px 0 rgba(58,47,36,0.05), 0 4px 16px rgba(58,47,36,0.08);
+}
+
+/* ----- DARK THEME: Cult of Shadow ------------------------------------- */
+/* For those who play as forces of darkness. The semantic meaning of every
+   variable stays identical; only the values change. Cards stay lighter than
+   bg (elevation reads correctly), and accents brighten so they catch the
+   candlelight. Toggle persists globally under keep:theme. */
+[data-theme="dark"] {
+  --p-0: #1f1c17;
+  --p-1: #14110d;
+  --p-2: #2a261e;
+  --p-3: #3a3325;
+  --p-4: #574d3a;
+
+  --ink:         #ede4d0;
+  --ink-soft:    #c4baa3;
+  --ink-faded:   #8a8270;
+  --ink-whisper: #5d5648;
+
+  --wine:   #c8313e;
+  --wine-d: #8a1820;
+  --forest: #5fa274;
+  --forest-d: #3a7050;
+  --gold:   #d4a849;
+  --gold-l: #e8c060;
+  --gold-d: #a07820;
+  --indigo: #7167d9;
+
+  --rel-neg-rgb: 200, 49, 64;
+  --rel-pos-rgb: 95, 162, 116;
+  --rel-zero-rgb: 80, 70, 55;
+
+  --rule: 1px solid var(--ink-whisper);
+  --rule-bold: 2px solid var(--ink-soft);
+  --shadow-folio: 0 2px 0 rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-card: 0 1px 0 rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.35);
+}
+
+[data-theme="dark"] body {
+  background-color: var(--p-1);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(212,168,73,0.05), transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(200,49,64,0.05), transparent 55%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.78 0 0 0 0 0.62 0 0 0 0.07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-blend-mode: normal;
+}
+
+[data-theme="dark"] .banner {
+  background: linear-gradient(180deg, var(--p-0), var(--p-1));
+}
+
+/* Tavern parchment: in dark mode, the notice is dark stained vellum or
+   black-leather binding instead of light parchment. Still document-like. */
+[data-theme="dark"] .tavern__parchment {
+  background:
+    radial-gradient(ellipse at 30% 10%, rgba(212,168,73,0.09), transparent 55%),
+    radial-gradient(ellipse at 70% 90%, rgba(200,49,64,0.07), transparent 60%),
+    linear-gradient(180deg, #2a241c, #1e1812);
+  box-shadow:
+    inset 0 0 0 1px rgba(237,228,208,0.06),
+    inset 0 0 60px rgba(0,0,0,0.5),
+    0 2px 0 rgba(0,0,0,0.4),
+    0 12px 32px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .tavern__parchment::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence baseFrequency='0.72' numOctaves='2' seed='9'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.78 0 0 0 0 0.62 0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+/* Almanac moon swatch: keep "dark disc with light side" metaphor in both themes */
+[data-theme="dark"] .almanac__moon { background: #3a3325; }
+[data-theme="dark"] .almanac__moon-light { background: #e8e0c0; }
+
+/* Things that use --p-0 as TEXT on a non-theme background need their text
+   to stay light in dark mode. The wine and forest fill colours brighten,
+   but text on top needs to stay parchment-cream. */
+[data-theme="dark"] .btn--primary,
+[data-theme="dark"] .btn--primary:hover,
+[data-theme="dark"] .augury__card,
+[data-theme="dark"] .lists__cond:hover {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .archive__hit {
+  background: rgba(232,192,96,0.30);
+  color: var(--ink);
+}
+
+/* Gauge: the parchment-to-forest gradient needs a touch more saturation
+   on the dark surface to read. */
+[data-theme="dark"] .gauge {
+  background: linear-gradient(90deg,
+    rgba(200,49,64,0.40) 0%, rgba(200,49,64,0.22) 35%,
+    rgba(212,168,73,0.18) 50%,
+    rgba(95,162,116,0.22) 65%, rgba(95,162,116,0.42) 100%);
+}
+
+/* Theme toggle button in banner */
+.banner__right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.theme-toggle {
+  width: 38px; height: 38px;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  padding: 0;
+}
+.theme-toggle:hover {
+  background: rgba(184,146,58,0.18);
+  border-color: var(--gold-d);
+  color: var(--ink);
+}
+.theme-toggle svg { width: 18px; height: 18px; }
+@media (max-width: 720px) {
+  .theme-toggle { width: 32px; height: 32px; }
+  .theme-toggle svg { width: 16px; height: 16px; }
 }
 
 /* ----- BASE ------------------------------------------------------------ */
@@ -1792,7 +1920,10 @@ small { font-size: 0.85em; color: var(--ink-faded); }
         <div class="banner__subtitle">A gamesmaster's workshop</div>
       </div>
     </div>
-    <div class="banner__campaign" id="banner-campaign"></div>
+    <div class="banner__right">
+      <button class="theme-toggle" id="theme-toggle" type="button" title="Switch theme" aria-label="Switch theme"></button>
+      <div class="banner__campaign" id="banner-campaign"></div>
+    </div>
   </header>
 
   <nav class="nav" id="nav"></nav>
@@ -2398,6 +2529,36 @@ const Keep = (() => {
     U.toast('Chronicle: ' + (c ? c.name : 'switched'));
   }
 
+  async function initTheme() {
+    const saved = (await Vault.global.get('theme')) || 'light';
+    applyTheme(saved);
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      renderToggleIcon(toggle, saved);
+      toggle.addEventListener('click', async () => {
+        const cur = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        await Vault.global.set('theme', next);
+        renderToggleIcon(toggle, next);
+        // re-mount the active module so JS-coloured surfaces (faction matrix
+        // cells) repaint with the new palette's relation-tint vars
+        if (current && current.id) await mount(current.id);
+      });
+    }
+  }
+  function applyTheme(theme) {
+    if (theme === 'dark') document.documentElement.dataset.theme = 'dark';
+    else delete document.documentElement.dataset.theme;
+  }
+  function renderToggleIcon(btn, theme) {
+    // moon shown in light theme (click to enter shadow), flame shown in dark
+    btn.innerHTML = theme === 'dark'
+      ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 C 14 7 17 8 17 13 C 17 17 14 21 12 21 C 10 21 7 17 7 13 C 7 10 9 9 10 7 C 11 9 12 9 12 6 Z"/></svg>'
+      : '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20 14 A 8 8 0 1 1 10 4 A 6 6 0 0 0 20 14 Z"/></svg>';
+    btn.title = theme === 'dark' ? 'Return to the light' : 'Enter the shadow';
+  }
+
   async function init() {
     folio = document.getElementById('folio');
     nav = document.getElementById('nav');
@@ -2406,6 +2567,7 @@ const Keep = (() => {
     const activeId = await Campaigns.migrate();
     Vault.setActiveCampaign(activeId);
 
+    await initTheme();
     renderNav();
     await renderChip();
 
@@ -4193,9 +4355,9 @@ Keep.register({
     }
 
     function relColor(v) {
-      if (v < 0) return `rgba(92,31,36,${(-v / 10) * 0.45 + 0.05})`;
-      if (v > 0) return `rgba(45,74,53,${(v / 10) * 0.45 + 0.05})`;
-      return 'rgba(212,196,160,0.16)';
+      if (v < 0) return `rgba(var(--rel-neg-rgb), ${(-v / 10) * 0.45 + 0.05})`;
+      if (v > 0) return `rgba(var(--rel-pos-rgb), ${(v / 10) * 0.45 + 0.05})`;
+      return 'rgba(var(--rel-zero-rgb), 0.16)';
     }
 
     function renderMatrix() {
