@@ -162,7 +162,7 @@
   align-items: center;
   gap: 0.5rem;
 }
-.theme-toggle {
+.theme-toggle, .banner-icon {
   width: 38px; height: 38px;
   background: var(--p-2);
   border: 1px solid var(--p-3);
@@ -172,15 +172,148 @@
   transition: background 0.15s, color 0.15s, border-color 0.15s;
   padding: 0;
 }
-.theme-toggle:hover {
+.theme-toggle:hover, .banner-icon:hover {
   background: rgba(184,146,58,0.18);
   border-color: var(--gold-d);
   color: var(--ink);
 }
-.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle svg, .banner-icon svg { width: 18px; height: 18px; }
 @media (max-width: 720px) {
-  .theme-toggle { width: 32px; height: 32px; }
-  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle, .banner-icon { width: 32px; height: 32px; }
+  .theme-toggle svg, .banner-icon svg { width: 16px; height: 16px; }
+}
+
+/* ----- UNIVERSAL SEARCH ----------------------------------------------- */
+.search-overlay {
+  align-items: flex-start;
+  padding-top: 11vh;
+}
+.search-modal {
+  background: var(--p-0);
+  border: 1px solid var(--ink-soft);
+  box-shadow: var(--shadow-folio);
+  width: min(640px, 92%);
+  max-height: 72vh;
+  display: flex; flex-direction: column;
+  position: relative;
+  font-family: var(--serif);
+}
+.search-modal__input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: var(--rule-bold);
+  padding: 1rem 1.25rem;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  outline: none;
+}
+.search-modal__input::placeholder { color: var(--ink-faded); font-style: italic; }
+.search-modal__results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.3rem 0;
+}
+.search-modal__group-head {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  padding: 0.85rem 1.25rem 0.3rem;
+  border-bottom: 1px dotted var(--p-3);
+  margin-top: 0.3rem;
+  position: sticky; top: 0;
+  background: var(--p-0);
+  z-index: 1;
+}
+.search-modal__group-head:first-child { margin-top: 0; }
+.search-modal__result {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 0.7rem 1.25rem;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: var(--serif);
+  border-bottom: 1px solid transparent;
+}
+.search-modal__result:hover,
+.search-modal__result.is-active {
+  background: rgba(184,146,58,0.13);
+  border-bottom-color: var(--p-3);
+}
+.search-modal__result-title {
+  font-family: var(--rubric);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.search-modal__result-subtitle {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  margin-top: 0.05rem;
+}
+.search-modal__result-snippet {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-top: 0.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.search-modal__hit {
+  background: rgba(184,146,58,0.40);
+  color: var(--ink);
+  padding: 0 1px;
+}
+[data-theme="dark"] .search-modal__hit { background: rgba(232,192,96,0.30); }
+.search-modal__empty {
+  padding: 2.2rem 1.25rem;
+  text-align: center;
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+}
+.search-modal__hint {
+  border-top: 1px dotted var(--p-3);
+  padding: 0.55rem 1.25rem;
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  display: flex; gap: 1.2rem; flex-wrap: wrap;
+}
+.search-modal__hint kbd {
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  padding: 0.05rem 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.92em;
+  color: var(--ink-soft);
+  margin-right: 0.25rem;
+}
+
+/* highlight flash for cross-module navigation (search results lighting up
+   their target card in the destination module) */
+.cabinet-card--highlight, .threat-card--highlight {
+  animation: keepHighlight 2.2s ease-out;
+}
+@keyframes keepHighlight {
+  0%   { box-shadow: 0 0 0 3px var(--gold), 0 0 24px 4px rgba(212,168,73,0.35); }
+  60%  { box-shadow: 0 0 0 2px var(--gold-d), 0 0 12px 2px rgba(212,168,73,0.18); }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 /* ----- BASE ------------------------------------------------------------ */
@@ -773,8 +906,65 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   color: var(--ink-soft);
   border-bottom: 1px dotted var(--p-3);
 }
+.archive__entry {
+  border-left: 3px solid transparent;
+}
 .archive__entry:hover { background: rgba(184,146,58,0.1); color: var(--ink); }
-.archive__entry--active { background: rgba(184,146,58,0.18); color: var(--ink); border-left: 3px solid var(--wine); padding-left: 0.4rem; }
+.archive__entry--active {
+  background: rgba(184,146,58,0.18); color: var(--ink);
+  padding-left: 0.4rem;
+}
+.archive__entry--type-person  { border-left-color: var(--forest); }
+.archive__entry--type-place   { border-left-color: var(--indigo); }
+.archive__entry--type-thing   { border-left-color: var(--gold-d); }
+.archive__entry--type-event   { border-left-color: var(--wine); }
+.archive__entry--type-faction { border-left-color: #8a4a2c; }
+.archive__entry--type-lore    { border-left-color: rgba(107,93,74,0.55); }
+[data-theme="dark"] .archive__entry--type-faction { border-left-color: #b8694a; }
+.archive__entry--active.archive__entry--type-person  { border-left-color: var(--forest); }
+.archive__entry--active.archive__entry--type-place   { border-left-color: var(--indigo); }
+.archive__entry--active.archive__entry--type-thing   { border-left-color: var(--gold-d); }
+.archive__entry--active.archive__entry--type-event   { border-left-color: var(--wine); }
+.archive__entry--active.archive__entry--type-faction { border-left-color: #8a4a2c; }
+.archive__entry--active.archive__entry--type-lore    { border-left-color: var(--wine); }
+
+.archive__group-head {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  padding: 0.85rem 0.5rem 0.3rem;
+  border-bottom: 1px dotted var(--p-3);
+  margin-top: 0.35rem;
+  list-style: none;
+  cursor: default;
+}
+.archive__group-head:first-child { margin-top: 0; }
+.archive__group-head:hover { background: transparent; color: var(--ink-faded); }
+
+.archive__type-picker {
+  display: flex; gap: 0.3rem; flex-wrap: wrap;
+  margin: 0.4rem 0 0.6rem;
+}
+.archive__type-pill {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  background: transparent;
+  border: 1px solid var(--p-3);
+  color: var(--ink-faded);
+  cursor: pointer;
+  border-left: 3px solid var(--type-color, transparent);
+}
+.archive__type-pill:hover { color: var(--ink); border-color: var(--type-color, var(--ink-soft)); }
+.archive__type-pill.is-active {
+  background: var(--type-soft);
+  color: var(--ink);
+  border-color: var(--type-color);
+}
 .archive__main {
   background: var(--p-0);
   border: 1px solid var(--p-3);
@@ -1229,6 +1419,43 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   margin-top: 0.15rem;
 }
 .tavern__rumour-reveal:hover { background: var(--ink); color: var(--p-0); border-color: var(--ink); }
+.tavern__patron { display: flex; align-items: baseline; gap: 0.7rem; }
+.tavern__patron-text { flex: 1; }
+.tavern__patron-recruit {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.55rem;
+  background: transparent;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink-soft);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.tavern__patron-recruit:hover {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+.tavern__patron-recruit:disabled {
+  opacity: 0.45; cursor: default;
+}
+.tavern__patron-recruit:disabled:hover {
+  background: transparent; color: var(--ink-soft); border-color: var(--ink-soft);
+}
+.tavern__rumour-pin {
+  background: transparent;
+  border: none;
+  color: var(--ink-faded);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0 0.3rem;
+  opacity: 0.55;
+  transition: opacity 0.15s, color 0.15s;
+  margin-left: 0.4rem;
+}
+.tavern__rumour-pin:hover { opacity: 1; color: var(--gold-d); }
 .tavern__truth {
   flex-shrink: 0;
   font-family: var(--display);
@@ -1377,6 +1604,49 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   display: none;
 }
 .faction-card--open .faction-card__body { display: block; }
+.faction-card__threats {
+  padding: 0.5rem 1rem 0;
+}
+.faction-card__threat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(184,146,58,0.13);
+  border: 1px solid rgba(184,146,58,0.40);
+  color: var(--gold-d);
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+}
+.faction-card__threat-chip:hover {
+  background: rgba(184,146,58,0.22);
+  color: var(--ink);
+}
+[data-theme="dark"] .faction-card__threat-chip { color: var(--gold-l); }
+.faction-card__threat-icon { font-size: 0.95rem; line-height: 1; }
+.faction-card__backlinks {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+.faction-card__backlink {
+  background: transparent;
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  font-family: var(--rubric);
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 0.2rem 0.55rem;
+  cursor: pointer;
+}
+.faction-card__backlink:hover {
+  background: rgba(184,146,58,0.18);
+  color: var(--ink);
+  border-color: var(--gold-d);
+}
 .faction-card__field { margin-bottom: 0.85rem; }
 .faction-card__field .label { margin-bottom: 0.3rem; }
 .faction-card__goal { font-family: var(--rubric); font-style: italic; font-size: 1.02rem; color: var(--ink-soft); }
@@ -1660,6 +1930,354 @@ small { font-size: 0.85em; color: var(--ink-faded); }
 
 .almanac__head { flex-wrap: wrap; gap: 0.75rem; }
 
+/* ----- MODULE: THE CABINET (Things Found) ----------------------------- */
+.cabinet__head {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--rule);
+  display: flex; flex-wrap: wrap; gap: 0.7rem;
+  align-items: center; justify-content: space-between;
+}
+.cabinet__filters {
+  display: flex; gap: 0.3rem; flex-wrap: wrap;
+}
+.cabinet__filter {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.cabinet__filter:hover { background: rgba(184,146,58,0.12); }
+.cabinet__filter.is-active {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+.cabinet__filter-count { margin-left: 0.35rem; opacity: 0.65; font-size: 0.85em; }
+
+.cabinet__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1rem;
+}
+
+.cabinet-card {
+  --status-color: var(--ink-soft);
+  --status-soft: rgba(58,47,36,0.10);
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  border-left: 4px solid var(--status-color);
+  padding: 1rem 1.15rem;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 0.95rem;
+  align-items: start;
+}
+.cabinet-card--held      { --status-color: var(--forest); --status-soft: rgba(45,74,53,0.12); }
+.cabinet-card--lost      { --status-color: #8a4a2c;       --status-soft: rgba(138,74,44,0.14); }
+.cabinet-card--hidden    { --status-color: #4a5764;       --status-soft: rgba(74,87,100,0.14); }
+.cabinet-card--given     { --status-color: var(--gold-d); --status-soft: rgba(184,146,58,0.16); }
+.cabinet-card--destroyed { --status-color: var(--wine);   --status-soft: rgba(92,31,36,0.12); }
+
+[data-theme="dark"] .cabinet-card--lost    { --status-color: #b8694a; --status-soft: rgba(184,105,74,0.18); }
+[data-theme="dark"] .cabinet-card--hidden  { --status-color: #758494; --status-soft: rgba(117,132,148,0.16); }
+
+.cabinet-card__kind {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  font-size: 1.7rem;
+  color: var(--status-color);
+  line-height: 1;
+}
+.cabinet-card__body { display: flex; flex-direction: column; min-width: 0; }
+.cabinet-card__head {
+  display: flex; align-items: center; gap: 0.55rem;
+  margin-bottom: 0.35rem;
+  flex-wrap: wrap;
+}
+.cabinet-card__name {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.15;
+  flex: 1;
+  min-width: 0;
+}
+.cabinet-card__status {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  background: var(--status-soft);
+  border: 1px solid var(--status-color);
+  color: var(--status-color);
+}
+.cabinet-card__desc {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0.3rem 0 0.7rem;
+}
+.cabinet-card__meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.25rem 0.85rem;
+  margin: 0 0 0.6rem;
+}
+.cabinet-card__meta dt {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  align-self: baseline;
+}
+.cabinet-card__meta dd {
+  margin: 0;
+  font-family: var(--rubric);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.cabinet-card__meta-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--wine);
+  border-bottom: 1px solid rgba(92,31,36,0.5);
+  cursor: pointer;
+}
+.cabinet-card__meta-link:hover { color: var(--wine-d); border-bottom-color: var(--wine); }
+[data-theme="dark"] .cabinet-card__meta-link {
+  color: #e36b78;
+  border-bottom-color: rgba(227,107,120,0.5);
+}
+
+.cabinet-card__actions {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--p-3);
+}
+
+/* date editor block in the form */
+.cabinet-date {
+  display: grid;
+  grid-template-columns: 70px 1fr 90px auto;
+  gap: 0.4rem;
+  align-items: center;
+}
+@media (max-width: 720px) { .cabinet-date { grid-template-columns: 1fr 1fr; } }
+
+/* kind picker in the form (button row with glyph + name) */
+.kind-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 0.3rem;
+}
+.kind-picker button {
+  display: flex; align-items: center; gap: 0.45rem;
+  padding: 0.4rem 0.6rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: var(--rubric);
+  font-size: 0.95rem;
+  text-align: left;
+}
+.kind-picker button:hover { background: rgba(184,146,58,0.12); }
+.kind-picker button.is-selected {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+.kind-picker__glyph { font-family: var(--display); font-size: 1.1rem; line-height: 1; }
+
+/* status picker (similar to kind picker, but smaller) */
+.status-picker {
+  display: flex; gap: 0.3rem; flex-wrap: wrap;
+}
+.status-picker button {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.status-picker button.is-selected {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+
+/* ----- MODULE: THREATS (Clocks) --------------------------------------- */
+.threats__head {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--rule);
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  align-items: center; justify-content: space-between;
+}
+.threats__count { font-family: var(--rubric); font-style: italic; color: var(--ink-faded); font-size: 0.95rem; }
+.threats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.threat-card {
+  --accent: var(--wine);
+  --accent-d: var(--wine-d);
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1rem 1.1rem;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  align-items: start;
+  position: relative;
+}
+.threat-card--complete {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold-d), inset 0 0 24px rgba(184,146,58,0.10);
+}
+.threat-card__clock {
+  width: 110px; height: 110px;
+  user-select: none;
+}
+.threat-card__clock svg { width: 100%; height: 100%; display: block; }
+.threat-card__body { display: flex; flex-direction: column; min-width: 0; }
+.threat-card__name {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+.threat-card--complete .threat-card__name::after {
+  content: " \u2740";
+  color: var(--gold);
+  margin-left: 0.3rem;
+}
+.threat-card__desc {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+.threat-card__faction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.threat-card__faction:hover { color: var(--ink); }
+.threat-card__faction-sigil {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  background: var(--p-2);
+  border: 1px solid var(--accent2, var(--p-3));
+  color: var(--accent2, var(--ink-soft));
+  font-size: 0.85rem;
+}
+.threat-card__controls {
+  display: flex; align-items: center; gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+}
+.threat-card__fill {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  flex: 1;
+  text-align: center;
+}
+.threat-card--complete .threat-card__fill {
+  color: var(--gold-d);
+  font-style: italic;
+  font-family: var(--rubric);
+  text-transform: lowercase;
+  letter-spacing: 0;
+}
+.threat-card__actions {
+  display: flex; gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--p-3);
+}
+
+/* clock SVG slice styling */
+.clock__rim {
+  stroke: var(--ink-soft);
+  stroke-width: 2;
+  fill: var(--p-1);
+}
+.threat-card--complete .clock__rim { stroke: var(--gold); stroke-width: 2.5; }
+.clock__slice {
+  stroke: var(--ink-soft);
+  stroke-width: 1;
+  cursor: pointer;
+  transition: filter 0.12s;
+}
+.clock__slice--empty { fill: var(--p-1); }
+.clock__slice--filled { fill: var(--accent, var(--wine)); }
+.clock__slice:hover { filter: brightness(1.15); stroke: var(--gold); stroke-width: 1.5; }
+.threat-card--complete .clock__slice--filled { fill: var(--gold); }
+.clock__center { fill: var(--ink); }
+.threat-card--complete .clock__center { fill: var(--gold-d); }
+
+/* segment count picker in the form modal */
+.seg-picker { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.seg-picker button {
+  width: 46px; height: 38px;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.seg-picker button:hover { background: rgba(184,146,58,0.15); }
+.seg-picker button.is-selected {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+
 /* ----- POLISH II: SEARCH HITS, TOOLTIPS, MATRIX, DRAG ----------------- */
 
 /* archive sidebar search highlights and excerpts */
@@ -1921,6 +2539,9 @@ small { font-size: 0.85em; color: var(--ink-faded); }
       </div>
     </div>
     <div class="banner__right">
+      <button class="banner-icon" id="search-button" type="button" title="Search the Keep (press /)" aria-label="Search the Keep">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M10 4 A 6 6 0 1 1 10 16 A 6 6 0 1 1 10 4 Z M14.5 14.5 L20 20"/></svg>
+      </button>
       <button class="theme-toggle" id="theme-toggle" type="button" title="Switch theme" aria-label="Switch theme"></button>
       <div class="banner__campaign" id="banner-campaign"></div>
     </div>
@@ -1945,6 +2566,8 @@ small { font-size: 0.85em; color: var(--ink-faded); }
     <symbol id="g-scroll" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 4 H17 V20 H6 Z M6 4 C 4.5 4 3.5 5 3.5 6.5 C 3.5 8 4.5 9 6 9 M17 4 C 18.5 4 19.5 5 19.5 6.5 C 19.5 8 18.5 9 17 9 M17 15 C 18.5 15 19.5 16 19.5 17.5 C 19.5 19 18.5 20 17 20 M9 8 H14 M9 12 H14 M9 16 H13"/></symbol>
     <symbol id="g-tankard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 8 H15 V19 C 15 20 14.5 20.5 13.5 20.5 H7.5 C 6.5 20.5 6 20 6 19 Z M15 10.5 H18 C 19 10.5 19.5 11 19.5 12 V15 C 19.5 16 19 16.5 18 16.5 H15 M6 11.5 H15 M8 5 Q 8.5 6.5 8 8 M11 5 Q 11.5 6.5 11 8 M14 5 Q 14.5 6.5 14 8"/></symbol>
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
+    <symbol id="g-hourglass" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 3 H17 V7 L12 12 L7 7 Z M7 21 H17 V17 L12 12 L7 17 Z M5.5 3 H18.5 M5.5 21 H18.5"/></symbol>
+    <symbol id="g-cabinet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M3 11 V20 H21 V11 M3 11 C 3 7.5 6 5.5 12 5.5 C 18 5.5 21 7.5 21 11 Z M3 11 L21 11 M10 13.5 H14 V17.5 H10 Z"/></symbol>
   </defs>
 </svg>
 
@@ -2393,12 +3016,26 @@ const Refs = {
     const entries = await this.archiveEntries();
     if (!entries[name]) {
       const npcs = await this.npcByName();
-      const body = npcs.has(name) ? this.npcAsMarkdown(npcs.get(name)) : `# ${name}\n\n`;
-      entries[name] = { title: name, body, updated: Date.now() };
+      const isNpc = npcs.has(name);
+      const body = isNpc ? this.npcAsMarkdown(npcs.get(name)) : `# ${name}\n\n`;
+      entries[name] = { title: name, body, type: isNpc ? 'person' : null, updated: Date.now() };
       await Vault.set('archive-entries', entries);
+    } else if (!entries[name].type) {
+      // back-fill type for older entries
+      const npcs = await this.npcByName();
+      if (npcs.has(name)) {
+        entries[name].type = 'person';
+        await Vault.set('archive-entries', entries);
+      }
     }
     await Vault.set('archive-current', name);
     return Keep.mount('archive');
+  },
+  async openAlmanacAt(date) {
+    if (date && typeof date === 'object') {
+      await Vault.set('almanac-selected', date);
+    }
+    return Keep.mount('almanac');
   }
 };
 
@@ -2541,8 +3178,6 @@ const Keep = (() => {
         applyTheme(next);
         await Vault.global.set('theme', next);
         renderToggleIcon(toggle, next);
-        // re-mount the active module so JS-coloured surfaces (faction matrix
-        // cells) repaint with the new palette's relation-tint vars
         if (current && current.id) await mount(current.id);
       });
     }
@@ -2552,11 +3187,306 @@ const Keep = (() => {
     else delete document.documentElement.dataset.theme;
   }
   function renderToggleIcon(btn, theme) {
-    // moon shown in light theme (click to enter shadow), flame shown in dark
     btn.innerHTML = theme === 'dark'
       ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 C 14 7 17 8 17 13 C 17 17 14 21 12 21 C 10 21 7 17 7 13 C 7 10 9 9 10 7 C 11 9 12 9 12 6 Z"/></svg>'
       : '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20 14 A 8 8 0 1 1 10 4 A 6 6 0 0 0 20 14 Z"/></svg>';
     btn.title = theme === 'dark' ? 'Return to the light' : 'Enter the shadow';
+  }
+
+  /* ---------- Universal Search ---------- */
+
+  let searchOpen = false;
+
+  function escHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
+  }
+  function hl(text, q) {
+    if (!q) return escHtml(text);
+    const safe = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return escHtml(text).replace(new RegExp(safe, 'gi'), m => `<mark class="search-modal__hit">${m}</mark>`);
+  }
+  function snip(text, q, maxLen) {
+    text = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!text) return '';
+    if (!q) return text.slice(0, maxLen || 160) + (text.length > (maxLen || 160) ? '\u2026' : '');
+    const low = text.toLowerCase();
+    const idx = low.indexOf(q.toLowerCase());
+    if (idx < 0) return text.slice(0, maxLen || 160);
+    const span = maxLen || 140;
+    const start = Math.max(0, idx - Math.floor(span / 3));
+    const end = Math.min(text.length, start + span);
+    const pre = start > 0 ? '\u2026' : '';
+    const post = end < text.length ? '\u2026' : '';
+    return pre + hl(text.slice(start, end), q) + post;
+  }
+
+  async function buildIndex() {
+    const idx = [];
+
+    // Archive
+    try {
+      const entries = (await Vault.get('archive-entries')) || {};
+      for (const [name, e] of Object.entries(entries)) {
+        idx.push({
+          group: 'The Archive',
+          moduleId: 'archive',
+          title: e.title || name,
+          subtitle: '',
+          body: e.body || '',
+          onSelect: () => Refs.openArchiveEntry(name)
+        });
+      }
+    } catch {}
+
+    // Hall of Faces (NPCs)
+    try {
+      const roster = (await Vault.get('faces-roster')) || [];
+      for (const n of roster) {
+        idx.push({
+          group: 'Hall of Faces',
+          moduleId: 'faces',
+          title: n.name,
+          subtitle: (n.role || '') + (n.culture ? ' \u00b7 ' + n.culture : ''),
+          body: [n.voice, n.want, n.mannerism, n.physical, n.secret].filter(Boolean).join(' '),
+          onSelect: async () => { await Vault.set('faces-show', n.id); await mount('faces'); }
+        });
+      }
+    } catch {}
+
+    // Faction Ledger
+    try {
+      const factions = (await Vault.get('factions')) || [];
+      for (const f of factions) {
+        idx.push({
+          group: 'Faction Ledger',
+          moduleId: 'factions',
+          title: (f.sigil ? f.sigil + ' ' : '') + f.name,
+          subtitle: f.motto || '',
+          body: (f.goal || '') + ' ' + (f.notes || ''),
+          onSelect: async () => { await Vault.set('factions-expand', f.id); await mount('factions'); }
+        });
+      }
+    } catch {}
+
+    // The Cabinet
+    try {
+      const items = (await Vault.get('cabinet')) || [];
+      for (const it of items) {
+        idx.push({
+          group: 'The Cabinet',
+          moduleId: 'cabinet',
+          title: it.name,
+          subtitle: (it.kind || '') + (it.status ? ' \u00b7 ' + it.status : ''),
+          body: [it.description, it.heldBy, it.foundAt, it.worth].filter(Boolean).join(' '),
+          onSelect: async () => { await Vault.set('cabinet-highlight', it.id); await mount('cabinet'); }
+        });
+      }
+    } catch {}
+
+    // Threats
+    try {
+      const threats = (await Vault.get('threats')) || [];
+      for (const t of threats) {
+        const isDone = t.filled >= t.total;
+        idx.push({
+          group: 'Threats',
+          moduleId: 'threats',
+          title: t.name,
+          subtitle: isDone ? 'fulfilled' : (t.filled + '/' + t.total),
+          body: t.description || '',
+          onSelect: async () => { await Vault.set('threats-highlight', t.id); await mount('threats'); }
+        });
+      }
+    } catch {}
+
+    // Almanac day notes
+    try {
+      const notes = (await Vault.get('almanac-notes')) || {};
+      const cal = await Refs.calendar();
+      for (const [key, n] of Object.entries(notes)) {
+        if (!n || (!n.body && !n.weather)) continue;
+        const parts = key.split('-').map(Number);
+        const [y, m, d] = parts;
+        if (Number.isNaN(y) || Number.isNaN(m) || Number.isNaN(d)) continue;
+        const title = d + ' ' + (cal.months[m] || '?') + ', ' + y;
+        idx.push({
+          group: 'The Almanac',
+          moduleId: 'almanac',
+          title,
+          subtitle: n.weather || '',
+          body: n.body || '',
+          onSelect: () => Refs.openAlmanacAt({ year: y, month: m, day: d })
+        });
+      }
+    } catch {}
+
+    // Oracle history
+    try {
+      const hist = (await Vault.get('oracle-history')) || [];
+      hist.slice(0, 80).forEach(h => {
+        if (!h || !h.q) return;
+        idx.push({
+          group: 'The Oracle',
+          moduleId: 'oracle',
+          title: h.q,
+          subtitle: (h.verdict || '') + (h.qualifier ? ' \u00b7 ' + h.qualifier : ''),
+          body: h.comp || '',
+          onSelect: () => mount('oracle')
+        });
+      });
+    } catch {}
+
+    return idx;
+  }
+
+  function runSearch(query, idx) {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    const out = [];
+    for (const it of idx) {
+      const titleLow = (it.title || '').toLowerCase();
+      const subLow = (it.subtitle || '').toLowerCase();
+      const bodyLow = (it.body || '').toLowerCase();
+      const where = titleLow.includes(q) ? 0
+        : subLow.includes(q) ? 1
+        : bodyLow.includes(q) ? 2 : -1;
+      if (where >= 0) out.push({ ...it, _rank: where });
+    }
+    out.sort((a, b) => a._rank - b._rank);
+    return out.slice(0, 30);
+  }
+
+  async function openSearch() {
+    if (searchOpen) return;
+    searchOpen = true;
+
+    const idx = await buildIndex();
+
+    const ov = U.el('div', { class: 'modal-overlay search-overlay' });
+    const dialog = U.el('div', { class: 'search-modal' });
+    const input = U.el('input', {
+      class: 'search-modal__input',
+      placeholder: 'Search NPCs, factions, finds, threats, days, lore...',
+      autocomplete: 'off', spellcheck: 'false'
+    });
+    const resultsEl = U.el('div', { class: 'search-modal__results' });
+    const hint = U.el('div', { class: 'search-modal__hint' }, [
+      U.el('span', {}, [U.el('kbd', {}, '\u2191\u2193'), document.createTextNode('navigate')]),
+      U.el('span', {}, [U.el('kbd', {}, 'Enter'), document.createTextNode('open')]),
+      U.el('span', {}, [U.el('kbd', {}, 'Esc'), document.createTextNode('close')])
+    ]);
+    dialog.append(input, resultsEl, hint);
+    ov.append(dialog);
+    document.body.append(ov);
+
+    let current = [];
+    let activeIdx = 0;
+    let lastQuery = '';
+
+    function renderResults() {
+      resultsEl.innerHTML = '';
+      if (!input.value.trim()) {
+        resultsEl.append(U.el('div', { class: 'search-modal__empty' },
+          'Type to search NPCs, factions, the cabinet, threats, day notes, and lore.'));
+        return;
+      }
+      if (!current.length) {
+        resultsEl.append(U.el('div', { class: 'search-modal__empty' }, 'Nothing found.'));
+        return;
+      }
+      // group by source
+      const groups = new Map();
+      current.forEach(r => {
+        if (!groups.has(r.group)) groups.set(r.group, []);
+        groups.get(r.group).push(r);
+      });
+      let flatIdx = 0;
+      for (const [gname, items] of groups) {
+        resultsEl.append(U.el('div', { class: 'search-modal__group-head' }, gname));
+        for (const r of items) {
+          const isActive = flatIdx === activeIdx;
+          const myIdx = flatIdx;
+          const btn = U.el('button', {
+            class: 'search-modal__result' + (isActive ? ' is-active' : ''),
+            onclick: () => select(myIdx),
+            onmouseenter: () => { activeIdx = myIdx; updateActive(); }
+          });
+          const titleEl = U.el('div', { class: 'search-modal__result-title' });
+          titleEl.innerHTML = hl(r.title || '', lastQuery);
+          btn.append(titleEl);
+          if (r.subtitle) {
+            const subEl = U.el('div', { class: 'search-modal__result-subtitle' });
+            subEl.innerHTML = hl(r.subtitle, lastQuery);
+            btn.append(subEl);
+          }
+          if (r._rank === 2 && r.body) {
+            const snippet = snip(r.body, lastQuery, 140);
+            if (snippet) {
+              const sEl = U.el('div', { class: 'search-modal__result-snippet' });
+              sEl.innerHTML = snippet;
+              btn.append(sEl);
+            }
+          }
+          resultsEl.append(btn);
+          flatIdx++;
+        }
+      }
+    }
+    function updateActive() {
+      const all = resultsEl.querySelectorAll('.search-modal__result');
+      all.forEach((b, i) => b.classList.toggle('is-active', i === activeIdx));
+      const active = all[activeIdx];
+      if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+    function select(i) {
+      const r = current[i];
+      if (!r) return;
+      closeSearch();
+      Promise.resolve(r.onSelect()).catch(() => {});
+    }
+    function closeSearch() {
+      searchOpen = false;
+      ov.remove();
+      document.removeEventListener('keydown', keyHandler, true);
+    }
+    function keyHandler(e) {
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeSearch(); return; }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = Math.min(current.length - 1, activeIdx + 1);
+        updateActive();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = Math.max(0, activeIdx - 1);
+        updateActive();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        select(activeIdx);
+      }
+    }
+
+    input.addEventListener('input', () => {
+      lastQuery = input.value.trim();
+      current = runSearch(input.value, idx);
+      activeIdx = 0;
+      renderResults();
+    });
+    ov.addEventListener('click', (e) => { if (e.target === ov) closeSearch(); });
+    document.addEventListener('keydown', keyHandler, true);
+    renderResults();
+    setTimeout(() => input.focus(), 30);
+  }
+
+  function initSearchBindings() {
+    const btn = document.getElementById('search-button');
+    if (btn) btn.addEventListener('click', () => openSearch());
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== '/' || searchOpen) return;
+      const t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+      e.preventDefault();
+      openSearch();
+    });
   }
 
   async function init() {
@@ -2568,6 +3498,7 @@ const Keep = (() => {
     Vault.setActiveCampaign(activeId);
 
     await initTheme();
+    initSearchBindings();
     renderNav();
     await renderChip();
 
@@ -2575,7 +3506,7 @@ const Keep = (() => {
     mount(last && modules.has(last) ? last : 'home');
   }
 
-  return { register, mount, init, modules, switchTo, renderChip, current: () => current && current.id };
+  return { register, mount, init, modules, switchTo, renderChip, openSearch, current: () => current && current.id };
 })();
 
 /* =========================================================================
@@ -3260,6 +4191,15 @@ Keep.register({
     let campaignToday = await Refs.today();
     let selectedKey = null;
 
+    // honor incoming navigation (e.g. from the Cabinet's date links)
+    const pending = await Vault.get('almanac-selected');
+    if (pending && typeof pending === 'object' && 'year' in pending) {
+      await Vault.remove('almanac-selected');
+      view.month = pending.month;
+      view.year = pending.year;
+      selectedKey = pending.year + '-' + pending.month + '-' + pending.day;
+    }
+
     const grid = U.el('div', { class: 'almanac__grid' });
     const panel = U.el('div', { class: 'almanac__panel' });
     const head = U.el('div', { class: 'almanac__head' });
@@ -3471,6 +4411,327 @@ Keep.register({
 });
 
 /* =========================================================================
+   MODULE: THREATS (Clocks)
+   Forged in the Dark style ticking clocks for ongoing dangers.
+   ========================================================================= */
+Keep.register({
+  id: 'threats',
+  name: 'Threats',
+  category: 'mysteries',
+  glyph: 'g-hourglass',
+  tagline: 'Clocks for the dangers that tick beneath the world.',
+  sub: 'Each clock counts a doom. Tick when pressure builds. Fill when the doom arrives.',
+
+  async mount(body, actions) {
+    const SEG_OPTIONS = [4, 6, 8, 12];
+    const COLORS = [
+      { id: 'wine',   var: 'var(--wine)',     hex: '#5c1f24' },
+      { id: 'forest', var: 'var(--forest)',   hex: '#2d4a35' },
+      { id: 'gold',   var: 'var(--gold-d)',   hex: '#8a6c25' },
+      { id: 'indigo', var: 'var(--indigo)',   hex: '#2a2848' },
+      { id: 'ink',    var: 'var(--ink-soft)', hex: '#3a2f24' },
+      { id: 'salt',   var: '#7a6c52',         hex: '#7a6c52' },
+      { id: 'iron',   var: '#4a5764',         hex: '#4a5764' },
+      { id: 'rust',   var: '#8a4a2c',         hex: '#8a4a2c' }
+    ];
+    function colorFor(id) { return COLORS.find(c => c.id === id) || COLORS[0]; }
+
+    let threats = await Vault.get('threats');
+    if (!threats || !threats.length) {
+      threats = [
+        { id: U.uid(), name: "The Long Comet's Return", total: 12, filled: 2,
+          description: 'The sky-stone falls. The old prophecies wake.',
+          color: 'indigo', factionId: null,
+          created: Date.now(), updated: Date.now() },
+        { id: U.uid(), name: 'The Pass Will Close With Snow', total: 8, filled: 5,
+          description: 'The road through Greyfern is barred until thaw.',
+          color: 'iron', factionId: null,
+          created: Date.now(), updated: Date.now() }
+      ];
+      await Vault.set('threats', threats);
+    }
+    let factions = (await Vault.get('factions')) || [];
+
+    const head = U.el('div', { class: 'threats__head' });
+    const grid = U.el('div', { class: 'threats__grid' });
+    body.append(head, grid);
+
+    actions.append(
+      U.el('button', { class: 'btn btn--primary', onclick: () => openThreatForm() }, 'New Threat')
+    );
+
+    async function save() { await Vault.set('threats', threats); }
+
+    function findFaction(id) { return factions.find(f => f.id === id); }
+    function factionColorVar(f) {
+      // mirror the faction module's tiny color helper
+      const map = { wine: 'var(--wine)', forest: 'var(--forest)', gold: 'var(--gold-d)',
+        indigo: 'var(--indigo)', ink: 'var(--ink-soft)', salt: '#7a6c52',
+        iron: '#4a5764', rust: '#8a4a2c' };
+      return f && map[f.color] ? map[f.color] : 'var(--ink-soft)';
+    }
+
+    function render() {
+      head.innerHTML = '';
+      const active = threats.filter(t => t.filled < t.total).length;
+      const done = threats.length - active;
+      head.append(
+        U.el('div', { class: 'threats__count' },
+          threats.length + ' clock' + (threats.length === 1 ? '' : 's') +
+          (done ? ' (' + done + ' fulfilled)' : '')),
+        U.el('div', {}, [
+          U.el('button', { class: 'btn btn--small', onclick: () => openThreatForm() }, '+ New Threat')
+        ])
+      );
+
+      grid.innerHTML = '';
+      if (!threats.length) {
+        grid.append(U.el('div', { class: 'empty' }, 'No clocks yet. Set one above.'));
+        return;
+      }
+      // active first, then completed
+      const sorted = [...threats].sort((a, b) => {
+        const aDone = a.filled >= a.total ? 1 : 0;
+        const bDone = b.filled >= b.total ? 1 : 0;
+        if (aDone !== bDone) return aDone - bDone;
+        return (b.updated || 0) - (a.updated || 0);
+      });
+      sorted.forEach(t => grid.append(renderCard(t)));
+      applyPendingHighlight();
+    }
+
+    let pendingHighlight = await Vault.get('threats-highlight');
+    if (pendingHighlight) await Vault.remove('threats-highlight');
+    function applyPendingHighlight() {
+      if (!pendingHighlight) return;
+      const card = grid.querySelector('[data-tid="' + pendingHighlight + '"]');
+      if (card) {
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 30);
+        card.classList.add('threat-card--highlight');
+        setTimeout(() => card.classList.remove('threat-card--highlight'), 2400);
+      }
+      pendingHighlight = null;
+    }
+
+    function clockSvg(filled, total) {
+      const ns = 'http://www.w3.org/2000/svg';
+      const cx = 50, cy = 50, r = 42;
+      const svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('class', 'clock');
+
+      const rim = document.createElementNS(ns, 'circle');
+      rim.setAttribute('cx', cx); rim.setAttribute('cy', cy); rim.setAttribute('r', r);
+      rim.setAttribute('class', 'clock__rim');
+      svg.appendChild(rim);
+
+      for (let i = 0; i < total; i++) {
+        const a1 = (-Math.PI / 2) + (i / total) * Math.PI * 2;
+        const a2 = (-Math.PI / 2) + ((i + 1) / total) * Math.PI * 2;
+        const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+        const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+        const large = ((a2 - a1) > Math.PI) ? 1 : 0;
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('d', `M ${cx} ${cy} L ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z`);
+        path.setAttribute('class', 'clock__slice clock__slice--' + (i < filled ? 'filled' : 'empty'));
+        path.dataset.idx = i;
+        svg.appendChild(path);
+      }
+      const cap = document.createElementNS(ns, 'circle');
+      cap.setAttribute('cx', cx); cap.setAttribute('cy', cy); cap.setAttribute('r', 5);
+      cap.setAttribute('class', 'clock__center');
+      svg.appendChild(cap);
+      return svg;
+    }
+
+    function renderCard(t) {
+      const isComplete = t.filled >= t.total;
+      const c = colorFor(t.color || 'wine');
+      const card = U.el('div', { class: 'threat-card' + (isComplete ? ' threat-card--complete' : ''),
+        style: { '--accent': c.var } });
+      card.dataset.tid = t.id;
+
+      // clock svg
+      const clockBox = U.el('div', { class: 'threat-card__clock' });
+      const svg = clockSvg(t.filled, t.total);
+      svg.querySelectorAll('.clock__slice').forEach(s => {
+        s.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = +s.dataset.idx;
+          const targetFill = (t.filled === idx + 1) ? idx : idx + 1;
+          adjust(t, targetFill - t.filled);
+        });
+      });
+      clockBox.append(svg);
+      card.append(clockBox);
+
+      // body
+      const bodyEl = U.el('div', { class: 'threat-card__body' });
+      bodyEl.append(U.el('div', { class: 'threat-card__name' }, t.name));
+      if (t.description) bodyEl.append(U.el('div', { class: 'threat-card__desc' }, t.description));
+
+      if (t.factionId) {
+        const f = findFaction(t.factionId);
+        if (f) {
+          const fBtn = U.el('button', { class: 'threat-card__faction',
+            title: 'Open the Faction Ledger',
+            onclick: (e) => { e.stopPropagation(); Keep.mount('factions'); } });
+          fBtn.style.setProperty('--accent2', factionColorVar(f));
+          fBtn.append(
+            U.el('span', { class: 'threat-card__faction-sigil' }, f.sigil || '?'),
+            U.el('span', {}, f.name)
+          );
+          bodyEl.append(fBtn);
+        }
+      }
+
+      const ctrls = U.el('div', { class: 'threat-card__controls' });
+      ctrls.append(
+        U.el('button', { class: 'gauge-btn', onclick: () => adjust(t, -1) }, '\u2212'),
+        U.el('div', { class: 'threat-card__fill' },
+          isComplete ? 'fulfilled' : (t.filled + '/' + t.total)),
+        U.el('button', { class: 'gauge-btn', onclick: () => adjust(t, 1) }, '+')
+      );
+      bodyEl.append(ctrls);
+
+      const acts = U.el('div', { class: 'threat-card__actions' });
+      acts.append(
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
+          const text = 'THREAT: ' + t.name + ' (' + t.filled + '/' + t.total + ')' +
+            (t.description ? '\n' + t.description : '');
+          const today = await Refs.pinToToday(text);
+          U.toast('Pinned to ' + (await Refs.formatDate(today)));
+        }}, 'Pin'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openThreatForm(t) }, 'Edit'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
+          if (!confirm('Retire "' + t.name + '"? The clock will be erased.')) return;
+          threats = threats.filter(x => x.id !== t.id);
+          await save();
+          render();
+        }}, 'Retire')
+      );
+      bodyEl.append(acts);
+
+      card.append(bodyEl);
+      return card;
+    }
+
+    async function adjust(t, delta) {
+      const wasComplete = t.filled >= t.total;
+      t.filled = Math.max(0, Math.min(t.total, t.filled + delta));
+      t.updated = Date.now();
+      await save();
+      const isComplete = t.filled >= t.total;
+      if (!wasComplete && isComplete) {
+        const text = 'THREAT FULFILLED: ' + t.name + '.' +
+          (t.description ? '\n' + t.description : '');
+        const today = await Refs.pinToToday(text);
+        U.toast('"' + t.name + '" fulfilled. Pinned to ' + (await Refs.formatDate(today)));
+      }
+      render();
+    }
+
+    function openThreatForm(existing) {
+      const isEdit = !!existing;
+      const draft = existing
+        ? { ...existing }
+        : { id: U.uid(), name: '', total: 6, filled: 0, description: '',
+            color: 'wine', factionId: null,
+            created: Date.now(), updated: Date.now() };
+
+      const ov = U.el('div', { class: 'modal-overlay' });
+      const dialog = U.el('div', { class: 'modal-card', style: { maxWidth: '520px' } });
+      dialog.append(
+        U.el('div', { class: 'card__corner card__corner--tl' }),
+        U.el('div', { class: 'card__corner card__corner--tr' }),
+        U.el('div', { class: 'card__corner card__corner--bl' }),
+        U.el('div', { class: 'card__corner card__corner--br' }),
+        U.el('h2', {}, isEdit ? 'Edit Threat' : 'Set a New Threat')
+      );
+      const scroll = U.el('div', { class: 'modal-card__scroll' });
+
+      const nameInput = U.el('input', { class: 'input', placeholder: 'The cult\u2019s ritual, the duke\u2019s patience, the road thaws...', value: draft.name });
+      const descInput = U.el('textarea', { class: 'textarea', placeholder: 'What happens when the clock fills.', style: { minHeight: '80px' } });
+      descInput.value = draft.description || '';
+
+      // segment count picker
+      const segWrap = U.el('div', { class: 'seg-picker' });
+      SEG_OPTIONS.forEach(n => {
+        const b = U.el('button', { onclick: () => {
+          draft.total = n;
+          if (draft.filled > n) draft.filled = n;
+          segWrap.querySelectorAll('button').forEach(x => x.classList.toggle('is-selected', +x.textContent === n));
+        }}, String(n));
+        if (n === draft.total) b.classList.add('is-selected');
+        segWrap.append(b);
+      });
+
+      // colour picker (reuses the faction picker pattern)
+      const colorWrap = U.el('div', { class: 'color-picker' });
+      COLORS.forEach(c => {
+        const sw = U.el('button', { class: 'color-swatch',
+          style: { background: c.hex }, title: c.id,
+          onclick: () => {
+            draft.color = c.id;
+            colorWrap.querySelectorAll('.color-swatch').forEach(x => x.classList.toggle('is-selected', x.dataset.cid === c.id));
+          }});
+        sw.dataset.cid = c.id;
+        if (c.id === draft.color) sw.classList.add('is-selected');
+        colorWrap.append(sw);
+      });
+
+      // faction select
+      const factionSelect = U.el('select', { class: 'select' });
+      factionSelect.append(U.el('option', { value: '' }, '(none)'));
+      factions.forEach(f => {
+        const opt = U.el('option', { value: f.id }, (f.sigil || '?') + '  ' + f.name);
+        if (draft.factionId === f.id) opt.selected = 'selected';
+        factionSelect.append(opt);
+      });
+
+      scroll.append(
+        U.el('div', { class: 'label' }, 'Name'),
+        nameInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.75rem' } }, 'When the clock fills'),
+        descInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.75rem' } }, 'Segments'),
+        segWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.75rem' } }, 'Colour'),
+        colorWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.75rem' } }, 'Linked Faction (optional)'),
+        factionSelect
+      );
+      dialog.append(scroll);
+
+      dialog.append(U.el('div', { class: 'modal-card__close' }, [
+        U.el('button', { class: 'btn btn--ghost', onclick: () => ov.remove() }, 'Cancel'),
+        U.el('button', { class: 'btn btn--primary', onclick: async () => {
+          if (!nameInput.value.trim()) { nameInput.focus(); return; }
+          draft.name = nameInput.value.trim();
+          draft.description = descInput.value.trim();
+          draft.factionId = factionSelect.value || null;
+          draft.updated = Date.now();
+          if (isEdit) {
+            const idx = threats.findIndex(x => x.id === existing.id);
+            if (idx >= 0) threats[idx] = draft;
+          } else {
+            threats.unshift(draft);
+          }
+          await save();
+          ov.remove();
+          render();
+        }}, isEdit ? 'Save' : 'Set the Clock')
+      ]));
+      ov.append(dialog);
+      document.body.append(ov);
+      setTimeout(() => nameInput.focus(), 50);
+    }
+
+    render();
+  }
+});
+
+/* =========================================================================
    MODULE: ARCHIVE (Lore Vault)
    ========================================================================= */
 Keep.register({
@@ -3482,15 +4743,35 @@ Keep.register({
   sub: 'Press [[name]] to forge a new entry, or to link two together.',
 
   async mount(body, actions) {
+    const ENTRY_TYPES = [
+      { id: 'person',  name: 'Person',  color: 'var(--forest)',  rgba: 'rgba(45,74,53,0.18)' },
+      { id: 'place',   name: 'Place',   color: 'var(--indigo)',  rgba: 'rgba(42,40,72,0.18)' },
+      { id: 'thing',   name: 'Thing',   color: 'var(--gold-d)',  rgba: 'rgba(184,146,58,0.20)' },
+      { id: 'event',   name: 'Event',   color: 'var(--wine)',    rgba: 'rgba(92,31,36,0.18)' },
+      { id: 'faction', name: 'Faction', color: '#8a4a2c',        rgba: 'rgba(138,74,44,0.18)' },
+      { id: 'lore',    name: 'Lore',    color: 'var(--ink-faded)', rgba: 'rgba(107,93,74,0.12)' }
+    ];
+    const TYPE_BY_ID = Object.fromEntries(ENTRY_TYPES.map(t => [t.id, t]));
+
     let entries = await Vault.get('archive-entries') || {};
     let npcByName = await Refs.npcByName();
     if (!Object.keys(entries).length) {
       entries = {
-        'The Keep': { title: 'The Keep', body: '# The Keep\n\nA fortress at the cleft of the [[Greyfern Pass]], held in trust since the [[Long Comet]] of year 712. The walls have weathered six sieges. The seventh, they say, is yet to come.\n\nSee also: [[Margrave of Ashlow]].', updated: Date.now() },
-        'Greyfern Pass': { title: 'Greyfern Pass', body: '# Greyfern Pass\n\nThe only road between the salt valleys and the [[Hollow Court]]. Closed at dusk by old custom. Travellers winter at [[The Keep]] when the snows come early.', updated: Date.now() }
+        'The Keep': { title: 'The Keep', type: 'place', body: '# The Keep\n\nA fortress at the cleft of the [[Greyfern Pass]], held in trust since the [[Long Comet]] of year 712. The walls have weathered six sieges. The seventh, they say, is yet to come.\n\nSee also: [[Margrave of Ashlow]].', updated: Date.now() },
+        'Greyfern Pass': { title: 'Greyfern Pass', type: 'place', body: '# Greyfern Pass\n\nThe only road between the salt valleys and the [[Hollow Court]]. Closed at dusk by old custom. Travellers winter at [[The Keep]] when the snows come early.', updated: Date.now() }
       };
       await Vault.set('archive-entries', entries);
     }
+
+    // back-fill: any entry whose name matches an NPC in the roster is a Person
+    let backfillDirty = false;
+    for (const [name, e] of Object.entries(entries)) {
+      if (!e.type && npcByName.has(name)) {
+        e.type = 'person';
+        backfillDirty = true;
+      }
+    }
+    if (backfillDirty) await Vault.set('archive-entries', entries);
 
     let currentId = await Vault.get('archive-current') || Object.keys(entries)[0];
     let editing = false;
@@ -3517,7 +4798,20 @@ Keep.register({
       const matches = names.filter(n =>
         !q || n.toLowerCase().includes(q) || (entries[n].body || '').toLowerCase().includes(q)
       );
+
+      // group by type, in canonical order, untyped → 'lore'
+      const groups = new Map();
+      ENTRY_TYPES.forEach(t => groups.set(t.id, []));
       matches.forEach(name => {
+        const t = entries[name].type || 'lore';
+        if (!groups.has(t)) groups.set(t, []);
+        groups.get(t).push(name);
+      });
+
+      const populatedGroups = [...groups.entries()].filter(([, arr]) => arr.length);
+      const showHeaders = populatedGroups.length > 1;
+
+      function renderEntry(name) {
         const e = entries[name];
         const nameLow = name.toLowerCase();
         const bodyLow = (e.body || '').toLowerCase();
@@ -3525,13 +4819,13 @@ Keep.register({
         const bodyMatch = q && bodyLow.includes(q);
 
         const item = U.el('li', {
-          class: 'archive__entry' + (name === currentId ? ' archive__entry--active' : ''),
+          class: 'archive__entry archive__entry--type-' + (e.type || 'lore') +
+            (name === currentId ? ' archive__entry--active' : ''),
           onclick: () => { currentId = name; Vault.set('archive-current', name); renderSidebar(); renderMain(); }
         });
         const nameEl = U.el('span', { class: 'archive__entry-name' });
         nameEl.innerHTML = nameMatch ? highlightHtml(name, q) : escapeHtml(name);
         item.append(nameEl);
-
         if (q && bodyMatch && !nameMatch) {
           const snip = makeExcerpt(e.body || '', q);
           if (snip) {
@@ -3540,8 +4834,16 @@ Keep.register({
             item.append(ex);
           }
         }
-        list.append(item);
+        return item;
+      }
+
+      populatedGroups.forEach(([typeId, ents]) => {
+        if (showHeaders) {
+          list.append(U.el('li', { class: 'archive__group-head' }, (TYPE_BY_ID[typeId] || { name: typeId.toUpperCase() }).name));
+        }
+        ents.forEach(n => list.append(renderEntry(n)));
       });
+
       if (!matches.length) {
         list.append(U.el('li', { class: 'empty', style: { padding: '1rem 0.5rem' } }, q ? 'No entries match.' : 'No entries yet.'));
       }
@@ -3598,6 +4900,31 @@ Keep.register({
         }, 400);
       });
       main.append(title);
+
+      // type picker
+      const typeRow = U.el('div', { class: 'archive__type-picker' });
+      const setType = async (t) => {
+        e.type = t || null;
+        e.updated = Date.now();
+        await Vault.set('archive-entries', entries);
+        renderSidebar();
+        // refresh active state of pills
+        typeRow.querySelectorAll('.archive__type-pill').forEach(p => {
+          p.classList.toggle('is-active', p.dataset.type === (e.type || ''));
+        });
+      };
+      ENTRY_TYPES.forEach(t => {
+        const pill = U.el('button', {
+          class: 'archive__type-pill' + ((e.type || '') === t.id ? ' is-active' : ''),
+          style: { '--type-color': t.color, '--type-soft': t.rgba },
+          title: 'Tag this entry as ' + t.name,
+          onclick: () => setType(t.id === e.type ? null : t.id)
+        }, t.name);
+        pill.dataset.type = t.id;
+        typeRow.append(pill);
+      });
+      main.append(typeRow);
+
       main.append(U.el('div', { class: 'archive__meta' }, [
         U.el('span', { class: 'tag' }, new Date(e.updated || Date.now()).toLocaleDateString())
       ]));
@@ -3619,7 +4946,7 @@ Keep.register({
             if (!entries[tgt]) {
               const npc = npcByName.get(tgt);
               const body = npc ? Refs.npcAsMarkdown(npc) : `# ${tgt}\n\n`;
-              entries[tgt] = { title: tgt, body, updated: Date.now() };
+              entries[tgt] = { title: tgt, body, type: npc ? 'person' : null, updated: Date.now() };
               Vault.set('archive-entries', entries);
             }
             currentId = tgt;
@@ -3910,6 +5237,28 @@ Keep.register({
         card.append(linksWrap);
       }
 
+      // cabinet items this NPC is recorded as holding
+      const cabItems = ((await Vault.get('cabinet')) || []).filter(it => it.heldBy === npc.name);
+      if (cabItems.length) {
+        const cabWrap = U.el('div', { class: 'faces__backlinks' });
+        cabWrap.append(U.el('div', { class: 'faces__field-label' }, 'Carries'));
+        const row = U.el('div');
+        const kindGlyphs = { relic: '\u2720', weapon: '\u2694', tome: '\u2766', letter: '\u2709',
+          trinket: '\u2726', tool: '\u2692', curiosity: '\u2742', other: '\u2767' };
+        cabItems.forEach(it => {
+          row.append(U.el('button', {
+            class: 'tag',
+            title: 'Open in The Cabinet',
+            onclick: async () => {
+              await Vault.set('cabinet-highlight', it.id);
+              await Keep.mount('cabinet');
+            }
+          }, (kindGlyphs[it.kind] || '') + '  ' + it.name));
+        });
+        cabWrap.append(row);
+        card.append(cabWrap);
+      }
+
       const acts = U.el('div', { class: 'faces__actions' });
       if (!opts.inRoster) {
         acts.append(U.el('button', { class: 'btn btn--small', onclick: async () => {
@@ -3958,8 +5307,385 @@ Keep.register({
       stage.innerHTML = '';
       stage.append(await renderNpc(newNpc()));
     }
-    await roll();
+
+    // honour incoming search navigation: if faces-show is set, display that
+    // roster NPC in the stage instead of rolling fresh
+    const pendingNpc = await Vault.get('faces-show');
+    if (pendingNpc) {
+      await Vault.remove('faces-show');
+      const roster = await Vault.get('faces-roster') || [];
+      const found = roster.find(n => n.id === pendingNpc);
+      if (found) {
+        stage.innerHTML = '';
+        stage.append(await renderNpc(found, { inRoster: true }));
+      } else {
+        await roll();
+      }
+    } else {
+      await roll();
+    }
     renderRoster();
+  }
+});
+
+/* =========================================================================
+   MODULE: THE CABINET (Things Found)
+   A registry of relics, letters, weapons, and curiosities the party has
+   acquired or seen. Different from the Archive: structured fields, status
+   colour-coding, and date-stamped to the in-world calendar.
+   ========================================================================= */
+Keep.register({
+  id: 'cabinet',
+  name: 'The Cabinet',
+  category: 'workshop',
+  glyph: 'g-cabinet',
+  tagline: 'Relics, letters, and curiosities. The catalogue of what the party has touched.',
+  sub: 'Each drawer holds a finding. Note what it is, who carries it, where it surfaced, and when.',
+
+  async mount(body, actions) {
+    const KINDS = [
+      { id: 'relic',     name: 'Relic',     glyph: '\u2720' },
+      { id: 'weapon',    name: 'Weapon',    glyph: '\u2694' },
+      { id: 'tome',      name: 'Tome',      glyph: '\u2766' },
+      { id: 'letter',    name: 'Letter',    glyph: '\u2709' },
+      { id: 'trinket',   name: 'Trinket',   glyph: '\u2726' },
+      { id: 'tool',      name: 'Tool',      glyph: '\u2692' },
+      { id: 'curiosity', name: 'Curiosity', glyph: '\u2742' },
+      { id: 'other',     name: 'Other',     glyph: '\u2767' }
+    ];
+    const STATUSES = [
+      { id: 'held',      name: 'Held' },
+      { id: 'lost',      name: 'Lost' },
+      { id: 'hidden',    name: 'Hidden' },
+      { id: 'given',     name: 'Given' },
+      { id: 'destroyed', name: 'Destroyed' }
+    ];
+
+    function kindOf(id)   { return KINDS.find(k => k.id === id) || KINDS[KINDS.length - 1]; }
+    function statusOf(id) { return STATUSES.find(s => s.id === id) || STATUSES[0]; }
+
+    const calendar = await Refs.calendar();
+    const todayDate = await Refs.today();
+    function fmtDate(d) {
+      if (!d || typeof d !== 'object') return '(unknown)';
+      return d.day + ' ' + calendar.months[d.month] + ', ' + d.year;
+    }
+
+    let items = await Vault.get('cabinet');
+    if (!items || !items.length) {
+      items = [
+        {
+          id: U.uid(),
+          name: 'The Brass Compass',
+          kind: 'curiosity',
+          status: 'held',
+          description: 'The needle does not point north. It points at the bearer\u2019s greatest fear.',
+          heldBy: 'the party',
+          foundAt: 'a drowned chapel beneath the salt road',
+          foundOn: { ...todayDate },
+          worth: 'priceless',
+          created: Date.now(), updated: Date.now()
+        },
+        {
+          id: U.uid(),
+          name: 'Letter Sealed with Black Wax',
+          kind: 'letter',
+          status: 'held',
+          description: 'Unopened. Addressed to a name no one in the lower city will speak aloud.',
+          heldBy: 'the party',
+          foundAt: 'a courier\u2019s body in the snow above Greyfern',
+          foundOn: { ...todayDate },
+          worth: 'unknown',
+          created: Date.now(), updated: Date.now()
+        }
+      ];
+      await Vault.set('cabinet', items);
+    }
+
+    let filter = 'all';
+
+    const head = U.el('div', { class: 'cabinet__head' });
+    const grid = U.el('div', { class: 'cabinet__grid' });
+    body.append(head, grid);
+
+    actions.append(
+      U.el('button', { class: 'btn btn--primary', onclick: () => openItemForm() }, 'Catalogue a Find')
+    );
+
+    async function save() { await Vault.set('cabinet', items); }
+
+    function statusOrder(s) {
+      return ['held','lost','hidden','given','destroyed'].indexOf(s) + 1 || 99;
+    }
+
+    function render() {
+      head.innerHTML = '';
+      const counts = { all: items.length };
+      STATUSES.forEach(s => { counts[s.id] = items.filter(i => i.status === s.id).length; });
+
+      const filters = U.el('div', { class: 'cabinet__filters' });
+      const opts = [{ id: 'all', name: 'All' }, ...STATUSES];
+      opts.forEach(o => {
+        const b = U.el('button', {
+          class: 'cabinet__filter' + (filter === o.id ? ' is-active' : ''),
+          onclick: () => { filter = o.id; render(); }
+        }, [
+          document.createTextNode(o.name),
+          U.el('span', { class: 'cabinet__filter-count' }, String(counts[o.id] || 0))
+        ]);
+        filters.append(b);
+      });
+      head.append(filters);
+      head.append(U.el('div', {}, [
+        U.el('button', { class: 'btn btn--small', onclick: () => openItemForm() }, '+ Catalogue a Find')
+      ]));
+
+      grid.innerHTML = '';
+      const visible = items.filter(i => filter === 'all' || i.status === filter);
+      if (!visible.length) {
+        grid.append(U.el('div', { class: 'empty' },
+          filter === 'all' ? 'No finds yet. Catalogue one above.' : 'Nothing here in this state.'));
+        return;
+      }
+      // sort: by status group, then by updated desc
+      const sorted = [...visible].sort((a, b) => {
+        const ao = statusOrder(a.status), bo = statusOrder(b.status);
+        if (ao !== bo) return ao - bo;
+        return (b.updated || 0) - (a.updated || 0);
+      });
+      sorted.forEach(it => grid.append(renderCard(it)));
+      applyPendingHighlight();
+    }
+
+    let pendingHighlight = await Vault.get('cabinet-highlight');
+    if (pendingHighlight) await Vault.remove('cabinet-highlight');
+    function applyPendingHighlight() {
+      if (!pendingHighlight) return;
+      // if filter is hiding the item, switch to all
+      const target = items.find(i => i.id === pendingHighlight);
+      if (target && filter !== 'all' && target.status !== filter) {
+        filter = 'all';
+        pendingHighlight = pendingHighlight; // keep for re-render
+        render();
+        return;
+      }
+      const card = grid.querySelector('[data-itemid="' + pendingHighlight + '"]');
+      if (card) {
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 30);
+        card.classList.add('cabinet-card--highlight');
+        setTimeout(() => card.classList.remove('cabinet-card--highlight'), 2400);
+      }
+      pendingHighlight = null;
+    }
+
+    function renderCard(it) {
+      const k = kindOf(it.kind);
+      const s = statusOf(it.status);
+      const card = U.el('div', { class: 'cabinet-card cabinet-card--' + s.id });
+      card.dataset.itemid = it.id;
+      card.append(
+        U.el('div', { class: 'cabinet-card__kind', title: k.name }, k.glyph)
+      );
+      const bodyEl = U.el('div', { class: 'cabinet-card__body' });
+      bodyEl.append(
+        U.el('div', { class: 'cabinet-card__head' }, [
+          U.el('div', { class: 'cabinet-card__name' }, it.name),
+          U.el('div', { class: 'cabinet-card__status' }, s.name)
+        ])
+      );
+      if (it.description) {
+        bodyEl.append(U.el('div', { class: 'cabinet-card__desc' }, it.description));
+      }
+
+      const meta = U.el('dl', { class: 'cabinet-card__meta' });
+      function row(label, valNode) {
+        meta.append(U.el('dt', {}, label), U.el('dd', {}, [valNode]));
+      }
+      if (it.heldBy) {
+        // if it matches a roster NPC, render as a link to their archive
+        const match = npcLookup(it.heldBy);
+        row('Held By', match ? linkToArchive(it.heldBy) : document.createTextNode(it.heldBy));
+      }
+      if (it.foundAt) {
+        row('Found', document.createTextNode(it.foundAt));
+      }
+      if (it.foundOn) {
+        row('On', linkToAlmanac(it.foundOn));
+      }
+      if (it.worth) {
+        row('Worth', document.createTextNode(it.worth));
+      }
+      if (meta.children.length) bodyEl.append(meta);
+
+      const acts = U.el('div', { class: 'cabinet-card__actions' });
+      acts.append(
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
+          const text = 'CABINET: ' + it.name + ' [' + s.name.toLowerCase() + '].' +
+            (it.description ? '\n' + it.description : '');
+          const today = await Refs.pinToToday(text);
+          U.toast('Pinned to ' + (await Refs.formatDate(today)));
+        }}, 'Pin'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openItemForm(it) }, 'Edit'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
+          if (!confirm('Remove "' + it.name + '" from the catalogue?')) return;
+          items = items.filter(x => x.id !== it.id);
+          await save();
+          render();
+        }}, 'Remove')
+      );
+      bodyEl.append(acts);
+
+      card.append(bodyEl);
+      return card;
+    }
+
+    // sync lookups (npcs already loaded in mount scope)
+    let npcRosterCache = null;
+    function npcLookup(name) {
+      if (!npcRosterCache) npcRosterCache = [];
+      return npcRosterCache.find(n => n.name === name) || null;
+    }
+    function linkToArchive(name) {
+      const btn = U.el('button', { class: 'cabinet-card__meta-link',
+        title: 'Open in the Archive',
+        onclick: () => Refs.openArchiveEntry(name)
+      }, name);
+      return btn;
+    }
+    function linkToAlmanac(date) {
+      const btn = U.el('button', { class: 'cabinet-card__meta-link',
+        title: 'Open this day in the Almanac',
+        onclick: () => Refs.openAlmanacAt(date)
+      }, fmtDate(date));
+      return btn;
+    }
+
+    function openItemForm(existing) {
+      const isEdit = !!existing;
+      const draft = existing
+        ? { ...existing, foundOn: existing.foundOn ? { ...existing.foundOn } : { ...todayDate } }
+        : { id: U.uid(), name: '', kind: 'curiosity', status: 'held',
+            description: '', heldBy: 'the party', foundAt: '',
+            foundOn: { ...todayDate }, worth: '',
+            created: Date.now(), updated: Date.now() };
+
+      const ov = U.el('div', { class: 'modal-overlay' });
+      const dialog = U.el('div', { class: 'modal-card', style: { maxWidth: '560px' } });
+      dialog.append(
+        U.el('div', { class: 'card__corner card__corner--tl' }),
+        U.el('div', { class: 'card__corner card__corner--tr' }),
+        U.el('div', { class: 'card__corner card__corner--bl' }),
+        U.el('div', { class: 'card__corner card__corner--br' }),
+        U.el('h2', {}, isEdit ? 'Edit Find' : 'Catalogue a Find')
+      );
+      const scroll = U.el('div', { class: 'modal-card__scroll' });
+
+      const nameInput = U.el('input', { class: 'input', placeholder: 'The Brass Compass, Wolfshade\u2019s Knife...', value: draft.name });
+      const descInput = U.el('textarea', { class: 'textarea', placeholder: 'What is it? What is strange about it? What does it want?', style: { minHeight: '90px' } });
+      descInput.value = draft.description || '';
+      const heldByInput = U.el('input', { class: 'input', placeholder: 'the party, an NPC name, a place', value: draft.heldBy });
+      const foundAtInput = U.el('input', { class: 'input', placeholder: 'a drowned chapel beneath the salt road', value: draft.foundAt });
+      const worthInput = U.el('input', { class: 'input', placeholder: 'priceless, 300 gp, a few coppers', value: draft.worth });
+
+      // kind picker
+      const kindWrap = U.el('div', { class: 'kind-picker' });
+      KINDS.forEach(k => {
+        const b = U.el('button', { onclick: () => {
+          draft.kind = k.id;
+          kindWrap.querySelectorAll('button').forEach(x => x.classList.toggle('is-selected', x.dataset.kid === k.id));
+        }}, [
+          U.el('span', { class: 'kind-picker__glyph' }, k.glyph),
+          U.el('span', {}, k.name)
+        ]);
+        b.dataset.kid = k.id;
+        if (k.id === draft.kind) b.classList.add('is-selected');
+        kindWrap.append(b);
+      });
+
+      // status picker
+      const statusWrap = U.el('div', { class: 'status-picker' });
+      STATUSES.forEach(s => {
+        const b = U.el('button', { onclick: () => {
+          draft.status = s.id;
+          statusWrap.querySelectorAll('button').forEach(x => x.classList.toggle('is-selected', x.dataset.sid === s.id));
+        }}, s.name);
+        b.dataset.sid = s.id;
+        if (s.id === draft.status) b.classList.add('is-selected');
+        statusWrap.append(b);
+      });
+
+      // date editor
+      const dateWrap = U.el('div', { class: 'cabinet-date' });
+      const dayInput = U.el('input', { class: 'input', type: 'number', min: 1, max: calendar.daysPerMonth, value: draft.foundOn.day });
+      const monthSelect = U.el('select', { class: 'select' });
+      calendar.months.forEach((mn, i) => {
+        const opt = U.el('option', { value: i }, mn);
+        if (i === draft.foundOn.month) opt.selected = 'selected';
+        monthSelect.append(opt);
+      });
+      const yearInput = U.el('input', { class: 'input', type: 'number', value: draft.foundOn.year });
+      const todayBtn = U.el('button', { class: 'btn btn--small btn--ghost', type: 'button', onclick: () => {
+        dayInput.value = todayDate.day;
+        monthSelect.value = todayDate.month;
+        yearInput.value = todayDate.year;
+      }}, 'Today');
+      dateWrap.append(dayInput, monthSelect, yearInput, todayBtn);
+
+      scroll.append(
+        U.el('div', { class: 'label' }, 'Name'),
+        nameInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Kind'),
+        kindWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Description'),
+        descInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Status'),
+        statusWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Held By'),
+        heldByInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Found At'),
+        foundAtInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Found On'),
+        dateWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Worth'),
+        worthInput
+      );
+      dialog.append(scroll);
+
+      dialog.append(U.el('div', { class: 'modal-card__close' }, [
+        U.el('button', { class: 'btn btn--ghost', onclick: () => ov.remove() }, 'Cancel'),
+        U.el('button', { class: 'btn btn--primary', onclick: async () => {
+          if (!nameInput.value.trim()) { nameInput.focus(); return; }
+          draft.name = nameInput.value.trim();
+          draft.description = descInput.value.trim();
+          draft.heldBy = heldByInput.value.trim();
+          draft.foundAt = foundAtInput.value.trim();
+          draft.worth = worthInput.value.trim();
+          draft.foundOn = {
+            day: Math.max(1, Math.min(calendar.daysPerMonth, +dayInput.value || 1)),
+            month: +monthSelect.value,
+            year: +yearInput.value || calendar.year
+          };
+          draft.updated = Date.now();
+          if (isEdit) {
+            const idx = items.findIndex(x => x.id === existing.id);
+            if (idx >= 0) items[idx] = draft;
+          } else {
+            items.unshift(draft);
+          }
+          await save();
+          ov.remove();
+          render();
+        }}, isEdit ? 'Save' : 'Catalogue')
+      ]));
+      ov.append(dialog);
+      document.body.append(ov);
+      setTimeout(() => nameInput.focus(), 50);
+    }
+
+    // load NPC roster for the heldBy link lookup
+    npcRosterCache = await Refs.npcRoster();
+
+    render();
   }
 });
 
@@ -4206,11 +5932,44 @@ Keep.register({
         (() => {
           const wrap = U.el('div', { class: 'tavern__patrons' });
           state.patrons.forEach(p => {
-            wrap.append(U.el('div', { class: 'tavern__patron' }, [
+            const row = U.el('div', { class: 'tavern__patron' });
+            const main = U.el('div', { class: 'tavern__patron-text' }, [
               U.el('strong', {}, p.name),
               document.createTextNode(', ' + p.role + '. '),
               U.el('em', {}, p.doing)
-            ]));
+            ]);
+            const recruit = U.el('button', {
+              class: 'tavern__patron-recruit',
+              title: 'Add to the Hall of Faces roster',
+              onclick: async () => {
+                const roster = (await Vault.get('faces-roster')) || [];
+                if (roster.some(n => n.name === p.name)) {
+                  U.toast(p.name + ' is already in the roster');
+                  return;
+                }
+                const cultures = ['northron', 'rivenmark', 'southern'];
+                const npc = {
+                  id: U.uid(),
+                  name: p.name,
+                  culture: U.pick(cultures),
+                  role: p.role,
+                  voice: '',
+                  want: '',
+                  mannerism: p.doing,
+                  physical: '',
+                  secret: '',
+                  created: Date.now(),
+                  recruitedFrom: state.name || 'a tavern'
+                };
+                roster.push(npc);
+                await Vault.set('faces-roster', roster.slice(0, 200));
+                recruit.disabled = true;
+                recruit.textContent = 'Recruited';
+                U.toast(p.name + ' added to the roster');
+              }
+            }, 'Recruit');
+            row.append(main, recruit);
+            wrap.append(row);
           });
           return wrap;
         })()
@@ -4235,6 +5994,19 @@ Keep.register({
               const label = r.truth === 'true' ? 'True' : (r.truth === 'half' ? 'Half-true' : 'False');
               li.append(U.el('span', { class: 'tavern__truth tavern__truth--' + (r.truth === 'half' ? 'half' : r.truth) }, label));
             }
+            // small pin icon: pins this single rumour to today's day note
+            li.append(U.el('button', {
+              class: 'tavern__rumour-pin',
+              title: 'Pin this rumour to the Almanac',
+              onclick: async () => {
+                const truthTag = r.revealed
+                  ? ' [' + (r.truth === 'half' ? 'half-true' : r.truth) + ']'
+                  : ' [unverified]';
+                const text = 'RUMOUR at ' + (state.name || 'the tavern') + ': ' + r.text + truthTag;
+                const today = await Refs.pinToToday(text);
+                U.toast('Pinned to ' + (await Refs.formatDate(today)));
+              }
+            }, '\u2767'));
             ol.append(li);
           });
           return ol;
@@ -4307,6 +6079,22 @@ Keep.register({
     body.append(head, grid, matrixWrap);
 
     let view = (await Vault.get('factions-view')) || 'cards';
+    let pendingExpand = await Vault.get('factions-expand');
+    if (pendingExpand) await Vault.remove('factions-expand');
+    if (pendingExpand) view = 'cards'; // expand only makes sense in cards mode
+
+    // cross-module data cached at mount time for backlinks and threat counts
+    let archiveEntries = await Refs.archiveEntries();
+    let threatsLinked = (await Vault.get('threats')) || [];
+    function backlinksFor(name) {
+      const out = [];
+      const safe = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp('\\[\\[' + safe + '\\]\\]');
+      for (const [k, e] of Object.entries(archiveEntries)) {
+        if (re.test(e.body || '')) out.push(k);
+      }
+      return out;
+    }
 
     actions.append(
       U.el('button', { class: 'btn btn--primary', onclick: () => openFactionForm() }, 'Found a Faction')
@@ -4314,6 +6102,16 @@ Keep.register({
 
     async function save() { await Vault.set('factions', factions); }
     async function saveView() { await Vault.set('factions-view', view); }
+
+    function applyPendingExpand() {
+      if (!pendingExpand) return;
+      const card = grid.querySelector('[data-fid="' + pendingExpand + '"]');
+      if (card) {
+        card.classList.add('faction-card--open');
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 30);
+      }
+      pendingExpand = null;
+    }
 
     function render() {
       // hide any open matrix editor
@@ -4342,6 +6140,7 @@ Keep.register({
         grid.style.display = '';
         matrixWrap.style.display = 'none';
         renderCards();
+        applyPendingExpand();
       }
     }
 
@@ -4518,6 +6317,32 @@ Keep.register({
       gauge.append(controls);
       card.append(gauge);
 
+      // threat count badge (visible without expanding)
+      const linkedThreats = threatsLinked.filter(t => t.factionId === f.id);
+      if (linkedThreats.length) {
+        const activeCount = linkedThreats.filter(t => t.filled < t.total).length;
+        const allCount = linkedThreats.length;
+        const meta = U.el('div', { class: 'faction-card__threats' });
+        const summary = activeCount === allCount
+          ? activeCount + ' clock' + (activeCount === 1 ? '' : 's') + ' ticking'
+          : activeCount + ' of ' + allCount + ' clocks ticking';
+        const chip = U.el('button', {
+          class: 'faction-card__threat-chip',
+          title: 'Open Threats and review the linked clocks',
+          onclick: async () => {
+            // navigate to threats; if there's a particular clock, highlight the first active one
+            const first = linkedThreats.find(t => t.filled < t.total) || linkedThreats[0];
+            if (first) await Vault.set('threats-highlight', first.id);
+            await Keep.mount('threats');
+          }
+        }, [
+          U.el('span', { class: 'faction-card__threat-icon' }, '\u29D7'),
+          U.el('span', {}, summary)
+        ]);
+        meta.append(chip);
+        card.append(meta);
+      }
+
       const bodyEl = U.el('div', { class: 'faction-card__body' });
 
       if (f.goal) {
@@ -4579,6 +6404,23 @@ Keep.register({
         });
         relField.append(relList);
         bodyEl.append(relField);
+      }
+
+      // Archive backlinks: entries that mention this faction with [[wikilink]]
+      const archBacks = backlinksFor(f.name);
+      if (archBacks.length) {
+        const backField = U.el('div', { class: 'faction-card__field' });
+        backField.append(U.el('div', { class: 'label' }, 'Mentioned In'));
+        const list = U.el('div', { class: 'faction-card__backlinks' });
+        archBacks.forEach(name => {
+          list.append(U.el('button', {
+            class: 'tag faction-card__backlink',
+            title: 'Open in the Archive',
+            onclick: () => Refs.openArchiveEntry(name)
+          }, name));
+        });
+        backField.append(list);
+        bodyEl.append(backField);
       }
 
       const cardActions = U.el('div', { class: 'faction-card__actions' });
