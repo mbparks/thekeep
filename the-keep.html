@@ -2763,7 +2763,7 @@ body.popout-mode .folio {
   animation: fellowshipSpeakIn 0.32s ease-out;
 }
 .fellowship-card__quote-text::before {
-  content: '\u201C';
+  content: '\201C';
   font-family: var(--serif);
   font-size: 1.4em;
   color: var(--ink-faded);
@@ -2771,7 +2771,7 @@ body.popout-mode .folio {
   margin-right: 0.05em;
 }
 .fellowship-card__quote-text::after {
-  content: '\u201D';
+  content: '\201D';
   font-family: var(--serif);
   font-size: 1.4em;
   color: var(--ink-faded);
@@ -2821,7 +2821,20 @@ body.popout-mode .folio {
 .fellowship-card__speak:hover { filter: brightness(1.08); }
 .fellowship-card__speak:active { transform: translateY(1px); }
 .fellowship-card__speak:disabled { opacity: 0.4; cursor: not-allowed; }
-[data-theme="dark"] .fellowship-card__speak { color: var(--ink); }
+/* Dark mode: the default --accent (--ink-soft) becomes a light parchment
+   tan in dark mode, so the original filled-button design becomes light
+   on light. Switch to an outlined-button style instead: transparent
+   background, accent-coloured border and text. Hover adds a faint tint
+   without trying to brighten an already-dark surface. */
+[data-theme="dark"] .fellowship-card__speak {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+[data-theme="dark"] .fellowship-card__speak:hover {
+  background: rgba(196, 186, 163, 0.14);
+  filter: none;
+}
 
 .fellowship-card__backlinks {
   display: flex; flex-wrap: wrap; gap: 0.35rem;
@@ -3105,7 +3118,7 @@ body.popout-mode .folio {
   margin-bottom: 0.25rem;
 }
 .threat-card--complete .threat-card__name::after {
-  content: " \u2740";
+  content: " \2740";
   color: var(--gold);
   margin-left: 0.3rem;
 }
