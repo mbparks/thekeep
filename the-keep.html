@@ -1511,6 +1511,40 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   line-height: 1.5;
   margin-bottom: 0.4rem;
 }
+<<<<<<< Updated upstream
+=======
+.quest__origin {
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  border-left: 4px solid var(--gold);
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.85rem;
+  margin-bottom: 0.4rem;
+}
+.quest__origin-label {
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-d);
+}
+[data-theme="dark"] .quest__origin-label { color: var(--gold-l); }
+.quest__origin-name {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.quest__origin-meta {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  font-size: 0.88rem;
+}
+>>>>>>> Stashed changes
 .quest__build-section {
   background: var(--p-0);
   border: 1px solid var(--p-3);
@@ -4655,6 +4689,445 @@ body.popout-mode .folio {
   border-color: var(--ink);
 }
 
+<<<<<<< Updated upstream
+=======
+/* ----- MODULE: ATLAS (Region Map Generator) --------------------------- */
+.atlas {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+.atlas--empty { grid-template-columns: 1fr; }
+
+/* Library sidebar */
+.atlas__sidebar {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1rem 0.9rem;
+  display: flex; flex-direction: column;
+  gap: 0.7rem;
+  position: sticky;
+  top: 0.5rem;
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+}
+.atlas__sidebar-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--ink-faded);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.atlas__map-list {
+  display: flex; flex-direction: column;
+  gap: 0.3rem;
+}
+.atlas__map-item {
+  padding: 0.55rem 0.65rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-align: left;
+  display: flex; flex-direction: column;
+  gap: 0.15rem;
+}
+.atlas__map-item:hover { background: var(--p-2); border-color: var(--gold); }
+.atlas__map-item--active {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.atlas__map-item-name {
+  font-family: var(--display);
+  font-style: normal;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+.atlas__map-item-meta {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.74rem;
+  color: var(--ink-faded);
+}
+.atlas__new-btn {
+  padding: 0.6rem 0.8rem;
+  background: var(--ink-soft);
+  color: #f5ebd6;
+  border: 1px solid var(--ink-soft);
+  font-family: var(--display);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+}
+.atlas__new-btn:hover { filter: brightness(1.10); }
+[data-theme="dark"] .atlas__new-btn { color: #1f1c17; }
+
+/* Builder */
+.atlas__builder {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.3rem 1.5rem;
+  display: flex; flex-direction: column;
+  gap: 1rem;
+}
+.atlas__builder-intro {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.atlas__build-section-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.atlas__biomes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.5rem;
+}
+.atlas__biome {
+  padding: 0.75rem 0.8rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+  text-align: left;
+  display: flex; flex-direction: column;
+  gap: 0.25rem;
+}
+.atlas__biome:hover { background: var(--p-2); border-color: var(--gold); }
+.atlas__biome--selected {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.atlas__biome-name {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.atlas__biome-sub {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  line-height: 1.35;
+}
+.atlas__option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.atlas__option {
+  padding: 0.5rem 0.85rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+}
+.atlas__option:hover { background: var(--p-2); border-color: var(--gold); }
+.atlas__option--selected {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.atlas__name-input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+.atlas__name-input:focus { outline: none; border-color: var(--gold); background: var(--p-0); }
+.atlas__forge-row {
+  display: flex; justify-content: center;
+  margin-top: 0.5rem;
+}
+.atlas__forge {
+  padding: 0.85rem 2.4rem;
+  background: var(--gold-d);
+  color: #f5ebd6;
+  border: 1px solid var(--gold-d);
+  font-family: var(--display);
+  font-size: 0.92rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.atlas__forge:hover { filter: brightness(1.10); }
+.atlas__forge:active { transform: translateY(1px); }
+[data-theme="dark"] .atlas__forge { color: #1f1c17; }
+
+/* Map view */
+.atlas__view {
+  display: flex; flex-direction: column;
+  gap: 1rem;
+}
+.atlas__view-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.atlas__view-title {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  flex: 1;
+}
+.atlas__view-meta {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  font-size: 0.92rem;
+}
+.atlas__view-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.atlas__canvas {
+  position: relative;
+  background: #f0e2b8;
+  border: 1px solid var(--ink-soft);
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+}
+[data-theme="dark"] .atlas__canvas {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+.atlas__map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.atlas__poi { cursor: pointer; }
+.atlas__poi:hover .atlas__poi-glyph { filter: brightness(0.8); }
+.atlas__poi:hover .atlas__poi-num-bg { fill: #f5ddb0; }
+.atlas__poi--selected .atlas__poi-num-bg { fill: var(--gold); }
+.atlas__poi--selected .atlas__poi-glyph { filter: brightness(0.7); }
+
+/* Popover */
+.atlas__popover {
+  position: absolute;
+  z-index: 30;
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  padding: 0.85rem 1rem;
+  max-width: 320px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  font-family: var(--serif);
+}
+.atlas__popover-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.atlas__popover-num {
+  font-family: var(--display);
+  font-size: 0.7rem;
+  color: var(--gold-d);
+  padding: 0.15rem 0.35rem;
+  border: 1px solid var(--gold);
+  background: rgba(184, 146, 58, 0.10);
+}
+[data-theme="dark"] .atlas__popover-num { color: var(--gold-l); }
+.atlas__popover-name {
+  flex: 1;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.atlas__popover-close {
+  background: transparent;
+  border: none;
+  font-family: var(--display);
+  color: var(--ink-faded);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0 0.3rem;
+}
+.atlas__popover-close:hover { color: var(--wine); }
+.atlas__popover-type {
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.atlas__popover-story {
+  font-family: var(--serif);
+  font-size: 0.93rem;
+  color: var(--ink);
+  line-height: 1.55;
+  margin-bottom: 0.7rem;
+}
+.atlas__popover-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px dotted var(--p-3);
+}
+.atlas__popover-btn {
+  padding: 0.35rem 0.7rem;
+  background: transparent;
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.atlas__popover-btn:hover { background: var(--p-2); color: var(--ink); border-color: var(--ink-soft); }
+.atlas__popover-btn--primary {
+  background: var(--wine);
+  color: #f5ebd6;
+  border-color: var(--wine-d);
+}
+.atlas__popover-btn--primary:hover { filter: brightness(1.10); background: var(--wine); color: #f5ebd6; }
+
+/* Legend */
+.atlas__legend {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.1rem 1.3rem;
+}
+.atlas__legend-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.atlas__legend-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.8rem 1.2rem;
+}
+.atlas__legend-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 0.7rem;
+  align-items: start;
+}
+.atlas__legend-num {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  color: var(--gold-d);
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--gold);
+  background: rgba(184, 146, 58, 0.10);
+  align-self: start;
+  min-width: 1.6rem;
+  text-align: center;
+}
+[data-theme="dark"] .atlas__legend-num { color: var(--gold-l); }
+.atlas__legend-name {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.atlas__legend-type {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-top: 0.1rem;
+  margin-bottom: 0.35rem;
+}
+.atlas__legend-story {
+  grid-column: 2;
+  font-family: var(--serif);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* Empty state when no maps yet */
+.atlas__empty-hint {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.4rem 0;
+}
+
+/* Mobile / narrow */
+@media (max-width: 740px) {
+  .atlas { grid-template-columns: 1fr; }
+  .atlas__sidebar {
+    position: static;
+    max-height: 200px;
+  }
+}
+
+/* Print: hide chrome, expand map, layout legend */
+@media print {
+  .atlas { grid-template-columns: 1fr !important; }
+  .atlas__sidebar,
+  .atlas__view-actions,
+  .atlas__popover,
+  .atlas__forge-row { display: none !important; }
+  .atlas__canvas {
+    page-break-after: always;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: 1px solid #5c1f24 !important;
+  }
+  .atlas__legend { font-size: 11pt; line-height: 1.5; border-color: #5c1f24 !important; }
+  .atlas__legend-list { grid-template-columns: 1fr; }
+  .atlas__legend-item { page-break-inside: avoid; margin-bottom: 0.7em; }
+  [data-theme="dark"] .atlas,
+  [data-theme="dark"] .atlas__canvas,
+  [data-theme="dark"] .atlas__legend {
+    background: #faf2dd !important;
+    color: #2a201a !important;
+  }
+}
+
+>>>>>>> Stashed changes
 /* ----- MODULE: LOOT (Treasure Generator) ------------------------------ */
 .loot { display: flex; flex-direction: column; gap: 1.4rem; }
 
@@ -5889,6 +6362,10 @@ body.popout-mode .folio {
     <symbol id="g-coffer" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 10 L18 10 C 18.5 10 19 10.5 19 11 L 19 19 C 19 20.1 18.1 21 17 21 L 7 21 C 5.9 21 5 20.1 5 19 L 5 11 C 5 10.5 5.5 10 6 10 Z M8 10 C 8 8 10 5 12 5 C 14 5 16 8 16 10 M9 14 L 15 14"/></symbol>
     <symbol id="g-skirmish" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 19 L 19 5  M3 17 L 7 21  M19 19 L 5 5  M21 17 L 17 21"/></symbol>
     <symbol id="g-quest" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 21 V11 C 5 7 8 4 12 4 C 16 4 19 7 19 11 V21 M9 21 V14 C 9 12.5 10.3 11 12 11 C 13.7 11 15 12.5 15 14 V21 M12 11 V21 M5 21 H19"/></symbol>
+<<<<<<< Updated upstream
+=======
+    <symbol id="g-atlas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 L13.5 12 L12 21 L10.5 12 Z M3 12 L12 13.5 L21 12 L12 10.5 Z"/></symbol>
+>>>>>>> Stashed changes
     <symbol id="g-scroll" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 4 H17 V20 H6 Z M6 4 C 4.5 4 3.5 5 3.5 6.5 C 3.5 8 4.5 9 6 9 M17 4 C 18.5 4 19.5 5 19.5 6.5 C 19.5 8 18.5 9 17 9 M17 15 C 18.5 15 19.5 16 19.5 17.5 C 19.5 19 18.5 20 17 20 M9 8 H14 M9 12 H14 M9 16 H13"/></symbol>
     <symbol id="g-tankard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 8 H15 V19 C 15 20 14.5 20.5 13.5 20.5 H7.5 C 6.5 20.5 6 20 6 19 Z M15 10.5 H18 C 19 10.5 19.5 11 19.5 12 V15 C 19.5 16 19 16.5 18 16.5 H15 M6 11.5 H15 M8 5 Q 8.5 6.5 8 8 M11 5 Q 11.5 6.5 11 8 M14 5 Q 14.5 6.5 14 8"/></symbol>
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
@@ -8791,6 +9268,28 @@ Keep.register({
     }
     let factions = (await Vault.get('factions')) || [];
 
+    // Atlas (or another module) can drop a threats-poi-hint with
+    // { poiName, poiType, region, biome, backstory } to open a new
+    // long-running threat anchored to that place. One-shot: read,
+    // delete, append.
+    const threatHint = await Vault.get('threats-poi-hint');
+    if (threatHint && threatHint.poiName) {
+      await Vault.remove('threats-poi-hint');
+      threats.push({
+        id: U.uid(),
+        name: threatHint.poiName + ' \u00B7 ' + (threatHint.poiType || 'menace'),
+        total: 8,
+        filled: 0,
+        description: threatHint.backstory || ('A threat from ' + (threatHint.region || 'the map') + '.'),
+        color: 'wine',
+        factionId: null,
+        created: Date.now(),
+        updated: Date.now()
+      });
+      await Vault.set('threats', threats);
+      U.toast('New threat: ' + threatHint.poiName);
+    }
+
     const head = U.el('div', { class: 'threats__head' });
     const grid = U.el('div', { class: 'threats__grid' });
     body.append(head, grid);
@@ -9823,11 +10322,11 @@ Keep.register({
       'thin, restless hands; cannot hold them still'
     ];
 
-    function newNpc() {
+    function newNpc(seed) {
       const cultKey = U.pick(Object.keys(cultures));
       const cult = cultures[cultKey];
       const name = U.pick(cult.first) + ' ' + U.pick(cult.last);
-      return {
+      const npc = {
         id: U.uid(),
         name, culture: cultKey,
         role: U.pick(occupations),
@@ -9838,6 +10337,10 @@ Keep.register({
         physical: U.pick(physical),
         created: Date.now()
       };
+      if (seed && seed.poiName) {
+        npc.location = seed.poiName + (seed.region ? ', ' + seed.region : '');
+      }
+      return npc;
     }
     async function renderNpc(npc, opts = {}) {
       const fields = [
@@ -9854,7 +10357,7 @@ Keep.register({
         U.el('div', { class: 'card__corner card__corner--bl' }),
         U.el('div', { class: 'card__corner card__corner--br' }),
         U.el('div', { class: 'faces__npc-name' }, npc.name),
-        U.el('div', { class: 'faces__npc-role' }, npc.role + ' \u00B7 ' + (npc.culture.charAt(0).toUpperCase() + npc.culture.slice(1))),
+        U.el('div', { class: 'faces__npc-role' }, npc.role + ' \u00B7 ' + (npc.culture.charAt(0).toUpperCase() + npc.culture.slice(1)) + (npc.location ? ' \u00B7 in ' + npc.location : '')),
         U.el('div', { class: 'faces__npc-grid' },
           fields.map(([l, v]) => U.el('div', {}, [
             U.el('div', { class: 'faces__field-label' }, l),
@@ -9945,10 +10448,16 @@ Keep.register({
       });
       rosterWrap.append(grid);
     }
-    async function roll() {
+    async function roll(seed) {
       stage.innerHTML = '';
-      stage.append(await renderNpc(newNpc()));
+      stage.append(await renderNpc(newNpc(seed)));
     }
+
+    // Atlas (or any other module) can drop a faces-location-hint with
+    // { poiName, poiType, region, biome } to anchor a freshly rolled NPC
+    // to a place. One-shot: read, delete, apply.
+    const facesHint = await Vault.get('faces-location-hint');
+    if (facesHint) await Vault.remove('faces-location-hint');
 
     // honour incoming search navigation: if faces-show is set, display that
     // roster NPC in the stage instead of rolling fresh
@@ -9961,10 +10470,10 @@ Keep.register({
         stage.innerHTML = '';
         stage.append(await renderNpc(found, { inRoster: true }));
       } else {
-        await roll();
+        await roll(facesHint);
       }
     } else {
-      await roll();
+      await roll(facesHint);
     }
     renderRoster();
   }
@@ -10518,6 +11027,2172 @@ Keep.register({
 });
 
 /* =========================================================================
+<<<<<<< Updated upstream
+=======
+   MODULE: ATLAS (Region Map Generator)
+   Pick a biome, set a POI count, optionally name the region. Produces a
+   hand-drawn SVG map of a dozen places, each with a 3-4 sentence
+   backstory composed from per-type sub-pools (establish, detail,
+   complication, hook). Maps are stored in a library; Print/PDF produces
+   a clean letter-paper layout (map then numbered legend) suitable for
+   browser Save-as-PDF. POIs hand off to Quest (when type maps to a
+   Quest setting), the Tavern (for towns), and the Archive (always).
+   Inspirational, not authoritative; biome constraints keep shipwrecks
+   on coasts, oases in deserts, etc.
+   ========================================================================= */
+Keep.register({
+  id: 'atlas',
+  name: 'Atlas',
+  category: 'workshop',
+  glyph: 'g-atlas',
+  tagline: 'Hand-drawn regions. A dozen rumours, mapped.',
+  sub: 'Forge a region, hover the marks for lore, launch a Quest from any place that calls.',
+
+  async mount(body, actions) {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    function svgEl(tag, attrs, kids) {
+      const el = document.createElementNS(SVG_NS, tag);
+      if (attrs) for (const k in attrs) {
+        if (attrs[k] != null) el.setAttribute(k, attrs[k]);
+      }
+      if (kids != null) {
+        const arr = Array.isArray(kids) ? kids : [kids];
+        for (const c of arr) {
+          if (c == null) continue;
+          if (typeof c === 'string') el.appendChild(document.createTextNode(c));
+          else el.appendChild(c);
+        }
+      }
+      return el;
+    }
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    const BIOMES = {
+      coast:        { name: 'Coast',        sub: 'Salt wind, broken hulls, lighthouses keeping their patient vigil.',  bg: '#ead7a0', regionNouns: ['Coast', 'Strand', 'Shores', 'Sound', 'Reach', 'Banks'] },
+      island:       { name: 'Island',       sub: 'Sea on every side, salt in the wells, things wash up that should not.', bg: '#ccc89a', regionNouns: ['Isle', 'Cay', 'Holm', 'Skerries', 'Hold', 'Crags'] },
+      forest:       { name: 'Forest',       sub: 'Dense canopy, hidden paths, things older than the trees.',            bg: '#dad29c', regionNouns: ['Wood', 'Forest', 'Glade', 'Wilds', 'Marches', 'Holds'] },
+      jungle:       { name: 'Jungle',       sub: 'Heavy canopy, lost cities, the rivers that drink them.',              bg: '#c9c688', regionNouns: ['Jungle', 'Wilds', 'Tangles', 'Greens', 'Hollows', 'Reach'] },
+      mountain:     { name: 'Mountain',     sub: 'High passes, watchful peaks, mines that go too deep.',                bg: '#d6cca4', regionNouns: ['Peaks', 'Heights', 'Range', 'Crags', 'Crowns', 'Spires'] },
+      wetland:      { name: 'Wetland',      sub: 'Reeds, slow water, the things that wait beneath.',                    bg: '#d2d09c', regionNouns: ['Mire', 'Fen', 'Marsh', 'Bog', 'Holds', 'Sodden'] },
+      plain:        { name: 'Plain',        sub: 'Open sky, cart roads, the wind in tall grass.',                       bg: '#e2d8a4', regionNouns: ['Plain', 'Heath', 'Downs', 'Marches', 'Fields', 'Reaches'] },
+      desert:       { name: 'Desert',       sub: 'Dunes and ruins, oases that move, tombs the sand uncovers.',          bg: '#ead9a4', regionNouns: ['Waste', 'Sands', 'Reach', 'Drylands', 'Span', 'Pall'] },
+      tundra:       { name: 'Tundra',       sub: 'Frozen ground, low sun, bones the ice will not yet release.',         bg: '#e2dcc8', regionNouns: ['Reach', 'Whites', 'Cold', 'Drift', 'Hold', 'Wastes'] },
+      subterranean: { name: 'Subterranean', sub: 'No sun. Old roads under newer earth. Cities that should not be.',     bg: '#c8b888', regionNouns: ['Deeps', 'Hollows', 'Below', 'Dark', 'Reaches', 'Underroad'] }
+    };
+    const BIOME_ORDER = ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra', 'subterranean'];
+
+    const REGION_ADJS = [
+      'Grey', 'Hollow', 'Cold', 'Iron', 'Brack', 'Salt', 'Quiet', 'Sworn', 'Wild',
+      'Lost', 'Pale', 'Ash', 'Stone', 'Mire', 'Black', 'Red', 'Old', 'Long', 'Far',
+      'Bright', 'Dim', 'Blessed', 'Cursed', 'Twelve-Mile', 'Three-Bell', 'Star',
+      'Mother', 'Bone', 'Crow', 'Wolf', 'Bramble', 'Hark', 'Crowned', 'Sundered',
+      'Forgotten', 'Vellum', 'Penn', 'Wisht'
+    ];
+
+    // Centred at origin (0,0). Each draws within roughly a 12x12 box.
+    const POI_GLYPHS = {
+      settlement: 'M -5 -1 L -5 -4 L -3 -4 L -3 -1 M -2 -1 L -2 -5 L 0 -5 L 0 -1 M 1 -1 L 1 -4 L 3 -4 L 3 -1 M -6 0 L 6 0',
+      manor:      'M -4 -1 L -4 -5 L 0 -8 L 4 -5 L 4 -1 Z M -1 -1 L -1 -3 L 1 -3 L 1 -1 M 4 -5 L 4 -8 L 6 -7',
+      cabin:      'M -3 -1 L -3 -4 L 0 -6 L 3 -4 L 3 -1 Z M -1 -1 L -1 -3 L 1 -3 L 1 -1',
+      tower:      'M -2 -1 L -2 -7 L 2 -7 L 2 -1 Z M -3 -7 L 3 -7 L 3 -8 L -3 -8 Z M -1 -3 L 1 -3 L 1 -5 L -1 -5 Z',
+      ruin:       'M -4 -1 L -4 -5 L -3 -4 M -1 -1 L -1 -3 L 1 -3 M 3 -1 L 3 -6 L 2 -5 L 4 -4',
+      shrine:     'M 0 -7 L 0 -3 M -2 -5 L 2 -5 M -3 -1 L 3 -1 L 2 -3 L -2 -3 Z',
+      cave:       'M -4 0 L -4 -3 C -4 -5 -2 -6 0 -6 C 2 -6 4 -5 4 -3 L 4 0 Z',
+      stones:     'M -4 -1 L -4 -5 M 0 -1 L 0 -7 M 4 -1 L 4 -5 M -5 0 L 5 0',
+      wreck:      'M -5 -1 L -3 -4 L 3 -3 L 5 -1 Z M -1 -4 L 1 -7 M -2 -3 L 3 -2',
+      cross:      'M -4 -2 L -4 -5 M -5 -4 L -3 -4 M 0 -1 L 0 -6 M -1 -5 L 1 -5 M 4 -2 L 4 -5 M 3 -4 L 5 -4',
+      tree:       'M 0 0 L 0 -3 M 0 -3 C -3 -3 -4 -5 -3 -6 C -2 -7 0 -7 0 -6 C 0 -7 2 -7 3 -6 C 4 -5 3 -3 0 -3',
+      tent:       'M -4 -1 L 0 -6 L 4 -1 Z M 0 -6 L 0 -1',
+      crossroads: 'M -5 -3 L 5 -3 M -3 -5 L -3 -1 M 3 -5 L 3 -1',
+      bridge:     'M -6 -1 C -4 -5 4 -5 6 -1 M -6 -1 L -6 0 M 6 -1 L 6 0',
+      windmill:   'M -2 -1 L -2 -7 L 2 -7 L 2 -1 Z M -4 -10 L 4 -6 M -4 -6 L 4 -10',
+      buoy:       'M -2 0 L -2 -3 L 2 -3 L 2 0 Z M 0 -3 L 0 -7 M 0 -7 L 3 -6 L 0 -5',
+      cove:       'M -6 -2 C -2 -6 2 -6 6 -2 M -6 -2 L 6 -2'
+    };
+
+    const POI_TYPES = {
+      town: {
+        glyph: 'settlement',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'village',
+        names: ['Greyfern', 'Ashlow', 'Three Bells', 'Brackwater', 'Pellsworth', 'Ironbrook', 'Hollow Mill', 'Cresthaven', 'Saltmarch', 'Thistlebrook', 'Ravensgate', 'Wisthaven', 'Coldwell', 'Edgewood', 'Goldlea'],
+        backstory: {
+          establish: [
+            '{name} is a quiet farming village of some sixty souls.',
+            '{name} grew up around a coaching inn that has since burned twice.',
+            '{name} is the only settlement for a half-day in any direction.'
+          ],
+          detail: [
+            'Its weekly market draws traders from three valleys.',
+            'The bell-tower at its centre is older than the village itself.',
+            'A river runs through it that few will fish, though no one says why.'
+          ],
+          complication: [
+            'The mayor was replaced recently; no one mentions the previous one.',
+            'A child has gone missing each new moon for the past three.',
+            'Three strangers passed through last week. Only two have been seen leaving.'
+          ],
+          hook: [
+            'The Council pays well for clarity, and pays in coin that is heavy.',
+            'Someone in the village remembers, even if no one will say.',
+            'The chapel keeps better records than the magistrate.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: true
+      },
+      manor: {
+        glyph: 'manor',
+        biomes: ['forest', 'jungle', 'plain', 'coast', 'island', 'wetland', 'mountain'],
+        typeLabel: 'manor house',
+        names: ['Brackwell Manor', 'Ashcourt', 'Pellsworth House', 'Tully Manor', 'Holdwood Hall', 'Marchgate Estate', 'Wisthaven House', 'Crowmere', 'Goldlea Hall', 'Edgewood Manor'],
+        backstory: {
+          establish: [
+            '{name} stands on a low rise, half-hidden by old elms.',
+            '{name} is the seat of a minor noble family with grand ambitions.',
+            '{name} has been empty for a season; the windows are still curtained.'
+          ],
+          detail: [
+            'The grounds are still kept, though no gardener has been hired in a year.',
+            'A small chapel attaches to the east wing; its door is always open.',
+            'The household keeps three liveried guards who do not speak to villagers.'
+          ],
+          complication: [
+            'The heir has not returned from a journey south. Letters go unanswered.',
+            'The lord has not been seen at the windows for a month; the staff still serves meals.',
+            'Two servants left the same night and were not replaced.'
+          ],
+          hook: [
+            'The steward will meet a discreet caller at the back gate after dusk.',
+            'The chapel\u2019s priest will speak of certain things to one who brings news of the heir.',
+            'A reward is posted, quietly, for any party that can find what is missing.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'castle', canRollTavern: false
+      },
+      ruin: {
+        glyph: 'ruin',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra', 'subterranean'],
+        typeLabel: 'ruin',
+        names: ['the Pale Keep', 'Brackwell Tower', 'Old Sword Hold', 'the Iron Watch', 'Hollow Tower', 'the Sundered Keep', 'Three Sisters Tower', 'the Drowned Bastion', 'Crowmere Hold'],
+        backstory: {
+          establish: [
+            '{name} was abandoned three generations ago after a brief and ugly war.',
+            '{name} is older than the kingdom that claims this land.',
+            '{name} was a respected place once. The reasons it is no longer are not all known.'
+          ],
+          detail: [
+            'Its outer walls have been quarried for stone by the nearest villages.',
+            'The inner keep is mostly intact; the doors are not.',
+            'Animals avoid the central courtyard, even in winter.'
+          ],
+          complication: [
+            'Lights have been seen there at night, in colours that are not torches.',
+            'A pilgrim who entered last spring has been seen at it since, but never leaving it.',
+            'A traveller\u2019s pack was found at the gate, with no traveller.'
+          ],
+          hook: [
+            'Local farmers will speak frankly if a party offers to confirm what they suspect.',
+            'A scholar in the nearest town would pay for any banner-sigils still legible on the walls.',
+            'A reward is offered, quietly, for the return of a small thing the previous lord took inside.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      shrine: {
+        glyph: 'shrine',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'wayside shrine',
+        names: ['Shrine of the Twelve', 'Hark\u2019s Shrine', 'the Pale Saint\u2019s Stone', 'Crossways Chapel', 'Three Coins Shrine', 'the Mourner\u2019s Shrine', 'Brother Crow\u2019s Stone'],
+        backstory: {
+          establish: [
+            '{name} stands at the edge of an old road, smaller than it once was.',
+            '{name} is the kind of shrine travellers leave coins at without quite knowing why.',
+            '{name} was raised after a death no one can now name with certainty.'
+          ],
+          detail: [
+            'Offerings are left here daily: bread, sometimes coin, once a child\u2019s tooth.',
+            'The carving on the stone has been re-cut at least twice.',
+            'A small bell hangs above it. The wind never moves it.'
+          ],
+          complication: [
+            'Recent offerings have included things no one will admit to leaving.',
+            'A figure was seen kneeling here at midnight; it was not seen rising.',
+            'The shrine\u2019s flowers do not wilt, though no one has been bringing fresh ones.'
+          ],
+          hook: [
+            'A nearby cleric has questions but no resources.',
+            'A pilgrim seeking the shrine for years has finally come, with money.',
+            'The shrine\u2019s old keeper, presumed dead, has been writing to the local priest.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      hermitage: {
+        glyph: 'cabin',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'hermitage',
+        names: ['the Hermit\u2019s Vigil', 'Brother Crow\u2019s Hut', 'Sister Vellum\u2019s Cell', 'Old Mim\u2019s Cabin', 'the Forty-Year Hermitage', 'the Last Hut'],
+        backstory: {
+          establish: [
+            '{name} is the home of a hermit who has not left their door in fifteen winters.',
+            '{name} was abandoned by its keeper this past year; the door is unlocked.',
+            '{name} sees one visitor a season, by tradition more than need.'
+          ],
+          detail: [
+            'A small garden of bitter herbs is kept in good order behind the hut.',
+            'The hermit\u2019s name is not the name on the door.',
+            'A line of small stones leads from the door to a place in the woods.'
+          ],
+          complication: [
+            'The hermit has been writing letters they cannot post; the pile is now considerable.',
+            'A second figure has been seen moving inside the hut, though only one lives there.',
+            'The hermit\u2019s order has sent inquiries that go unanswered.'
+          ],
+          hook: [
+            'The hermit will speak to any traveller who brings them three specific things.',
+            'A letter found pinned to the door names a place worth investigating.',
+            'The local order would pay handsomely for an honest report of the hermit\u2019s condition.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'farmhouse', canRollTavern: false
+      },
+      standing_stones: {
+        glyph: 'stones',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'standing stones',
+        names: ['the Twelve Sisters', 'the Spear-Stones', 'the Old Ring', 'Hark\u2019s Stones', 'the Three Crowned Stones', 'the Counting Stones', 'the Long Stones'],
+        backstory: {
+          establish: [
+            '{name} are older than any kingdom or chronicle that names them.',
+            '{name} stand in a deliberate pattern that no one alive can read.',
+            '{name} were left here by hands that did not stay.'
+          ],
+          detail: [
+            'The grass within the ring grows in patterns subtly unlike the grass outside.',
+            'Each stone bears markings on its inward face; none on the outer.',
+            'One stone, the easternmost, sounds hollow when struck.'
+          ],
+          complication: [
+            'The local shepherds avoid the ring on certain nights of the year.',
+            'A scholar who tried to chart the carvings was found at the ring\u2019s centre, unable to speak.',
+            'Lights in the stones have been seen recently. Not torchlight.'
+          ],
+          hook: [
+            'A scholar in the capital would pay for accurate sketches of all carvings.',
+            'The nearest priest has questions they cannot ask their bishop.',
+            'A local healer claims the stones cured her father; she will repay any who confirm it for her sister.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'graveyard', canRollTavern: false
+      },
+      graveyard: {
+        glyph: 'cross',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'graveyard',
+        names: ['the Bonelaws Graveyard', 'Crowmere Burial Ground', 'the Three Sisters Yard', 'the Old Yard', 'Saint Vellum\u2019s Acre', 'the Pauper\u2019s Field', 'the Drowned Yard'],
+        backstory: {
+          establish: [
+            '{name} serves three nearby villages and has done so for centuries.',
+            '{name} was the only burial ground for the old garrison.',
+            '{name} predates the chapel that watches over it.'
+          ],
+          detail: [
+            'The newer stones are arranged in tidy rows; the older are not.',
+            'A bell-rope hangs from a small bell at the gate; for the dead to ring, the legend has it.',
+            'Three graves at the centre share a single date but no shared name.'
+          ],
+          complication: [
+            'A grave was opened recently and re-filled by other hands.',
+            'The chapel\u2019s candles burn through the night, though no one tends them.',
+            'A funeral was held last month for a name no one in the surrounding villages recognises.'
+          ],
+          hook: [
+            'A widow seeks confirmation of her husband\u2019s burial; the records do not satisfy her.',
+            'The chapel\u2019s priest writes to the bishop about matters they will not commit to paper.',
+            'A scholar of old languages will pay to read what is on the centre stones.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'graveyard', canRollTavern: false
+      },
+      crossroads: {
+        glyph: 'crossroads',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'crossroads',
+        names: ['Three Roads Cross', 'the Hangman\u2019s Cross', 'Long Mile Cross', 'Sworn Roads', 'the Old Crossing', 'the Four Winds Cross'],
+        backstory: {
+          establish: [
+            '{name} is where roads from three counties meet at a single stone.',
+            '{name} was where the old gallows stood, in a time within memory.',
+            '{name} marks the boundary between three jurisdictions and the responsibility of none.'
+          ],
+          detail: [
+            'A small shrine and an old well share the corner.',
+            'The cross-stone is carved with directions in a language only the older priests can read.',
+            'A coaching inn stood here once; the foundations are still visible.'
+          ],
+          complication: [
+            'Travellers have gone missing here at twilight in each of the past three months.',
+            'A figure in a grey cloak has been seen at the cross at moonrise, three nights running.',
+            'The stone\u2019s carvings have been altered recently, by a hand that knew the language.'
+          ],
+          hook: [
+            'A merchant whose courier is overdue will pay for word of him.',
+            'The county sheriff has questions but no jurisdiction.',
+            'A scholar will pay for accurate transcription of every carving on the cross.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      shipwreck: {
+        glyph: 'wreck',
+        biomes: ['coast', 'island'],
+        typeLabel: 'shipwreck',
+        names: ['wreck of the Cygnet', 'wreck of the Sea-Mother', 'wreck of the Bright Hope', 'wreck of the Last Charity', 'wreck of the Pelagic', 'remains of Hark\u2019s Folly', 'wreck of the Black Mariner', 'wreck of the Vellum Star'],
+        backstory: {
+          establish: [
+            '{name} foundered in a storm three winters ago, two miles offshore.',
+            '{name} sits half-buried in a sandbar visible only at low tide.',
+            '{name} was driven against the rocks under circumstances the survivors disagreed on.'
+          ],
+          detail: [
+            'The captain\u2019s strongbox has never been confirmed lost.',
+            'Salvage teams have stripped the upper decks; the holds are mostly intact.',
+            'The ship\u2019s figurehead is missing, though the wreck is otherwise complete.'
+          ],
+          complication: [
+            'The most recent salvage crew did not return.',
+            'A man matching the captain\u2019s description was seen drinking in the nearest port last month.',
+            'A child claims to have seen lanterns moving on the wreck at night.'
+          ],
+          hook: [
+            'A merchant in the nearest port will pay handsomely for confirmation of cargo lost.',
+            'The harbourmaster\u2019s records suggest the manifest was incomplete.',
+            'A widow seeks the captain\u2019s ring, last seen on the captain\u2019s hand.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'shipwreck', canRollTavern: false
+      },
+      lighthouse: {
+        glyph: 'tower',
+        biomes: ['coast', 'island'],
+        typeLabel: 'lighthouse',
+        names: ['Old Penn\u2019s Light', 'Saltlight', 'the Mire Light', 'Brackwell Light', 'Crowmere Light', 'the Twelve-Mile Light', 'the Last Light'],
+        backstory: {
+          establish: [
+            '{name} has burned without fail for the last ninety years.',
+            '{name} marks the only safe approach to a treacherous coast.',
+            '{name} is the responsibility of a single keeper, fed by a small village below.'
+          ],
+          detail: [
+            'A spiral stair climbs the tower; the keeper sleeps on the second-highest floor.',
+            'The fuel comes by boat once a fortnight; the boat is overdue more often than not.',
+            'A small library at the lighthouse\u2019s base holds shipping records back several decades.'
+          ],
+          complication: [
+            'The keeper has not been seen for two weeks; the light still burns.',
+            'The keeper\u2019s log records sightings of a ship that should not exist.',
+            'The fuel barrels arrived this fortnight half-empty, with no explanation.'
+          ],
+          hook: [
+            'The harbourmaster wants the keeper\u2019s log retrieved if the keeper cannot be found.',
+            'A merchant will pay for accurate accounts of every ship the light has seen this year.',
+            'The nearest order of monks is concerned for the keeper, who is one of theirs.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      witch_hut: {
+        glyph: 'cabin',
+        biomes: [ 'island','forest', 'jungle', 'wetland', 'mountain'],
+        typeLabel: 'witch\u2019s hut',
+        names: ['Old Mim\u2019s Hut', 'the Bog Mother\u2019s House', 'Sister Mire\u2019s Cabin', 'the Crow-Hearted\u2019s Hut', 'Brother Salt\u2019s Hut', 'the Witch of Brackwell'],
+        backstory: {
+          establish: [
+            '{name} sits a half-mile off the road, where the road forgets itself.',
+            '{name} has been here longer than any local can remember.',
+            '{name} was empty for a generation. Then it was not.'
+          ],
+          detail: [
+            'The garden grows herbs that should not flourish in this soil.',
+            'Smoke rises from the chimney whether the witch is present or not.',
+            'Local children leave small offerings on the woodpile; they go missing by morning.'
+          ],
+          complication: [
+            'The witch has begun receiving visitors no one recognises.',
+            'A villager who consulted her last month has not spoken since.',
+            'The witch\u2019s familiars (a crow, a cat) have not been seen in weeks.'
+          ],
+          hook: [
+            'A young noble seeks the witch for an introduction; her family must not know.',
+            'A local priest seeks confirmation of the witch\u2019s death, for reasons of his own.',
+            'The witch herself has written to the nearest town asking for a particular thing.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'farmhouse', canRollTavern: false
+      },
+      bandit_camp: {
+        glyph: 'tent',
+        biomes: ['forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'coast', 'island'],
+        typeLabel: 'bandit camp',
+        names: ['Hark\u2019s Crew Camp', 'the Crow Camp', 'the Black Mariner\u2019s Hideout', 'Sword-Pelt\u2019s Camp', 'the Twelve Brothers\u2019 Camp', 'Greylock\u2019s Camp', 'the Hollow Camp'],
+        backstory: {
+          establish: [
+            '{name} has been operating for the better part of a year.',
+            '{name} was established by deserters from the last campaign.',
+            '{name} is run by a captain whose name the local sheriff is reluctant to speak.'
+          ],
+          detail: [
+            'The camp moves every fortnight; this is the third site this season.',
+            'The crew numbers around a dozen, including a cook and a healer.',
+            'They have been selective in their targets; rich merchants only, no farmers.'
+          ],
+          complication: [
+            'A child has been seen at the camp who does not appear to be a captive.',
+            'A noble\u2019s seal was stolen recently; the camp may have ties higher than expected.',
+            'The captain has been corresponding with someone in the nearest town.'
+          ],
+          hook: [
+            'A merchant\u2019s consortium has posted a substantial reward.',
+            'The sheriff cannot move openly but will pay for the captain alive or dead.',
+            'A noble seeks the return of a sealed letter the camp is known to have.'
+          ]
+        },
+        canRollFace: false, canBeThreat: true, canBeFaction: true,
+        questSetting: 'hideout', canRollTavern: false
+      },
+      mine: {
+        glyph: 'cave',
+        biomes: ['mountain', 'subterranean', 'desert', 'tundra'],
+        typeLabel: 'old mine',
+        names: ['the Cinder Mine', 'the Iron Mine', 'Brackwell Diggings', 'the Old Silver Mine', 'the Sundered Pit', 'the Hollow Mine', 'Pell\u2019s Diggings'],
+        backstory: {
+          establish: [
+            '{name} was worked until the vein ran out three generations ago.',
+            '{name} produced silver during the old kingdom; it has been quiet since.',
+            '{name} was abandoned suddenly, with tools left at the rockface.'
+          ],
+          detail: [
+            'The upper galleries are sound; the lower workings are flooded.',
+            'A mining village stood here once. The foundations remain.',
+            'The old tally board still lists names not crossed out.'
+          ],
+          complication: [
+            'Lights have been seen at the entrance after dark, three nights in succession.',
+            'A scholar who entered to map the upper galleries did not come out.',
+            'Material has been moved within the mine, by hands the village did not send.'
+          ],
+          hook: [
+            'A consortium of merchants would re-open the mine if the lower workings could be assessed.',
+            'A scholar in the capital will pay for the original tally book, last seen in the foreman\u2019s office.',
+            'A descendant of the foreman seeks confirmation of his grandfather\u2019s death below.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      monastery: {
+        glyph: 'tower',
+        biomes: [ 'island', 'jungle','mountain', 'plain', 'tundra'],
+        typeLabel: 'monastery',
+        names: ['Monastery of the Pale Saint', 'Saint Vellum\u2019s Abbey', 'the Twelve Brothers\u2019 Cloister', 'the Cloister of the Long Vigil', 'Old Crowmere Abbey', 'the Monastery of Lost Hours'],
+        backstory: {
+          establish: [
+            '{name} houses an order of thirty brothers sworn to particular silence.',
+            '{name} keeps a chronicle that goes back nine centuries.',
+            '{name} has stood on this site since the founding of the order, before the kingdoms.'
+          ],
+          detail: [
+            'The library is reputed to hold one book of each variety written in this language.',
+            'The brothers brew a wine they will not sell, and rarely give.',
+            'A small reliquary holds bones the order does not name in writing.'
+          ],
+          complication: [
+            'A brother has gone missing from the library; the abbot says nothing.',
+            'The reliquary was opened recently. The contents have not been restored.',
+            'The chronicle\u2019s most recent entries have been written in a hand other than the chronicler\u2019s.'
+          ],
+          hook: [
+            'A scholar in the capital seeks specific pages from the chronicle.',
+            'The abbot will entertain visitors of letters, especially those who can read older tongues.',
+            'A bishop has sent letters the abbot has not opened.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: true,
+        questSetting: 'castle', canRollTavern: false
+      },
+      sunken_temple: {
+        glyph: 'ruin',
+        biomes: ['wetland', 'coast', 'island'],
+        typeLabel: 'sunken temple',
+        names: ['the Drowned Temple', 'the Mire Temple', 'the Sunken Chapel of the Pale Saint', 'the Drowned Cloister', 'the Brackwell Temple'],
+        backstory: {
+          establish: [
+            '{name} settled into the fen over the course of a century.',
+            '{name} was lost during a particularly thorough flooding two centuries past.',
+            '{name} was built where it should not have been, by a sect that no longer exists.'
+          ],
+          detail: [
+            'The roof is mostly above water; the floor is mostly below.',
+            'The interior can be reached by a flat-keeled boat at high water.',
+            'The altar is still in place. The figure on it has been removed.'
+          ],
+          complication: [
+            'A pilgrim made it to the altar last spring and was seen on it the next morning.',
+            'Lights have been seen through the stained glass after sundown.',
+            'A scholar\u2019s notebook was found floating outside the doors; the scholar was not.'
+          ],
+          hook: [
+            'A bishop in the capital would pay for the recovery of certain reliquaries.',
+            'A nearby fen-folk village will guide visitors there, for the right price.',
+            'The original sect\u2019s last member, very old, would pay for any document recovered.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      oasis: {
+        glyph: 'tree',
+        biomes: ['desert'],
+        typeLabel: 'oasis',
+        names: ['the Twelve Wells', 'Sand Gate Oasis', 'the Pale Oasis', 'Hark\u2019s Wells', 'Three Date Oasis', 'the Last Wells'],
+        backstory: {
+          establish: [
+            '{name} is a small oasis with a single ancient well and three palm trees.',
+            '{name} has been a caravan stop for as long as anyone can remember.',
+            '{name} was once larger; the desert has been taking back the edges.'
+          ],
+          detail: [
+            'A caravanserai at the oasis serves three or four parties at a time.',
+            'The well\u2019s water tastes faintly of metal; no one has yet objected.',
+            'A small shrine to a forgotten god sits at the water\u2019s edge.'
+          ],
+          complication: [
+            'Three caravans bound for this oasis have failed to arrive this season.',
+            'The well\u2019s water has been lower than expected, despite no recent drought.',
+            'A figure in pilgrim\u2019s robes has been sleeping at the shrine for a week. They do not eat.'
+          ],
+          hook: [
+            'The caravan-master pays well for honest news of overdue parties.',
+            'A merchant in the nearest city wants the shrine\u2019s history confirmed.',
+            'The well-keeper has questions she will not put in writing.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: true
+      },
+      tomb_complex: {
+        glyph: 'ruin',
+        biomes: [ 'island', 'jungle','desert', 'mountain'],
+        typeLabel: 'tomb complex',
+        names: ['the Tombs of Pell', 'the Forgotten Necropolis', 'the Twelve Pyramids', 'the Old Tombs', 'the Sundered Necropolis', 'the Pale Tombs'],
+        backstory: {
+          establish: [
+            '{name} houses the remains of a dynasty whose last members died eight centuries ago.',
+            '{name} was looted and re-sealed during the old wars; the seals are recent.',
+            '{name} is mostly buried; the entrances are known only to the local guides.'
+          ],
+          detail: [
+            'The outer chambers are reasonably ventilated; the inner are not.',
+            'A small village exists nearby whose elders trace descent from the tomb\u2019s caretakers.',
+            'The wall-paintings record events not found in any chronicle.'
+          ],
+          complication: [
+            'A recent expedition entered and only one returned, raving.',
+            'The seals were broken last month, by hands that knew the order in which.',
+            'The local guides will not enter, though they will lead a party to the gate.'
+          ],
+          hook: [
+            'A museum in the capital will pay handsomely for accurate sketches of the wall-paintings.',
+            'The local elders seek the return of a particular object, taken in the last raid.',
+            'A scholar has identified a name on the wall that may still have living descendants.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      ice_fortress: {
+        glyph: 'tower',
+        biomes: ['tundra', 'mountain'],
+        typeLabel: 'ice fortress',
+        names: ['the Frozen Keep', 'the White Tower', 'Brackwell-of-the-Ice', 'the Old Cold Hold', 'the Sundered Whites', 'Hark\u2019s Last Hold'],
+        backstory: {
+          establish: [
+            '{name} was raised in a war the chronicles barely mention.',
+            '{name} has been abandoned for at least three generations.',
+            '{name} was built into the side of a glacier that has since retreated.'
+          ],
+          detail: [
+            'Its great hall is intact; the ice has preserved much that should not last.',
+            'The banners on the walls bear a sigil no current house claims.',
+            'A small library survives in the inner keep; the pages are still readable.'
+          ],
+          complication: [
+            'A hunting party that camped here last winter did not break camp.',
+            'Lights have been seen in the upper windows by traders passing on the road.',
+            'The glacier\u2019s retreat has uncovered a lower chamber that no one knew existed.'
+          ],
+          hook: [
+            'A scholar of heraldry would pay considerably for accurate sketches of the banners.',
+            'The hunters\u2019 guild seeks confirmation of the missing party\u2019s fate.',
+            'A noble family in the south claims descent and would pay for proofs.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'castle', canRollTavern: false
+      },
+      dungeon: {
+        glyph: 'cave',
+        biomes: [ 'island','subterranean', 'mountain', 'forest', 'jungle', 'wetland'],
+        typeLabel: 'dungeon',
+        names: ['the Cinder Vault', 'Hollow Halls', 'the Sundered Deep', 'the Lost Roads', 'the Iron Vault', 'the Drowned Vault', 'Brackwell-Below'],
+        backstory: {
+          establish: [
+            '{name} is the surviving fragment of a settlement that predates the surface kingdoms.',
+            '{name} was used as a prison once, then sealed, then opened, then sealed again.',
+            '{name} was discovered when a local well collapsed into it last spring.'
+          ],
+          detail: [
+            'The first level is dry and reasonably navigable. The lower are neither.',
+            'Writing on the walls has been re-written, in another hand, over the original.',
+            'Items have been left in the entry chamber as if by someone leaving in haste.'
+          ],
+          complication: [
+            'A scholarly party that entered three weeks ago has not returned.',
+            'Something has been opening the inner doors from the inside.',
+            'The local sheriff has posted a warning that does not name the source of the warning.'
+          ],
+          hook: [
+            'A scholar would pay generously for the recovery of the original inscriptions.',
+            'The family of the lost scholars seeks news, any news.',
+            'A merchant offers a price for the return of one specific item.'
+          ]
+        },
+        canRollFace: false, canBeThreat: true, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      battlefield: {
+        glyph: 'wreck',
+        biomes: [ 'island','plain', 'wetland', 'forest', 'jungle', 'mountain'],
+        typeLabel: 'old battlefield',
+        names: ['Three Banners Field', 'the Hollow Field', 'Brackwell\u2019s Stand', 'the Field of Twelve', 'the Sundered Field', 'Old Pell\u2019s Stand'],
+        backstory: {
+          establish: [
+            '{name} was the site of a battle in the old wars, the precise year disputed.',
+            '{name} marks where two armies met and neither, in the end, won.',
+            '{name} is the burial ground for thousands; few of the graves are marked.'
+          ],
+          detail: [
+            'The land is poor for farming. The crops that grow are dark in flavour.',
+            'A small monument was raised in the field\u2019s centre; the names have weathered.',
+            'Pilgrims visit on the anniversary; the date is no longer agreed upon.'
+          ],
+          complication: [
+            'Recent excavations have uncovered remains the local antiquaries cannot identify.',
+            'Lights have been seen on the field at night, in formation, for the past three months.',
+            'A child of the nearest village vanished here; only their cloak was found.'
+          ],
+          hook: [
+            'An antiquary will pay for accurate cataloguing of recent finds.',
+            'A noble whose ancestor died here seeks confirmation of the grave\u2019s location.',
+            'A historian would compensate any party for sketches of the monument before further weathering.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      watchtower: {
+        glyph: 'tower',
+        biomes: ['mountain', 'plain', 'tundra', 'coast', 'island', 'desert', 'jungle'],
+        typeLabel: 'watchtower',
+        names: ['Hark\u2019s Watch', 'Westmarch Tower', 'the Iron Watch-Tower', 'the Lone Tower', 'Brackwell Watch', 'Three Roads Tower', 'the Long Watch'],
+        backstory: {
+          establish: [
+            '{name} was built to watch the road, and it still does, after a fashion.',
+            '{name} has been manned, abandoned, manned again, and is now between staffings.',
+            '{name} stands at the edge of what was once a contested border.'
+          ],
+          detail: [
+            'A small garrison kept the tower until last summer; their cookfire is still warm.',
+            'The beacon-iron on the roof has been kept in good order by hands no one names.',
+            'The signal-book is locked in a chest only the watch-captain could open.'
+          ],
+          complication: [
+            'The watchman writes nightly reports, but no rider has come for them in weeks.',
+            'A figure has been seen on the tower top after dark, though the post is empty.',
+            'The captain went to the capital for orders three months ago. No orders have come.'
+          ],
+          hook: [
+            'The county warden will pay for honest news of the tower\u2019s state.',
+            'A merchant whose courier never came north would have answers.',
+            'The signal-book is owed to the crown; a quiet party could earn standing returning it.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'castle', canRollTavern: false
+      },
+      windmill: {
+        glyph: 'windmill',
+        biomes: ['plain', 'coast', 'island'],
+        typeLabel: 'windmill',
+        names: ['Greyfern Mill', 'the Old Mill', 'Pell\u2019s Mill', 'Coldwell Mill', 'Wisht Mill', 'the Three Sister Mills'],
+        backstory: {
+          establish: [
+            '{name} grinds for three nearby villages, when it grinds at all.',
+            '{name} was abandoned when the miller drowned, twelve years past.',
+            '{name} is the tallest structure for miles.'
+          ],
+          detail: [
+            'The sails were re-canvassed last season; the gears have not been oiled in years.',
+            'A small cottage at the mill\u2019s base houses the miller\u2019s family.',
+            'The grain stores in the loft have been picked over by rats and someone else.'
+          ],
+          complication: [
+            'The miller has been short-weighing the flour for months. Several villages know.',
+            'The sails turn on still nights, slowly, and never the same direction twice.',
+            'A child went missing here last spring; the mill was searched and found empty.'
+          ],
+          hook: [
+            'A wealthy farmer wants the milling rights for himself and will pay for a fresh start.',
+            'The drowned miller\u2019s sister seeks his pocket-book, never recovered.',
+            'The county magistrate has questions about the weights but no proof.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'farmhouse', canRollTavern: false
+      },
+      chapel: {
+        glyph: 'shrine',
+        biomes: ['coast', 'island', 'forest', 'jungle', 'mountain', 'wetland', 'plain', 'desert', 'tundra'],
+        typeLabel: 'wayside chapel',
+        names: ['Saint Vellum\u2019s Chapel', 'the Chapel of the Long Vigil', 'Hark\u2019s Chapel', 'the Mourner\u2019s Chapel', 'Old Crowmere Chapel', 'the Pilgrim Chapel'],
+        backstory: {
+          establish: [
+            '{name} stands alone, half a mile from any village, on a slight rise.',
+            '{name} was raised after a saint\u2019s death and a saint\u2019s alleged visitation.',
+            '{name} has had no resident priest in a generation. It is still in use.'
+          ],
+          detail: [
+            'Three nearby villages share its services; the priest rotates.',
+            'The altar-cloth is still embroidered with the old sect\u2019s sigil.',
+            'A small graveyard behind the chapel holds the founders of the nearby villages.'
+          ],
+          complication: [
+            'The altar-candles burn without anyone tending them, every night this past month.',
+            'A confession was overheard, by the wrong listener; the listener has not been seen since.',
+            'The locked sacristy door was opened recently. Items have been moved within.'
+          ],
+          hook: [
+            'A bishop suspects the chapel is being used by an unsanctioned cult.',
+            'A widow seeks confirmation of her mother\u2019s burial in the small graveyard.',
+            'The rotating priest has noticed irregularities in the chapel\u2019s record-book.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'farmhouse', canRollTavern: false
+      },
+      coaching_inn: {
+        glyph: 'manor',
+        biomes: ['plain', 'forest', 'jungle', 'mountain', 'coast', 'island'],
+        typeLabel: 'coaching inn',
+        names: ['the Three Bells Inn', 'Crossway Inn', 'the Hangman\u2019s Rest', 'the Stag and Wheel', 'the Old Pell Inn', 'the Twelve-Mile Inn', 'the Wisht Arms'],
+        backstory: {
+          establish: [
+            '{name} has been a way-stop on this road for a hundred and forty years.',
+            '{name} was burned during the last war and rebuilt from the cellars up.',
+            '{name} is the only inn between two market towns, the closest a day\u2019s ride.'
+          ],
+          detail: [
+            'The stables hold twelve horses; tonight the stables are full.',
+            'The innkeeper\u2019s family has run this place across three generations.',
+            'A small library upstairs holds traveller\u2019s journals dating back fifty years.'
+          ],
+          complication: [
+            'Three coaches have failed to arrive at their next stop after leaving here.',
+            'A guest of high standing was poisoned at dinner last month; the inquest stalled.',
+            'The innkeeper has been writing letters in a hand that is not their own.'
+          ],
+          hook: [
+            'A merchant whose factor is overdue pays well for confirmed news.',
+            'The county sheriff has suspicions but no jurisdiction inside the inn itself.',
+            'A noble traveller forgot a sealed packet here; they would pay for its return.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: true
+      },
+      bridge: {
+        glyph: 'bridge',
+        biomes: [ 'island','forest', 'jungle', 'mountain', 'wetland', 'plain'],
+        typeLabel: 'old bridge',
+        names: ['the Stone Bridge', 'Brackwell Bridge', 'the Mason\u2019s Bridge', 'Three Pence Bridge', 'the Hollow Bridge', 'the Long Crossing', 'Pell\u2019s Bridge'],
+        backstory: {
+          establish: [
+            '{name} crosses a gorge that no one wants to cross by other means.',
+            '{name} was built two centuries ago and has been re-mortared every fifty years.',
+            '{name} is the only crossing of this river for thirty miles in any direction.'
+          ],
+          detail: [
+            'A small toll-house at one end takes a copper per cart, two for a coach.',
+            'The bridge\u2019s mason left their mark in the keystone; the mark is not from this kingdom.',
+            'Pilgrims pause halfway across to drop coins for the river-spirit.'
+          ],
+          complication: [
+            'A traveller went over the side last month; the body has not surfaced.',
+            'The toll-keeper has been refusing certain travellers, by no order anyone admits to.',
+            'A small crack has appeared in the central span; the mason cannot account for it.'
+          ],
+          hook: [
+            'The county pays for an honest report on the bridge\u2019s soundness.',
+            'A bereaved family seeks the body of the recent victim.',
+            'A scholar would pay handsomely for sketches of the foreign mason\u2019s mark.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      druid_grove: {
+        glyph: 'tree',
+        biomes: [ 'island','forest', 'jungle', 'mountain'],
+        typeLabel: 'sacred grove',
+        names: ['the Ring of Vellum', 'Greentongue Grove', 'the Old Grove', 'the Twelve Saplings', 'the Sundered Grove', 'Brackwell\u2019s Ring', 'the Hollow Ring'],
+        backstory: {
+          establish: [
+            '{name} is a clearing in the deep wood where the trees grow inward, not out.',
+            '{name} was sacred to an order whose last initiate died forty years past.',
+            '{name} is older than the wood that surrounds it.'
+          ],
+          detail: [
+            'A spring at the grove\u2019s centre runs clear in any season.',
+            'The trees ringing the clearing are all of the same age and all of the same kind.',
+            'Carved into one of the great roots is a tally that has not been added to in years.'
+          ],
+          complication: [
+            'Pilgrims have begun arriving from the south, in numbers that worry the local steward.',
+            'An old druid was seen drinking from the spring last spring. The druid died decades ago.',
+            'The trees nearest the spring have begun showing markings no one recognises.'
+          ],
+          hook: [
+            'A scholar would pay for transcription of the markings before they spread or fade.',
+            'The last initiate\u2019s nephew has sworn to find the grove and seeks a guide.',
+            'A nearby chapel suspects the spring\u2019s water has been adulterated.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: true,
+        questSetting: 'graveyard', canRollTavern: false
+      },
+      woodcutter_lodge: {
+        glyph: 'cabin',
+        biomes: [ 'island','forest', 'mountain', 'jungle'],
+        typeLabel: 'woodcutter\u2019s lodge',
+        names: ['the Pine Cutter\u2019s Lodge', 'Brackwell Cutters\u2019 Lodge', 'the Twelve Axes Lodge', 'Old Pell Cutters', 'the Hollow Lodge', 'Greenwood Cutters'],
+        backstory: {
+          establish: [
+            '{name} houses a crew of six who cut for the nearest town\u2019s sawmills.',
+            '{name} was abandoned this past winter when the crew failed to return.',
+            '{name} has been worked seasonally for the better part of a century.'
+          ],
+          detail: [
+            'The lodge keeps a record of every tree felled; the records go back generations.',
+            'A small smithy in the lodge yard sharpens the axes; the smith lives in the village.',
+            'A path from the lodge leads to a place in the woods the cutters will not cut.'
+          ],
+          complication: [
+            'A tree felled this past month bled when cut. The crew has refused to fell others nearby.',
+            'The crew\u2019s leader has been writing to a merchant whose business is not lumber.',
+            'Three crews ago, a cutter was crushed by a tree that fell against the wind. The site is unmarked.'
+          ],
+          hook: [
+            'The mill-owner pays for honest news of the crew\u2019s status and a fresh load.',
+            'A widow seeks the location of her husband\u2019s death-tree, for reasons of her own.',
+            'A naturalist would pay for the records of which species were cut in which years.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'farmhouse', canRollTavern: false
+      },
+      old_oak: {
+        glyph: 'tree',
+        biomes: [ 'island','forest', 'plain'],
+        typeLabel: 'great oak',
+        names: ['the Hanging Oak', 'the King\u2019s Oak', 'Brackwell Oak', 'the Twelve-Branch Oak', 'Mother Oak', 'Old Pell\u2019s Oak', 'the Sundered Oak'],
+        backstory: {
+          establish: [
+            '{name} has stood at this fork in the road for as long as anyone can remember.',
+            '{name} was a hanging tree, in a time within living memory.',
+            '{name} is the local landmark by which all directions in this region are given.'
+          ],
+          detail: [
+            'Travellers carve their initials in the lower bark; the bark above is covered in older carvings.',
+            'A small shrine has been set into a hollow at the oak\u2019s base.',
+            'The oak\u2019s acorns are reputed to bring luck. People do not eat them.'
+          ],
+          complication: [
+            'A figure has been seen sleeping at the oak\u2019s base in recent mornings. The figure leaves nothing behind.',
+            'A branch fell unexpectedly last week and crushed a passing traveller\u2019s cart.',
+            'The shrine in the hollow has received offerings no one in the region will claim.'
+          ],
+          hook: [
+            'A scholar of folklore would pay for accurate transcription of the carvings.',
+            'A family seeks news of the trampled traveller, whose name is on a coaching list.',
+            'A nearby priest is investigating the shrine\u2019s recent offerings.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      dragon_lair: {
+        glyph: 'cave',
+        biomes: [ 'island','mountain', 'subterranean'],
+        typeLabel: 'dragon lair',
+        names: ['the Wyrm\u2019s Hollow', 'the Cinder Cave', 'the Sundered Lair', 'Old Penn\u2019s Wyrm-Hold', 'the Brackwell Lair', 'the Hollow Wyrm'],
+        backstory: {
+          establish: [
+            '{name} is a great cave halfway up a sheer rock face, accessible only by a narrow ledge.',
+            '{name} was the home of a great wyrm in the old wars. The wyrm has not been confirmed dead.',
+            '{name} has not been entered by living humans in three generations.'
+          ],
+          detail: [
+            'The ledge below the cave is strewn with bones and the rusted remains of armour.',
+            'A column of warm air rises from the cave mouth, even in winter.',
+            'The local shepherds report cattle missing each autumn, a single beast per year.'
+          ],
+          complication: [
+            'Tracks in the bone-debris below are recent. They are large.',
+            'A scholar who tried to reach the ledge last spring is gone; his rope is still anchored.',
+            'The villages have begun leaving offerings at the ledge\u2019s base again. Some are accepted.'
+          ],
+          hook: [
+            'A noble seeks confirmation of the wyrm\u2019s death (or life), at considerable price.',
+            'A scholar would compensate any party for accurate description of the cave\u2019s entrance.',
+            'A relic, taken from the wyrm in the old wars, has reappeared in trade; its origin matters.'
+          ]
+        },
+        canRollFace: false, canBeThreat: true, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      mountain_pass: {
+        glyph: 'crossroads',
+        biomes: ['mountain', 'tundra'],
+        typeLabel: 'mountain pass',
+        names: ['Hark\u2019s Pass', 'the Twelve-Mile Pass', 'the Cold Pass', 'Brackwell\u2019s Pass', 'the Sundered Pass', 'the Long Pass'],
+        backstory: {
+          establish: [
+            '{name} is the only route over the range for forty miles in either direction.',
+            '{name} is closed by snow for three months of the year and open by tradition for the rest.',
+            '{name} was the site of a famous ambush, two centuries past, the details still debated.'
+          ],
+          detail: [
+            'A small inn at the pass\u2019s height serves travellers; it is owned by the crown.',
+            'The road is paved with stones cut by a kingdom that no longer exists.',
+            'A cairn at the highest point marks the bodies recovered from the avalanche of \u201912.'
+          ],
+          complication: [
+            'Caravans have begun losing porters at the pass\u2019s height; the porters return changed.',
+            'The inn\u2019s keeper has been replaced; the new keeper speaks little.',
+            'Stones from the cairn have been moved; some are missing.'
+          ],
+          hook: [
+            'The crown pays for honest reports on the pass\u2019s safety and the new keeper\u2019s loyalty.',
+            'A merchant whose porter is overdue would pay for news.',
+            'A scholar of military history would pay for an accurate map of the ambush site.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      stilt_village: {
+        glyph: 'settlement',
+        biomes: ['wetland', 'jungle', 'coast', 'island'],
+        typeLabel: 'stilt village',
+        names: ['Reedhaven', 'Bog\u2019s End', 'the Stilts', 'Mire Edge', 'Pell\u2019s Landing', 'Saltwater Stilts', 'the Twelve Houses'],
+        backstory: {
+          establish: [
+            '{name} sits on pilings above water that rises and falls with the season.',
+            '{name} was founded by refugees from a war the chronicles barely mention.',
+            '{name} is reached only by flat-keeled boats; carts do not come here.'
+          ],
+          detail: [
+            'The houses are connected by wooden walkways above the water.',
+            'The villagers eat almost entirely from the water; they trade dried fish for grain.',
+            'A chief\u2019s house at the village\u2019s centre stands a half-storey higher than the others.'
+          ],
+          complication: [
+            'The chief has been ill for a season; his successor has not been named.',
+            'Three boats sent for grain have failed to return.',
+            'Something has been moving beneath the walkways at night; the children have begun staying indoors.'
+          ],
+          hook: [
+            'A merchant in the nearest town will pay handsomely for accurate news from the village.',
+            'A relative of the missing boatmen pays for confirmed word.',
+            'A naturalist seeks to identify what moves beneath the walkways.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: true
+      },
+      caravanserai: {
+        glyph: 'manor',
+        biomes: ['desert'],
+        typeLabel: 'caravanserai',
+        names: ['Sand Gate', 'the Twelve Wells Caravanserai', 'Pell\u2019s Rest', 'the Pale Caravanserai', 'Brackwell\u2019s Caravanserai', 'the Last Caravanserai'],
+        backstory: {
+          establish: [
+            '{name} houses up to four caravans at a time, with stables for the beasts.',
+            '{name} was built by an order of monks who no longer maintain it.',
+            '{name} is the only safe water for two days\u2019 ride in any direction.'
+          ],
+          detail: [
+            'A central courtyard holds the well; the rooms are arranged around it.',
+            'The walls are thick enough to repel anything short of a siege.',
+            'A small library in the gate-house holds the journals of every caravan-master who has signed it.'
+          ],
+          complication: [
+            'The keeper has not been seen for a week; the gates have been kept by his daughter.',
+            'A caravan-master\u2019s journal entry from last month names a place that should not exist.',
+            'Three caravans, all bound for the same port, have not arrived as scheduled.'
+          ],
+          hook: [
+            'The caravan-masters\u2019 guild will pay for confirmed news of the keeper and the missing caravans.',
+            'A scholar would pay for transcription of the named-place entry.',
+            'The keeper\u2019s daughter has letters she cannot post; she would pay for an honest courier.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: true
+      },
+      mammoth_graveyard: {
+        glyph: 'stones',
+        biomes: ['tundra'],
+        typeLabel: 'bone field',
+        names: ['the Bone Field', 'the Mammoth Yard', 'Hark\u2019s Bones', 'the White Boneyard', 'the Sundered Bones', 'the Pale Bone Field'],
+        backstory: {
+          establish: [
+            '{name} is a stretch of frozen ground where the ice gives up bones the size of houses.',
+            '{name} was discovered by a hunting party two generations ago. The party did not survive the discovery.',
+            '{name} was sacred to a people whose last members died centuries past.'
+          ],
+          detail: [
+            'The bones are exposed by the seasonal melt; some have been carried off by traders.',
+            'Among the bones are smaller skeletons, of beasts and persons, arranged carefully.',
+            'A small cairn at the field\u2019s centre is older than the bones around it.'
+          ],
+          complication: [
+            'Recent traders have not returned from the field with their loads.',
+            'The cairn was broken open last season; its contents are now scattered.',
+            'Tracks in the snow lead from the cairn to a place the local guides will not name.'
+          ],
+          hook: [
+            'A scholar in the south will pay for accurate sketches of the smaller skeletons.',
+            'The traders\u2019 families seek news of their fates.',
+            'A reliquary in the capital seeks confirmation of certain items removed from the cairn.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'graveyard', canRollTavern: false
+      },
+      crystal_chamber: {
+        glyph: 'cave',
+        biomes: ['subterranean', 'mountain'],
+        typeLabel: 'crystal chamber',
+        names: ['the Singing Chamber', 'the Pale Crystal Vault', 'the Twelve Pillars', 'the Cold Chamber', 'Brackwell\u2019s Crystal', 'the Sundered Vault'],
+        backstory: {
+          establish: [
+            '{name} is a cavern shot through with quartz columns the height of three men.',
+            '{name} was found by miners pursuing a vein that should not have led here.',
+            '{name} has been used by the local order as a place of vigil for a generation.'
+          ],
+          detail: [
+            'The columns chime softly when the air moves through them.',
+            'A small chapel has been improvised in the cavern\u2019s deepest chamber.',
+            'The crystals shed a faint light without any apparent source.'
+          ],
+          complication: [
+            'A vigil-keeper was found dead at the chapel last spring, with no apparent wound.',
+            'The chiming has grown louder in recent months; the columns are not visibly different.',
+            'A column at the deepest chamber\u2019s edge has cracked from within.'
+          ],
+          hook: [
+            'The order seeks honest witnesses to the chamber\u2019s present state.',
+            'A jeweller in the capital would pay for samples of the smaller crystals.',
+            'A scholar of acoustics would pay for accurate recordings of the chiming.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      fungal_forest: {
+        glyph: 'tree',
+        biomes: ['subterranean', 'wetland'],
+        typeLabel: 'fungal grove',
+        names: ['the Glow-Grove', 'the Pale Fungal Hall', 'Brackwell\u2019s Fungus', 'the Twelve Caps', 'the Sundered Grove', 'the Hollow Mushroom Wood'],
+        backstory: {
+          establish: [
+            '{name} is a stretch of caverns where mushrooms grow to the height of small trees.',
+            '{name} was discovered by a dwarven expedition centuries ago and abandoned shortly after.',
+            '{name} feeds the surface villages with a mushroom-flour, traded by intermediaries.'
+          ],
+          detail: [
+            'The largest fungi glow with their own light; the smaller do not.',
+            'Paths wind between the stalks, worn by feet that did not belong to the dwarves.',
+            'A small camp at the forest\u2019s edge has been used for generations as a trading post.'
+          ],
+          complication: [
+            'The traders have begun reporting a sickness no surface healer recognises.',
+            'A surveyor\u2019s expedition into the deeper forest has not returned.',
+            'The flour from the last shipment has caused dreams in those who eat it. Vivid ones.'
+          ],
+          hook: [
+            'A surface healer would pay for samples of the recent flour.',
+            'A noble whose surveyor went missing seeks news.',
+            'A scholar of fungi would pay for the trading-post records, particularly the dream-reports.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      sunless_city: {
+        glyph: 'settlement',
+        biomes: ['subterranean'],
+        typeLabel: 'sunless city',
+        names: ['the Pale City', 'Old Below', 'the Sundered City', 'Brackwell-Below', 'the Twelve Streets', 'the Hollow City', 'the Forgotten Roads'],
+        backstory: {
+          establish: [
+            '{name} was built before the kingdoms above ground, by hands no current race claims.',
+            '{name} was rediscovered in the last generation, by chance, and then sealed for safety.',
+            '{name} houses an inhabited remnant of its original builders, who are reluctant to be observed.'
+          ],
+          detail: [
+            'Its avenues are paved with a stone that does not occur in the natural rock above.',
+            'A central plaza holds a fountain that still flows, into a basin that should be empty.',
+            'The buildings are tall and narrow; the proportions are not human.'
+          ],
+          complication: [
+            'The seal at the upper entrance was broken last spring. No one has admitted breaking it.',
+            'The remnant population has begun to send messengers to the surface.',
+            'A scholarly party that entered last month has not returned.'
+          ],
+          hook: [
+            'A king\u2019s envoy seeks honest report on the messengers and their demands.',
+            'A scholar of linguistics would pay handsomely for transcription of any inscriptions.',
+            'The lost scholarly party\u2019s patron offers a substantial reward for confirmed news.'
+          ]
+        },
+        canRollFace: false, canBeThreat: true, canBeFaction: true,
+        questSetting: 'castle', canRollTavern: false
+      },
+      lost_city: {
+        glyph: 'ruin',
+        biomes: [ 'island','jungle', 'desert'],
+        typeLabel: 'lost city',
+        names: ['the Lost City of Pell', 'the Vine-Eaten City', 'the Sundered City of the Old Kings', 'the Pale Lost City', 'the Forgotten Capital', 'the Twelve-Gate City'],
+        backstory: {
+          establish: [
+            '{name} was the seat of a civilisation older than the modern kingdoms by a thousand years.',
+            '{name} fell in a single season; the reasons have never been agreed upon.',
+            '{name} is mostly buried under green and stone; the local guides know the ways in.'
+          ],
+          detail: [
+            'The carvings on its standing walls record kings and gods no current scholar can name.',
+            'A vast plaza at its centre is paved with stones cut to fit without mortar.',
+            'A river runs through it that has changed course since the city\u2019s founding.'
+          ],
+          complication: [
+            'An expedition from the capital last year mapped only the outer ruins and lost half its scholars.',
+            'The local guides have begun refusing certain commissions, citing things they have seen.',
+            'A figure in old-style royal dress has been seen at the central plaza. The figure does not respond when hailed.'
+          ],
+          hook: [
+            'A museum in the capital pays handsomely for accurate sketches of the carvings.',
+            'A noble whose ancestor led the lost expedition seeks news of the lost scholars.',
+            'A scholar of dead languages would pay for any pages of any chronicle recovered.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      vine_temple: {
+        glyph: 'ruin',
+        biomes: [ 'island','jungle', 'forest'],
+        typeLabel: 'overgrown temple',
+        names: ['the Vine Temple', 'the Green Temple', 'the Overgrown Cloister', 'the Sundered Temple of Pell', 'the Hollow Temple', 'the Twelve-Pillar Temple'],
+        backstory: {
+          establish: [
+            '{name} is a temple complex slowly being reclaimed by the surrounding green.',
+            '{name} was abandoned when its order died out, two centuries past.',
+            '{name} was found by chance by a hunting party; the entry is still partly cleared.'
+          ],
+          detail: [
+            'The temple\u2019s central altar is carved from a single stone of unusual colour.',
+            'The walls bear murals depicting rites no current sect performs.',
+            'A small library at the temple\u2019s rear holds a stack of unburnt scrolls.'
+          ],
+          complication: [
+            'A pilgrim entered the temple last spring and was seen at the altar the next morning.',
+            'The vines on the temple\u2019s walls have begun to grow inward, not outward.',
+            'A scholar mapping the murals reported one had changed between visits.'
+          ],
+          hook: [
+            'A religious authority in the capital pays for accurate description of the murals.',
+            'A scholar would compensate for the recovery of any of the unburnt scrolls.',
+            'The hunting party\u2019s descendant seeks confirmation of an item their ancestor brought out.'
+          ]
+        },
+        canRollFace: false, canBeThreat: true, canBeFaction: false,
+        questSetting: 'dungeon', canRollTavern: false
+      },
+      river_camp: {
+        glyph: 'tent',
+        biomes: ['jungle', 'wetland'],
+        typeLabel: 'river camp',
+        names: ['the Long River Camp', 'Pell\u2019s Landing', 'the Twelve Boats Camp', 'Brackwell\u2019s Camp', 'the Sundered Camp', 'the Hollow Bend Camp'],
+        backstory: {
+          establish: [
+            '{name} is a small settlement at the bend of a slow river, built mostly of bamboo and reeds.',
+            '{name} houses a community of hunters and fishers whose territory extends a day\u2019s paddle in any direction.',
+            '{name} has been here for as long as the trees nearby have been trees.'
+          ],
+          detail: [
+            'The villagers trade dried fish and pelts for metal and salt with the nearest town.',
+            'A small dock holds three or four river-boats at any time.',
+            'A council-house at the camp\u2019s centre serves as the only formal structure.'
+          ],
+          complication: [
+            'A boat with its load and no crew was found drifting downstream this past week.',
+            'The council has divided over a matter no outsider is invited to hear.',
+            'Something has been killing the hunters\u2019 dogs at night. It does not eat them.'
+          ],
+          hook: [
+            'A merchant in the nearest town will pay for confirmed news of the missing crew.',
+            'A naturalist would pay for accurate description of the dog-killer.',
+            'A scholar would pay for safe access to record the council\u2019s oral history.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: true
+      },
+      jaguar_shrine: {
+        glyph: 'shrine',
+        biomes: ['jungle'],
+        typeLabel: 'beast shrine',
+        names: ['the Jaguar Shrine', 'the Beast-Father\u2019s Shrine', 'the Long-Claw Shrine', 'the Stalker\u2019s Shrine', 'the Shrine of the Eaten Heart', 'the Old Predator Stone'],
+        backstory: {
+          establish: [
+            '{name} is dedicated to a beast-spirit the locals will neither name nor describe outright.',
+            '{name} was raised by a people now mostly gone; their descendants tend it still.',
+            '{name} sits at a place in the jungle where the trees grow in a circle of their own accord.'
+          ],
+          detail: [
+            'The altar is set with claws and teeth of various beasts, arranged in patterns.',
+            'A worn path from the shrine leads to a clearing the locals avoid in the rains.',
+            'Offerings are left here weekly: meat, bone, and once a season, something heavier.'
+          ],
+          complication: [
+            'The descendants who tend the shrine have begun receiving instructions in dreams.',
+            'A traveller who slept at the shrine was found at the clearing\u2019s edge, unable to speak.',
+            'The pattern of claws and teeth was rearranged this past month, in a way no one will admit to.'
+          ],
+          hook: [
+            'A scholar of folk religion would pay for accurate accounts of the dreams.',
+            'A bishop in the capital wishes to know how active the shrine remains.',
+            'The traveller\u2019s family seeks news; the traveller has not spoken since.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: true,
+        questSetting: 'graveyard', canRollTavern: false
+      },
+      castaway_camp: {
+        glyph: 'tent',
+        biomes: ['island'],
+        typeLabel: 'castaway camp',
+        names: ['Pell\u2019s Last Camp', 'the Three-Year Camp', 'the Castaway\u2019s Hut', 'Brackwell\u2019s Refuge', 'the Driftwood Camp', 'the Lone Camp', 'the Hark Camp'],
+        backstory: {
+          establish: [
+            '{name} was thrown together by a survivor of a wreck no one has confirmed.',
+            '{name} has been kept in continuous repair by hands no one has seen.',
+            '{name} was abandoned years ago; the bedding inside is still warm.'
+          ],
+          detail: [
+            'A small fire-pit at the camp\u2019s centre is layered with ash going back months.',
+            'A driftwood cross has been planted at the camp\u2019s edge; the inscription is in no language anyone reads.',
+            'A makeshift signal-fire on the cliff above the camp is laid but never lit.'
+          ],
+          complication: [
+            'The driftwood cross marks a date, and the date is not yet past.',
+            'A second set of footprints, smaller than the survivor\u2019s, leads away from the camp into the interior.',
+            'A bottle with a message was found at the tide-line; the handwriting matches the camp\u2019s inscription.'
+          ],
+          hook: [
+            'A merchant whose ship vanished on this route would pay for any confirmed survivor.',
+            'The harbourmaster of the nearest port has questions about the message in the bottle.',
+            'A scholar would compensate for accurate transcription of the cross\u2019s inscription.'
+          ]
+        },
+        canRollFace: true, canBeThreat: false, canBeFaction: false,
+        questSetting: 'farmhouse', canRollTavern: false
+      },
+      smugglers_cave: {
+        glyph: 'cave',
+        biomes: ['island', 'coast'],
+        typeLabel: 'smugglers\u2019 cave',
+        names: ['the Lantern Cave', 'Brackwell\u2019s Cave', 'the Three-Smoke Cave', 'Hark\u2019s Cave', 'the Pale Cave', 'the Hidden Cave', 'the Salt Cave'],
+        backstory: {
+          establish: [
+            '{name} has been used to land contraband for the better part of a century.',
+            '{name} was discovered by the crown three years ago and then quietly forgotten.',
+            '{name} is known to a dozen captains who have agreed to share it.'
+          ],
+          detail: [
+            'The cave is dry above the high-water mark, with enough room for a hundred crates.',
+            'A natural shelf inside the cave has been carved into berths for sleepers.',
+            'A small chapel-shrine has been improvised at the cave\u2019s rear; the smugglers leave offerings.'
+          ],
+          complication: [
+            'A shipment due to land last month never arrived; the cave was empty when it should not have been.',
+            'A revenue officer\u2019s body was found at the cave\u2019s mouth. The officer was not on duty.',
+            'The cave\u2019s shrine has been receiving offerings the smugglers themselves do not recognise.'
+          ],
+          hook: [
+            'The revenue service pays well for honest information, paid in coin off-the-books.',
+            'A noble whose factor used this cave wants to confirm the factor\u2019s fate.',
+            'A merchant\u2019s widow seeks the manifest of the missing shipment.'
+          ]
+        },
+        canRollFace: false, canBeThreat: true, canBeFaction: true,
+        questSetting: 'hideout', canRollTavern: false
+      },
+      hidden_cove: {
+        glyph: 'cove',
+        biomes: ['island', 'coast'],
+        typeLabel: 'hidden cove',
+        names: ['the Quiet Cove', 'Brackwell Cove', 'the Pale Cove', 'Three Sister Cove', 'the Forgotten Inlet', 'Hark\u2019s Cove', 'the Black Sand Cove'],
+        backstory: {
+          establish: [
+            '{name} is a small bay accessible only at certain tides, and only from the sea.',
+            '{name} was the site of a wreck three generations ago; the wreck has long since been salvaged.',
+            '{name} is known to the local fishermen, who do not anchor there.'
+          ],
+          detail: [
+            'A small beach of black sand fills the cove\u2019s inner curve.',
+            'The cliffs above the cove are sheer; descent is by rope or not at all.',
+            'A small cave opens at the cove\u2019s far end, into rock that should not be hollow.'
+          ],
+          complication: [
+            'Lights have been seen in the cove at night, twice this past month.',
+            'A fishing-boat that anchored in the cove last spring was found drifting empty the next morning.',
+            'Items washed up on the cove\u2019s beach include things from ships not confirmed wrecked.'
+          ],
+          hook: [
+            'A fisherman\u2019s family seeks news of the missing crew.',
+            'A scholar of currents would pay for an accounting of what washes up there.',
+            'A merchant has begun receiving messages signed from this cove. The messenger is unknown.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: null, canRollTavern: false
+      },
+      treasure_buoy: {
+        glyph: 'buoy',
+        biomes: ['island'],
+        typeLabel: 'marked buoy',
+        names: ['the Black Buoy', 'Pell\u2019s Mark', 'Brackwell\u2019s Buoy', 'the Sunken Mark', 'the Three-Bell Buoy', 'Hark\u2019s Buoy', 'the Pale Mark'],
+        backstory: {
+          establish: [
+            '{name} was set in place by a captain known only by their initials, two seasons past.',
+            '{name} marks a wreck none of the local fishermen will discuss.',
+            '{name} appeared overnight last spring, anchored in water too deep for it to have been set by ordinary means.'
+          ],
+          detail: [
+            'The buoy is weighted with a stone carved with a sigil no current house claims.',
+            'A small bell on the buoy rings when the swell is heavy; not otherwise.',
+            'The buoy\u2019s position has been recorded by the local pilots, who keep the records private.'
+          ],
+          complication: [
+            'A diver who attempted the wreck below the buoy returned only briefly, and then not at all.',
+            'The buoy moves slightly each year, against the prevailing current.',
+            'A second buoy of identical make appeared this past month, half a mile distant.'
+          ],
+          hook: [
+            'A salvage-master will pay for an accurate fix on what lies below.',
+            'A scholar of heraldry would pay for the sigil on the weight-stone.',
+            'The local pilots\u2019 records would be valuable to the right party.'
+          ]
+        },
+        canRollFace: false, canBeThreat: false, canBeFaction: false,
+        questSetting: 'shipwreck', canRollTavern: false
+      },
+      pirate_haven: {
+        glyph: 'settlement',
+        biomes: ['island'],
+        typeLabel: 'pirate haven',
+        names: ['Black Mariner\u2019s Cove', 'the Skerry Haven', 'Brackwell\u2019s Hold', 'the Three Skull Haven', 'Hark\u2019s Cove', 'the Crow Haven', 'the Sundered Haven'],
+        backstory: {
+          establish: [
+            '{name} is a pirate stronghold tolerated by the captains of three nations for reasons they prefer not to discuss.',
+            '{name} has been operating quietly for the better part of two decades.',
+            '{name} houses around sixty crew, with families, between voyages.'
+          ],
+          detail: [
+            'The haven is built around a deepwater inlet that can hold four ships of considerable draught.',
+            'A small council of captains sets the rules; the rules are honoured.',
+            'The haven keeps a tavern, a chapel, a healer, and an armoury. It does not keep a magistrate.'
+          ],
+          complication: [
+            'A captain of the haven has begun taking ships flagged from the wrong country.',
+            'The haven\u2019s healer has been sent for from the mainland; her letters indicate trouble.',
+            'Three of the haven\u2019s captains have not returned from their last voyage; only one was expected back.'
+          ],
+          hook: [
+            'The crown of one of the three nations would pay handsomely for confirmed news of the captains.',
+            'A merchant whose ship was taken seeks the captain involved, alive.',
+            'The healer\u2019s family seeks an honest letter back.'
+          ]
+        },
+        canRollFace: true, canBeThreat: true, canBeFaction: true,
+        questSetting: 'hideout', canRollTavern: true
+      }
+    };
+
+    let maps = (await Vault.get('atlas-maps')) || [];
+    let activeMapId = (await Vault.get('atlas-active')) || null;
+    let buildState = { biome: 'forest', poiCount: 12, name: '' };
+    let popoverEl = null;
+
+    function activeMap() { return maps.find(m => m.id === activeMapId); }
+    async function saveMaps() { await Vault.set('atlas-maps', maps); }
+    async function saveActive() { await Vault.set('atlas-active', activeMapId); }
+
+    function generateRegionName(biomeId) {
+      return 'The ' + pick(REGION_ADJS) + ' ' + pick(BIOMES[biomeId].regionNouns);
+    }
+
+    // Mitchell's best-candidate algorithm for organic distribution.
+    function placePois(count, w, h, padding) {
+      const points = [];
+      for (let i = 0; i < count; i++) {
+        let best = null, bestDist = -1;
+        const tries = i === 0 ? 1 : 10;
+        for (let t = 0; t < tries; t++) {
+          const x = padding + Math.random() * (w - 2 * padding);
+          const y = padding + Math.random() * (h - 2 * padding);
+          let minDist = Infinity;
+          for (const p of points) {
+            const d = Math.hypot(p.x - x, p.y - y);
+            if (d < minDist) minDist = d;
+          }
+          if (minDist > bestDist) { bestDist = minDist; best = { x, y }; }
+        }
+        points.push(best);
+      }
+      return points;
+    }
+
+    function generateBackstoryFor(typeId, name) {
+      const bs = POI_TYPES[typeId].backstory;
+      return [pick(bs.establish), pick(bs.detail), pick(bs.complication), pick(bs.hook)]
+        .join(' ').replace(/\{name\}/g, name);
+    }
+
+    function pickPoiTypesForBiome(biomeId, count) {
+      const eligible = Object.entries(POI_TYPES).filter(([id, t]) => t.biomes.includes(biomeId));
+      // Universal (in 5+ biomes) gets weight 2; specialised gets weight 4.
+      const weighted = [];
+      for (const [id, t] of eligible) {
+        const weight = t.biomes.length >= 5 ? 2 : 4;
+        for (let w = 0; w < weight; w++) weighted.push(id);
+      }
+      const result = [];
+      // Ensure at least one settlement on inhabitable biomes.
+      if (biomeId !== 'subterranean' && POI_TYPES.town.biomes.includes(biomeId)) {
+        result.push('town');
+      }
+      const used = {};
+      let tries = 0;
+      while (result.length < count && tries++ < 200) {
+        const id = pick(weighted);
+        used[id] = (used[id] || 0) + 1;
+        if (used[id] <= 3) result.push(id);
+      }
+      // Shuffle so the town isn't always first.
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const tmp = result[i]; result[i] = result[j]; result[j] = tmp;
+      }
+      return result;
+    }
+
+    function generateMap(biomeId, poiCount, suppliedName) {
+      const typeIds = pickPoiTypesForBiome(biomeId, poiCount);
+      const W = 800, H = 540;
+      const positions = placePois(poiCount, W, H, 80);
+      const usedNames = new Set();
+      const pois = typeIds.map((typeId, i) => {
+        const type = POI_TYPES[typeId];
+        let name = pick(type.names);
+        let nTries = 8;
+        while (usedNames.has(name) && nTries-- > 0) name = pick(type.names);
+        if (usedNames.has(name)) name = name + ' (lesser)';
+        usedNames.add(name);
+        return {
+          id: U.uid(),
+          type: typeId,
+          name,
+          x: Math.round(positions[i].x),
+          y: Math.round(positions[i].y),
+          backstory: generateBackstoryFor(typeId, name)
+        };
+      });
+      return {
+        id: U.uid(),
+        name: (suppliedName && suppliedName.trim()) || generateRegionName(biomeId),
+        biome: biomeId,
+        poiCount,
+        pois,
+        created: Date.now()
+      };
+    }
+
+    // -- HANDOFFS --
+    async function rollFaceFromPoi(poi, map) {
+      const type = POI_TYPES[poi.type];
+      await Vault.set('faces-location-hint', {
+        poiName: poi.name, poiType: type.typeLabel, region: map.name, biome: BIOMES[map.biome].name
+      });
+      closePopover();
+      U.toast('Faces: rolling in ' + poi.name);
+      await Keep.mount('faces');
+    }
+
+    async function noteThreatFromPoi(poi, map) {
+      const type = POI_TYPES[poi.type];
+      await Vault.set('threats-poi-hint', {
+        poiName: poi.name, poiType: type.typeLabel, region: map.name, biome: BIOMES[map.biome].name, backstory: poi.backstory
+      });
+      closePopover();
+      U.toast('Threats: noting ' + poi.name);
+      await Keep.mount('threats');
+    }
+
+    async function addFactionFromPoi(poi, map) {
+      const type = POI_TYPES[poi.type];
+      // POI-type-specific naming patterns: a bandit camp becomes a crew,
+      // a monastery becomes an order, etc. Falls back to the POI name.
+      const factionNamePatterns = {
+        bandit_camp:    '{n}\u2019s Crew',
+        pirate_haven:   'Captains of {n}',
+        monastery:      'Order of {n}',
+        smugglers_cave: 'Smugglers of {n}',
+        druid_grove:    'Druids of {n}',
+        jaguar_shrine:  'Cult of {n}',
+        sunless_city:   'Remnant of {n}',
+        manor:          'House of {n}'
+      };
+      const pattern = factionNamePatterns[poi.type] || '{n}';
+      const factionName = pattern.replace('{n}', poi.name);
+      await Vault.set('factions-poi-hint', {
+        poiName: poi.name, poiType: type.typeLabel,
+        factionName, region: map.name, biome: BIOMES[map.biome].name
+      });
+      closePopover();
+      U.toast('Factions: seeding ' + factionName);
+      await Keep.mount('factions');
+    }
+
+    async function launchQuestFromPoi(poi, map) {
+      const questSetting = POI_TYPES[poi.type].questSetting;
+      if (!questSetting) return;
+      const existing = await Vault.get('quest-active');
+      if (existing && existing.status && existing.status !== 'building') {
+        if (!confirm('A quest is already in progress. Replace it?')) return;
+      }
+      const questState = {
+        status: 'building',
+        setting: questSetting,
+        beatCount: 5,
+        climaxType: 'surprise',
+        companions: [],
+        beats: [],
+        beatIdx: 0,
+        resolvedClimaxType: null,
+        climaxText: '',
+        findData: null,
+        startedAt: null,
+        summary: '',
+        originPoi: map ? {
+          name: poi.name,
+          type: POI_TYPES[poi.type].typeLabel,
+          region: map.name,
+          biome: BIOMES[map.biome].name
+        } : null
+      };
+      await Vault.set('quest-active', questState);
+      U.toast('Quest pre-set to ' + questSetting + (map ? ' at ' + poi.name : '') + '. Add companions, then Begin.');
+      closePopover();
+      await Keep.mount('quest');
+    }
+
+    async function rollTavernFromPoi(poi) {
+      await Vault.set('tavern-location-hint', poi.name);
+      closePopover();
+      U.toast('Tavern in ' + poi.name);
+      await Keep.mount('tavern');
+    }
+
+    async function createArchiveFromPoi(poi, map) {
+      const entries = (await Vault.get('archive-entries')) || [];
+      const type = POI_TYPES[poi.type];
+      const body = poi.backstory + '\n\nLocated in ' + map.name + ' (' + BIOMES[map.biome].name.toLowerCase() + '). Type: ' + type.typeLabel + '.';
+      const existing = entries.find(e => e.title === poi.name);
+      if (existing) {
+        existing.body = body;
+        existing.updated = Date.now();
+        await Vault.set('archive-entries', entries);
+        U.toast('Archive entry updated.');
+      } else {
+        entries.push({
+          id: U.uid(),
+          title: poi.name,
+          body,
+          tag: 'Place',
+          created: Date.now(),
+          updated: Date.now()
+        });
+        await Vault.set('archive-entries', entries);
+        U.toast('Added to the Archive.');
+      }
+    }
+
+    async function pinPoiToAlmanac(poi, map) {
+      const type = POI_TYPES[poi.type];
+      const text = 'ATLAS [' + map.name + ']: ' + poi.name + ' (' + type.typeLabel + '). ' + poi.backstory;
+      const t = await Refs.pinToToday(text);
+      U.toast('Pinned to ' + (await Refs.formatDate(t)));
+    }
+
+    // -- UI ACTIONS --
+    async function createMap() {
+      const map = generateMap(buildState.biome, buildState.poiCount, buildState.name);
+      maps.unshift(map);
+      activeMapId = map.id;
+      buildState.name = '';
+      await saveMaps();
+      await saveActive();
+      render();
+    }
+    async function selectMap(id) {
+      activeMapId = id;
+      await saveActive();
+      closePopover();
+      render();
+    }
+    async function deleteMap(id) {
+      if (!confirm('Delete this map? It cannot be recovered.')) return;
+      maps = maps.filter(m => m.id !== id);
+      if (activeMapId === id) activeMapId = maps[0] ? maps[0].id : null;
+      await saveMaps();
+      await saveActive();
+      render();
+    }
+    async function renameMap(id, newName) {
+      const m = maps.find(x => x.id === id);
+      if (!m || !newName.trim()) return;
+      m.name = newName.trim();
+      await saveMaps();
+      render();
+    }
+    function printMap() { window.print(); }
+
+    // -- POPOVER --
+    function closePopover() {
+      if (popoverEl && popoverEl.parentNode) popoverEl.parentNode.removeChild(popoverEl);
+      popoverEl = null;
+      document.querySelectorAll('.atlas__poi--selected').forEach(el => el.classList.remove('atlas__poi--selected'));
+    }
+
+    function openPopover(poi, map, anchorEl) {
+      closePopover();
+      const type = POI_TYPES[poi.type];
+      const canvas = document.querySelector('.atlas__canvas');
+      if (!canvas) return;
+      const pop = U.el('div', { class: 'atlas__popover' });
+      const head = U.el('div', { class: 'atlas__popover-head' });
+      const idx = map.pois.findIndex(p => p.id === poi.id) + 1;
+      head.append(
+        U.el('span', { class: 'atlas__popover-num' }, idx.toString()),
+        U.el('span', { class: 'atlas__popover-name' }, poi.name),
+        U.el('button', { class: 'atlas__popover-close', title: 'Close', onclick: closePopover }, '\u00D7')
+      );
+      pop.append(head);
+      pop.append(U.el('div', { class: 'atlas__popover-type' }, type.typeLabel));
+      pop.append(U.el('div', { class: 'atlas__popover-story' }, poi.backstory));
+      const acts = U.el('div', { class: 'atlas__popover-actions' });
+      if (type.questSetting) {
+        acts.append(U.el('button', {
+          class: 'atlas__popover-btn atlas__popover-btn--primary',
+          onclick: () => launchQuestFromPoi(poi, map)
+        }, 'Launch Quest Here'));
+      }
+      if (type.canRollTavern) {
+        acts.append(U.el('button', {
+          class: 'atlas__popover-btn',
+          onclick: () => rollTavernFromPoi(poi)
+        }, 'Roll a Tavern Here'));
+      }
+      if (type.canRollFace) {
+        acts.append(U.el('button', {
+          class: 'atlas__popover-btn',
+          onclick: () => rollFaceFromPoi(poi, map)
+        }, 'Roll a Face Here'));
+      }
+      if (type.canBeFaction) {
+        acts.append(U.el('button', {
+          class: 'atlas__popover-btn',
+          onclick: () => addFactionFromPoi(poi, map)
+        }, 'Seed a Faction'));
+      }
+      if (type.canBeThreat) {
+        acts.append(U.el('button', {
+          class: 'atlas__popover-btn',
+          onclick: () => noteThreatFromPoi(poi, map)
+        }, 'Note as Threat'));
+      }
+      acts.append(
+        U.el('button', {
+          class: 'atlas__popover-btn',
+          onclick: () => createArchiveFromPoi(poi, map)
+        }, 'To the Archive'),
+        U.el('button', {
+          class: 'atlas__popover-btn',
+          onclick: () => pinPoiToAlmanac(poi, map)
+        }, 'Pin to Almanac')
+      );
+      pop.append(acts);
+      const rect = canvas.getBoundingClientRect();
+      const scale = rect.width / 800;
+      const px = poi.x * scale + 16;
+      const py = Math.max(8, poi.y * scale - 60);
+      pop.style.left = px + 'px';
+      pop.style.top = py + 'px';
+      canvas.appendChild(pop);
+      const popRect = pop.getBoundingClientRect();
+      if (popRect.right > rect.right - 8) {
+        pop.style.left = Math.max(8, poi.x * scale - popRect.width - 16) + 'px';
+      }
+      popoverEl = pop;
+      anchorEl.classList.add('atlas__poi--selected');
+    }
+
+    // -- RENDERING --
+    function render() {
+      body.innerHTML = '';
+      actions.innerHTML = '';
+      closePopover();
+      const wrap = U.el('div', { class: 'atlas' + (maps.length ? '' : ' atlas--empty') });
+      body.append(wrap);
+      if (maps.length) wrap.append(renderSidebar());
+      const activeM = activeMap();
+      if (activeM) wrap.append(renderView(activeM));
+      else wrap.append(renderBuilder());
+    }
+
+    function renderSidebar() {
+      const sidebar = U.el('div', { class: 'atlas__sidebar' });
+      sidebar.append(U.el('div', { class: 'atlas__sidebar-head' }, 'Library'));
+      const list = U.el('div', { class: 'atlas__map-list' });
+      maps.forEach(m => {
+        const item = U.el('button', {
+          class: 'atlas__map-item' + (m.id === activeMapId ? ' atlas__map-item--active' : ''),
+          onclick: () => selectMap(m.id)
+        });
+        item.append(
+          U.el('span', { class: 'atlas__map-item-name' }, m.name),
+          U.el('span', { class: 'atlas__map-item-meta' }, BIOMES[m.biome].name + ' \u00B7 ' + m.poiCount + ' marks')
+        );
+        list.append(item);
+      });
+      sidebar.append(list);
+      sidebar.append(U.el('button', {
+        class: 'atlas__new-btn',
+        onclick: () => { activeMapId = null; saveActive(); render(); }
+      }, '+ Forge New Map'));
+      return sidebar;
+    }
+
+    function renderBuilder() {
+      const builder = U.el('div', { class: 'atlas__builder' });
+      builder.append(U.el('div', { class: 'atlas__builder-intro' },
+        'Forge a region. Pick a biome, choose how many marks to scatter, and either name it or let it name itself.'));
+
+      builder.append(U.el('div', { class: 'atlas__build-section-head' }, 'Biome'));
+      const biomesGrid = U.el('div', { class: 'atlas__biomes' });
+      BIOME_ORDER.forEach(id => {
+        const b = BIOMES[id];
+        const card = U.el('button', {
+          class: 'atlas__biome' + (buildState.biome === id ? ' atlas__biome--selected' : ''),
+          onclick: () => { buildState.biome = id; render(); }
+        });
+        card.append(
+          U.el('span', { class: 'atlas__biome-name' }, b.name),
+          U.el('span', { class: 'atlas__biome-sub' }, b.sub)
+        );
+        biomesGrid.append(card);
+      });
+      builder.append(biomesGrid);
+
+      builder.append(U.el('div', { class: 'atlas__build-section-head' }, 'Marks'));
+      const optRow = U.el('div', { class: 'atlas__option-row' });
+      [8, 12, 16].forEach(n => {
+        optRow.append(U.el('button', {
+          class: 'atlas__option' + (buildState.poiCount === n ? ' atlas__option--selected' : ''),
+          onclick: () => { buildState.poiCount = n; render(); }
+        }, n + ' marks'));
+      });
+      builder.append(optRow);
+
+      builder.append(U.el('div', { class: 'atlas__build-section-head' }, 'Region Name'));
+      const nameInp = U.el('input', {
+        type: 'text',
+        class: 'atlas__name-input',
+        placeholder: 'Leave blank to auto-generate (e.g. "The Hollow Coast")',
+        value: buildState.name
+      });
+      nameInp.addEventListener('input', (e) => { buildState.name = e.target.value; });
+      builder.append(nameInp);
+
+      const forgeRow = U.el('div', { class: 'atlas__forge-row' });
+      forgeRow.append(U.el('button', { class: 'atlas__forge', onclick: createMap }, 'Forge the Map'));
+      builder.append(forgeRow);
+
+      return builder;
+    }
+
+    function renderView(map) {
+      const view = U.el('div', { class: 'atlas__view' });
+      const head = U.el('div', { class: 'atlas__view-head' });
+      const actsBox = U.el('div', { class: 'atlas__view-actions' });
+      actsBox.append(
+        U.el('button', {
+          class: 'btn btn--ghost btn--small',
+          onclick: () => {
+            const newName = prompt('Rename region:', map.name);
+            if (newName != null) renameMap(map.id, newName);
+          }
+        }, 'Rename'),
+        U.el('button', { class: 'btn btn--ghost btn--small', onclick: printMap }, 'Print / PDF'),
+        U.el('button', { class: 'btn btn--ghost btn--small', onclick: () => deleteMap(map.id) }, 'Delete')
+      );
+      head.append(
+        U.el('span', { class: 'atlas__view-title' }, map.name),
+        U.el('span', { class: 'atlas__view-meta' }, BIOMES[map.biome].name + ' \u00B7 ' + map.pois.length + ' marks'),
+        actsBox
+      );
+      view.append(head);
+
+      const canvas = U.el('div', { class: 'atlas__canvas' });
+      canvas.append(renderMapSVG(map));
+      view.append(canvas);
+      view.append(renderLegend(map));
+
+      // Dismiss popover on outside click
+      setTimeout(() => {
+        const handler = (e) => {
+          if (popoverEl && !popoverEl.contains(e.target) && !e.target.closest('.atlas__poi')) {
+            closePopover();
+          }
+        };
+        document.addEventListener('click', handler);
+      }, 0);
+
+      return view;
+    }
+
+    function renderTopology(svg, biomeId, W, H) {
+      const g = svgEl('g', { opacity: '0.20', fill: 'none', stroke: '#3a2f24' });
+      if (biomeId === 'coast') {
+        let d = 'M 0 ' + (H - 32);
+        for (let x = 0; x <= W; x += 40) d += ' Q ' + (x + 20) + ' ' + (H - 42) + ' ' + (x + 40) + ' ' + (H - 32);
+        g.appendChild(svgEl('path', { d, 'stroke-width': 1.2 }));
+        let d2 = 'M 0 ' + (H - 18);
+        for (let x = 0; x <= W; x += 50) d2 += ' Q ' + (x + 25) + ' ' + (H - 26) + ' ' + (x + 50) + ' ' + (H - 18);
+        g.appendChild(svgEl('path', { d: d2, 'stroke-width': 0.8 }));
+      } else if (biomeId === 'island') {
+        // Sea on all four edges. Two wave lines per edge for depth.
+        let dT = 'M 0 32';
+        for (let x = 0; x <= W; x += 40) dT += ' Q ' + (x + 20) + ' 22 ' + (x + 40) + ' 32';
+        g.appendChild(svgEl('path', { d: dT, 'stroke-width': 1.0 }));
+        let dT2 = 'M 0 18';
+        for (let x = 0; x <= W; x += 50) dT2 += ' Q ' + (x + 25) + ' 10 ' + (x + 50) + ' 18';
+        g.appendChild(svgEl('path', { d: dT2, 'stroke-width': 0.7 }));
+        let dB = 'M 0 ' + (H - 32);
+        for (let x = 0; x <= W; x += 40) dB += ' Q ' + (x + 20) + ' ' + (H - 42) + ' ' + (x + 40) + ' ' + (H - 32);
+        g.appendChild(svgEl('path', { d: dB, 'stroke-width': 1.0 }));
+        let dB2 = 'M 0 ' + (H - 18);
+        for (let x = 0; x <= W; x += 50) dB2 += ' Q ' + (x + 25) + ' ' + (H - 26) + ' ' + (x + 50) + ' ' + (H - 18);
+        g.appendChild(svgEl('path', { d: dB2, 'stroke-width': 0.7 }));
+        let dL = 'M 32 0';
+        for (let y = 0; y <= H; y += 40) dL += ' Q 22 ' + (y + 20) + ' 32 ' + (y + 40);
+        g.appendChild(svgEl('path', { d: dL, 'stroke-width': 1.0 }));
+        let dL2 = 'M 18 0';
+        for (let y = 0; y <= H; y += 50) dL2 += ' Q 10 ' + (y + 25) + ' 18 ' + (y + 50);
+        g.appendChild(svgEl('path', { d: dL2, 'stroke-width': 0.7 }));
+        let dR = 'M ' + (W - 32) + ' 0';
+        for (let y = 0; y <= H; y += 40) dR += ' Q ' + (W - 22) + ' ' + (y + 20) + ' ' + (W - 32) + ' ' + (y + 40);
+        g.appendChild(svgEl('path', { d: dR, 'stroke-width': 1.0 }));
+        let dR2 = 'M ' + (W - 18) + ' 0';
+        for (let y = 0; y <= H; y += 50) dR2 += ' Q ' + (W - 10) + ' ' + (y + 25) + ' ' + (W - 18) + ' ' + (y + 50);
+        g.appendChild(svgEl('path', { d: dR2, 'stroke-width': 0.7 }));
+      } else if (biomeId === 'forest') {
+        for (let i = 0; i < 22; i++) {
+          const x = 40 + Math.random() * (W - 80);
+          const y = 80 + Math.random() * (H - 140);
+          g.appendChild(svgEl('path', {
+            d: 'M ' + x + ' ' + y + ' l 0 -6 M ' + (x - 3) + ' ' + (y - 4) + ' q 3 -6 6 0',
+            'stroke-width': 0.7,
+            'stroke-linecap': 'round'
+          }));
+        }
+      } else if (biomeId === 'jungle') {
+        // dense canopy: larger, more numerous tree silhouettes
+        for (let i = 0; i < 32; i++) {
+          const x = 25 + Math.random() * (W - 50);
+          const y = 80 + Math.random() * (H - 140);
+          g.appendChild(svgEl('path', {
+            d: 'M ' + x + ' ' + y + ' l 0 -8 M ' + (x - 4) + ' ' + (y - 5) + ' q 4 -8 8 0',
+            'stroke-width': 0.9,
+            'stroke-linecap': 'round'
+          }));
+        }
+        // a winding river across the map
+        let rd = 'M 0 ' + (H * 0.5);
+        let curY = H * 0.5;
+        for (let x = 30; x <= W; x += 35) {
+          curY += (Math.random() - 0.5) * 25;
+          curY = Math.max(H * 0.32, Math.min(H * 0.68, curY));
+          rd += ' Q ' + (x - 5) + ' ' + curY + ' ' + x + ' ' + curY;
+        }
+        g.appendChild(svgEl('path', { d: rd, 'stroke-width': 1.3 }));
+      } else if (biomeId === 'mountain') {
+        // ridge line
+        let d = 'M 0 ' + (H * 0.55);
+        for (let x = 0; x <= W; x += 60) {
+          const peak = (H * 0.55) - (20 + Math.random() * 30);
+          d += ' L ' + (x + 30) + ' ' + peak + ' L ' + (x + 60) + ' ' + (H * 0.55);
+        }
+        g.appendChild(svgEl('path', { d, 'stroke-width': 0.9 }));
+      } else if (biomeId === 'wetland') {
+        // reed clusters
+        for (let i = 0; i < 14; i++) {
+          const cx = 50 + Math.random() * (W - 100);
+          const cy = 100 + Math.random() * (H - 160);
+          let rd = '';
+          for (let r = 0; r < 5; r++) {
+            const rx = cx + (r - 2) * 2;
+            rd += 'M ' + rx + ' ' + cy + ' L ' + rx + ' ' + (cy - 5 - Math.random() * 4) + ' ';
+          }
+          g.appendChild(svgEl('path', { d: rd, 'stroke-width': 0.6 }));
+        }
+      } else if (biomeId === 'plain') {
+        // horizontal road
+        const y = H * 0.5 + Math.random() * 40 - 20;
+        g.appendChild(svgEl('path', {
+          d: 'M 30 ' + y + ' Q ' + (W / 2) + ' ' + (y + 10) + ' ' + (W - 30) + ' ' + y,
+          'stroke-width': 1.1, 'stroke-dasharray': '4,4'
+        }));
+      } else if (biomeId === 'desert') {
+        // dune curves
+        for (let i = 0; i < 5; i++) {
+          const y = 90 + i * (H - 180) / 5 + Math.random() * 20;
+          let d = 'M 20 ' + y;
+          for (let x = 20; x <= W; x += 60) {
+            d += ' Q ' + (x + 30) + ' ' + (y - 10) + ' ' + (x + 60) + ' ' + y;
+          }
+          g.appendChild(svgEl('path', { d, 'stroke-width': 0.7 }));
+        }
+      } else if (biomeId === 'tundra') {
+        // scattered ice crystals
+        for (let i = 0; i < 30; i++) {
+          const cx = 30 + Math.random() * (W - 60);
+          const cy = 80 + Math.random() * (H - 140);
+          g.appendChild(svgEl('path', {
+            d: 'M ' + (cx - 3) + ' ' + cy + ' L ' + (cx + 3) + ' ' + cy + ' M ' + cx + ' ' + (cy - 3) + ' L ' + cx + ' ' + (cy + 3) + ' M ' + (cx - 2) + ' ' + (cy - 2) + ' L ' + (cx + 2) + ' ' + (cy + 2) + ' M ' + (cx - 2) + ' ' + (cy + 2) + ' L ' + (cx + 2) + ' ' + (cy - 2),
+            'stroke-width': 0.5
+          }));
+        }
+      } else if (biomeId === 'subterranean') {
+        // cracks
+        for (let i = 0; i < 8; i++) {
+          const x = 40 + Math.random() * (W - 80);
+          const y = 90 + Math.random() * (H - 160);
+          let d = 'M ' + x + ' ' + y;
+          let cx = x, cy = y;
+          for (let k = 0; k < 4; k++) {
+            cx += (Math.random() - 0.5) * 40;
+            cy += (Math.random() - 0.5) * 40;
+            d += ' L ' + cx + ' ' + cy;
+          }
+          g.appendChild(svgEl('path', { d, 'stroke-width': 0.6 }));
+        }
+      }
+      svg.appendChild(g);
+    }
+
+    function renderCompass(svg, x, y) {
+      const g = svgEl('g', {
+        transform: 'translate(' + x + ',' + y + ')',
+        fill: 'none', stroke: '#5c1f24', 'stroke-width': 0.8
+      });
+      g.appendChild(svgEl('circle', { cx: 0, cy: 0, r: 18 }));
+      g.appendChild(svgEl('circle', { cx: 0, cy: 0, r: 12, 'stroke-width': 0.5 }));
+      g.appendChild(svgEl('path', {
+        d: 'M 0 -16 L 3 0 L 0 16 L -3 0 Z M -16 0 L 0 3 L 16 0 L 0 -3 Z',
+        fill: '#5c1f24', 'fill-opacity': 0.7
+      }));
+      const n = svgEl('text', {
+        x: 0, y: -22,
+        'text-anchor': 'middle',
+        'font-family': 'Cinzel, serif',
+        'font-size': 8,
+        fill: '#5c1f24'
+      });
+      n.textContent = 'N';
+      g.appendChild(n);
+      svg.appendChild(g);
+    }
+
+    function renderMapSVG(map) {
+      const W = 800, H = 540;
+      const biome = BIOMES[map.biome];
+      const svg = svgEl('svg', {
+        viewBox: '0 0 ' + W + ' ' + H,
+        class: 'atlas__map',
+        xmlns: SVG_NS
+      });
+
+      // Background
+      svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: H, fill: biome.bg }));
+
+      // Topology decoration
+      renderTopology(svg, map.biome, W, H);
+
+      // Decorative border
+      svg.appendChild(svgEl('rect', {
+        x: 8, y: 8, width: W - 16, height: H - 16,
+        fill: 'none', stroke: '#5c1f24', 'stroke-width': 2
+      }));
+      svg.appendChild(svgEl('rect', {
+        x: 16, y: 16, width: W - 32, height: H - 32,
+        fill: 'none', stroke: '#5c1f24', 'stroke-width': 0.6,
+        'stroke-dasharray': '6,4'
+      }));
+
+      // Title
+      const title = svgEl('text', {
+        x: W / 2, y: 52,
+        'text-anchor': 'middle',
+        'font-family': 'Cinzel, serif',
+        'font-size': 28,
+        'letter-spacing': '4',
+        fill: '#3a2415'
+      });
+      title.textContent = map.name;
+      svg.appendChild(title);
+
+      // POIs
+      map.pois.forEach((poi, i) => {
+        const type = POI_TYPES[poi.type];
+        const g = svgEl('g', {
+          class: 'atlas__poi',
+          'data-poi-id': poi.id
+        });
+        g.appendChild(svgEl('circle', {
+          cx: poi.x, cy: poi.y, r: 22,
+          fill: 'transparent',
+          class: 'atlas__poi-hit'
+        }));
+        g.appendChild(svgEl('path', {
+          d: POI_GLYPHS[type.glyph],
+          transform: 'translate(' + poi.x + ',' + poi.y + ')',
+          class: 'atlas__poi-glyph',
+          fill: 'none', stroke: '#3a2415', 'stroke-width': 1.3,
+          'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+        }));
+        // Number badge
+        g.appendChild(svgEl('circle', {
+          cx: poi.x + 10, cy: poi.y - 10, r: 8,
+          fill: '#faf2dd', stroke: '#5c1f24', 'stroke-width': 0.7,
+          class: 'atlas__poi-num-bg'
+        }));
+        const numTxt = svgEl('text', {
+          x: poi.x + 10, y: poi.y - 7,
+          'text-anchor': 'middle',
+          'font-family': 'Cinzel, serif',
+          'font-size': 9,
+          fill: '#5c1f24'
+        });
+        numTxt.textContent = (i + 1).toString();
+        g.appendChild(numTxt);
+        // Label
+        const lbl = svgEl('text', {
+          x: poi.x, y: poi.y + 22,
+          'text-anchor': 'middle',
+          'font-family': 'EB Garamond, serif',
+          'font-style': 'italic',
+          'font-size': 11,
+          fill: '#3a2415'
+        });
+        lbl.textContent = poi.name;
+        g.appendChild(lbl);
+        // Click
+        g.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openPopover(poi, map, g);
+        });
+        svg.appendChild(g);
+      });
+
+      // Compass
+      renderCompass(svg, W - 50, H - 50);
+
+      return svg;
+    }
+
+    function renderLegend(map) {
+      const wrap = U.el('div', { class: 'atlas__legend' });
+      wrap.append(U.el('div', { class: 'atlas__legend-head' }, 'Legend'));
+      const list = U.el('div', { class: 'atlas__legend-list' });
+      map.pois.forEach((poi, i) => {
+        const type = POI_TYPES[poi.type];
+        const item = U.el('div', { class: 'atlas__legend-item' });
+        item.append(U.el('span', { class: 'atlas__legend-num' }, (i + 1).toString()));
+        const right = U.el('div');
+        right.append(
+          U.el('div', { class: 'atlas__legend-name' }, poi.name),
+          U.el('div', { class: 'atlas__legend-type' }, type.typeLabel),
+          U.el('div', { class: 'atlas__legend-story' }, poi.backstory)
+        );
+        item.append(right);
+        list.append(item);
+      });
+      wrap.append(list);
+      return wrap;
+    }
+
+    render();
+  }
+});
+
+/* =========================================================================
+>>>>>>> Stashed changes
    MODULE: LOOT (Treasure Generator)
    Tap a tier (paltry/modest/rich/royal) and roll. Generates coins by
    denomination, mundane oddments (1 to 5), and an occasional named
@@ -11634,6 +14309,15 @@ Keep.register({
     };
 
     let state = await Vault.get('tavern-current');
+    // If Atlas (or another module) has set a location hint, force a fresh
+    // tavern roll situated in that place. The hint is one-shot: read,
+    // attach to state, delete.
+    const locationHint = await Vault.get('tavern-location-hint');
+    if (locationHint) {
+      await Vault.delete('tavern-location-hint');
+      state = rollTavern();
+      state.location = locationHint;
+    }
     if (!state) state = rollTavern();
 
     const wrap = U.el('div', { class: 'tavern' });
@@ -11724,6 +14408,7 @@ Keep.register({
         U.el('div', { class: 'card__corner card__corner--bl' }),
         U.el('div', { class: 'card__corner card__corner--br' }),
         U.el('h2', { class: 'tavern__name' }, state.name),
+        state.location ? U.el('div', { class: 'tavern__sub' }, U.el('em', {}, 'in ' + state.location)) : null,
         U.el('div', { class: 'tavern__sub' }, U.el('em', {}, 'kept by ' + state.proprietor.role)),
         U.el('div', { class: 'tavern__rule' }, '\u2767 \u2767 \u2767'),
         U.el('div', { class: 'tavern__atmosphere' }, state.atmosphere)
@@ -11890,6 +14575,28 @@ Keep.register({
       factions[0].relations[factions[1].id] = { value: -3, note: 'They do not trust the order\u2019s silences.' };
       factions[1].relations[factions[0].id] = { value: -3, note: 'They mistrust any house that takes its name from a cleft of land.' };
       await Vault.set('factions', factions);
+    }
+
+    // Atlas (or another module) can drop a factions-poi-hint with
+    // { poiName, poiType, factionName, region, biome } to add a
+    // freshly-seeded faction tied to a place. One-shot: read, delete,
+    // append.
+    const factionHint = await Vault.get('factions-poi-hint');
+    if (factionHint && factionHint.factionName) {
+      await Vault.remove('factions-poi-hint');
+      factions.push({
+        id: U.uid(),
+        name: factionHint.factionName,
+        sigil: SIGILS[Math.floor(Math.random() * SIGILS.length)],
+        color: 'wine',
+        motto: '',
+        goal: 'Their grip on ' + factionHint.poiName + ' (' + factionHint.region + ').',
+        party: 0,
+        notes: '',
+        relations: {}
+      });
+      await Vault.set('factions', factions);
+      U.toast('Faction added: ' + factionHint.factionName);
     }
 
     const head = U.el('div', { class: 'factions__head' });
@@ -13413,6 +16120,21 @@ Keep.register({
       wrap.append(U.el('div', { class: 'quest__intro' },
         'A short going-in. Pick a place, your companions, and the shape of the end.'));
 
+<<<<<<< Updated upstream
+=======
+      // If launched from Atlas, surface where this Quest is anchored.
+      if (state.originPoi) {
+        const banner = U.el('div', { class: 'quest__origin' });
+        banner.append(
+          U.el('span', { class: 'quest__origin-label' }, 'From the Atlas'),
+          U.el('span', { class: 'quest__origin-name' }, state.originPoi.name),
+          U.el('span', { class: 'quest__origin-meta' },
+            state.originPoi.type + ' \u00B7 ' + state.originPoi.region)
+        );
+        wrap.append(banner);
+      }
+
+>>>>>>> Stashed changes
       // SETTING
       const settingSection = U.el('div', { class: 'quest__build-section' });
       settingSection.append(U.el('div', { class: 'quest__build-head' }, 'Where'));
@@ -13517,7 +16239,12 @@ Keep.register({
       head.append(
         U.el('span', { class: 'quest__progress' },
           'Beat ' + (state.beatIdx + 1) + ' of ' + state.beatCount),
+<<<<<<< Updated upstream
         U.el('span', { class: 'quest__where' }, setting.name)
+=======
+        U.el('span', { class: 'quest__where' },
+          setting.name + (state.originPoi ? ' \u00B7 ' + state.originPoi.name : ''))
+>>>>>>> Stashed changes
       );
       const bar = U.el('div', { class: 'quest__progress-bar' });
       bar.append(U.el('div', {

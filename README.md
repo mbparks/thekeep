@@ -11,7 +11,11 @@ It works for a group GM and for a solo player. The same rooms that help a Game M
 - One self-contained HTML file. Open in any modern browser. No install, no build step, no server. The only outside calls are optional YouTube ambience streams in The Hearth.
 - Per-chronicle persistence. Run as many campaigns as you want, each kept separate.
 - Light and dark themes. Parchment-and-ink for noble adventures, Cult of Shadow for those who play the villains.
+<<<<<<< Updated upstream
 - Twenty-three interconnected modules, each a "room" in the keep.
+=======
+- Twenty-four interconnected modules, each a "room" in the keep.
+>>>>>>> Stashed changes
 - A session-prep landing page (The Watch) that aggregates current state across rooms.
 - Universal search across everything (press `/`).
 - Full chronicle backup and restore (JSON).
@@ -73,6 +77,8 @@ Where the chronicler builds the world.
 **The Tavern.** Roll a tavern. Name, proprietor, atmosphere, menu, three patrons, three rumours with truth tags. Reveal rumours one at a time or all at once. Pin individual rumours to the Almanac. Recruit any patron into the Hall roster with one click.
 
 **Faction Ledger.** Track the powers your party crosses. Sigil, motto, goal, notes, and a party-standing gauge from minus ten to plus ten across seven labels (Blood Enemy through Sworn). Inter-faction relations are directional: House Ashlow can scorn the Greyfern Order while the Order pities them. Cards view for detail, Matrix view for the whole web at once. Shows mentioned-in backlinks from the Archive, plus a count badge when any Threats are linked to the faction.
+
+**The Atlas.** A region-map generator. Pick a biome (Coast, Island, Forest, Jungle, Mountain, Wetland, Plain, Desert, Tundra, Subterranean), choose a POI count (8, 12, or 16), optionally name the region or let it auto-generate ("The Hollow Coast", "The Pale Skerries", "The Sundered Mire"). Forges a hand-drawn SVG map of places of interest, each with a 3-4 sentence backstory composed from per-type sub-pools (establish, detail, complication, hook). Forty-five POI types: universal (town, manor, ruin, shrine, hermitage, standing stones, graveyard, crossroads, chapel) and biome-specific (shipwrecks and lighthouses on coasts; oases and tomb complexes in deserts; lost cities and vine temples in jungle; mammoth graveyards in tundra; sunless cities and crystal chambers below ground; castaway camps, smugglers' caves, hidden coves, treasure-buoys, and pirate havens on islands; and so on). Each biome has its own atmospheric topology layer (waves on the coast edge, dense canopy and a winding river in jungle, ridge lines in mountain, dune curves in desert, ice crystals in tundra, sea on every side for islands). Click any POI for a popover with the backstory and conditional handoff buttons: Launch Quest, Roll a Tavern Here, Roll a Face Here, Seed a Faction, Note as Threat, To the Archive, Pin to Almanac. Maps save to a library accessed via a sidebar. Print/PDF exports the map at full letter-paper width followed by the numbered legend with full backstories on subsequent pages.
 
 ### Mysteries
 
@@ -187,7 +193,12 @@ The rooms know about each other. Some of the connections that compound across a 
 - Universal search opens specific records via per-module transient navigation keys, so a hit in the Cabinet group does not just take you to the Cabinet but to the exact item, scrolled into view and briefly glowing. The Watch uses the same navigation contract.
 - **Loot** generates oddments and named wonders that one-click into the Cabinet (with the correct kind, description, holder, and date prefilled) and coins that one-click into the Coffer (with an auto-generated ledger note).
 - **The Skirmish** pulls allies from the Fellowship (with default HP and initiative modifier by archetype) and the Hall of Faces, generates foes from archetype pools, and on encounter end writes Fellowship statuses back for any allies who went down (wounded by default; user can override to lost or fallen before confirming).
+<<<<<<< Updated upstream
 - **Quest** is the orchestrator. It pulls companions from the Fellowship as your party, runs procedural beats with companion voice moments, and at climax hands off into one of the other rooms: Skirmish (prefills the encounter with both your chosen allies and setting-appropriate foes), Loot (preselects the right tier), or the Cabinet (writes a setting-themed named find with description and date). The Almanac records the day regardless of which path the climax takes.
+=======
+- **Quest** is one of two orchestrators. It pulls companions from the Fellowship as your party, runs procedural beats with companion voice moments, and at climax hands off into one of the other rooms: Skirmish (prefills the encounter with both your chosen allies and setting-appropriate foes), Loot (preselects the right tier), or the Cabinet (writes a setting-themed named find with description and date). The Almanac records the day regardless of which path the climax takes. When Quest was launched from an Atlas POI, the builder shows a gold-bordered "From the Atlas" banner with the POI's name, type, and region, and the in-run header appends the POI name to the setting line.
+- **The Atlas** is the other orchestrator, working at the geographic level. Each POI on a generated map can hand off through its popover. *Launch Quest Here* writes a `quest-active` building state with the POI's setting preselected and an `originPoi` block (name, type, region, biome) that Quest surfaces in its header. *Roll a Tavern Here* writes `tavern-location-hint`; the Tavern rolls a fresh place and renders "in {POI name}" under the name. *Roll a Face Here* writes `faces-location-hint`; the Hall conjures an NPC tagged with the POI as its location and shows the location on the role line. *Seed a Faction* writes `factions-poi-hint` with a POI-type-aware faction name (bandit camps become Crews, monasteries become Orders, pirate havens become "Captains of {name}", jaguar shrines become "Cults of {name}", manors become Houses); the Faction Ledger appends the new faction. *Note as Threat* writes `threats-poi-hint`; the Threats room opens a new eight-segment clock with the POI as its name and the backstory as its description. *To the Archive* creates a tagged Place entry seeded with the backstory plus a "Located in {region}" footer. *Pin to Almanac* drops a dated note. The set of buttons that appear is filtered per POI type: a pirate haven offers all of them, a lonely standing stone offers only Archive and Almanac.
+>>>>>>> Stashed changes
 
 ## Browser Support
 
@@ -195,7 +206,11 @@ Tested in current Chrome, Firefox, and Safari. Uses Web Audio for the Hearth, SV
 
 ## Development
 
+<<<<<<< Updated upstream
 The Keep is one HTML file with embedded CSS and JavaScript, written in vanilla ES2020. About sixteen thousand lines at this writing. Modular structure: each room is a self-contained object registered via `Keep.register({...})` with `mount(body, actions)` and optional `unmount()`.
+=======
+The Keep is one HTML file with embedded CSS and JavaScript, written in vanilla ES2020. About nineteen thousand lines at this writing. Modular structure: each room is a self-contained object registered via `Keep.register({...})` with `mount(body, actions)` and optional `unmount()`.
+>>>>>>> Stashed changes
 
 Persistence is abstracted through a `Vault` helper with three surfaces:
 
@@ -229,7 +244,7 @@ Keep.register({
 
 The `category` value places the room in the navigation: `workshop`, `mysteries`, `table`, or null for top-level. `glyph` references an SVG `<symbol id="g-*">` defined at the top of the file.
 
-For cross-module navigation, set a transient Vault key before mounting the target module; the target reads and consumes the key on its next mount. Existing keys: `archive-current`, `almanac-selected`, `faces-show`, `factions-expand`, `cabinet-highlight`, `threats-highlight`, `fellowship-highlight`, `wayfarer-highlight`.
+For cross-module navigation, set a transient Vault key before mounting the target module; the target reads and consumes the key on its next mount. Existing keys: `archive-current`, `almanac-selected`, `faces-show`, `factions-expand`, `cabinet-highlight`, `threats-highlight`, `fellowship-highlight`, `wayfarer-highlight`. The Atlas adds another family of one-shot hint keys for its POI handoffs: `tavern-location-hint` (string POI name), `faces-location-hint` (object with poiName, poiType, region, biome), `factions-poi-hint` (the same plus a derived factionName), `threats-poi-hint` (the same plus the backstory). Each receiving module reads the hint on mount, applies it (rolling a fresh tavern in that location, conjuring an NPC tagged with the place, appending a faction or threat anchored to the POI), and removes the key.
 
 For richer cross-module handoffs, write directly to the target module's primary state key before mounting it. Quest does this when handing off to Skirmish: it writes a fully-formed encounter (with allies populated from the chosen Fellowship members and foes generated from setting-mapped archetypes) to `skirmish-active` in building status, then `Keep.mount('skirmish')`. The Skirmish renders the prefilled roster and the user picks up from there.
 
