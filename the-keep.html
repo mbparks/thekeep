@@ -1500,6 +1500,1273 @@ small { font-size: 0.85em; color: var(--ink-faded); }
 .lists--big .lists__hp input { width: 60px; font-size: 1.2rem; }
 .lists--big .lists__add { display: none; }
 
+/* ----- MODULE: QUEST (Exploration Adventure) -------------------------- */
+.quest { display: flex; flex-direction: column; gap: 1.3rem; }
+
+/* Builder mode */
+.quest__intro {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+.quest__build-section {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1rem 1.2rem;
+}
+.quest__build-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+
+.quest__settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+.quest__setting {
+  padding: 0.85rem 0.95rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+  text-align: left;
+  display: flex; flex-direction: column;
+  gap: 0.3rem;
+  transition: background 0.12s, border-color 0.12s, transform 0.08s;
+}
+.quest__setting:hover { background: var(--p-2); border-color: var(--gold); }
+.quest__setting:active { transform: translateY(1px); }
+.quest__setting--selected {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.quest__setting-name {
+  font-family: var(--display);
+  font-size: 0.92rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.quest__setting-sub {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.83rem;
+  color: var(--ink-faded);
+  line-height: 1.35;
+}
+
+.quest__option-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.quest__option {
+  padding: 0.5rem 0.85rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.quest__option:hover { background: var(--p-2); border-color: var(--gold); }
+.quest__option--selected {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.quest__option-sub {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.4rem;
+}
+
+.quest__companions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.quest__companion-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+}
+.quest__companion-row:hover { background: var(--p-2); border-color: var(--gold); }
+.quest__companion-row--selected {
+  background: var(--p-2);
+  border-color: var(--gold);
+}
+.quest__companion-name {
+  flex: 1;
+  font-family: var(--display);
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+.quest__companion-arch {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+}
+.quest__companion-status {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid;
+}
+.quest__companion-status--hale    { color: var(--forest); border-color: var(--forest); }
+.quest__companion-status--wounded { color: #8a4a2c; border-color: #8a4a2c; }
+[data-theme="dark"] .quest__companion-status--hale    { color: #5fa274; border-color: #5fa274; }
+[data-theme="dark"] .quest__companion-status--wounded { color: #b8694a; border-color: #b8694a; }
+.quest__no-companions {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.4rem 0;
+}
+
+.quest__begin-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.quest__begin {
+  padding: 0.85rem 2.4rem;
+  background: var(--gold-d);
+  color: #f5ebd6;
+  border: 1px solid var(--gold-d);
+  font-family: var(--display);
+  font-size: 0.92rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.quest__begin:hover { filter: brightness(1.10); }
+.quest__begin:active { transform: translateY(1px); }
+[data-theme="dark"] .quest__begin { color: #1f1c17; }
+
+/* Active mode */
+.quest__head {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+.quest__progress {
+  font-family: var(--display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--gold-d);
+  flex: 1 0 auto;
+}
+[data-theme="dark"] .quest__progress { color: var(--gold-l); }
+.quest__where {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.quest__progress-bar {
+  flex: 1 1 100%;
+  height: 4px;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+.quest__progress-fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.35s ease-out;
+}
+
+.quest__ribbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  border-style: dashed;
+}
+.quest__ribbon-label {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  align-self: center;
+  margin-right: 0.4rem;
+}
+.quest__ribbon-name {
+  font-family: var(--display);
+  font-size: 0.74rem;
+  letter-spacing: 0.10em;
+  color: var(--ink-soft);
+  padding: 0.15rem 0.5rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+}
+
+.quest__beat {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.6rem 1.8rem;
+  display: flex; flex-direction: column;
+  gap: 1.1rem;
+  position: relative;
+  animation: questFadeIn 0.4s ease-out;
+}
+@keyframes questFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.quest__beat-fleuron {
+  text-align: center;
+  font-family: var(--display);
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin-bottom: -0.5rem;
+}
+.quest__beat-text {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  color: var(--ink);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 56ch;
+  margin: 0 auto;
+}
+.quest__voice {
+  background: rgba(184, 146, 58, 0.07);
+  border-left: 3px solid var(--gold);
+  padding: 0.8rem 1rem;
+  margin: 0 auto;
+  max-width: 56ch;
+  width: 100%;
+  box-sizing: border-box;
+}
+[data-theme="dark"] .quest__voice {
+  background: rgba(184, 146, 58, 0.14);
+}
+.quest__voice-name {
+  font-family: var(--display);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-d);
+  margin-bottom: 0.3rem;
+}
+[data-theme="dark"] .quest__voice-name { color: var(--gold-l); }
+.quest__voice-line {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.quest__continue-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+.quest__continue {
+  padding: 0.7rem 2rem;
+  background: var(--ink-soft);
+  color: #f5ebd6;
+  border: 1px solid var(--ink-soft);
+  font-family: var(--display);
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.quest__continue:hover { filter: brightness(1.10); }
+.quest__continue:active { transform: translateY(1px); }
+[data-theme="dark"] .quest__continue { color: #1f1c17; }
+.quest__continue--climax {
+  background: var(--wine);
+  border-color: var(--wine-d);
+}
+
+/* Climax mode */
+.quest__climax {
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  padding: 1.8rem 2rem;
+  display: flex; flex-direction: column;
+  gap: 1.2rem;
+  animation: questFadeIn 0.4s ease-out;
+}
+.quest__climax-head {
+  font-family: var(--display);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: var(--gold-d);
+  text-align: center;
+}
+[data-theme="dark"] .quest__climax-head { color: var(--gold-l); }
+.quest__climax-text {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.quest__find {
+  background: rgba(184, 146, 58, 0.10);
+  border: 1px solid var(--gold);
+  padding: 1.1rem 1.3rem;
+  margin: 0 auto;
+  max-width: 56ch;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex; flex-direction: column;
+  gap: 0.5rem;
+}
+[data-theme="dark"] .quest__find {
+  background: rgba(184, 146, 58, 0.16);
+}
+.quest__find-label {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.quest__find-name {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--gold-d);
+  letter-spacing: 0.05em;
+}
+[data-theme="dark"] .quest__find-name { color: var(--gold-l); }
+.quest__find-desc {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.quest__find-kind {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+
+.quest__summary-wrap {
+  max-width: 56ch;
+  width: 100%;
+  margin: 0 auto;
+  display: flex; flex-direction: column;
+  gap: 0.35rem;
+}
+.quest__summary-label {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.quest__summary {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+.quest__summary:focus { outline: none; border-color: var(--gold); background: var(--p-0); }
+
+.quest__climax-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 0.6rem;
+  border-top: 1px dotted var(--p-3);
+}
+.quest__action-primary {
+  padding: 0.75rem 1.6rem;
+  font-family: var(--display);
+  font-size: 0.82rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.quest__action-primary--skirmish {
+  background: var(--wine);
+  color: #f5ebd6;
+  border: 1px solid var(--wine-d);
+}
+.quest__action-primary--loot {
+  background: var(--gold-d);
+  color: #f5ebd6;
+  border: 1px solid var(--gold-d);
+}
+.quest__action-primary--find {
+  background: var(--forest);
+  color: #f5ebd6;
+  border: 1px solid var(--forest);
+}
+.quest__action-primary--coda {
+  background: var(--ink-soft);
+  color: #f5ebd6;
+  border: 1px solid var(--ink-soft);
+}
+.quest__action-primary:hover { filter: brightness(1.10); }
+.quest__action-primary:active { transform: translateY(1px); }
+[data-theme="dark"] .quest__action-primary--loot { color: #1f1c17; }
+[data-theme="dark"] .quest__action-primary--coda { color: #1f1c17; }
+.quest__action-walk {
+  padding: 0.75rem 1.4rem;
+  background: transparent;
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.quest__action-walk:hover {
+  background: var(--p-2);
+  color: var(--ink);
+}
+
+/* ----- MODULE: THE SKIRMISH (Encounter Tracker) ----------------------- */
+.skirmish { display: flex; flex-direction: column; gap: 1.3rem; }
+.skirmish__intro {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* Builder mode */
+.skirmish__add-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+.skirmish__add-btn {
+  padding: 0.55rem 0.9rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.skirmish__add-btn:hover { background: var(--p-2); border-color: var(--gold); }
+.skirmish__add-btn--active {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+.skirmish__add-panel {
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.skirmish__add-panel-head {
+  font-family: var(--display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.skirmish__add-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+}
+.skirmish__pick-list {
+  display: flex; flex-direction: column;
+  gap: 0.35rem;
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: 0.7rem;
+}
+.skirmish__pick-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+}
+.skirmish__pick-row:hover { background: var(--p-2); border-color: var(--gold); }
+.skirmish__pick-row--selected { background: var(--p-2); border-color: var(--gold); }
+.skirmish__pick-name {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  color: var(--ink);
+  flex: 1;
+}
+.skirmish__pick-meta {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+}
+.skirmish__pick-status {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid;
+}
+.skirmish__pick-status--hale     { color: var(--forest); border-color: var(--forest); }
+.skirmish__pick-status--wounded  { color: #8a4a2c; border-color: #8a4a2c; }
+[data-theme="dark"] .skirmish__pick-status--wounded { color: #b8694a; border-color: #b8694a; }
+
+.skirmish__inline-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.skirmish__inline-form label {
+  display: flex; flex-direction: column;
+  gap: 0.25rem;
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.skirmish__input, .skirmish__select {
+  padding: 0.5rem 0.65rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.skirmish__input:focus, .skirmish__select:focus {
+  outline: none; border-color: var(--gold); background: var(--p-0);
+}
+
+.skirmish__epic-list {
+  max-height: 360px;
+  overflow-y: auto;
+}
+.skirmish__epic-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.55rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+  margin-bottom: 0.35rem;
+  text-align: left;
+  width: 100%;
+}
+.skirmish__epic-row:hover {
+  background: rgba(184, 146, 58, 0.10);
+  border-color: var(--gold);
+}
+.skirmish__epic-name {
+  font-family: var(--display);
+  font-size: 0.92rem;
+  color: var(--gold-d);
+}
+[data-theme="dark"] .skirmish__epic-name { color: var(--gold-l); }
+.skirmish__epic-kind {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.skirmish__epic-flavor {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* Roster */
+.skirmish__roster { display: flex; flex-direction: column; gap: 1rem; }
+.skirmish__side {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1rem 1.1rem;
+}
+.skirmish__side-head {
+  font-family: var(--display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.skirmish__side--allies .skirmish__side-head { color: var(--forest); }
+.skirmish__side--foes .skirmish__side-head { color: var(--wine); }
+[data-theme="dark"] .skirmish__side--allies .skirmish__side-head { color: #5fa274; }
+[data-theme="dark"] .skirmish__side--foes .skirmish__side-head { color: #e36b78; }
+.skirmish__side-count {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--ink-faded);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.skirmish__side-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.4rem 0;
+}
+
+/* Combatant card */
+.skirmish__combatant {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem 0.8rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  margin-bottom: 0.5rem;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.skirmish__combatant:last-child { margin-bottom: 0; }
+.skirmish__combatant--active {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(184, 146, 58, 0.18);
+}
+.skirmish__combatant--down {
+  opacity: 0.55;
+  background: var(--p-2);
+}
+.skirmish__combatant--active::before {
+  content: '\25B6';
+  position: absolute;
+  left: -1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-d);
+  font-size: 1rem;
+}
+[data-theme="dark"] .skirmish__combatant--active::before { color: var(--gold-l); }
+
+.skirmish__c-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.skirmish__c-name {
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+.skirmish__c-kind {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.skirmish__c-flavor {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  line-height: 1.4;
+  margin-top: 0.15rem;
+}
+.skirmish__c-init {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  white-space: nowrap;
+  align-self: start;
+  padding-top: 0.15rem;
+}
+.skirmish__c-init b {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-left: 0.3rem;
+}
+
+.skirmish__hpbar {
+  grid-column: 1 / -1;
+  height: 8px;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  margin-top: 0.2rem;
+  overflow: hidden;
+  position: relative;
+}
+.skirmish__hpbar-fill {
+  height: 100%;
+  transition: width 0.35s ease-out;
+}
+.skirmish__combatant--ally .skirmish__hpbar-fill { background: var(--forest); }
+.skirmish__combatant--foe  .skirmish__hpbar-fill { background: var(--wine); }
+.skirmish__combatant--down .skirmish__hpbar-fill { background: var(--p-3); }
+.skirmish__hp-text {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--display);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin-top: 0.15rem;
+}
+.skirmish__hp-current {
+  font-size: 0.88rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.skirmish__hp-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+}
+.skirmish__hp-btn {
+  padding: 0.35rem 0.6rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+.skirmish__hp-btn:hover { background: var(--p-2); }
+.skirmish__hp-btn--dmg:hover { border-color: var(--wine); color: var(--wine); }
+.skirmish__hp-btn--heal:hover { border-color: var(--forest); color: var(--forest); }
+[data-theme="dark"] .skirmish__hp-btn--dmg:hover { border-color: #e36b78; color: #e36b78; }
+[data-theme="dark"] .skirmish__hp-btn--heal:hover { border-color: #5fa274; color: #5fa274; }
+.skirmish__hp-custom {
+  width: 50px;
+  padding: 0.3rem 0.4rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--ink);
+}
+.skirmish__hp-custom:focus { outline: none; border-color: var(--gold); }
+
+.skirmish__c-controls {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px dotted var(--p-3);
+}
+.skirmish__c-action {
+  padding: 0.3rem 0.55rem;
+  background: transparent;
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.skirmish__c-action:hover { background: var(--p-2); color: var(--ink); }
+.skirmish__c-roll-result {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--display);
+  font-size: 0.78rem;
+  color: var(--gold-d);
+  font-weight: 600;
+}
+[data-theme="dark"] .skirmish__c-roll-result { color: var(--gold-l); }
+.skirmish__c-roll-result--crit { color: var(--gold-d); }
+.skirmish__c-roll-result--fumble { color: var(--wine); }
+[data-theme="dark"] .skirmish__c-roll-result--fumble { color: #e36b78; }
+
+.skirmish__conds {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+}
+.skirmish__cond {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.5rem;
+  font-family: var(--display);
+  font-size: 0.64rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid;
+}
+.skirmish__cond:hover { opacity: 0.7; }
+.skirmish__cond--poisoned   { background: rgba(110,  60, 130, 0.16); color: #6e3c82; border-color: #6e3c82; }
+.skirmish__cond--stunned    { background: rgba(180, 150,  20, 0.18); color: #7a6010; border-color: #7a6010; }
+.skirmish__cond--prone      { background: rgba(110, 110, 110, 0.18); color: #5a5a5a; border-color: #5a5a5a; }
+.skirmish__cond--bleeding   { background: rgba(140,  30,  30, 0.16); color: #8a1818; border-color: #8a1818; }
+.skirmish__cond--frightened { background: rgba(184, 100,  30, 0.16); color: #8a5018; border-color: #8a5018; }
+.skirmish__cond--charmed    { background: rgba(184,  90, 130, 0.16); color: #8a3a60; border-color: #8a3a60; }
+.skirmish__cond--restrained { background: rgba(120,  80,  50, 0.16); color: #6a4828; border-color: #6a4828; }
+.skirmish__cond--blinded    { background: rgba( 40,  50,  80, 0.18); color: #28304a; border-color: #28304a; }
+.skirmish__cond--burning    { background: rgba(200,  80,  30, 0.16); color: #8a3818; border-color: #8a3818; }
+.skirmish__cond--silenced   { background: rgba(140, 140, 140, 0.18); color: #5a5a5a; border-color: #888; }
+.skirmish__cond--inspired   { background: rgba(184, 146,  58, 0.18); color: #8a6a20; border-color: #8a6a20; }
+.skirmish__cond--blessed    { background: rgba(184, 146,  58, 0.18); color: #8a6a20; border-color: #8a6a20; }
+.skirmish__cond--hidden     { background: rgba( 45,  74,  53, 0.16); color: #2a4a32; border-color: #2a4a32; }
+[data-theme="dark"] .skirmish__cond--poisoned   { color: #c89adc; }
+[data-theme="dark"] .skirmish__cond--stunned    { color: #e0c44a; }
+[data-theme="dark"] .skirmish__cond--prone      { color: #aaa; }
+[data-theme="dark"] .skirmish__cond--bleeding   { color: #e36b78; }
+[data-theme="dark"] .skirmish__cond--frightened { color: #e69a4a; }
+[data-theme="dark"] .skirmish__cond--charmed    { color: #e090b8; }
+[data-theme="dark"] .skirmish__cond--restrained { color: #c88858; }
+[data-theme="dark"] .skirmish__cond--blinded    { color: #8ea0d0; }
+[data-theme="dark"] .skirmish__cond--burning    { color: #e8784a; }
+[data-theme="dark"] .skirmish__cond--silenced   { color: #bbb; }
+[data-theme="dark"] .skirmish__cond--inspired   { color: #e0bf60; }
+[data-theme="dark"] .skirmish__cond--blessed    { color: #e0bf60; }
+[data-theme="dark"] .skirmish__cond--hidden     { color: #5fa274; }
+.skirmish__cond-x { font-size: 0.85em; opacity: 0.7; }
+
+.skirmish__cond-add {
+  display: inline-block;
+  position: relative;
+}
+.skirmish__cond-add-btn {
+  padding: 0.18rem 0.5rem;
+  font-family: var(--display);
+  font-size: 0.64rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  border: 1px dashed var(--p-3);
+  background: transparent;
+  cursor: pointer;
+}
+.skirmish__cond-add-btn:hover { color: var(--ink); border-color: var(--ink-soft); }
+.skirmish__cond-menu {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 4px);
+  left: 0;
+  background: var(--p-0);
+  border: 1px solid var(--ink-soft);
+  padding: 0.3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  min-width: 230px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.skirmish__cond-menu-item {
+  padding: 0.25rem 0.45rem;
+  font-family: var(--display);
+  font-size: 0.64rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+  color: var(--ink);
+}
+.skirmish__cond-menu-item:hover { background: var(--p-2); border-color: var(--gold); }
+
+/* Active mode header */
+.skirmish__round-head {
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.skirmish__round-label {
+  font-family: var(--display);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: var(--gold-d);
+}
+[data-theme="dark"] .skirmish__round-label { color: var(--gold-l); }
+.skirmish__round-turn {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  flex: 1;
+  text-align: center;
+}
+.skirmish__round-turn b {
+  font-family: var(--display);
+  font-style: normal;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-left: 0.3rem;
+}
+.skirmish__round-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+.skirmish__next-turn {
+  padding: 0.55rem 1.4rem;
+  background: var(--gold-d);
+  color: #f5ebd6;
+  border: 1px solid var(--gold-d);
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.skirmish__next-turn:hover { filter: brightness(1.10); }
+[data-theme="dark"] .skirmish__next-turn { color: #1f1c17; }
+
+/* Action log */
+.skirmish__log {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1rem 1.1rem;
+}
+.skirmish__log-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.skirmish__log-list {
+  display: flex; flex-direction: column;
+  gap: 0;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.skirmish__log-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  padding: 0.3rem 0.2rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.skirmish__log-row:last-child { border-bottom: none; }
+.skirmish__log-round {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+  min-width: 2.2rem;
+}
+.skirmish__log-text {
+  font-family: var(--rubric);
+  font-size: 0.88rem;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.skirmish__log-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  text-align: center;
+  padding: 0.6rem 0;
+}
+
+/* Quick roll widget */
+.skirmish__quickroll {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1rem 1.1rem;
+}
+.skirmish__quickroll-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.skirmish__quickroll-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.skirmish__qr-die {
+  padding: 0.5rem 0.5rem;
+  min-width: 56px;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+.skirmish__qr-die:hover { background: var(--p-2); border-color: var(--gold); }
+.skirmish__qr-mod {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.4rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+}
+.skirmish__qr-mod-label {
+  font-family: var(--display);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-right: 0.2rem;
+}
+.skirmish__qr-mod-value {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  color: var(--ink);
+  min-width: 1.6rem;
+  text-align: center;
+}
+.skirmish__qr-clear {
+  padding: 0.4rem 0.7rem;
+  background: transparent;
+  border: 1px dashed var(--p-3);
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  cursor: pointer;
+}
+.skirmish__qr-clear:hover { color: var(--wine); border-color: var(--wine); }
+.skirmish__qr-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+  min-height: 30px;
+  padding: 0.4rem;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+}
+.skirmish__qr-pool-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  font-size: 0.82rem;
+  align-self: center;
+}
+.skirmish__qr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.45rem;
+  background: var(--p-0);
+  border: 1px solid var(--ink-soft);
+  font-family: var(--display);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  cursor: pointer;
+}
+.skirmish__qr-cast {
+  padding: 0.55rem 1.2rem;
+  background: var(--wine);
+  color: #f5ebd6;
+  border: 1px solid var(--wine-d);
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.skirmish__qr-cast:hover { filter: brightness(1.10); }
+.skirmish__qr-recent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding-top: 0.7rem;
+  border-top: 1px dotted var(--p-3);
+}
+.skirmish__qr-recent-label {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.skirmish__qr-recent-item {
+  font-family: var(--display);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.skirmish__qr-recent-item--latest {
+  color: var(--gold-d);
+  font-weight: 600;
+}
+[data-theme="dark"] .skirmish__qr-recent-item--latest { color: var(--gold-l); }
+
+/* End encounter dialog (inline) */
+.skirmish__end-panel {
+  background: var(--p-0);
+  border: 2px solid var(--wine);
+  padding: 1.4rem 1.5rem;
+}
+.skirmish__end-head {
+  font-family: var(--display);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--wine);
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+[data-theme="dark"] .skirmish__end-head { color: #e36b78; }
+.skirmish__end-summary {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.skirmish__end-input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--rubric);
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.skirmish__end-input:focus { outline: none; border-color: var(--gold); background: var(--p-0); }
+.skirmish__end-casualties {
+  display: flex; flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.skirmish__end-casualty {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+}
+.skirmish__end-casualty-name {
+  flex: 1;
+  font-family: var(--display);
+  color: var(--ink);
+}
+.skirmish__end-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Roster actions footer */
+.skirmish__roster-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  padding-top: 0.8rem;
+  border-top: 1px dotted var(--p-3);
+}
+.skirmish__begin {
+  padding: 0.7rem 2rem;
+  background: var(--wine);
+  color: #f5ebd6;
+  border: 1px solid var(--wine-d);
+  font-family: var(--display);
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.skirmish__begin:hover { filter: brightness(1.10); }
+.skirmish__begin:disabled { opacity: 0.45; cursor: not-allowed; }
+
 /* ----- MODULE: THE BONES (Dice Roller) -------------------------------- */
 .bones { display: flex; flex-direction: column; gap: 1.4rem; }
 
@@ -4620,6 +5887,8 @@ body.popout-mode .folio {
     <symbol id="g-dice" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 8 L12 4 L20 8 L20 17 L12 21 L4 17 Z M4 8 L12 12 L20 8 M12 12 L12 21"/></symbol>
     <symbol id="g-loot" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 7 C 5 8.1 8.1 9 12 9 C 15.9 9 19 8.1 19 7 C 19 5.9 15.9 5 12 5 C 8.1 5 5 5.9 5 7 Z M5 7 V11 C 5 12.1 8.1 13 12 13 C 15.9 13 19 12.1 19 11 V7 M5 11 V15 C 5 16.1 8.1 17 12 17 C 15.9 17 19 16.1 19 15 V11 M5 15 V19 C 5 20.1 8.1 21 12 21 C 15.9 21 19 20.1 19 19 V15"/></symbol>
     <symbol id="g-coffer" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 10 L18 10 C 18.5 10 19 10.5 19 11 L 19 19 C 19 20.1 18.1 21 17 21 L 7 21 C 5.9 21 5 20.1 5 19 L 5 11 C 5 10.5 5.5 10 6 10 Z M8 10 C 8 8 10 5 12 5 C 14 5 16 8 16 10 M9 14 L 15 14"/></symbol>
+    <symbol id="g-skirmish" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 19 L 19 5  M3 17 L 7 21  M19 19 L 5 5  M21 17 L 17 21"/></symbol>
+    <symbol id="g-quest" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 21 V11 C 5 7 8 4 12 4 C 16 4 19 7 19 11 V21 M9 21 V14 C 9 12.5 10.3 11 12 11 C 13.7 11 15 12.5 15 14 V21 M12 11 V21 M5 21 H19"/></symbol>
     <symbol id="g-scroll" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 4 H17 V20 H6 Z M6 4 C 4.5 4 3.5 5 3.5 6.5 C 3.5 8 4.5 9 6 9 M17 4 C 18.5 4 19.5 5 19.5 6.5 C 19.5 8 18.5 9 17 9 M17 15 C 18.5 15 19.5 16 19.5 17.5 C 19.5 19 18.5 20 17 20 M9 8 H14 M9 12 H14 M9 16 H13"/></symbol>
     <symbol id="g-tankard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 8 H15 V19 C 15 20 14.5 20.5 13.5 20.5 H7.5 C 6.5 20.5 6 20 6 19 Z M15 10.5 H18 C 19 10.5 19.5 11 19.5 12 V15 C 19.5 16 19 16.5 18 16.5 H15 M6 11.5 H15 M8 5 Q 8.5 6.5 8 8 M11 5 Q 11.5 6.5 11 8 M14 5 Q 14.5 6.5 14 8"/></symbol>
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
@@ -11328,6 +12597,2140 @@ Keep.register({
       document.removeEventListener('keydown', this._keyHandler);
       this._keyHandler = null;
     }
+  }
+});
+
+/* =========================================================================
+   MODULE: QUEST (Exploration Adventure)
+   A short procedural exploration scaffold. Pick a setting, your
+   companions, beat count, and climax type. Walk through procedurally
+   composed beats (Feature + Detail + Hook, drawn from setting-specific
+   pools), some featuring a Fellowship companion with a voice line, and
+   land on a hand-written climax. Hands off to Skirmish (prefilling
+   foes), Loot (preselecting tier), or the Cabinet (writing a thematic
+   find). Always pins a summary to the Almanac.
+   ========================================================================= */
+Keep.register({
+  id: 'quest',
+  name: 'Quest',
+  category: 'table',
+  glyph: 'g-quest',
+  tagline: 'A short going-in, an end that matters.',
+  sub: 'Pick a place. Pick your companions. Walk it through.',
+
+  async mount(body, actions) {
+    // ===== DATA: setting pools, climax descriptions, finds ===========
+    const SETTINGS = {
+      dungeon: {
+        name: 'Dungeon',
+        sub: 'Old stone, older bones, a way that goes only down.',
+        features: [
+          'You step into a long hall lit by stranger fire.',
+          'A stairwell descends, the steps worn smooth by traffic that has stopped.',
+          'The corridor opens onto a vaulted chamber too wide to light from any single torch.',
+          'A small cell, the door long since rotted from its hinges, opens off the passage.',
+          'The way narrows until it is barely a way at all.',
+          'A flooded gallery slows you. Water reaches the second step.',
+          'A circular room with seven exits, six of which look the same.',
+          'The ceiling here is low; you must stoop, then crawl.',
+          'A natural cave has been built into, or perhaps the other way.',
+          'An iron door stands in your way, the bolts on this side.',
+          'You emerge onto a ledge above a deeper hall.',
+          'The floor here gives slightly. It has been laid over something.'
+        ],
+        details: [
+          'The footprints in the dust are recent.',
+          'Someone has scratched a sigil into the wall: a hand with seven fingers.',
+          'A torch bracket still holds a stub of wax, warm.',
+          'The air smells of cold iron and something sweeter, less honest.',
+          'A child\u2019s drawing is folded into a crack in the masonry.',
+          'Bones, very old and very small, line one wall.',
+          'The lichen here grows in a pattern that resembles writing.',
+          'A wedding band, recently removed, sits on a stone shelf.',
+          'The water in the cup on the floor has not yet evaporated.',
+          'Three names are carved into the doorframe; one is freshly cut.',
+          'A pool of blood, partly dried, marks where someone paused.',
+          'The walls are warm to the touch, which is wrong.'
+        ],
+        hooks: [
+          'Something has been disturbed.',
+          'You are not alone here.',
+          'A voice from elsewhere stops you for a moment.',
+          'The way you came is no longer entirely the way it was.',
+          'A draft from no certain direction makes the torches lean.',
+          'You have the strong sense of being measured.',
+          'A door, distant, closes.',
+          'The silence has been waiting for you.',
+          'Three small bells ring once, in series, ahead of you.',
+          'The dark beyond the torchlight feels populated.',
+          'You hear a name spoken that you have not given.',
+          'A drop of water falls, then another, then nothing.'
+        ],
+        climax: {
+          skirmish: {
+            archetypes: ['undead', 'goblin'], tiers: ['regular', 'elite'], counts: [2, 4],
+            texts: [
+              'The deepest chamber opens into a long hall. They have heard you coming and are arranged.',
+              'The way ends at a door that has been opened from your side. The room beyond is full of those who were waiting.',
+              'You step over a threshold and the torches catch on their own. What is here was not asleep.'
+            ]
+          },
+          loot: { tier: 'rich', texts: [
+            'Behind the last door, a chamber long sealed. The coin is in piles, none of it stamped from any reign you remember.',
+            'A vault has been cut from the living rock; the dust on the floor is older than your house.',
+            'The chamber holds an old hoard: paid in three currencies, sworn over, never spent.'
+          ]},
+          find: {
+            texts: [
+              'On a stone pedestal, alone, what you came for.',
+              'The chamber is empty except for one thing.',
+              'In the centre of the floor, set into the stone like a wound.'
+            ],
+            finds: [
+              { name: 'The Crypt-Keeper\u2019s Key', kind: 'relic', description: 'A heavy iron key, cold to the touch. Opens any door beneath the earth, but only those that have been sealed for at least a century.' },
+              { name: 'The Lantern of the Long Dark', kind: 'relic', description: 'Lights without flame in any room where someone has died, however long ago. Goes dim above ground.' },
+              { name: 'The Iron Diadem', kind: 'relic', description: 'A simple band of dark iron. The wearer cannot be heard while underground, even by themselves.' }
+            ]
+          },
+          coda: { texts: [
+            'The way ends at a wall, old and featureless. You stand for a moment in the silence, then turn back.',
+            'The deepest chamber holds only a chair. Someone has been sitting in it. They are not here now.',
+            'The corridor narrows until it cannot be followed. Whatever was being kept is being kept still.'
+          ]}
+        }
+      },
+      castle: {
+        name: 'Castle',
+        sub: 'High windows, listening walls, candles still lit.',
+        features: [
+          'The grand stair turns once and rises into half-light.',
+          'A great hall, its banners taken down but not burned.',
+          'A servant\u2019s passage runs behind the wall, narrower than expected.',
+          'The chapel\u2019s stained glass throws coloured shadows across the flagstones.',
+          'The kitchen is cold, but recently cold.',
+          'A long gallery lined with portraits that all face the same way.',
+          'The library has been searched. Books lie open on every surface.',
+          'A bedchamber, the bed still made, the wardrobe ajar.',
+          'The armoury: most of the racks are empty.',
+          'A balcony overlooks the inner court, where nothing moves.',
+          'The privy stair winds down to where it should not.',
+          'A turret room, circular, with windows on every side.'
+        ],
+        details: [
+          'The banquet on the long table has been half-eaten and abandoned.',
+          'A child\u2019s wooden horse has been left at the stair\u2019s bottom.',
+          'The dust on the floor shows a trail: bare feet, going up.',
+          'A letter, half-burnt, lies in the hearth.',
+          'The portrait nearest the door is turned to face the wall.',
+          'A glove, embroidered with the house\u2019s sigil, has been dropped here.',
+          'The candles in the sconces have burned to stubs, all at once.',
+          'A keyring hangs from a hook by the door; one key has been removed.',
+          'Wine has been spilled on the rug and not cleaned.',
+          'The seal on a document has been broken with someone\u2019s thumb.',
+          'A music box on the windowsill is still playing, just.',
+          'The chandelier creaks in a draft that has no source.'
+        ],
+        hooks: [
+          'The steward is meant to be here. He is not.',
+          'You have the sense of being watched from a window above.',
+          'A door at the end of the gallery closes by itself.',
+          'Someone is humming somewhere, faintly.',
+          'The sound of a sword being drawn comes from one room over.',
+          'You hear a child crying, but cannot place where.',
+          'The household ledger is open to a page that names you.',
+          'A bell, far above, tolls once.',
+          'Footsteps, fast, pass the door and continue.',
+          'You realise the portraits have changed pose since you entered.',
+          'A servant\u2019s voice, behind you, asks if you require anything.',
+          'Three letters on a side-table are addressed to people who died last year.'
+        ],
+        climax: {
+          skirmish: {
+            archetypes: ['soldier', 'knight'], tiers: ['regular', 'elite'], counts: [2, 4],
+            texts: [
+              'The great hall is not empty after all. The guard has been changed.',
+              'A door opens at the end of the gallery. Several of them have been waiting.',
+              'You round the last corner and the steward is no longer alone.'
+            ]
+          },
+          loot: { tier: 'rich', texts: [
+            'The treasury door has been left ajar. The treasury has not.',
+            'A strongbox, broken open already; whoever did it did not finish the work.',
+            'The lord\u2019s bedchamber holds his secret accounting, in coin and ledger both.'
+          ]},
+          find: {
+            texts: [
+              'On the steward\u2019s desk, what was being protected.',
+              'Set into a niche in the wall, where the candle has been kept lit.',
+              'Wrapped in cloth in the lord\u2019s private chest.'
+            ],
+            finds: [
+              { name: 'The Steward\u2019s Black Ledger', kind: 'tome', description: 'A long narrow book in iron-grey leather. Records every untruth told under the roof it sits beneath.' },
+              { name: 'The Crown of the Last Tenant', kind: 'relic', description: 'A simple coronet of beaten silver. The wearer dreams the dreams of the previous lord of the place.' },
+              { name: 'Sealed Letter to a Dead Heir', kind: 'letter', description: 'Addressed in a hand that has been still for two generations. The seal is unbroken. The seal is warm.' }
+            ]
+          },
+          coda: { texts: [
+            'The last door opens onto an inner courtyard. The rain has been falling there for some time. There is no one to greet you.',
+            'The chapel at the heart of the castle is empty, but the candles are recently lit.',
+            'You climb the highest tower and find only the wind and the view. The castle is yours, briefly.'
+          ]}
+        }
+      },
+      farmhouse: {
+        name: 'Abandoned Farmhouse',
+        sub: 'Mundane horror. Small rooms. Recent silence.',
+        features: [
+          'The front door stands open, the wind moving the hinges slightly.',
+          'The kitchen, cold but recently used: bread on the table, half-cut.',
+          'A small parlour with a chair pulled close to the dead hearth.',
+          'The pantry shelves have been swept clean except for one jar of preserves.',
+          'A staircase leads up, narrow, with one tread missing.',
+          'The upstairs hall holds three doors, all closed.',
+          'The barn is dark even at noon; the cattle were taken or fled.',
+          'A root cellar\u2019s door stands half-open in the yard.',
+          'The smaller bedroom under the eaves, ceiling slanted, bed unmade.',
+          'The well at the back of the property has new boards across it.',
+          'The orchard\u2019s trees have been planted in a circle around a single stone.',
+          'A washing line still bears clothes, weathered grey.'
+        ],
+        details: [
+          'A child\u2019s drawing is pinned to the wall: three figures, one too tall.',
+          'Blood on the kitchen floor, dried, in a single drop.',
+          'A wedding ring has been left on the windowsill.',
+          'The Bible on the side-table is open to a page with one verse circled.',
+          'A man\u2019s boots, mud-caked, stand in the hall as if just removed.',
+          'Three plates set at the table; the food untouched on all three.',
+          'A letter, sealed but never sent, sits on the desk.',
+          'The clock on the mantel is stopped at twenty past three.',
+          'A doll has been placed on the chair facing the door.',
+          'Scratch marks, low on the inside of a door.',
+          'A pot on the stove still holds water, not yet evaporated.',
+          'The family\u2019s portrait has had one face crossed out, lightly.'
+        ],
+        hooks: [
+          'The upstairs floor groans in a way that does not match your weight.',
+          'You hear humming from somewhere in the house, a tune you almost know.',
+          'The wind through the eaves carries a sound that might be weeping.',
+          'A door upstairs closes by itself.',
+          'The cat in the doorway will not enter the kitchen.',
+          'You realise you have not heard a bird since you came onto the property.',
+          'Something small runs in the wall.',
+          'The light is failing faster than it should be.',
+          'A figure passes the upstairs window: only the shadow of one.',
+          'The kettle on the stove begins to whistle though no fire burns.',
+          'You smell something cooking that no one is cooking.',
+          'The dog you did not know was there will not stop watching you.'
+        ],
+        climax: {
+          skirmish: {
+            archetypes: ['bandit', 'cultist'], tiers: ['rabble', 'regular'], counts: [2, 3],
+            texts: [
+              'Behind the cellar door, what has been living down there since the family left.',
+              'The barn is not empty. You should have known by the cattle.',
+              'You open the upstairs door and the room is full of those who came in through the window.'
+            ]
+          },
+          loot: { tier: 'modest', texts: [
+            'Beneath a loose board, the family\u2019s savings, untouched.',
+            'Hidden in the chimney breast, a small purse: more than a farm should have.',
+            'A locked box under the bed; the key still hangs at the kitchen door.'
+          ]},
+          find: {
+            texts: [
+              'On the dresser, what they would have come back for.',
+              'Folded into the family Bible, marking a place.',
+              'In the child\u2019s room, still on the pillow where it was left.'
+            ],
+            finds: [
+              { name: 'The Hearth-Mother\u2019s Spoon', kind: 'relic', description: 'A wooden spoon, worn to the curve of one hand. Food cooked with it tastes of the eater\u2019s childhood.' },
+              { name: 'Untitled Letter, Folded Small', kind: 'letter', description: 'Folded twelve times into a square smaller than a thumbnail. It has not been opened.' },
+              { name: 'The Child\u2019s Doll, Mended', kind: 'curiosity', description: 'A rag doll, recently re-sewn by an unsteady hand. Its eyes have been added in different threads.' }
+            ]
+          },
+          coda: { texts: [
+            'The last room holds nothing but a chair pulled close to the window. The view looks east, where there is no road.',
+            'The cellar is dry, empty, and very cold. You leave it to itself.',
+            'The orchard is overgrown. The stone at its centre bears a name and two dates. You do not know the name.'
+          ]}
+        }
+      },
+      graveyard: {
+        name: 'Haunted Graveyard',
+        sub: 'Slow dread, candle-light, the dead listening.',
+        features: [
+          'The gate stands open, the chain neatly coiled beside it.',
+          'A field of low stones, weathered, none very recent.',
+          'A row of taller monuments, the oldest leaning, the youngest already cracked.',
+          'A small chapel at the graveyard\u2019s centre, the door slightly ajar.',
+          'The bone-house, its window broken, its door barred from the inside.',
+          'A fresh-turned grave with no marker yet.',
+          'The yew tree at the corner has roots that have lifted three stones.',
+          'A path lined with white stones leads to a single tomb.',
+          'The mausoleum of an old house, its iron door not quite shut.',
+          'A long, low wall encloses an older, smaller burial ground.',
+          'The gravedigger\u2019s hut, half-buried in the ground itself.',
+          'A pond at the graveyard\u2019s edge reflects more than the sky.'
+        ],
+        details: [
+          'Candles still burn at three of the graves; nobody is here.',
+          'The same name is on three nearby stones.',
+          'Coins have been placed on the eyes of the carved figures.',
+          'A child\u2019s drawing weighted with a stone: a tall figure with no face.',
+          'The fresh-turned earth holds two indistinct footprints, going in.',
+          'A bell-rope hangs above one grave; the bell at the other end is small.',
+          'Someone has left bread on a tomb, three loaves, untouched.',
+          'A wedding veil is draped across a stone marked only with a date.',
+          'The dates on one stone have been recently re-carved.',
+          'A small pile of teeth has been left at the base of the chapel door.',
+          'One stone bears your family name and a year that has not yet come.',
+          'A wreath of dark flowers is fresh; the gates have been chained from outside.'
+        ],
+        hooks: [
+          'The bell in the chapel tower rings once, though no one is in it.',
+          'The wind drops, and stays dropped.',
+          'You hear singing from one of the deeper graves.',
+          'A figure stands at the far end of the path; when you look again, no one.',
+          'Your shadow does not move when you do.',
+          'A door in the mausoleum opens, very slowly.',
+          'The crows here will not land.',
+          'You realise the bell has been ringing for some time.',
+          'A name is whispered, perhaps your own.',
+          'The water in the pond ripples without wind.',
+          'Footsteps pass behind you on gravel that should be silent.',
+          'The dead seem to be listening.'
+        ],
+        climax: {
+          skirmish: {
+            archetypes: ['undead'], tiers: ['regular', 'elite'], counts: [2, 4],
+            texts: [
+              'The chapel doors swing open. The congregation has gathered for what comes next.',
+              'The fresh-turned earth at the centre opens. What was buried is no longer.',
+              'The dead seem to have gathered. They are not pleased to have been gathered.'
+            ]
+          },
+          loot: { tier: 'modest', texts: [
+            'Beneath the chapel floor, an old reliquary, never moved.',
+            'The bone-house holds more than bone. The coins have been set aside, as was customary.',
+            'A grave that has been dug up and re-filled, several times. The most recent fill is shallow.'
+          ]},
+          find: {
+            texts: [
+              'Left on the central altar, where someone has been bringing it offerings.',
+              'Hung from the bell-rope, swaying very slightly.',
+              'Held in the carved hand of the oldest monument.'
+            ],
+            finds: [
+              { name: 'The Memorial Coin', kind: 'relic', description: 'A bronze coin engraved with a name no one can pronounce. The bearer hears the recent dead more clearly than they would wish.' },
+              { name: 'The Mourner\u2019s Veil', kind: 'relic', description: 'A grey cloth, the weight of nothing. Worn at a funeral, it shows the bearer who else has come for the dead.' },
+              { name: 'A Bell for the Bone-House', kind: 'relic', description: 'A small bronze bell. When rung in a place of burial, it summons one name at a time. They do not always come.' }
+            ]
+          },
+          coda: { texts: [
+            'The chapel is empty, the candles burning. You stand at the altar for a moment, then go.',
+            'The graveyard is quiet again. You realise you cannot remember why you came in.',
+            'The bell rings once. By the time you reach the chapel, there is no one to have rung it.'
+          ]}
+        }
+      },
+      shipwreck: {
+        name: 'Shipwreck',
+        sub: 'Salt, claustrophobia, things still moving below.',
+        features: [
+          'The hull has split; you climb through the breach, into the half-flooded lower deck.',
+          'The captain\u2019s quarters, the door still locked from the outside.',
+          'A galley with pots still hanging, the fire long dead.',
+          'The cargo hold, water to the knees, crates half-submerged.',
+          'The bilge, where the water is deepest and the air is foulest.',
+          'A passenger cabin, its bunk still made, a book on the pillow.',
+          'The chart room: maps still pinned to the table, illegible from water.',
+          'The forecastle, narrow bunks for the crew, all neatly emptied.',
+          'The deck above, mostly intact, sky visible through the rotted boards.',
+          'The hold for spirits and oil, the casks broken open.',
+          'A storeroom for ropes and sails, all gone.',
+          'The bow chamber where the figurehead\u2019s anchor used to be.'
+        ],
+        details: [
+          'A body is still strapped to the wheel; the rope has held.',
+          'A logbook on the table is open to the day before the wreck.',
+          'A wedding ring has been left on the captain\u2019s pillow.',
+          'Fish swim in the rigging above your head.',
+          'A child\u2019s shoe floats in the slop at your feet.',
+          'The salt has eaten through everything except one iron-bound chest.',
+          'Coins from somewhere you have never been spill across the floor.',
+          'A sealed letter floats sealed; the wax has held.',
+          'A music box, dry, still works.',
+          'The captain\u2019s bell hangs above the wheel, the clapper still in place.',
+          'Names have been scratched into the bulkhead: a list, ending with one fresh.',
+          'A bird, very recent, has been pinned to the doorframe with a knife.'
+        ],
+        hooks: [
+          'The hull groans under its own weight; the wreck is settling.',
+          'You hear knocking, very soft, from somewhere below.',
+          'Something has come aboard with you.',
+          'The water at your feet, when you look down, is not as deep as it was.',
+          'A voice from the chart room is reading aloud from a damp page.',
+          'The wreck shifts; the door behind you closes.',
+          'A figure is silhouetted against the breach you came through.',
+          'The body at the wheel has turned its head.',
+          'Bubbles rise where no air should be.',
+          'You hear a chain being drawn through a port-hole somewhere.',
+          'The captain\u2019s bell, untouched, rings once.',
+          'A song, sung underwater, comes up through the boards.'
+        ],
+        climax: {
+          skirmish: {
+            archetypes: ['undead', 'beast'], tiers: ['regular', 'elite'], counts: [2, 4],
+            texts: [
+              'The lower deck is not as empty as it looked. Some of them are still wearing the colours they died in.',
+              'The cargo hold\u2019s water moves wrong. Whatever has been waiting for the wreck to be opened has been waiting for some time.',
+              'The captain\u2019s quarters open, finally. The captain is still in them, and is not, finally, alone.'
+            ]
+          },
+          loot: { tier: 'rich', texts: [
+            'The captain\u2019s strongbox has held against the salt. Inside, a sailor\u2019s pension and an unsigned will.',
+            'The cargo manifest mentioned spirits and oil. The manifest was lying.',
+            'A merchant\u2019s chest, sealed thrice; the wax has held. Inside, a fortune in three currencies.'
+          ]},
+          find: {
+            texts: [
+              'Held in the dead captain\u2019s hand.',
+              'Wrapped in oilcloth in the chart room, dry.',
+              'Pinned to the bulkhead with a knife, untouched by the sea.'
+            ],
+            finds: [
+              { name: 'The Captain\u2019s Last Logbook', kind: 'tome', description: 'A salt-stiff ledger. The final page is dry; the rest are not.' },
+              { name: 'Compass of the Brackish River', kind: 'relic', description: 'A brass compass with a needle that points only toward open water. It has not been wrong yet.' },
+              { name: 'Drowned Coin of the Salt Trade', kind: 'curiosity', description: 'A flat silver disc, much heavier than it ought to be. The salt has not touched it.' }
+            ]
+          },
+          coda: { texts: [
+            'The wreck creaks once and settles further. You leave with the tide.',
+            'The last cabin holds only a bed and a closed book. The book is wet. You leave it where it lies.',
+            'The figurehead is intact, smiling. You climb back up to the deck and let the wreck have the rest.'
+          ]}
+        }
+      },
+      hideout: {
+        name: 'Enemy Hideout',
+        sub: 'Living opposition. Smoke, tracks, a watch to slip.',
+        features: [
+          'The mouth of the cave is half-curtained by hide; the smoke inside is fresh.',
+          'A clearing in the woods, with three lean-tos and a banked fire.',
+          'The cellar beneath the ruined chapel, accessed by a hatch in the floor.',
+          'A barn turned to a barracks; bedrolls in two rows, weapons in three.',
+          'A network of tunnels in the river bank, the entries hidden behind reeds.',
+          'The cellar of a wayside inn: the innkeeper is paid not to come down.',
+          'A watchtower turned to a den, with steps worn smooth by recent traffic.',
+          'A storehouse on the docks, doors padlocked from the inside.',
+          'An abandoned forge, the bellows still warm, work half-finished.',
+          'The crypt under the old church, used now for sleeping and counting coin.',
+          'A miller\u2019s hut, the wheel still turning, no one to mind it.',
+          'A row of canal boats lashed together, doors between them.'
+        ],
+        details: [
+          'Tracks in the mud are recent, going in. None come out.',
+          'A sentry is sleeping at his post; you can hear the breathing.',
+          'Stolen goods are piled in a corner, half-sorted.',
+          'A letter is half-written on a board by the fire, the ink not yet dry.',
+          'A list of names is pinned to the wall; some are crossed out.',
+          'Coin from three different mints is being counted on the table.',
+          'A child\u2019s cloak is hanging where it should not.',
+          'A map is spread out, weights at the corners; one route is marked in red.',
+          'A boot has been left at the door, alone, recently muddied.',
+          'A jug of strong drink has been knocked over, untouched since.',
+          'The sigil of a noble house is being painted onto a stolen banner.',
+          'A small dog, well-fed, watches you without barking.'
+        ],
+        hooks: [
+          'The conversation in the next room stops.',
+          'A signal-bell, very small, rings somewhere ahead.',
+          'You hear an oath being taken in the next chamber.',
+          'Three of them are coming back; you can hear the laughter on the path.',
+          'A door closes, and is bolted.',
+          'The dog stands up.',
+          'You step on a board that creaks; the silence afterward is too long.',
+          'A whistle, three short notes, sounds outside.',
+          'Someone above you stops walking, and listens.',
+          'You realise the sentry was not, in fact, asleep.',
+          'A voice from the dark asks who you are.',
+          'The fire is being banked; they are leaving.'
+        ],
+        climax: {
+          skirmish: {
+            archetypes: ['bandit', 'thief'], tiers: ['regular', 'elite'], counts: [3, 5],
+            texts: [
+              'The whistle was for you. They have closed both ends of the path.',
+              'The door at the back of the den opens. The captain has decided to greet you.',
+              'You step into the main room and they are turning. There are more of them than there should be.'
+            ]
+          },
+          loot: { tier: 'rich', texts: [
+            'The strongbox under the captain\u2019s bedroll has not yet been emptied for the month.',
+            'Stolen goods, sorted by value, untouched since arrival.',
+            'A chest of coin, mostly clean, the rest washed.'
+          ]},
+          find: {
+            texts: [
+              'On the captain\u2019s table, the thing they were sent to retrieve.',
+              'In a small wooden box, kept apart from the rest of the haul.',
+              'Sewn into the captain\u2019s cloak, where it would not be looked for.'
+            ],
+            finds: [
+              { name: 'The Ledger of Stolen Names', kind: 'tome', description: 'A small book of names, addresses, debts. Many are crossed out, none are repaid.' },
+              { name: 'A Letter Written but Not Sent', kind: 'letter', description: 'Addressed to a name in the upper city. The hand is unsteady; the message clear.' },
+              { name: 'The Counterfeit Sigil', kind: 'tool', description: 'A small seal carved in soapstone. Bears the arms of a noble house that does not wear them. Indistinguishable from the genuine.' }
+            ]
+          },
+          coda: { texts: [
+            'The hideout has been hastily abandoned. You walk through unopposed and leave by the way they did not.',
+            'The fire is still warm; the kettle still hot. You stay long enough to satisfy yourself, then go.',
+            'The last room is the captain\u2019s, and it is empty. The window has been opened from the inside.'
+          ]}
+        }
+      }
+    };
+
+    const SETTING_ORDER = ['dungeon', 'castle', 'farmhouse', 'graveyard', 'shipwreck', 'hideout'];
+    const CLIMAX_TYPES = ['skirmish', 'loot', 'find', 'coda'];
+
+    const COMPANION_VOICES = [
+      '{name} listens, then nods.',
+      '{name} touches the wall, considering.',
+      '{name}, after a pause: \u201CI do not like this.\u201D',
+      '{name} whispers: \u201CDid you feel that?\u201D',
+      '{name} says nothing, which says enough.',
+      '{name} draws a quiet breath, lets it out slowly.',
+      '{name} steps closer to you without comment.',
+      '{name} traces a finger across something, then steps back.',
+      '{name}, very low: \u201CWe should not be here.\u201D',
+      '{name} grips your shoulder, briefly.',
+      '{name} catches your eye and shakes their head.',
+      '{name} smells the air. \u201COlder than I thought.\u201D',
+      '{name} crouches, then rises without saying what they found.',
+      '{name} says, almost to themselves, \u201COf course.\u201D',
+      '{name} produces a small light from somewhere.',
+      '{name} mutters a prayer in an older tongue.',
+      '{name} tests the floor with the heel, frowning.',
+      '{name}, quietly: \u201CI have been here before. Or somewhere like it.\u201D',
+      '{name} loosens a blade in its sheath.',
+      '{name} pauses, head tilted, then continues.',
+      '{name} says, \u201CWhoever made this was not finished.\u201D',
+      '{name} closes their eyes for a long moment.',
+      '{name} marks the wall with a quiet sigil, in case you must come back.',
+      '{name} smiles, which is not reassuring.',
+      '{name} says, simply, \u201CYes. Go on.\u201D'
+    ];
+
+    // Foe-generation data, duplicated minimally for the Skirmish handoff
+    const FOE_NAMES = {
+      bandit:  ['Greylock', 'Two-Fingers', 'Ash', 'Cinder', 'Hark', 'Bloodwool', 'Crows', 'Mire', 'Wattle', 'Pin', 'Sten', 'Yarrow'],
+      thief:   ['Quill', 'Sparrow', 'Whisper', 'Soot', 'Patch', 'Vex', 'Nimble', 'Slip', 'Mote', 'Twine', 'Wisp'],
+      soldier: ['Vance', 'Mara', 'Bell', 'Roe', 'Thom', 'Ander', 'Caine', 'Pelt', 'Doryn', 'Hask', 'Eldon'],
+      cultist: ['the Veiled', 'Brother Crow', 'the Pale Witness', 'Sister Ash', 'the Hollow Mouth', 'Brother Salt', 'the Silent', 'Sister Wren'],
+      beast:   ['scarred wolf', 'old bear', 'marsh hound', 'lean wolf', 'broken hound', 'great cat', 'pack-leader', 'rabid stag'],
+      goblin:  ['Snik', 'Grix', 'Bones', 'Glit', 'Vorek', 'Tikk', 'Skab', 'Pip', 'Drook', 'Rax', 'Nubb'],
+      undead:  ['hanged thief', 'wight in tattered mail', 'moaning revenant', 'pale wanderer', 'bound shade', 'silent walker', 'mournful one'],
+      knight:  ['Sir Bardas', 'Dame Iona', 'Sir Carlon', 'Dame Pelt', 'Sir Hold', 'Dame Verra', 'Sir Maund']
+    };
+    const FOE_LABELS = {
+      bandit: 'Bandit', thief: 'Thief', soldier: 'Soldier', cultist: 'Cultist',
+      beast: 'Beast', goblin: 'Goblin', undead: 'Undead', knight: 'Knight'
+    };
+    const TIER_DATA = {
+      rabble:   { hp: [3, 8],   mod: 0, name: 'Rabble' },
+      regular:  { hp: [6, 14],  mod: 1, name: 'Regular' },
+      elite:    { hp: [12, 22], mod: 2, name: 'Elite' },
+      champion: { hp: [18, 30], mod: 3, name: 'Champion' }
+    };
+
+    // Ally defaults for the Skirmish handoff
+    const ALLY_DEFAULTS = {
+      scout:   { hp: 14, mod: 3 }, healer:  { hp: 16, mod: 1 },
+      warrior: { hp: 22, mod: 2 }, mage:    { hp: 12, mod: 1 },
+      rogue:   { hp: 14, mod: 4 }, bard:    { hp: 14, mod: 2 },
+      priest:  { hp: 16, mod: 1 }, archer:  { hp: 14, mod: 3 },
+      guard:   { hp: 20, mod: 1 }
+    };
+
+    // ===== STATE ======================================================
+    function makeEmpty() {
+      return {
+        status: 'building',
+        setting: 'dungeon',
+        beatCount: 5,
+        climaxType: 'surprise',
+        companions: [],
+        beats: [],
+        beatIdx: 0,
+        resolvedClimaxType: null,
+        climaxText: '',
+        findData: null,
+        startedAt: null,
+        summary: ''
+      };
+    }
+    let state = (await Vault.get('quest-active')) || makeEmpty();
+    if (!state.companions) state.companions = [];
+    if (!state.beats) state.beats = [];
+
+    function save() { return Vault.set('quest-active', state); }
+
+    function pickIdx(max) { return Math.floor(Math.random() * max); }
+    function dN(count, sides) {
+      let t = 0;
+      for (let i = 0; i < count; i++) t += 1 + Math.floor(Math.random() * sides);
+      return t;
+    }
+    function randRange(lo, hi) { return lo + Math.floor(Math.random() * (hi - lo + 1)); }
+
+    // Pre-compute companion lookup for rendering
+    let allCompanions = (await Vault.get('fellowship')) || [];
+    function companionById(id) { return allCompanions.find(c => c.id === id); }
+
+    // ===== BEAT GENERATION ===========================================
+    function generateBeats() {
+      const setting = SETTINGS[state.setting];
+      const usedFeat = new Set(), usedDet = new Set(), usedHook = new Set();
+      const pickUnused = (max, used) => {
+        if (used.size >= max) used.clear();
+        let i;
+        do { i = pickIdx(max); } while (used.has(i));
+        used.add(i);
+        return i;
+      };
+      const numRegular = state.beatCount - 1;
+      state.beats = [];
+      for (let i = 0; i < numRegular; i++) {
+        const beat = {
+          feat: pickUnused(setting.features.length, usedFeat),
+          det:  pickUnused(setting.details.length, usedDet),
+          hook: pickUnused(setting.hooks.length, usedHook),
+          featured: null,
+          voiceIdx: 0
+        };
+        if (state.companions.length && Math.random() < 0.5) {
+          beat.featured = state.companions[pickIdx(state.companions.length)];
+          beat.voiceIdx = pickIdx(COMPANION_VOICES.length);
+        }
+        state.beats.push(beat);
+      }
+      // Resolve climax type
+      const climaxType = state.climaxType === 'surprise'
+        ? CLIMAX_TYPES[pickIdx(CLIMAX_TYPES.length)]
+        : state.climaxType;
+      state.resolvedClimaxType = climaxType;
+      const climax = setting.climax[climaxType];
+      state.climaxText = climax.texts[pickIdx(climax.texts.length)];
+      if (climaxType === 'find') {
+        state.findData = { ...climax.finds[pickIdx(climax.finds.length)] };
+      } else {
+        state.findData = null;
+      }
+    }
+
+    // ===== ACTIONS ===================================================
+    async function beginQuest() {
+      generateBeats();
+      state.status = 'active';
+      state.beatIdx = 0;
+      state.startedAt = Date.now();
+      await save();
+      render();
+    }
+
+    async function nextBeat() {
+      state.beatIdx++;
+      if (state.beatIdx >= state.beats.length) {
+        state.status = 'climax';
+      }
+      await save();
+      render();
+    }
+
+    async function abandonQuest() {
+      if (!confirm('Abandon this quest? Progress will be lost.')) return;
+      state = makeEmpty();
+      await save();
+      render();
+    }
+
+    // ===== HANDOFFS ==================================================
+    async function buildSkirmishAllies() {
+      const allies = [];
+      for (const id of state.companions) {
+        const f = companionById(id);
+        if (!f) continue;
+        const def = ALLY_DEFAULTS[(f.archetype || '').toLowerCase()] || { hp: 14, mod: 2 };
+        allies.push({
+          id: U.uid(),
+          side: 'ally',
+          source: 'fellowship',
+          sourceId: f.id,
+          name: f.name,
+          kind: (f.archetype || 'companion').charAt(0).toUpperCase() + (f.archetype || 'companion').slice(1),
+          flavor: f.voice || '',
+          hp: { current: def.hp, max: def.hp },
+          initMod: def.mod,
+          init: 0,
+          conditions: [],
+          status: 'active'
+        });
+      }
+      return allies;
+    }
+
+    function buildSkirmishFoes() {
+      const setting = SETTINGS[state.setting];
+      const skClimax = setting.climax.skirmish;
+      const archetype = skClimax.archetypes[pickIdx(skClimax.archetypes.length)];
+      const tier = skClimax.tiers[pickIdx(skClimax.tiers.length)];
+      const count = randRange(skClimax.counts[0], skClimax.counts[1]);
+      const tierData = TIER_DATA[tier];
+      const names = [...FOE_NAMES[archetype]].sort(() => Math.random() - 0.5);
+      const foes = [];
+      for (let i = 0; i < count; i++) {
+        let nm = names[i % names.length];
+        if (i >= names.length) nm += ' (' + String.fromCharCode(97 + Math.floor(i / names.length)) + ')';
+        const hp = randRange(tierData.hp[0], tierData.hp[1]);
+        foes.push({
+          id: U.uid(),
+          side: 'foe',
+          source: 'generated',
+          name: nm,
+          kind: FOE_LABELS[archetype] + ' (' + tierData.name + ')',
+          flavor: '',
+          hp: { current: hp, max: hp },
+          initMod: tierData.mod,
+          init: 0,
+          conditions: [],
+          status: 'active'
+        });
+      }
+      return foes;
+    }
+
+    async function handoffSkirmish() {
+      const existing = await Vault.get('skirmish-active');
+      if (existing && existing.status === 'active') {
+        if (!confirm('A skirmish is already in progress. Replace it?')) return;
+      }
+      const allies = await buildSkirmishAllies();
+      const foes = buildSkirmishFoes();
+      const skirmishState = {
+        status: 'building',
+        combatants: [...allies, ...foes],
+        round: 1, turnIdx: 0,
+        log: [], startedAt: null, endedAt: null, endPending: false
+      };
+      await Vault.set('skirmish-active', skirmishState);
+      await endQuestPin('Skirmish');
+      U.toast('Skirmish prepared. Roll initiative when ready.');
+      state = makeEmpty();
+      await save();
+      await Keep.mount('skirmish');
+    }
+
+    async function handoffLoot() {
+      const setting = SETTINGS[state.setting];
+      await Vault.set('loot-tier', setting.climax.loot.tier);
+      await endQuestPin('Loot');
+      state = makeEmpty();
+      await save();
+      await Keep.mount('loot');
+    }
+
+    async function handoffFind() {
+      const items = (await Vault.get('cabinet')) || [];
+      const today = await Refs.today();
+      const settingName = SETTINGS[state.setting].name.toLowerCase();
+      items.push({
+        id: U.uid(),
+        name: state.findData.name,
+        kind: state.findData.kind,
+        status: 'held',
+        description: state.findData.description,
+        heldBy: 'the party',
+        foundAt: 'on a quest into the ' + settingName,
+        foundOn: { ...today },
+        worth: 'priceless',
+        created: Date.now(),
+        updated: Date.now()
+      });
+      await Vault.set('cabinet', items);
+      U.toast('Added to the Cabinet');
+      await endQuestPin('Find: ' + state.findData.name);
+      state = makeEmpty();
+      await save();
+      render();
+    }
+
+    async function walkAway() {
+      await endQuestPin('Walked away');
+      state = makeEmpty();
+      await save();
+      render();
+    }
+
+    async function endCoda() {
+      await endQuestPin('Coda');
+      state = makeEmpty();
+      await save();
+      render();
+    }
+
+    async function endQuestPin(climaxLabel) {
+      const settingName = SETTINGS[state.setting].name;
+      const summary = (state.summary || '').trim();
+      const text = 'QUEST [' + settingName + ']: ' +
+        (summary || (climaxLabel + ' at the end.'));
+      await Refs.pinToToday(text);
+    }
+
+    // ===== RENDER ====================================================
+    function render() {
+      body.innerHTML = '';
+      const wrap = U.el('div', { class: 'quest' });
+      body.append(wrap);
+      if (state.status === 'building') renderBuilder(wrap);
+      else if (state.status === 'active') renderActive(wrap);
+      else if (state.status === 'climax') renderClimax(wrap);
+
+      // Actions area
+      actions.innerHTML = '';
+      if (state.status === 'active' || state.status === 'climax') {
+        actions.append(
+          U.el('button', {
+            class: 'btn btn--ghost btn--small',
+            onclick: abandonQuest
+          }, 'Abandon Quest')
+        );
+      }
+    }
+
+    // ----- Builder mode --------------------------------------------
+    function renderBuilder(wrap) {
+      wrap.append(U.el('div', { class: 'quest__intro' },
+        'A short going-in. Pick a place, your companions, and the shape of the end.'));
+
+      // SETTING
+      const settingSection = U.el('div', { class: 'quest__build-section' });
+      settingSection.append(U.el('div', { class: 'quest__build-head' }, 'Where'));
+      const settingsGrid = U.el('div', { class: 'quest__settings' });
+      SETTING_ORDER.forEach(id => {
+        const s = SETTINGS[id];
+        const card = U.el('button', {
+          class: 'quest__setting' + (state.setting === id ? ' quest__setting--selected' : ''),
+          onclick: async () => { state.setting = id; await save(); render(); }
+        });
+        card.append(
+          U.el('span', { class: 'quest__setting-name' }, s.name),
+          U.el('span', { class: 'quest__setting-sub' }, s.sub)
+        );
+        settingsGrid.append(card);
+      });
+      settingSection.append(settingsGrid);
+      wrap.append(settingSection);
+
+      // BEAT COUNT
+      const beatSection = U.el('div', { class: 'quest__build-section' });
+      beatSection.append(U.el('div', { class: 'quest__build-head' }, 'How Long'));
+      const beatRow = U.el('div', { class: 'quest__option-row' });
+      [
+        { n: 3, sub: 'quick' },
+        { n: 5, sub: 'standard' },
+        { n: 7, sub: 'extended' }
+      ].forEach(opt => {
+        beatRow.append(U.el('button', {
+          class: 'quest__option' + (state.beatCount === opt.n ? ' quest__option--selected' : ''),
+          onclick: async () => { state.beatCount = opt.n; await save(); render(); }
+        }, [opt.n + ' beats', U.el('span', { class: 'quest__option-sub' }, opt.sub)]));
+      });
+      beatSection.append(beatRow);
+      wrap.append(beatSection);
+
+      // CLIMAX TYPE
+      const climaxSection = U.el('div', { class: 'quest__build-section' });
+      climaxSection.append(U.el('div', { class: 'quest__build-head' }, 'How It Ends'));
+      const climaxRow = U.el('div', { class: 'quest__option-row' });
+      [
+        { id: 'skirmish', label: 'Skirmish', sub: 'a fight at the end' },
+        { id: 'loot',     label: 'Loot',     sub: 'a haul to roll' },
+        { id: 'find',     label: 'Find',     sub: 'a named thing' },
+        { id: 'coda',     label: 'Coda',     sub: 'a quiet end' },
+        { id: 'surprise', label: 'Surprise', sub: 'pick at random' }
+      ].forEach(opt => {
+        climaxRow.append(U.el('button', {
+          class: 'quest__option' + (state.climaxType === opt.id ? ' quest__option--selected' : ''),
+          onclick: async () => { state.climaxType = opt.id; await save(); render(); }
+        }, [opt.label, U.el('span', { class: 'quest__option-sub' }, opt.sub)]));
+      });
+      climaxSection.append(climaxRow);
+      wrap.append(climaxSection);
+
+      // COMPANIONS
+      const compSection = U.el('div', { class: 'quest__build-section' });
+      compSection.append(U.el('div', { class: 'quest__build-head' }, 'Who Goes With You'));
+      const compList = U.el('div', { class: 'quest__companions-list' });
+      const eligible = allCompanions.filter(c => c.status === 'hale' || c.status === 'wounded');
+      if (!eligible.length) {
+        compList.append(U.el('div', { class: 'quest__no-companions' },
+          'No hale or wounded companions in the Fellowship. You may quest alone.'));
+      } else {
+        eligible.forEach(c => {
+          const selected = state.companions.includes(c.id);
+          const row = U.el('div', {
+            class: 'quest__companion-row' + (selected ? ' quest__companion-row--selected' : ''),
+            onclick: async () => {
+              if (selected) state.companions = state.companions.filter(x => x !== c.id);
+              else state.companions.push(c.id);
+              await save();
+              render();
+            }
+          });
+          row.append(
+            U.el('span', { class: 'quest__companion-name' }, c.name),
+            U.el('span', { class: 'quest__companion-arch' }, c.archetype || ''),
+            U.el('span', { class: 'quest__companion-status quest__companion-status--' + c.status }, c.status)
+          );
+          compList.append(row);
+        });
+      }
+      compSection.append(compList);
+      wrap.append(compSection);
+
+      // BEGIN
+      const beginRow = U.el('div', { class: 'quest__begin-row' });
+      beginRow.append(U.el('button', {
+        class: 'quest__begin',
+        onclick: beginQuest
+      }, 'Begin the Quest'));
+      wrap.append(beginRow);
+    }
+
+    // ----- Active mode --------------------------------------------
+    function renderActive(wrap) {
+      const setting = SETTINGS[state.setting];
+      const beat = state.beats[state.beatIdx];
+
+      const head = U.el('div', { class: 'quest__head' });
+      head.append(
+        U.el('span', { class: 'quest__progress' },
+          'Beat ' + (state.beatIdx + 1) + ' of ' + state.beatCount),
+        U.el('span', { class: 'quest__where' }, setting.name)
+      );
+      const bar = U.el('div', { class: 'quest__progress-bar' });
+      bar.append(U.el('div', {
+        class: 'quest__progress-fill',
+        style: { width: ((state.beatIdx + 1) / state.beatCount * 100) + '%' }
+      }));
+      head.append(bar);
+      wrap.append(head);
+
+      // Companions ribbon
+      if (state.companions.length) {
+        const ribbon = U.el('div', { class: 'quest__ribbon' });
+        ribbon.append(U.el('span', { class: 'quest__ribbon-label' }, 'with you'));
+        state.companions.forEach(id => {
+          const c = companionById(id);
+          if (!c) return;
+          ribbon.append(U.el('span', { class: 'quest__ribbon-name' }, c.name));
+        });
+        wrap.append(ribbon);
+      }
+
+      // Beat card
+      const beatCard = U.el('div', { class: 'quest__beat' });
+      beatCard.append(U.el('div', { class: 'quest__beat-fleuron' }, '\u2767'));
+      const text = setting.features[beat.feat] + ' ' +
+        setting.details[beat.det] + ' ' +
+        setting.hooks[beat.hook];
+      beatCard.append(U.el('div', { class: 'quest__beat-text' }, text));
+
+      if (beat.featured) {
+        const c = companionById(beat.featured);
+        if (c) {
+          const voiceBlock = U.el('div', { class: 'quest__voice' });
+          voiceBlock.append(
+            U.el('div', { class: 'quest__voice-name' }, c.name),
+            U.el('div', { class: 'quest__voice-line' },
+              COMPANION_VOICES[beat.voiceIdx].replace('{name}', c.name))
+          );
+          beatCard.append(voiceBlock);
+        }
+      }
+
+      const contRow = U.el('div', { class: 'quest__continue-row' });
+      const isLast = state.beatIdx === state.beats.length - 1;
+      contRow.append(U.el('button', {
+        class: 'quest__continue' + (isLast ? ' quest__continue--climax' : ''),
+        onclick: nextBeat
+      }, isLast ? 'On to the End' : 'Continue'));
+      beatCard.append(contRow);
+      wrap.append(beatCard);
+    }
+
+    // ----- Climax mode --------------------------------------------
+    function renderClimax(wrap) {
+      const setting = SETTINGS[state.setting];
+
+      // Companions ribbon
+      if (state.companions.length) {
+        const ribbon = U.el('div', { class: 'quest__ribbon' });
+        ribbon.append(U.el('span', { class: 'quest__ribbon-label' }, 'with you'));
+        state.companions.forEach(id => {
+          const c = companionById(id);
+          if (!c) return;
+          ribbon.append(U.el('span', { class: 'quest__ribbon-name' }, c.name));
+        });
+        wrap.append(ribbon);
+      }
+
+      const climaxCard = U.el('div', { class: 'quest__climax' });
+      climaxCard.append(
+        U.el('div', { class: 'quest__climax-head' }, '\u2767 The End of the Way \u2767'),
+        U.el('div', { class: 'quest__climax-text' }, state.climaxText)
+      );
+
+      if (state.resolvedClimaxType === 'find' && state.findData) {
+        const findCard = U.el('div', { class: 'quest__find' });
+        findCard.append(
+          U.el('div', { class: 'quest__find-label' }, 'You have found'),
+          U.el('div', { class: 'quest__find-name' }, state.findData.name),
+          U.el('div', { class: 'quest__find-kind' }, state.findData.kind),
+          U.el('div', { class: 'quest__find-desc' }, state.findData.description)
+        );
+        climaxCard.append(findCard);
+      }
+
+      // Summary input
+      const sumWrap = U.el('div', { class: 'quest__summary-wrap' });
+      sumWrap.append(U.el('span', { class: 'quest__summary-label' },
+        'Summary for the Almanac (optional)'));
+      const sumInput = U.el('input', {
+        type: 'text',
+        class: 'quest__summary',
+        placeholder: 'A line about what happened, in your own words',
+        value: state.summary || '',
+        oninput: (e) => { state.summary = e.target.value; save(); }
+      });
+      sumWrap.append(sumInput);
+      climaxCard.append(sumWrap);
+
+      // Action buttons (depend on climax type)
+      const actionsRow = U.el('div', { class: 'quest__climax-actions' });
+      const ct = state.resolvedClimaxType;
+      if (ct === 'skirmish') {
+        actionsRow.append(
+          U.el('button', {
+            class: 'quest__action-primary quest__action-primary--skirmish',
+            onclick: handoffSkirmish
+          }, 'Launch Skirmish'),
+          U.el('button', {
+            class: 'quest__action-walk',
+            onclick: walkAway
+          }, 'Walk Away')
+        );
+      } else if (ct === 'loot') {
+        actionsRow.append(
+          U.el('button', {
+            class: 'quest__action-primary quest__action-primary--loot',
+            onclick: handoffLoot
+          }, 'Roll the Loot'),
+          U.el('button', {
+            class: 'quest__action-walk',
+            onclick: walkAway
+          }, 'Take What You Can')
+        );
+      } else if (ct === 'find') {
+        actionsRow.append(
+          U.el('button', {
+            class: 'quest__action-primary quest__action-primary--find',
+            onclick: handoffFind
+          }, 'Add to the Cabinet'),
+          U.el('button', {
+            class: 'quest__action-walk',
+            onclick: walkAway
+          }, 'Leave It Where It Lies')
+        );
+      } else { // coda
+        actionsRow.append(
+          U.el('button', {
+            class: 'quest__action-primary quest__action-primary--coda',
+            onclick: endCoda
+          }, 'End the Quest')
+        );
+      }
+      climaxCard.append(actionsRow);
+      wrap.append(climaxCard);
+    }
+
+    render();
+  }
+});
+
+/* =========================================================================
+   MODULE: THE SKIRMISH (Encounter Tracker)
+   A combat dashboard, not a combat simulator. Pulls allies from the
+   Fellowship and Hall of Faces, generates foes (quick anonymous mooks
+   by archetype-and-tier, or named epic bosses with flavor text), tracks
+   HP/initiative/conditions/round, auto-logs every action, and on
+   encounter end writes a summary to the Almanac and updates Fellowship
+   statuses for any allies who went down. Quick dice are available
+   inline so the chronicler does not have to leave the room mid-fight.
+   ========================================================================= */
+Keep.register({
+  id: 'skirmish',
+  name: 'The Skirmish',
+  category: 'table',
+  glyph: 'g-skirmish',
+  tagline: 'Initiative, wounds, and the noise of steel.',
+  sub: 'Build the encounter, run the round, mark the dead.',
+
+  async mount(body, actions) {
+    // ===== Data =======================================================
+    const ALLY_DEFAULTS = {
+      scout:   { hp: 14, mod: 3 },
+      healer:  { hp: 16, mod: 1 },
+      warrior: { hp: 22, mod: 2 },
+      mage:    { hp: 12, mod: 1 },
+      rogue:   { hp: 14, mod: 4 },
+      bard:    { hp: 14, mod: 2 },
+      priest:  { hp: 16, mod: 1 },
+      archer:  { hp: 14, mod: 3 },
+      guard:   { hp: 20, mod: 1 }
+    };
+    function allyDefaultsFor(archetype) {
+      return ALLY_DEFAULTS[(archetype || '').toLowerCase()] || { hp: 14, mod: 2 };
+    }
+
+    const FOE_TYPES = {
+      bandit:  { label: 'Bandit',  names: ['Greylock', 'Two-Fingers', 'Ash', 'Cinder', 'Hark', 'Bloodwool', 'Crows', 'Mire', 'Wattle', 'Pin', 'Sten', 'Yarrow'] },
+      thief:   { label: 'Thief',   names: ['Quill', 'Sparrow', 'Whisper', 'Soot', 'Patch', 'Vex', 'Nimble', 'Slip', 'Mote', 'Twine', 'Wisp'] },
+      soldier: { label: 'Soldier', names: ['Vance', 'Mara', 'Bell', 'Roe', 'Thom', 'Ander', 'Caine', 'Pelt', 'Doryn', 'Hask', 'Eldon'] },
+      cultist: { label: 'Cultist', names: ['the Veiled', 'Brother Crow', 'the Pale Witness', 'Sister Ash', 'the Hollow Mouth', 'Brother Salt', 'the Silent', 'Sister Wren'] },
+      beast:   { label: 'Beast',   names: ['scarred wolf', 'old bear', 'marsh hound', 'lean wolf', 'broken hound', 'great cat', 'pack-leader', 'rabid stag'] },
+      goblin:  { label: 'Goblin',  names: ['Snik', 'Grix', 'Bones', 'Glit', 'Vorek', 'Tikk', 'Skab', 'Pip', 'Drook', 'Rax', 'Nubb'] },
+      undead:  { label: 'Undead',  names: ['hanged thief', 'wight in tattered mail', 'moaning revenant', 'pale wanderer', 'bound shade', 'silent walker', 'mournful one'] },
+      knight:  { label: 'Knight',  names: ['Sir Bardas', 'Dame Iona', 'Sir Carlon', 'Dame Pelt', 'Sir Hold', 'Dame Verra', 'Sir Maund'] }
+    };
+
+    const TIERS = [
+      { id: 'rabble',   name: 'Rabble',   hp: [3, 8],   mod: 0, sub: 'mooks; one good hit drops them' },
+      { id: 'regular',  name: 'Regular',  hp: [6, 14],  mod: 1, sub: 'workaday combatants' },
+      { id: 'elite',    name: 'Elite',    hp: [12, 22], mod: 2, sub: 'veterans; expect a fight' },
+      { id: 'champion', name: 'Champion', hp: [18, 30], mod: 3, sub: 'a worthy single foe' }
+    ];
+
+    const EPIC_FOES = [
+      { name: 'Carrack the Black-Tongued',    kind: 'Bandit Chieftain',     hp: 28, mod: 3, flavor: 'A bandit lord with three scars he refuses to explain. His tongue is stained from old habits.' },
+      { name: 'The Hollow King',              kind: 'Undead Sovereign',     hp: 35, mod: 2, flavor: 'Crowned with bone, bound in chains of his own making. He remembers a kingdom that does not remember him.' },
+      { name: 'Pyrrh the Singer',             kind: 'Cultist Cantor',       hp: 24, mod: 2, flavor: 'Her hymns are the wrong shape. Those who hear them forget their own names by morning.' },
+      { name: 'Sir Marlowe the Forsworn',     kind: 'Fallen Knight',        hp: 32, mod: 3, flavor: 'He wears his old oaths like rust. The sword he carries is heavier than the man who broke its trust.' },
+      { name: 'Brindel of the Marshes',       kind: 'Bog-witch',            hp: 26, mod: 2, flavor: 'Her teeth are dark with silt. Three small bones hang at her throat: a brother, a daughter, a stranger.' },
+      { name: 'Vesh the Caged',               kind: 'Goblin Chief',         hp: 22, mod: 3, flavor: 'Smaller than her warriors, but they will not meet her eye. Her cage is a war trophy.' },
+      { name: 'The Drowning Magistrate',      kind: 'Specter',              hp: 28, mod: 2, flavor: 'Once hanged a child for stealing bread. Drowned the next year. He is still arguing the verdict.' },
+      { name: 'Captain Iorda Bell-Ear',       kind: 'Mercenary Captain',    hp: 30, mod: 3, flavor: 'Half her ear was taken by a duke who survived only briefly. She kept the duke\u2019s ring as well.' },
+      { name: 'The Quiet Brother',            kind: 'Assassin',             hp: 22, mod: 4, flavor: 'No one has heard him speak. He has been seen praying over the bodies of those he killed.' },
+      { name: 'Old Vol of the Pines',         kind: 'Great Wolf',           hp: 30, mod: 4, flavor: 'Three winters older than any wolf should be. Foresters leave a salted hare at her crossing each new moon.' },
+      { name: 'Anselm Ruin-Crowned',          kind: 'Sorcerer',             hp: 26, mod: 2, flavor: 'His hair is white from his eighteenth year. The crown he wears is bone, gifted by something he refuses to name.' },
+      { name: 'The Three Daughters',          kind: 'Fey (multiform)',      hp: 34, mod: 3, flavor: 'You count three figures, then one, then three again. They speak in turn, the same voice in three octaves.' },
+      { name: 'Greel Iron-Lung',              kind: 'Goblin Berserker',     hp: 28, mod: 2, flavor: 'The largest goblin ever seen by anyone who lived to compare. Eats only iron.' },
+      { name: 'The Pale Inquisitor',          kind: 'Witchfinder',          hp: 26, mod: 2, flavor: 'A face like old vellum. Carries a ledger of names; some are written in her own blood, some in others\u2019.' },
+      { name: 'Wrenn of the Hollow Halls',    kind: 'Revenant Knight',      hp: 32, mod: 3, flavor: 'Killed at her own table. The wound is still wet. She wants only to finish her meal.' },
+      { name: 'Bellfist the Tax-Taker',       kind: 'Thug Boss',            hp: 26, mod: 1, flavor: 'Fists like sacks of wet grain. Counts in fives, never higher. Has a list of names from a man who is no longer alive.' },
+      { name: 'The Cartographer of Drowned Things', kind: 'Cult Leader',    hp: 24, mod: 2, flavor: 'Their maps are of places not yet drowned. Their followers know which towns to leave.' },
+      { name: 'Sister Mire',                  kind: 'Plague Priestess',     hp: 24, mod: 1, flavor: 'She blesses with her left hand and infects with her right. She does not know which she has done until later.' },
+      { name: 'The Shrieking Babe',           kind: 'Banshee',              hp: 22, mod: 4, flavor: 'A child\u2019s voice in a thing that has never been one. The sound stops hearts that were already weakening.' },
+      { name: 'Hark of the Long Knife',       kind: 'Bandit Captain',       hp: 28, mod: 3, flavor: 'Carries a knife as long as his forearm. Has never been seen with two blades. Will not need a second.' },
+      { name: 'The Salt-Mother',              kind: 'Sea-Witch',            hp: 30, mod: 2, flavor: 'Hair like wet rope, eyes the colour of harbour fog. The sailors of three coasts have a song that may not be sung in her hearing.' },
+      { name: 'The Twelfth Brother',          kind: 'Anonymous Knight',     hp: 32, mod: 3, flavor: 'His tabard bears no sigil. He answers to no name. He fights with the calm of someone fulfilling a vow long made.' },
+      { name: 'Old Mim, Crow-Hearted',        kind: 'Hedge Witch',          hp: 22, mod: 2, flavor: 'A face like a winter apple. She does not hate the party. The thing inside her does.' },
+      { name: 'The Last Lord of Brackwell',   kind: 'Wight Lord',           hp: 34, mod: 2, flavor: 'His house ended six generations ago. He still keeps the household ledgers; the names are all new and all wrong.' },
+      { name: 'Vex the Glass-Eater',          kind: 'Sellsword',            hp: 26, mod: 3, flavor: 'Chews window-glass when nervous, which is often. Skilled to a degree that makes men quiet.' },
+      { name: 'The Threadbare Saint',         kind: 'Mad Pilgrim',          hp: 24, mod: 1, flavor: 'Wears the relics of three churches stitched into one robe. Each god speaks through him in turn, and they do not agree.' },
+      { name: 'Marsh-King Pell',              kind: 'Bog-Lord',             hp: 32, mod: 2, flavor: 'Crowned in reeds and the silver buttons of drowned soldiers. He has never left his marsh and never needed to.' },
+      { name: 'The Two-Coin Widow',           kind: 'Necromancer',          hp: 28, mod: 2, flavor: 'Places two coins on the eyes of every body she finds. Some of them get up again. She does not seem surprised.' },
+      { name: 'Tann of the Forty Wounds',     kind: 'Veteran Sellsword',    hp: 30, mod: 3, flavor: 'Has counted them. Will tell you, if asked. The forty-first is one she has been saving.' },
+      { name: 'The Choir of One',             kind: 'Sung-Together Being',  hp: 28, mod: 2, flavor: 'You think there is only one. You are nearly certain. The sound argues otherwise.' }
+    ];
+
+    const CONDITIONS = [
+      'poisoned','stunned','prone','bleeding','frightened','charmed',
+      'restrained','blinded','burning','silenced','inspired','blessed','hidden'
+    ];
+
+    // ===== State ======================================================
+    function emptyEncounter() {
+      return { status: 'building', combatants: [], round: 1, turnIdx: 0,
+        log: [], startedAt: null, endedAt: null, endPending: false };
+    }
+    let state = (await Vault.get('skirmish-active')) || emptyEncounter();
+    if (!state.log) state.log = [];
+    if (!state.combatants) state.combatants = [];
+
+    let activePanel = null;       // 'fellowship' | 'faces' | 'quick' | 'epic' | 'custom' | null
+    let condMenuFor = null;       // combatant id whose condition menu is open
+    let qrPool = [];              // quick roll widget state
+    let qrMod = 0;
+    let qrRecent = [];
+
+    const today = await Refs.today();
+
+    function dN(count, sides) {
+      let t = 0;
+      for (let i = 0; i < count; i++) t += 1 + Math.floor(Math.random() * sides);
+      return t;
+    }
+    function randInRange(lo, hi) { return lo + Math.floor(Math.random() * (hi - lo + 1)); }
+    function save() { return Vault.set('skirmish-active', state); }
+    function logAction(text) {
+      state.log.unshift({ round: state.round, ts: Date.now(), text });
+      if (state.log.length > 200) state.log.length = 200;
+    }
+
+    // ===== Add operations ============================================
+    function addCombatant(c) {
+      state.combatants.push(c);
+    }
+
+    async function pickFellowship(ids, includeWounded) {
+      const fellows = (await Vault.get('fellowship')) || [];
+      const allowed = fellows.filter(f =>
+        ids.includes(f.id) && (f.status === 'hale' || (includeWounded && f.status === 'wounded')));
+      for (const f of allowed) {
+        const def = allyDefaultsFor(f.archetype);
+        addCombatant({
+          id: U.uid(),
+          side: 'ally',
+          source: 'fellowship',
+          sourceId: f.id,
+          name: f.name,
+          kind: (f.archetype || 'companion').charAt(0).toUpperCase() + (f.archetype || 'companion').slice(1),
+          flavor: f.voice || '',
+          hp: { current: def.hp, max: def.hp },
+          initMod: def.mod,
+          init: 0,
+          conditions: [],
+          status: f.status === 'wounded' ? 'wounded-start' : 'active'
+        });
+      }
+    }
+
+    async function pickFaces(ids) {
+      const npcs = (await Vault.get('faces-roster')) || [];
+      const allowed = npcs.filter(n => ids.includes(n.id));
+      for (const n of allowed) {
+        addCombatant({
+          id: U.uid(),
+          side: 'ally',
+          source: 'faces',
+          sourceId: n.id,
+          name: n.name,
+          kind: n.role || 'NPC',
+          flavor: n.voice || '',
+          hp: { current: 14, max: 14 },
+          initMod: 1,
+          init: 0,
+          conditions: [],
+          status: 'active'
+        });
+      }
+    }
+
+    function generateQuickFoes(archetypeId, tierId, count) {
+      const arch = FOE_TYPES[archetypeId];
+      const tier = TIERS.find(t => t.id === tierId);
+      if (!arch || !tier) return;
+      const namesShuffled = [...arch.names].sort(() => Math.random() - 0.5);
+      for (let i = 0; i < count; i++) {
+        let name = namesShuffled[i % namesShuffled.length];
+        if (i >= namesShuffled.length) name += ' (' + String.fromCharCode(97 + Math.floor(i / namesShuffled.length)) + ')';
+        const hp = randInRange(tier.hp[0], tier.hp[1]);
+        addCombatant({
+          id: U.uid(),
+          side: 'foe',
+          source: 'generated',
+          name,
+          kind: arch.label + ' (' + tier.name + ')',
+          flavor: '',
+          hp: { current: hp, max: hp },
+          initMod: tier.mod,
+          init: 0,
+          conditions: [],
+          status: 'active'
+        });
+      }
+    }
+
+    function addEpicFoe(foe) {
+      addCombatant({
+        id: U.uid(),
+        side: 'foe',
+        source: 'epic',
+        name: foe.name,
+        kind: foe.kind,
+        flavor: foe.flavor,
+        hp: { current: foe.hp, max: foe.hp },
+        initMod: foe.mod,
+        init: 0,
+        conditions: [],
+        status: 'active',
+        epic: true
+      });
+    }
+
+    function addCustom(data) {
+      const hp = parseInt(data.hp, 10) || 10;
+      const mod = parseInt(data.mod, 10) || 0;
+      addCombatant({
+        id: U.uid(),
+        side: data.side,
+        source: 'manual',
+        name: data.name,
+        kind: data.kind || '',
+        flavor: '',
+        hp: { current: hp, max: hp },
+        initMod: mod,
+        init: 0,
+        conditions: [],
+        status: 'active'
+      });
+    }
+
+    function removeCombatant(id) {
+      state.combatants = state.combatants.filter(c => c.id !== id);
+    }
+
+    // ===== Combat operations =========================================
+    function rollInitiative() {
+      state.combatants.forEach(c => { c.init = dN(1, 20) + (c.initMod || 0); });
+      state.combatants.sort((a, b) => b.init - a.init);
+    }
+
+    function begin() {
+      if (state.combatants.length < 2) return;
+      state.status = 'active';
+      state.round = 1;
+      state.turnIdx = 0;
+      state.startedAt = Date.now();
+      state.log = [];
+      logAction('Steel drawn. The fray begins.');
+    }
+
+    function indexIsValid(i) {
+      const c = state.combatants[i];
+      return c && c.status !== 'down';
+    }
+
+    function nextTurn() {
+      if (!state.combatants.length) return;
+      let i = state.turnIdx;
+      let attempts = 0;
+      do {
+        i++;
+        if (i >= state.combatants.length) {
+          i = 0;
+          state.round++;
+          logAction('Round ' + state.round + ' begins.');
+        }
+        attempts++;
+      } while (!indexIsValid(i) && attempts < state.combatants.length * 2);
+      state.turnIdx = i;
+    }
+
+    function changeHP(id, delta) {
+      const c = state.combatants.find(x => x.id === id);
+      if (!c) return;
+      const before = c.hp.current;
+      c.hp.current = Math.max(0, Math.min(c.hp.max, c.hp.current + delta));
+      const diff = c.hp.current - before;
+      if (diff === 0) return;
+      if (diff < 0) logAction(c.name + ' \u2212' + Math.abs(diff) + ' HP (' + c.hp.current + '/' + c.hp.max + ')');
+      else          logAction(c.name + ' +' + diff + ' HP (' + c.hp.current + '/' + c.hp.max + ')');
+      if (c.hp.current === 0 && c.status !== 'down') {
+        c.status = 'down';
+        logAction(c.name + ' falls.');
+      } else if (c.hp.current > 0 && c.status === 'down') {
+        c.status = 'active';
+        logAction(c.name + ' rises.');
+      }
+    }
+
+    function toggleCondition(id, cond) {
+      const c = state.combatants.find(x => x.id === id);
+      if (!c) return;
+      if (c.conditions.includes(cond)) {
+        c.conditions = c.conditions.filter(x => x !== cond);
+        logAction(c.name + ' is no longer ' + cond + '.');
+      } else {
+        c.conditions.push(cond);
+        logAction(c.name + ' is now ' + cond + '.');
+      }
+    }
+
+    function quickRollFor(c) {
+      const roll = dN(1, 20);
+      const total = roll + (c.initMod || 0);
+      const text = c.name + ' rolls d20+' + (c.initMod || 0) + ': ' + total +
+        (roll === 20 ? ' (boon!)' : roll === 1 ? ' (bane!)' : '');
+      logAction(text);
+      return { roll, total, crit: roll === 20, fumble: roll === 1 };
+    }
+
+    // ===== End encounter =============================================
+    async function endEncounter(summaryText, casualtyDecisions) {
+      // 1. update fellowship statuses for ally combatants that came from Fellowship
+      const fellows = (await Vault.get('fellowship')) || [];
+      let dirty = false;
+      state.combatants.forEach(c => {
+        if (c.source !== 'fellowship' || c.side !== 'ally') return;
+        const decision = casualtyDecisions[c.id];
+        if (!decision) return;
+        const f = fellows.find(x => x.id === c.sourceId);
+        if (!f) return;
+        f.status = decision;
+        f.updated = Date.now();
+        dirty = true;
+      });
+      if (dirty) await Vault.set('fellowship', fellows);
+
+      // 2. pin a summary line to today\u2019s note
+      const rounds = state.round;
+      const allies = state.combatants.filter(c => c.side === 'ally');
+      const foes = state.combatants.filter(c => c.side === 'foe');
+      const alliesDown = allies.filter(c => c.status === 'down').length;
+      const foesDown = foes.filter(c => c.status === 'down').length;
+      const auto = 'SKIRMISH: ' + rounds + ' round' + (rounds === 1 ? '' : 's') +
+        ', ' + foesDown + '/' + foes.length + ' foes down, ' +
+        alliesDown + '/' + allies.length + ' allies down';
+      const text = (summaryText && summaryText.trim())
+        ? 'SKIRMISH: ' + summaryText.trim() + ' (' + rounds + ' round' + (rounds === 1 ? '' : 's') + ')'
+        : auto;
+      const t = await Refs.pinToToday(text);
+
+      // 3. clear active encounter
+      state = emptyEncounter();
+      await save();
+      U.toast('Encounter ended; pinned to ' + (await Refs.formatDate(t)));
+    }
+
+    // ===== Render ====================================================
+    function render() {
+      body.innerHTML = '';
+      const wrap = U.el('div', { class: 'skirmish' });
+      body.append(wrap);
+      if (state.status === 'building') renderBuilder(wrap);
+      else if (state.status === 'active') renderActive(wrap);
+
+      // re-mount the actions area each render so the buttons stay current
+      actions.innerHTML = '';
+      if (state.status === 'active' && !state.endPending) {
+        actions.append(
+          U.el('button', {
+            class: 'btn btn--ghost btn--small',
+            onclick: () => { state.endPending = true; save(); render(); }
+          }, 'End Encounter')
+        );
+      } else if (state.status === 'building' && state.combatants.length) {
+        actions.append(
+          U.el('button', {
+            class: 'btn btn--ghost btn--small',
+            onclick: async () => {
+              if (!confirm('Clear the entire roster?')) return;
+              state = emptyEncounter();
+              await save();
+              render();
+            }
+          }, 'Clear Roster')
+        );
+      }
+    }
+
+    // ----- Builder mode ---------------------------------------------
+    function renderBuilder(wrap) {
+      wrap.append(U.el('div', { class: 'skirmish__intro' },
+        'Build the roster, set the wounds, then roll initiative and begin.'));
+
+      // Add buttons row
+      const addRow = U.el('div', { class: 'skirmish__add-row' });
+      const addBtn = (id, label) => U.el('button', {
+        class: 'skirmish__add-btn' + (activePanel === id ? ' skirmish__add-btn--active' : ''),
+        onclick: () => { activePanel = (activePanel === id) ? null : id; render(); }
+      }, label);
+      addRow.append(
+        addBtn('fellowship', '+ Fellowship'),
+        addBtn('faces',      '+ Hall of Faces'),
+        addBtn('quick',      '+ Quick Foes'),
+        addBtn('epic',       '+ Epic Foe'),
+        addBtn('custom',     '+ Custom')
+      );
+      wrap.append(addRow);
+
+      if (activePanel) wrap.append(renderAddPanel());
+
+      // Roster
+      const roster = U.el('div', { class: 'skirmish__roster' });
+      roster.append(renderSide('ally', 'Allies'), renderSide('foe', 'Foes'));
+      wrap.append(roster);
+
+      // Roster footer actions
+      if (state.combatants.length) {
+        const footer = U.el('div', { class: 'skirmish__roster-actions' });
+        footer.append(
+          U.el('button', {
+            class: 'btn btn--ghost',
+            onclick: async () => { rollInitiative(); await save(); render(); }
+          }, 'Roll Initiative'),
+          U.el('button', {
+            class: 'skirmish__begin',
+            disabled: state.combatants.length < 2,
+            title: state.combatants.length < 2 ? 'Need at least 2 combatants' : 'Begin the encounter',
+            onclick: async () => {
+              if (state.combatants.every(c => !c.init)) rollInitiative();
+              begin();
+              await save();
+              render();
+            }
+          }, 'Begin Encounter')
+        );
+        wrap.append(footer);
+      }
+    }
+
+    function renderAddPanel() {
+      if (activePanel === 'fellowship') return renderFellowshipPanel();
+      if (activePanel === 'faces')      return renderFacesPanel();
+      if (activePanel === 'quick')      return renderQuickPanel();
+      if (activePanel === 'epic')       return renderEpicPanel();
+      if (activePanel === 'custom')     return renderCustomPanel();
+      return document.createElement('div');
+    }
+
+    function renderFellowshipPanel() {
+      const panel = U.el('div', { class: 'skirmish__add-panel' });
+      panel.append(U.el('div', { class: 'skirmish__add-panel-head' }, 'Allies from the Fellowship'));
+      const selected = new Set();
+      const includeWounded = { value: false };
+      const list = U.el('div', { class: 'skirmish__pick-list' });
+      panel.append(list);
+      // load and render
+      (async () => {
+        const fellows = (await Vault.get('fellowship')) || [];
+        const eligible = fellows.filter(f => f.status === 'hale' || f.status === 'wounded');
+        if (!eligible.length) {
+          list.append(U.el('div', { class: 'skirmish__add-empty' },
+            'No hale or wounded companions in the Fellowship.'));
+          return;
+        }
+        const renderRow = (f) => {
+          const row = U.el('div', {
+            class: 'skirmish__pick-row' + (selected.has(f.id) ? ' skirmish__pick-row--selected' : '')
+          });
+          row.onclick = () => {
+            if (selected.has(f.id)) selected.delete(f.id);
+            else selected.add(f.id);
+            row.className = 'skirmish__pick-row' + (selected.has(f.id) ? ' skirmish__pick-row--selected' : '');
+          };
+          row.append(
+            U.el('div', { class: 'skirmish__pick-name' }, f.name),
+            U.el('div', { class: 'skirmish__pick-meta' }, f.archetype || ''),
+            U.el('div', { class: 'skirmish__pick-status skirmish__pick-status--' + f.status }, f.status)
+          );
+          return row;
+        };
+        const renderList = () => {
+          list.innerHTML = '';
+          const shown = eligible.filter(f => f.status === 'hale' || includeWounded.value);
+          if (!shown.length) {
+            list.append(U.el('div', { class: 'skirmish__add-empty' }, 'No companions match.'));
+            return;
+          }
+          shown.forEach(f => list.append(renderRow(f)));
+        };
+        renderList();
+        // wounded toggle
+        const woundedToggle = U.el('label', { style: 'display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-family:var(--rubric);font-style:italic;color:var(--ink-soft);margin-bottom:0.7rem;' });
+        const cb = U.el('input', { type: 'checkbox', onchange: (e) => { includeWounded.value = e.target.checked; renderList(); } });
+        woundedToggle.append(cb, document.createTextNode(' include wounded companions'));
+        panel.insertBefore(woundedToggle, list);
+        // add button
+        panel.append(U.el('button', {
+          class: 'btn btn--primary btn--small',
+          onclick: async () => {
+            if (!selected.size) return;
+            await pickFellowship([...selected], includeWounded.value);
+            activePanel = null;
+            await save();
+            render();
+          }
+        }, 'Add Selected'));
+      })();
+      return panel;
+    }
+
+    function renderFacesPanel() {
+      const panel = U.el('div', { class: 'skirmish__add-panel' });
+      panel.append(U.el('div', { class: 'skirmish__add-panel-head' }, 'NPCs from the Hall of Faces'));
+      const selected = new Set();
+      const list = U.el('div', { class: 'skirmish__pick-list' });
+      panel.append(list);
+      (async () => {
+        const npcs = (await Vault.get('faces-roster')) || [];
+        if (!npcs.length) {
+          list.append(U.el('div', { class: 'skirmish__add-empty' },
+            'No NPCs inducted into the Hall yet.'));
+          return;
+        }
+        npcs.forEach(n => {
+          const row = U.el('div', { class: 'skirmish__pick-row' });
+          row.onclick = () => {
+            if (selected.has(n.id)) selected.delete(n.id);
+            else selected.add(n.id);
+            row.className = 'skirmish__pick-row' + (selected.has(n.id) ? ' skirmish__pick-row--selected' : '');
+          };
+          row.append(
+            U.el('div', { class: 'skirmish__pick-name' }, n.name),
+            U.el('div', { class: 'skirmish__pick-meta' }, (n.role || '') + (n.culture ? ' \u00B7 ' + n.culture : ''))
+          );
+          list.append(row);
+        });
+        panel.append(U.el('button', {
+          class: 'btn btn--primary btn--small',
+          onclick: async () => {
+            if (!selected.size) return;
+            await pickFaces([...selected]);
+            activePanel = null;
+            await save();
+            render();
+          }
+        }, 'Add Selected'));
+      })();
+      return panel;
+    }
+
+    function renderQuickPanel() {
+      const panel = U.el('div', { class: 'skirmish__add-panel' });
+      panel.append(U.el('div', { class: 'skirmish__add-panel-head' }, 'Quick Foes (anonymous archetype)'));
+      const form = U.el('div', { class: 'skirmish__inline-form' });
+      const archSel = U.el('select', { class: 'skirmish__select' });
+      Object.entries(FOE_TYPES).forEach(([id, t]) => {
+        archSel.append(U.el('option', { value: id }, t.label));
+      });
+      const tierSel = U.el('select', { class: 'skirmish__select' });
+      TIERS.forEach(t => tierSel.append(U.el('option', { value: t.id }, t.name + ' \u2014 HP ' + t.hp[0] + '\u2013' + t.hp[1])));
+      tierSel.value = 'regular';
+      const countInp = U.el('input', { type: 'number', min: '1', max: '12', value: '3', class: 'skirmish__input' });
+      form.append(
+        U.el('label', {}, ['Archetype', archSel]),
+        U.el('label', {}, ['Tier', tierSel]),
+        U.el('label', {}, ['Count', countInp])
+      );
+      panel.append(form);
+      panel.append(U.el('button', {
+        class: 'btn btn--primary btn--small',
+        onclick: async () => {
+          const n = Math.max(1, Math.min(12, parseInt(countInp.value, 10) || 1));
+          generateQuickFoes(archSel.value, tierSel.value, n);
+          activePanel = null;
+          await save();
+          render();
+        }
+      }, 'Generate'));
+      return panel;
+    }
+
+    function renderEpicPanel() {
+      const panel = U.el('div', { class: 'skirmish__add-panel' });
+      panel.append(U.el('div', { class: 'skirmish__add-panel-head' }, 'Epic Foe (named, with flavor)'));
+      panel.append(U.el('button', {
+        class: 'btn btn--ghost btn--small',
+        style: 'margin-bottom:0.7rem;',
+        onclick: async () => {
+          addEpicFoe(U.pick(EPIC_FOES));
+          activePanel = null;
+          await save();
+          render();
+        }
+      }, '\u2767 Choose for me (random)'));
+      const list = U.el('div', { class: 'skirmish__epic-list' });
+      EPIC_FOES.forEach(foe => {
+        const row = U.el('button', {
+          class: 'skirmish__epic-row',
+          onclick: async () => {
+            addEpicFoe(foe);
+            activePanel = null;
+            await save();
+            render();
+          }
+        });
+        row.append(
+          U.el('div', { class: 'skirmish__epic-name' }, foe.name),
+          U.el('div', { class: 'skirmish__epic-kind' }, foe.kind + ' \u00B7 HP ' + foe.hp + ' \u00B7 init +' + foe.mod),
+          U.el('div', { class: 'skirmish__epic-flavor' }, foe.flavor)
+        );
+        list.append(row);
+      });
+      panel.append(list);
+      return panel;
+    }
+
+    function renderCustomPanel() {
+      const panel = U.el('div', { class: 'skirmish__add-panel' });
+      panel.append(U.el('div', { class: 'skirmish__add-panel-head' }, 'Custom Combatant'));
+      const sideSel = U.el('select', { class: 'skirmish__select' });
+      sideSel.append(
+        U.el('option', { value: 'ally' }, 'Ally'),
+        U.el('option', { value: 'foe' }, 'Foe')
+      );
+      const nameInp = U.el('input', { type: 'text', class: 'skirmish__input', placeholder: 'Name' });
+      const kindInp = U.el('input', { type: 'text', class: 'skirmish__input', placeholder: 'e.g. Bandit, Knight' });
+      const hpInp = U.el('input', { type: 'number', min: '1', value: '10', class: 'skirmish__input' });
+      const modInp = U.el('input', { type: 'number', value: '0', class: 'skirmish__input' });
+      const form = U.el('div', { class: 'skirmish__inline-form' });
+      form.append(
+        U.el('label', {}, ['Side', sideSel]),
+        U.el('label', {}, ['Name', nameInp]),
+        U.el('label', {}, ['Kind', kindInp]),
+        U.el('label', {}, ['Max HP', hpInp]),
+        U.el('label', {}, ['Init Mod', modInp])
+      );
+      panel.append(form);
+      panel.append(U.el('button', {
+        class: 'btn btn--primary btn--small',
+        onclick: async () => {
+          if (!nameInp.value.trim()) { U.toast('Name required.'); return; }
+          addCustom({
+            side: sideSel.value,
+            name: nameInp.value.trim(),
+            kind: kindInp.value.trim(),
+            hp: hpInp.value,
+            mod: modInp.value
+          });
+          activePanel = null;
+          await save();
+          render();
+        }
+      }, 'Add'));
+      return panel;
+    }
+
+    function renderSide(side, label) {
+      const sideDiv = U.el('div', { class: 'skirmish__side skirmish__side--' + (side === 'ally' ? 'allies' : 'foes') });
+      const list = state.combatants.filter(c => c.side === side);
+      const head = U.el('div', { class: 'skirmish__side-head' });
+      head.append(
+        U.el('span', {}, label),
+        U.el('span', { class: 'skirmish__side-count' }, list.length + ' on the field')
+      );
+      sideDiv.append(head);
+      if (!list.length) {
+        sideDiv.append(U.el('div', { class: 'skirmish__side-empty' },
+          side === 'ally' ? 'No allies yet. Add some from the Fellowship.'
+                          : 'No foes yet. Generate some.'));
+        return sideDiv;
+      }
+      list.forEach(c => sideDiv.append(renderCombatant(c)));
+      return sideDiv;
+    }
+
+    // ----- Active mode ----------------------------------------------
+    function renderActive(wrap) {
+      // End-encounter dialog overlay
+      if (state.endPending) {
+        wrap.append(renderEndPanel());
+        return;
+      }
+
+      const current = state.combatants[state.turnIdx];
+      const head = U.el('div', { class: 'skirmish__round-head' });
+      head.append(
+        U.el('span', { class: 'skirmish__round-label' }, 'Round ' + state.round),
+        U.el('span', { class: 'skirmish__round-turn' },
+          current ? ['turn of ', U.el('b', {}, current.name)] : 'no combatants on the field'),
+        U.el('div', { class: 'skirmish__round-actions' }, [
+          U.el('button', {
+            class: 'skirmish__next-turn',
+            onclick: async () => { nextTurn(); await save(); render(); }
+          }, 'Next Turn')
+        ])
+      );
+      wrap.append(head);
+
+      // sides
+      const roster = U.el('div', { class: 'skirmish__roster' });
+      roster.append(renderSide('ally', 'Allies'), renderSide('foe', 'Foes'));
+      wrap.append(roster);
+
+      // action log
+      const log = U.el('div', { class: 'skirmish__log' });
+      log.append(U.el('div', { class: 'skirmish__log-head' }, 'Action Log'));
+      const logList = U.el('div', { class: 'skirmish__log-list' });
+      if (!state.log.length) {
+        logList.append(U.el('div', { class: 'skirmish__log-empty' }, 'No actions yet.'));
+      } else {
+        state.log.forEach(entry => {
+          const row = U.el('div', { class: 'skirmish__log-row' });
+          row.append(
+            U.el('span', { class: 'skirmish__log-round' }, 'R' + entry.round),
+            U.el('span', { class: 'skirmish__log-text' }, entry.text)
+          );
+          logList.append(row);
+        });
+      }
+      log.append(logList);
+      wrap.append(log);
+
+      // quick roll
+      wrap.append(renderQuickRoll());
+    }
+
+    function renderCombatant(c) {
+      const isCurrent = state.status === 'active' &&
+        state.combatants[state.turnIdx] && state.combatants[state.turnIdx].id === c.id;
+      const card = U.el('div', {
+        class: 'skirmish__combatant'
+          + ' skirmish__combatant--' + (c.side === 'ally' ? 'ally' : 'foe')
+          + (isCurrent ? ' skirmish__combatant--active' : '')
+          + (c.status === 'down' ? ' skirmish__combatant--down' : '')
+      });
+
+      const headWrap = U.el('div', {});
+      const headLine = U.el('div', { class: 'skirmish__c-head' });
+      headLine.append(
+        U.el('span', { class: 'skirmish__c-name' }, c.name),
+        c.kind ? U.el('span', { class: 'skirmish__c-kind' }, c.kind) : null
+      );
+      headWrap.append(headLine);
+      if (c.flavor && (c.epic || state.status === 'building')) {
+        headWrap.append(U.el('div', { class: 'skirmish__c-flavor' }, c.flavor));
+      }
+      card.append(headWrap);
+
+      const initBox = U.el('div', { class: 'skirmish__c-init' });
+      if (state.status === 'active') {
+        initBox.append('init', U.el('b', {}, c.init.toString()));
+      } else {
+        initBox.append('mod +' + (c.initMod || 0));
+      }
+      card.append(initBox);
+
+      // HP bar
+      const pct = c.hp.max ? Math.max(0, (c.hp.current / c.hp.max) * 100) : 0;
+      const bar = U.el('div', { class: 'skirmish__hpbar' });
+      bar.append(U.el('div', { class: 'skirmish__hpbar-fill', style: { width: pct + '%' } }));
+      card.append(bar);
+      const hpText = U.el('div', { class: 'skirmish__hp-text' });
+      hpText.append(
+        U.el('span', {}, c.status === 'down' ? 'DOWN' : 'HP'),
+        U.el('span', { class: 'skirmish__hp-current' }, c.hp.current + ' / ' + c.hp.max)
+      );
+      card.append(hpText);
+
+      // HP buttons (only in active mode)
+      if (state.status === 'active') {
+        const hpBtns = U.el('div', { class: 'skirmish__hp-buttons' });
+        const customInp = U.el('input', { type: 'number', placeholder: 'n', class: 'skirmish__hp-custom' });
+        const applyN = async (sign) => {
+          const v = parseInt(customInp.value, 10);
+          if (!v || isNaN(v)) return;
+          changeHP(c.id, sign * Math.abs(v));
+          customInp.value = '';
+          await save();
+          render();
+        };
+        const hpBtn = (label, delta, cls) => U.el('button', {
+          class: 'skirmish__hp-btn skirmish__hp-btn--' + cls,
+          onclick: async () => { changeHP(c.id, delta); await save(); render(); }
+        }, label);
+        hpBtns.append(
+          hpBtn('\u22125', -5, 'dmg'),
+          hpBtn('\u22121', -1, 'dmg'),
+          hpBtn('+1', +1, 'heal'),
+          hpBtn('+5', +5, 'heal'),
+          customInp,
+          U.el('button', { class: 'skirmish__hp-btn skirmish__hp-btn--dmg', onclick: () => applyN(-1) }, 'dmg'),
+          U.el('button', { class: 'skirmish__hp-btn skirmish__hp-btn--heal', onclick: () => applyN(+1) }, 'heal')
+        );
+        card.append(hpBtns);
+      }
+
+      // conditions
+      const condsWrap = U.el('div', { class: 'skirmish__conds' });
+      c.conditions.forEach(cond => {
+        condsWrap.append(U.el('button', {
+          class: 'skirmish__cond skirmish__cond--' + cond,
+          title: 'click to remove ' + cond,
+          onclick: async () => { toggleCondition(c.id, cond); await save(); render(); }
+        }, [cond, U.el('span', { class: 'skirmish__cond-x' }, '\u00D7')]));
+      });
+      const addCondWrap = U.el('span', { class: 'skirmish__cond-add' });
+      const addBtn = U.el('button', {
+        class: 'skirmish__cond-add-btn',
+        onclick: (e) => {
+          e.stopPropagation();
+          condMenuFor = (condMenuFor === c.id) ? null : c.id;
+          render();
+        }
+      }, '+ condition');
+      addCondWrap.append(addBtn);
+      if (condMenuFor === c.id) {
+        const menu = U.el('div', { class: 'skirmish__cond-menu' });
+        CONDITIONS.filter(x => !c.conditions.includes(x)).forEach(cond => {
+          menu.append(U.el('button', {
+            class: 'skirmish__cond-menu-item',
+            onclick: async (e) => {
+              e.stopPropagation();
+              toggleCondition(c.id, cond);
+              condMenuFor = null;
+              await save();
+              render();
+            }
+          }, cond));
+        });
+        addCondWrap.append(menu);
+      }
+      condsWrap.append(addCondWrap);
+      card.append(condsWrap);
+
+      // controls
+      const controls = U.el('div', { class: 'skirmish__c-controls' });
+      if (state.status === 'active') {
+        const rollResultSpan = U.el('span', { class: 'skirmish__c-roll-result' });
+        controls.append(
+          U.el('button', {
+            class: 'skirmish__c-action',
+            onclick: async () => {
+              const r = quickRollFor(c);
+              rollResultSpan.textContent = 'd20+' + (c.initMod || 0) + ' = ' + r.total;
+              rollResultSpan.className = 'skirmish__c-roll-result' +
+                (r.crit ? ' skirmish__c-roll-result--crit' : '') +
+                (r.fumble ? ' skirmish__c-roll-result--fumble' : '');
+              await save();
+              // partial: refresh just the log without losing this card's roll display
+              const logList = body.querySelector('.skirmish__log-list');
+              if (logList) {
+                logList.innerHTML = '';
+                state.log.forEach(entry => {
+                  const row = U.el('div', { class: 'skirmish__log-row' });
+                  row.append(
+                    U.el('span', { class: 'skirmish__log-round' }, 'R' + entry.round),
+                    U.el('span', { class: 'skirmish__log-text' }, entry.text)
+                  );
+                  logList.append(row);
+                });
+              }
+            }
+          }, 'Roll d20+' + (c.initMod || 0)),
+          rollResultSpan
+        );
+        if (c.status === 'down') {
+          controls.append(U.el('button', {
+            class: 'skirmish__c-action',
+            onclick: async () => {
+              c.status = 'active';
+              c.hp.current = Math.max(1, Math.floor(c.hp.max / 4));
+              logAction(c.name + ' is restored to ' + c.hp.current + ' HP.');
+              await save();
+              render();
+            }
+          }, 'Restore'));
+        }
+      }
+      controls.append(U.el('button', {
+        class: 'skirmish__c-action',
+        onclick: async () => {
+          removeCombatant(c.id);
+          await save();
+          render();
+        }
+      }, state.status === 'active' ? 'Remove' : 'Remove'));
+      card.append(controls);
+
+      return card;
+    }
+
+    function renderQuickRoll() {
+      const widget = U.el('div', { class: 'skirmish__quickroll' });
+      widget.append(U.el('div', { class: 'skirmish__quickroll-head' }, 'Quick Roll'));
+      const controls = U.el('div', { class: 'skirmish__quickroll-controls' });
+      [4, 6, 8, 10, 12, 20, 100].forEach(s => {
+        controls.append(U.el('button', {
+          class: 'skirmish__qr-die',
+          onclick: () => {
+            const ex = qrPool.find(g => g.sides === s);
+            if (ex) ex.count++;
+            else qrPool.push({ sides: s, count: 1 });
+            renderQRPool();
+          }
+        }, 'd' + s));
+      });
+      const modBox = U.el('div', { class: 'skirmish__qr-mod' });
+      modBox.append(U.el('span', { class: 'skirmish__qr-mod-label' }, 'mod'));
+      modBox.append(U.el('button', {
+        class: 'btn btn--ghost btn--small',
+        onclick: () => { qrMod--; renderQRMod(); }
+      }, '\u2212'));
+      const modVal = U.el('span', { class: 'skirmish__qr-mod-value' }, '0');
+      modBox.append(modVal);
+      modBox.append(U.el('button', {
+        class: 'btn btn--ghost btn--small',
+        onclick: () => { qrMod++; renderQRMod(); }
+      }, '+'));
+      controls.append(modBox);
+      controls.append(U.el('button', {
+        class: 'skirmish__qr-clear',
+        onclick: () => { qrPool = []; qrMod = 0; renderQRPool(); renderQRMod(); }
+      }, 'clear'));
+      widget.append(controls);
+
+      const pool = U.el('div', { class: 'skirmish__qr-pool' });
+      widget.append(pool);
+
+      const castBtn = U.el('button', {
+        class: 'skirmish__qr-cast',
+        onclick: () => {
+          if (!qrPool.length && !qrMod) return;
+          let total = qrMod;
+          const parts = [];
+          qrPool.forEach(g => {
+            const rolls = [];
+            for (let i = 0; i < g.count; i++) rolls.push(1 + Math.floor(Math.random() * g.sides));
+            total += rolls.reduce((a, b) => a + b, 0);
+            parts.push(g.count + 'd' + g.sides + ': ' + rolls.join(','));
+          });
+          const expr = qrPool.map(g => g.count + 'd' + g.sides).join('+') +
+            (qrMod ? (qrMod > 0 ? '+' + qrMod : qrMod) : '');
+          qrRecent.unshift({ expr, total, parts });
+          if (qrRecent.length > 5) qrRecent.length = 5;
+          renderQRRecent();
+        }
+      }, 'Cast');
+      widget.append(castBtn);
+
+      const recent = U.el('div', { class: 'skirmish__qr-recent' });
+      widget.append(recent);
+
+      function renderQRPool() {
+        pool.innerHTML = '';
+        if (!qrPool.length) {
+          pool.append(U.el('span', { class: 'skirmish__qr-pool-empty' },
+            'Tap a die to add. Tap a chip to remove one.'));
+          return;
+        }
+        qrPool.sort((a, b) => a.sides - b.sides);
+        qrPool.forEach(g => {
+          pool.append(U.el('button', {
+            class: 'skirmish__qr-chip',
+            onclick: () => {
+              g.count--;
+              if (g.count <= 0) qrPool = qrPool.filter(x => x !== g);
+              renderQRPool();
+            }
+          }, g.count + 'd' + g.sides));
+        });
+      }
+      function renderQRMod() {
+        modVal.textContent = qrMod === 0 ? '0' : (qrMod > 0 ? '+' + qrMod : qrMod.toString());
+      }
+      function renderQRRecent() {
+        recent.innerHTML = '';
+        if (!qrRecent.length) return;
+        recent.append(U.el('span', { class: 'skirmish__qr-recent-label' }, 'recent:'));
+        qrRecent.forEach((r, idx) => {
+          recent.append(U.el('span', {
+            class: 'skirmish__qr-recent-item' + (idx === 0 ? ' skirmish__qr-recent-item--latest' : ''),
+            title: r.parts.join('; ')
+          }, r.expr + ' \u2192 ' + r.total));
+        });
+      }
+      renderQRPool();
+      renderQRMod();
+      renderQRRecent();
+      return widget;
+    }
+
+    // ----- End encounter panel --------------------------------------
+    function renderEndPanel() {
+      const panel = U.el('div', { class: 'skirmish__end-panel' });
+      panel.append(U.el('div', { class: 'skirmish__end-head' }, '\u2767 End the Encounter \u2767'));
+      const rounds = state.round;
+      const allies = state.combatants.filter(c => c.side === 'ally');
+      const foes = state.combatants.filter(c => c.side === 'foe');
+      const alliesDown = allies.filter(c => c.status === 'down');
+      const foesDown = foes.filter(c => c.status === 'down');
+      panel.append(U.el('div', { class: 'skirmish__end-summary' },
+        rounds + ' round' + (rounds === 1 ? '' : 's') + '. ' +
+        foesDown.length + ' of ' + foes.length + ' foes down. ' +
+        alliesDown.length + ' of ' + allies.length + ' allies down.'));
+
+      const summaryInp = U.el('input', {
+        type: 'text',
+        class: 'skirmish__end-input',
+        placeholder: 'A line for the Almanac (optional)'
+      });
+      panel.append(U.el('label', {
+        style: 'display:block;font-family:var(--display);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:0.4rem;'
+      }, 'Summary line'));
+      panel.append(summaryInp);
+
+      const casualtyDecisions = {};
+      const fellowshipDowned = allies.filter(c => c.status === 'down' && c.source === 'fellowship');
+      if (fellowshipDowned.length) {
+        panel.append(U.el('label', {
+          style: 'display:block;font-family:var(--display);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:0.4rem;'
+        }, 'Fellowship casualties'));
+        const cas = U.el('div', { class: 'skirmish__end-casualties' });
+        fellowshipDowned.forEach(c => {
+          const row = U.el('div', { class: 'skirmish__end-casualty' });
+          const sel = U.el('select', { class: 'skirmish__select' });
+          ['wounded', 'lost', 'fallen'].forEach(opt => {
+            sel.append(U.el('option', { value: opt }, opt));
+          });
+          sel.value = 'wounded';
+          casualtyDecisions[c.id] = 'wounded';
+          sel.onchange = () => { casualtyDecisions[c.id] = sel.value; };
+          row.append(
+            U.el('span', { class: 'skirmish__end-casualty-name' }, c.name),
+            U.el('span', { style: 'font-family:var(--rubric);font-style:italic;color:var(--ink-soft);' }, 'mark as'),
+            sel
+          );
+          cas.append(row);
+        });
+        panel.append(cas);
+      }
+
+      const actionsDiv = U.el('div', { class: 'skirmish__end-actions' });
+      actionsDiv.append(
+        U.el('button', {
+          class: 'btn btn--ghost',
+          onclick: async () => {
+            state.endPending = false;
+            await save();
+            render();
+          }
+        }, 'Cancel'),
+        U.el('button', {
+          class: 'btn btn--primary',
+          onclick: async () => {
+            await endEncounter(summaryInp.value, casualtyDecisions);
+            render();
+          }
+        }, 'End and Pin to Almanac')
+      );
+      panel.append(actionsDiv);
+      return panel;
+    }
+
+    // Click outside condition menu closes it
+    document.addEventListener('click', (e) => {
+      if (!condMenuFor) return;
+      if (e.target.closest('.skirmish__cond-add')) return;
+      condMenuFor = null;
+      render();
+    });
+
+    render();
   }
 });
 
