@@ -307,7 +307,7 @@
 
 /* highlight flash for cross-module navigation (search results lighting up
    their target card in the destination module) */
-.cabinet-card--highlight, .threat-card--highlight {
+.cabinet-card--highlight, .threat-card--highlight, .fellowship-card--highlight {
   animation: keepHighlight 2.2s ease-out;
 }
 @keyframes keepHighlight {
@@ -801,6 +801,339 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   line-height: 1.6;
   text-align: center;
   color: var(--ink-soft);
+}
+
+/* ----- MODULE: THE WATCH (Session Prep) ------------------------------- */
+.watch {
+  display: flex; flex-direction: column;
+  gap: 1.1rem;
+}
+.watch__section {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.1rem 1.2rem;
+  position: relative;
+}
+.watch__today {
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(184,146,58,0.08), transparent 70%),
+    var(--p-0);
+  border: 1px solid var(--p-3);
+  border-top: 3px solid var(--gold-d);
+  padding: 1.3rem 1.4rem;
+}
+.watch__section-head {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.watch__section-action {
+  margin-left: auto;
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--wine);
+  cursor: pointer;
+  background: none; border: none; padding: 0;
+}
+.watch__section-action:hover { color: var(--wine-d); }
+[data-theme="dark"] .watch__section-action { color: #e36b78; }
+
+.watch__today-date {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.watch__today-weather {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.watch__today-body {
+  font-family: var(--rubric);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.watch__today-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.6rem 0;
+}
+.watch__today-actions {
+  margin-top: 0.8rem;
+  display: flex; gap: 0.4rem;
+}
+
+.watch__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.1rem;
+}
+
+.watch__list {
+  display: flex; flex-direction: column;
+  margin: 0; padding: 0; list-style: none;
+}
+.watch__item {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  padding: 0.55rem 0.45rem;
+  border-bottom: 1px dotted var(--p-3);
+  cursor: pointer;
+  background: transparent;
+  border-left: none; border-right: none; border-top: none;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+}
+.watch__item:last-child { border-bottom: none; }
+.watch__item:hover { background: rgba(184,146,58,0.10); }
+.watch__item-primary {
+  flex: 1;
+  font-family: var(--rubric);
+  font-size: 0.98rem;
+  color: var(--ink);
+  min-width: 0;
+  line-height: 1.3;
+}
+.watch__item-secondary {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  line-height: 1.3;
+}
+.watch__item-day-excerpt {
+  display: block;
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  margin-top: 0.15rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.watch__item-tag {
+  font-family: var(--display);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.45rem;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.watch__item-tag--alert {
+  background: rgba(92, 31, 36, 0.10);
+  border-color: var(--wine);
+  color: var(--wine);
+  font-weight: 600;
+}
+[data-theme="dark"] .watch__item-tag--alert {
+  background: rgba(200, 49, 62, 0.18);
+  border-color: #c8313e;
+  color: #e36b78;
+}
+.watch__threat-fill {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--wine);
+  flex-shrink: 0;
+  margin-left: 0.3rem;
+}
+[data-theme="dark"] .watch__threat-fill { color: #e36b78; }
+.watch__threat-fill--urgent { color: var(--wine); font-weight: 600; }
+
+.watch__empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.6rem 0.4rem;
+}
+
+/* ----- MODULE: THE SPARK (Prompt Generator) --------------------------- */
+.spark__categories {
+  display: flex; gap: 0.3rem; flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+  justify-content: center;
+}
+.spark__category {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.8rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.spark__category:hover { background: rgba(184,146,58,0.13); }
+.spark__category.is-active {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+
+.spark__display {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(184,146,58,0.10), transparent 65%),
+    var(--p-0);
+  border: 1px solid var(--gold-d);
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  min-height: 10rem;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  margin-bottom: 0.6rem;
+}
+.spark__display::before, .spark__display::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border: 1.5px solid var(--gold-d);
+}
+.spark__display::before { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.spark__display::after  { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+.spark__display-text {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 1.55rem;
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 520px;
+  animation: sparkIn 0.4s ease-out;
+}
+.spark__display-cat {
+  margin-top: 1.1rem;
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-d);
+  animation: sparkIn 0.4s ease-out 0.06s both;
+}
+.spark__display--empty .spark__display-text {
+  color: var(--ink-faded);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+@keyframes sparkIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.spark__controls {
+  display: flex; gap: 0.5rem; justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.spark__strike {
+  padding: 0.85rem 3rem;
+  background: var(--gold-d);
+  color: var(--p-0);
+  border: 1px solid #5a4715;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.08s, filter 0.15s;
+}
+.spark__strike:hover { filter: brightness(1.08); }
+.spark__strike:active { transform: translateY(1px); }
+[data-theme="dark"] .spark__strike { color: var(--ink); }
+
+.spark__pin {
+  padding: 0.85rem 1.3rem;
+  background: transparent;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink-soft);
+  font-family: var(--display);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.spark__pin:hover { background: var(--ink); color: var(--p-0); border-color: var(--ink); }
+.spark__pin:disabled { opacity: 0.35; cursor: not-allowed; }
+.spark__pin:disabled:hover { background: transparent; color: var(--ink-soft); }
+
+.spark__history {
+  margin-top: 1.5rem;
+  border-top: var(--rule);
+  padding-top: 1rem;
+}
+.spark__history-head {
+  font-family: var(--display);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.6rem;
+}
+.spark__history-list {
+  display: flex; flex-direction: column;
+}
+.spark__history-item {
+  display: flex; gap: 0.85rem; align-items: baseline;
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px dotted var(--p-3);
+  cursor: pointer;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+}
+.spark__history-item:hover { background: rgba(184,146,58,0.08); }
+.spark__history-text {
+  flex: 1;
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.spark__history-cat {
+  font-family: var(--display);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  flex-shrink: 0;
+}
+.spark__history-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.5rem;
+  text-align: center;
 }
 
 /* ----- MODULE: ALMANAC ------------------------------------------------- */
@@ -1930,6 +2263,396 @@ small { font-size: 0.85em; color: var(--ink-faded); }
 
 .almanac__head { flex-wrap: wrap; gap: 0.75rem; }
 
+/* ----- MODULE: THE WAYFARER (PC sheet) -------------------------------- */
+.wayfarer__head {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--rule);
+  display: flex; flex-wrap: wrap; gap: 0.7rem;
+  align-items: center; justify-content: space-between;
+}
+.wayfarer__count { font-family: var(--rubric); font-style: italic; color: var(--ink-faded); font-size: 0.95rem; }
+.wayfarer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 1.2rem;
+}
+.wayfarer__empty {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+}
+.wayfarer__empty-call {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  font-style: normal;
+}
+
+.wayfarer-card {
+  --accent: var(--wine);
+  --accent-d: var(--wine-d);
+  --accent-soft: rgba(92,31,36,0.10);
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.3rem 1.4rem 1rem;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+.wayfarer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-d));
+}
+.wayfarer-card--fallen { opacity: 0.6; }
+
+.wayfarer-card__head {
+  display: flex; align-items: flex-start; gap: 0.9rem;
+  margin: 0.2rem 0 0.6rem;
+}
+.wayfarer-card__glyph {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.wayfarer-card__title { flex: 1; min-width: 0; }
+.wayfarer-card__name {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 0.2rem;
+}
+.wayfarer-card__caption {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-faded);
+}
+.wayfarer-card__status {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  background: var(--status-soft, rgba(58,47,36,0.10));
+  border: 1px solid var(--status-color, var(--ink-soft));
+  color: var(--status-color, var(--ink-soft));
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.wayfarer-card--status-hale      { --status-color: var(--forest); --status-soft: rgba(45,74,53,0.12); }
+.wayfarer-card--status-weary     { --status-color: var(--gold-d); --status-soft: rgba(184,146,58,0.16); }
+.wayfarer-card--status-wounded   { --status-color: #8a4a2c;       --status-soft: rgba(138,74,44,0.14); }
+.wayfarer-card--status-grievous  { --status-color: var(--wine);   --status-soft: rgba(92,31,36,0.14); }
+.wayfarer-card--status-fallen    { --status-color: var(--ink-faded); --status-soft: rgba(107,93,74,0.12); }
+[data-theme="dark"] .wayfarer-card--status-wounded { --status-color: #b8694a; --status-soft: rgba(184,105,74,0.18); }
+
+.wayfarer-card__sep {
+  border: none;
+  border-top: 1px dotted var(--p-3);
+  margin: 0.5rem 0 0.9rem;
+}
+
+.wayfarer-card__field {
+  margin-bottom: 0.85rem;
+}
+.wayfarer-card__field-label {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid var(--p-3);
+}
+.wayfarer-card__field-value {
+  font-family: var(--rubric);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.wayfarer-card__field--oath .wayfarer-card__field-value {
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.05rem;
+}
+[data-theme="dark"] .wayfarer-card__field--oath .wayfarer-card__field-value {
+  color: var(--ink);
+  font-style: italic;
+}
+
+.wayfarer-card__backlinks {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  margin: 0.3rem 0 0.6rem;
+}
+
+.wayfarer-card__actions {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--p-3);
+}
+
+.wayfarer-card--highlight {
+  animation: keepHighlight 2.2s ease-out;
+}
+
+/* ----- MODULE: THE FELLOWSHIP (Companions) ---------------------------- */
+.fellowship__head {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: var(--rule);
+  display: flex; flex-wrap: wrap; gap: 0.7rem;
+  align-items: center; justify-content: space-between;
+}
+.fellowship__count { font-family: var(--rubric); font-style: italic; color: var(--ink-faded); font-size: 0.95rem; }
+.fellowship__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.1rem;
+}
+
+.fellowship-card {
+  --accent: var(--ink-soft);
+  --accent-d: var(--ink);
+  --accent-soft: rgba(58,47,36,0.08);
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.1rem 1.2rem 0.85rem;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+.fellowship-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-d));
+}
+.fellowship-card--departed { opacity: 0.6; }
+.fellowship-card--fallen { opacity: 0.6; }
+
+.fellowship-card__head {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin: 0.15rem 0 0.5rem;
+}
+.fellowship-card__glyph {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.fellowship-card__title { flex: 1; min-width: 0; }
+.fellowship-card__name {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.fellowship-card__meta {
+  display: flex; gap: 0.5rem; align-items: center;
+  margin-top: 0.2rem;
+  flex-wrap: wrap;
+}
+.fellowship-card__archetype {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.fellowship-card__status {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  background: var(--status-soft, rgba(58,47,36,0.1));
+  border: 1px solid var(--status-color, var(--ink-soft));
+  color: var(--status-color, var(--ink-soft));
+}
+.fellowship-card--status-hale      { --status-color: var(--forest); --status-soft: rgba(45,74,53,0.12); }
+.fellowship-card--status-wounded   { --status-color: #8a4a2c;       --status-soft: rgba(138,74,44,0.14); }
+.fellowship-card--status-lost      { --status-color: #4a5764;       --status-soft: rgba(74,87,100,0.14); }
+.fellowship-card--status-fallen    { --status-color: var(--wine);   --status-soft: rgba(92,31,36,0.12); }
+.fellowship-card--status-departed  { --status-color: var(--gold-d); --status-soft: rgba(184,146,58,0.16); }
+[data-theme="dark"] .fellowship-card--status-wounded { --status-color: #b8694a; --status-soft: rgba(184,105,74,0.18); }
+[data-theme="dark"] .fellowship-card--status-lost    { --status-color: #758494; --status-soft: rgba(117,132,148,0.16); }
+
+.fellowship-card__voice {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin-bottom: 0.55rem;
+}
+
+.fellowship-card__bond {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 0.8rem;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+.fellowship-card__bond-label {
+  font-family: var(--display);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.fellowship-card__bond-value {
+  font-family: var(--rubric);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.fellowship-card__bond-bar {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.fellowship-card__bond-controls {
+  grid-column: 1 / -1;
+  display: flex; gap: 0.3rem; justify-content: center;
+  margin-top: 0.15rem;
+}
+
+.fellowship-card__quote {
+  background: var(--p-1);
+  border-left: 3px solid var(--accent);
+  padding: 0.75rem 0.95rem;
+  margin: 0.35rem 0 0.55rem;
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  min-height: 3.5em;
+}
+.fellowship-card__quote-text {
+  flex: 1;
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.5;
+  animation: fellowshipSpeakIn 0.32s ease-out;
+}
+.fellowship-card__quote-text::before {
+  content: '\u201C';
+  font-family: var(--serif);
+  font-size: 1.4em;
+  color: var(--ink-faded);
+  vertical-align: -0.18em;
+  margin-right: 0.05em;
+}
+.fellowship-card__quote-text::after {
+  content: '\u201D';
+  font-family: var(--serif);
+  font-size: 1.4em;
+  color: var(--ink-faded);
+  vertical-align: -0.18em;
+  margin-left: 0.05em;
+}
+.fellowship-card__quote--empty .fellowship-card__quote-text {
+  font-style: italic;
+  color: var(--ink-faded);
+}
+.fellowship-card__quote--empty .fellowship-card__quote-text::before,
+.fellowship-card__quote--empty .fellowship-card__quote-text::after { content: ''; }
+.fellowship-card__quote-actions {
+  display: flex; gap: 0.15rem; flex-shrink: 0;
+}
+.fellowship-card__quote-act {
+  background: transparent;
+  border: none;
+  color: var(--ink-faded);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0 0.3rem;
+  opacity: 0.55;
+  transition: opacity 0.12s, color 0.12s;
+}
+.fellowship-card__quote-act:hover { opacity: 1; color: var(--gold-d); }
+
+@keyframes fellowshipSpeakIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.fellowship-card__speak {
+  display: block;
+  margin: 0.3rem auto 0.55rem;
+  padding: 0.65rem 2.6rem;
+  background: var(--accent);
+  color: var(--p-0);
+  border: 1px solid var(--accent-d);
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.08s, filter 0.15s;
+}
+.fellowship-card__speak:hover { filter: brightness(1.08); }
+.fellowship-card__speak:active { transform: translateY(1px); }
+.fellowship-card__speak:disabled { opacity: 0.4; cursor: not-allowed; }
+[data-theme="dark"] .fellowship-card__speak { color: var(--ink); }
+
+.fellowship-card__backlinks {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  margin: 0.3rem 0 0.5rem;
+}
+
+.fellowship-card__actions {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--p-3);
+}
+
+/* archetype picker in the form */
+.archetype-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.3rem;
+}
+.archetype-picker button {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: var(--rubric);
+  font-size: 0.95rem;
+  text-align: left;
+}
+.archetype-picker button:hover { background: rgba(184,146,58,0.12); }
+.archetype-picker button.is-selected {
+  background: var(--ink);
+  color: var(--p-0);
+  border-color: var(--ink);
+}
+.archetype-picker__glyph { font-family: var(--display); font-size: 1.1rem; line-height: 1; }
+
 /* ----- MODULE: THE CABINET (Things Found) ----------------------------- */
 .cabinet__head {
   margin-bottom: 1rem;
@@ -2512,6 +3235,304 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   .faction-relation { grid-template-columns: 28px 1fr auto auto; }
   .faction-relation__label-stack { min-width: 0; }
 }
+
+/* ====================================================================
+   PRINT STYLESHEET
+   Strips the app chrome (banner, nav, theme toggle, search, modals,
+   tooltips, action buttons) and lays out the current room for
+   letter-paper printing. Each room is tuned to print the artifact it
+   produces: the Scriptorium prints the handout, the Almanac prints the
+   calendar, the Watch prints the session summary, the Cabinet prints
+   the inventory, etc. Forces the light palette so dark mode does not
+   waste ink. Cards avoid breaking across pages where possible.
+   ==================================================================== */
+@media print {
+  @page {
+    size: letter portrait;
+    margin: 0.5in;
+  }
+
+  /* force light palette in print regardless of UI theme */
+  :root {
+    --p-0: #ffffff !important;
+    --p-1: #ffffff !important;
+    --p-2: #f5f1e8 !important;
+    --p-3: #b8a583 !important;
+    --p-4: #8a7a55 !important;
+    --ink: #1a1612 !important;
+    --ink-soft: #3a2f24 !important;
+    --ink-faded: #6b5d4a !important;
+    --ink-whisper: #b0a290 !important;
+    --wine: #5c1f24 !important;
+    --wine-d: #3d1418 !important;
+    --forest: #2d4a35 !important;
+    --forest-d: #1c2f22 !important;
+    --gold: #b8923a !important;
+    --gold-l: #d4a849 !important;
+    --gold-d: #8a6c25 !important;
+    --indigo: #2a2848 !important;
+  }
+
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: black;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  /* SHELL: hide app-level chrome */
+  .banner, .nav, #nav,
+  .modal-overlay, .search-overlay,
+  .wikilink-tooltip, .matrix__editor {
+    display: none !important;
+  }
+
+  /* LAYOUT: expand the folio to fill the page */
+  .layout {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  #folio, .folio {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+  .folio__head {
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+  .folio__title { font-size: 18pt; margin: 0; }
+  .folio__sub { font-style: italic; font-size: 10pt; }
+  .folio__actions, #folio-actions { display: none !important; }
+
+  /* CARDS: do not break across pages */
+  .card, .faction-card, .threat-card, .cabinet-card, .fellowship-card,
+  .wayfarer-card, .roll__card, .watch__section, .augury__card,
+  .archive__entry, .tavern__parchment {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* ACTION CONTAINERS: hide everything that is only useful interactively */
+  .lists__add, .lists__actions,
+  .cabinet-card__actions, .cabinet__filters,
+  .threat-card__actions, .threat-card__controls,
+  .faction-card__actions, .faction-card__expand,
+  .faction-card__gauge-controls, .faction-card__threat-chip,
+  .fellowship-card__actions, .fellowship-card__speak,
+  .fellowship-card__bond-controls, .fellowship-card__quote-actions,
+  .wayfarer-card__actions,
+  .watch__today-actions, .watch__section-action,
+  .almanac__controls,
+  .archive__type-picker, .archive__new, .archive__search,
+  .tavern__rumour-reveal, .tavern__rumour-pin, .tavern__patron-recruit,
+  .spark__categories, .spark__controls, .spark__history,
+  .factions__toggle,
+  .roll__chronicle-actions,
+  .gauge, .gauge-btn, .gauge-tick,
+  .lists__grip, .lists__icon-btn,
+  .home__grid {
+    display: none !important;
+  }
+
+  /* FORMS: make inputs render as static text */
+  input[type="text"], input[type="number"], input:not([type]), textarea, select {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    resize: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* BUTTONS that survive (wikilinks, content tags): make them look textual */
+  button {
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    cursor: default !important;
+    padding: 0 !important;
+    font: inherit !important;
+  }
+
+  /* ARCHIVE: print only the open entry, no sidebar */
+  .archive {
+    grid-template-columns: 1fr !important;
+    display: block !important;
+  }
+  .archive__sidebar { display: none !important; }
+  .archive__main {
+    padding: 0 !important;
+    border: none !important;
+    background: white !important;
+  }
+  .archive__title {
+    border: none !important;
+    font-size: 16pt !important;
+    padding: 0 !important;
+    margin-bottom: 0.4rem !important;
+  }
+  .archive__editor { display: none !important; } /* hide raw editor, prefer rendered view */
+  .archive__rendered { font-family: var(--rubric); }
+  .archive__wikilink {
+    color: var(--ink-soft) !important;
+    border-bottom: 1px dotted var(--ink-faded) !important;
+  }
+
+  /* SCRIPTORIUM: the handout becomes the entire page */
+  .forge { display: block !important; }
+  .forge__panel { display: none !important; }
+  .forge__preview {
+    width: 100% !important;
+    background: white !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .forge__svg {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 9.5in !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* ALMANAC: print the calendar grid; day panel stacks underneath if open */
+  .almanac {
+    grid-template-columns: 1fr !important;
+    display: block !important;
+  }
+  .almanac__calendar { width: 100% !important; }
+  .almanac__panel {
+    margin-top: 1rem !important;
+    border-top: 1px solid var(--ink-soft) !important;
+    padding-top: 1rem !important;
+  }
+  .almanac__day, .almanac__moon {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .almanac__nav-btn, .almanac__advance { display: none !important; }
+
+  /* LISTS: clean initiative slate */
+  .lists__row {
+    grid-template-columns: 60px 1fr 1fr 90px !important;
+    page-break-inside: avoid;
+  }
+
+  /* HEARTH: audio room is not printable; show only the folio head */
+  .hearth__layers, .hearth__master, .hearth__presets,
+  .hearth__layer, .hearth__layer-toggle, .hearth__layer-slider,
+  .hearth__master-slider, .hearth__preset {
+    display: none !important;
+  }
+
+  /* THE WATCH: tighten the grid, keep a clean session-summary look */
+  .watch__today {
+    border-top: 3px solid var(--ink-soft) !important;
+    background: white !important;
+  }
+  .watch__grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+  }
+  .watch__section { background: white !important; }
+
+  /* THE TAVERN: parchment notice prints as a handout */
+  .tavern__parchment {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid var(--ink-soft) !important;
+  }
+  .tavern__parchment::before, .tavern__parchment::after { display: none !important; }
+
+  /* FELLOWSHIP/WAYFARER cards: clean print */
+  .fellowship-card, .wayfarer-card {
+    background: white !important;
+    box-shadow: none !important;
+  }
+  .fellowship-card__quote {
+    border-left: 2px solid var(--ink-soft) !important;
+    background: white !important;
+  }
+  .fellowship-card__quote-text::before,
+  .fellowship-card__quote-text::after { color: var(--ink-soft) !important; }
+
+  /* THREATS: keep the SVG clock visible (print-color-adjust ensures fills) */
+  .threat-card {
+    background: white !important;
+    box-shadow: none !important;
+  }
+  .threat-card__clock {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .clock__rim, .clock__slice, .clock__center {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* CABINET: tight inventory layout */
+  .cabinet-card {
+    background: white !important;
+    box-shadow: none !important;
+  }
+  .cabinet__grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  /* FACTIONS: cards open by default in print */
+  .faction-card__body { display: block !important; }
+  .faction-card {
+    background: white !important;
+    box-shadow: none !important;
+  }
+  .faction-card__ribbon {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .matrix-wrap {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* AUGURY: keep card fill colours on print */
+  .augury__card {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* sticky elements become static in print */
+  .search-modal__group-head { position: static !important; }
+
+  /* dropped capitals and decorative initials: keep but neutralize backgrounds */
+  .dropcap::first-letter {
+    background: transparent !important;
+  }
+
+  /* prevent page break right after a heading */
+  h1, h2, h3, .h1, .h2, .h3 {
+    page-break-after: avoid;
+    break-after: avoid-page;
+  }
+}
 </style>
 </head>
 <body>
@@ -2555,6 +3576,7 @@ small { font-size: 0.85em; color: var(--ink-faded); }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="g-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M3 11 L12 3 L21 11 V20 H14 V14 H10 V20 H3 Z"/></symbol>
+    <symbol id="g-watch" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 C 9 6 9 9 12 11 C 15 9 15 6 12 3 Z M12 11 C 10.5 12 10.5 13 12 14 C 13.5 13 13.5 12 12 11 M11 14 L 11 19 L 13 19 L 13 14 M 8 19 L 16 19 M 8 21 L 16 21"/></symbol>
     <symbol id="g-quill" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 20 C 4 14 10 8 18 4 C 18 12 14 18 8 20 Z M4 20 L9 15"/></symbol>
     <symbol id="g-mask" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 7 C 5 4 8 3 12 3 C 16 3 19 4 19 7 V12 C 19 17 16 21 12 21 C 8 21 5 17 5 12 Z M9 10 L9.5 11 M14.5 11 L15 10 M9 15 C 10 16 14 16 15 15"/></symbol>
     <symbol id="g-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 4 H10 C 11 4 12 5 12 6 V20 C 12 19 11 18 10 18 H4 Z M20 4 H14 C 13 4 12 5 12 6 V20 C 12 19 13 18 14 18 H20 Z M4 4 V18 M20 4 V18"/></symbol>
@@ -2568,6 +3590,9 @@ small { font-size: 0.85em; color: var(--ink-faded); }
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
     <symbol id="g-hourglass" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 3 H17 V7 L12 12 L7 7 Z M7 21 H17 V17 L12 12 L7 17 Z M5.5 3 H18.5 M5.5 21 H18.5"/></symbol>
     <symbol id="g-cabinet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M3 11 V20 H21 V11 M3 11 C 3 7.5 6 5.5 12 5.5 C 18 5.5 21 7.5 21 11 Z M3 11 L21 11 M10 13.5 H14 V17.5 H10 Z"/></symbol>
+    <symbol id="g-fellowship" viewBox="0 0 24 24"><circle cx="5" cy="9.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="7.8" r="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="9.5" r="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M2.5 20.5 L 5 13.5 L 7.5 20.5 Z M8.5 20.5 L 12 11.5 L 15.5 20.5 Z M16.5 20.5 L 19 13.5 L 21.5 20.5 Z"/></symbol>
+    <symbol id="g-wayfarer" viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 21 L 12 10 L 18 21 Z M19 4 L 19 22"/></symbol>
+    <symbol id="g-spark" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 2 L 12 8 M12 16 L 12 22 M2 12 L 8 12 M16 12 L 22 12 M5 5 L 9 9 M15 15 L 19 19 M5 19 L 9 15 M15 9 L 19 5"/></symbol>
   </defs>
 </svg>
 
@@ -3253,6 +4278,36 @@ const Keep = (() => {
       }
     } catch {}
 
+    // The Fellowship (companions)
+    try {
+      const companions = (await Vault.get('fellowship')) || [];
+      for (const c of companions) {
+        idx.push({
+          group: 'The Fellowship',
+          moduleId: 'fellowship',
+          title: c.name,
+          subtitle: (c.archetype || '') + (c.status ? ' \u00b7 ' + c.status : ''),
+          body: [c.voice, ...(c.customLines || []), ...(c.speakHistory || []).slice(0, 5)].filter(Boolean).join(' '),
+          onSelect: async () => { await Vault.set('fellowship-highlight', c.id); await mount('fellowship'); }
+        });
+      }
+    } catch {}
+
+    // The Wayfarer (PC sheets)
+    try {
+      const pcs = (await Vault.get('wayfarer')) || [];
+      for (const pc of pcs) {
+        idx.push({
+          group: 'The Wayfarer',
+          moduleId: 'wayfarer',
+          title: pc.name,
+          subtitle: [pc.lineage, pc.calling].filter(Boolean).join(' \u00b7 '),
+          body: [pc.description, pc.oath, pc.bonds, pc.carried, pc.notes].filter(Boolean).join(' '),
+          onSelect: async () => { await Vault.set('wayfarer-highlight', pc.id); await mount('wayfarer'); }
+        });
+      }
+    } catch {}
+
     // Faction Ledger
     try {
       const factions = (await Vault.get('factions')) || [];
@@ -3503,11 +4558,554 @@ const Keep = (() => {
     await renderChip();
 
     const last = await Vault.get('last-module');
-    mount(last && modules.has(last) ? last : 'home');
+    mount(last && modules.has(last) ? last : 'watch');
   }
 
   return { register, mount, init, modules, switchTo, renderChip, openSearch, current: () => current && current.id };
 })();
+
+/* =========================================================================
+   MODULE: THE WATCH (Session Prep)
+   A contextual landing page that aggregates the current state of the
+   chronicle: today's day note and weather, the last few days of notes, any
+   threats over halfway full, and the most-recently-touched NPCs and finds.
+   Sibling to The Gate; intended as the practical re-entry point for an
+   ongoing campaign while The Gate remains the tile-grid welcome.
+   ========================================================================= */
+Keep.register({
+  id: 'watch',
+  name: 'The Watch',
+  category: null,
+  glyph: 'g-watch',
+  tagline: 'Yesterday, today, and what is mounting.',
+  sub: 'A long look across the chronicle. Useful at the start of a session.',
+
+  async mount(body, actions) {
+    const cal = await Refs.calendar();
+    const today = await Refs.today();
+    const notes = (await Vault.get('almanac-notes')) || {};
+    const threats = (await Vault.get('threats')) || [];
+    const npcs = (await Vault.get('faces-roster')) || [];
+    const items = (await Vault.get('cabinet')) || [];
+    const companions = (await Vault.get('fellowship')) || [];
+    const wayfarers = (await Vault.get('wayfarer')) || [];
+    const factions = (await Vault.get('factions')) || [];
+    const oracleHistory = (await Vault.get('oracle-history')) || [];
+    const auguryHistory = (await Vault.get('augury-history')) || [];
+    const sparkHistory = (await Vault.get('spark-history')) || [];
+    const archiveEntries = (await Vault.get('archive-entries')) || {};
+
+    function fmtDate(d) {
+      if (!d || typeof d !== 'object') return '';
+      return d.day + ' ' + (cal.months[d.month] || '?') + ', ' + d.year;
+    }
+    function dayKey(d) { return d.year + '-' + d.month + '-' + d.day; }
+    function previousDay(d) {
+      let day = d.day - 1, month = d.month, year = d.year;
+      if (day < 1) {
+        month--;
+        if (month < 0) { month = cal.months.length - 1; year--; }
+        day = cal.daysPerMonth;
+      }
+      return { day, month, year };
+    }
+    function excerpt(text, max) {
+      const t = String(text || '').replace(/\s+/g, ' ').trim();
+      if (t.length <= max) return t;
+      return t.slice(0, max).trimEnd() + '\u2026';
+    }
+
+    const wrap = U.el('div', { class: 'watch' });
+
+    // --- TODAY ---
+    const todayKey = dayKey(today);
+    const todayNote = notes[todayKey];
+    const todaySec = U.el('div', { class: 'watch__section watch__today' });
+    todaySec.append(
+      U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Today'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Refs.openAlmanacAt(today) }, 'Open in Almanac')
+      ]),
+      U.el('div', { class: 'watch__today-date' }, fmtDate(today))
+    );
+    if (todayNote && (todayNote.weather || todayNote.body)) {
+      if (todayNote.weather) {
+        todaySec.append(U.el('div', { class: 'watch__today-weather' }, todayNote.weather));
+      }
+      if (todayNote.body) {
+        todaySec.append(U.el('div', { class: 'watch__today-body' }, todayNote.body));
+      }
+    } else {
+      todaySec.append(U.el('div', { class: 'watch__today-empty' },
+        'No note for today. Open the Almanac to set the weather and write what happened.'));
+    }
+    todaySec.append(U.el('div', { class: 'watch__today-actions' }, [
+      U.el('button', { class: 'btn btn--small btn--ghost',
+        onclick: () => Refs.openAlmanacAt(today) }, todayNote ? 'Edit Today' : 'Set Today'),
+      U.el('button', { class: 'btn btn--small btn--ghost',
+        onclick: async () => {
+          await Refs.advanceToday();
+          await Keep.mount('watch');
+        }
+      }, 'Advance One Day')
+    ]));
+    wrap.append(todaySec);
+
+    // --- GRID: mounting + recent days + faces + finds + companions in trouble ---
+    const grid = U.el('div', { class: 'watch__grid' });
+
+    // MOUNTING PRESSURES (threats > 50% full, not yet fulfilled)
+    {
+      const sec = U.el('div', { class: 'watch__section' });
+      const mounting = threats
+        .filter(t => t.filled > 0 && t.filled < t.total && (t.filled / t.total) >= 0.5)
+        .sort((a, b) => (b.filled / b.total) - (a.filled / a.total))
+        .slice(0, 8);
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Mounting Pressures'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('threats') }, 'All clocks')
+      ]));
+      if (!mounting.length) {
+        sec.append(U.el('div', { class: 'watch__empty' }, 'Nothing mounting. The clocks tick quietly.'));
+      } else {
+        const list = U.el('ul', { class: 'watch__list' });
+        mounting.forEach(t => {
+          const ratio = t.filled / t.total;
+          const urgent = ratio >= 0.85;
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: async () => {
+              await Vault.set('threats-highlight', t.id);
+              await Keep.mount('threats');
+            }
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, [
+              U.el('span', {}, t.name),
+              t.description ? U.el('span', { class: 'watch__item-day-excerpt' }, excerpt(t.description, 80)) : null
+            ].filter(Boolean)),
+            U.el('span', { class: 'watch__threat-fill' + (urgent ? ' watch__threat-fill--urgent' : '') },
+              t.filled + '/' + t.total)
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+      }
+      grid.append(sec);
+    }
+
+    // RECENT DAYS (previous 4 days from today)
+    {
+      const sec = U.el('div', { class: 'watch__section' });
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Recent Days'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('almanac') }, 'Almanac')
+      ]));
+      const recent = [];
+      let cursor = previousDay(today);
+      for (let i = 0; i < 60 && recent.length < 5; i++) {
+        const key = dayKey(cursor);
+        const note = notes[key];
+        if (note && (note.body || note.weather)) {
+          recent.push({ date: { ...cursor }, note });
+        }
+        cursor = previousDay(cursor);
+      }
+      if (!recent.length) {
+        sec.append(U.el('div', { class: 'watch__empty' }, 'No days noted yet.'));
+      } else {
+        const list = U.el('ul', { class: 'watch__list' });
+        recent.forEach(({ date, note }) => {
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: () => Refs.openAlmanacAt(date)
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, [
+              U.el('span', {}, fmtDate(date)),
+              note.body ? U.el('span', { class: 'watch__item-day-excerpt' }, excerpt(note.body, 90)) : null
+            ].filter(Boolean)),
+            note.weather ? U.el('span', { class: 'watch__item-tag' }, excerpt(note.weather, 18)) : null
+          ].filter(Boolean));
+          list.append(li);
+        });
+        sec.append(list);
+      }
+      grid.append(sec);
+    }
+
+    // RECENT FACES (most-recently touched NPCs)
+    {
+      const sec = U.el('div', { class: 'watch__section' });
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Recent Faces'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('faces') }, 'Hall of Faces')
+      ]));
+      const recent = [...npcs]
+        .sort((a, b) => (b.created || 0) - (a.created || 0))
+        .slice(0, 6);
+      if (!recent.length) {
+        sec.append(U.el('div', { class: 'watch__empty' }, 'No faces in the roster yet.'));
+      } else {
+        const list = U.el('ul', { class: 'watch__list' });
+        recent.forEach(n => {
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: async () => {
+              await Vault.set('faces-show', n.id);
+              await Keep.mount('faces');
+            }
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, n.name),
+            U.el('span', { class: 'watch__item-secondary' }, n.role || '')
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+      }
+      grid.append(sec);
+    }
+
+    // RECENT FINDS (Cabinet items, most-recently updated)
+    {
+      const sec = U.el('div', { class: 'watch__section' });
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Recent Finds'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('cabinet') }, 'The Cabinet')
+      ]));
+      const recent = [...items]
+        .sort((a, b) => (b.updated || b.created || 0) - (a.updated || a.created || 0))
+        .slice(0, 6);
+      if (!recent.length) {
+        sec.append(U.el('div', { class: 'watch__empty' }, 'No finds catalogued yet.'));
+      } else {
+        const list = U.el('ul', { class: 'watch__list' });
+        recent.forEach(it => {
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: async () => {
+              await Vault.set('cabinet-highlight', it.id);
+              await Keep.mount('cabinet');
+            }
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, it.name),
+            U.el('span', { class: 'watch__item-tag' }, it.status || 'held')
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+      }
+      grid.append(sec);
+    }
+
+    // COMPANIONS NOT HALE (only if fellowship is in use)
+    if (companions.length) {
+      const hurting = companions.filter(c => c.status && c.status !== 'hale' && c.status !== 'departed');
+      if (hurting.length) {
+        const sec = U.el('div', { class: 'watch__section' });
+        sec.append(U.el('div', { class: 'watch__section-head' }, [
+          document.createTextNode('Companions in Trouble'),
+          U.el('button', { class: 'watch__section-action',
+            onclick: () => Keep.mount('fellowship') }, 'Fellowship')
+        ]));
+        const list = U.el('ul', { class: 'watch__list' });
+        hurting.forEach(c => {
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: async () => {
+              await Vault.set('fellowship-highlight', c.id);
+              await Keep.mount('fellowship');
+            }
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, c.name),
+            U.el('span', { class: 'watch__item-tag' }, c.status)
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+        grid.append(sec);
+      }
+    }
+
+    // WAYFARERS (show roster if any PCs exist; flag non-Hale statuses)
+    if (wayfarers.length) {
+      const sec = U.el('div', { class: 'watch__section' });
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode(wayfarers.length === 1 ? 'The Wayfarer' : 'The Wayfarers'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('wayfarer') }, 'Open')
+      ]));
+      const list = U.el('ul', { class: 'watch__list' });
+      wayfarers.forEach(pc => {
+        const hurt = pc.status && pc.status !== 'hale';
+        const li = U.el('button', {
+          class: 'watch__item',
+          onclick: async () => {
+            await Vault.set('wayfarer-highlight', pc.id);
+            await Keep.mount('wayfarer');
+          }
+        }, [
+          U.el('span', { class: 'watch__item-primary' }, [
+            U.el('span', {}, pc.name || '(unnamed)'),
+            (pc.calling || pc.lineage) ?
+              U.el('span', { class: 'watch__item-day-excerpt' },
+                [pc.lineage, pc.calling].filter(Boolean).join(', ')) : null
+          ].filter(Boolean)),
+          U.el('span', {
+            class: 'watch__item-tag' + (hurt ? ' watch__item-tag--alert' : '')
+          }, pc.status || 'hale')
+        ]);
+        list.append(li);
+      });
+      sec.append(list);
+      grid.append(sec);
+    }
+
+    // STANDING WITH (factions in play: recently touched, with party standing, or tied to active threats)
+    if (factions.length) {
+      // determine which factions have active threats
+      const factionsWithThreats = new Set(
+        threats
+          .filter(t => t.factionId && t.filled > 0 && t.filled < t.total)
+          .map(t => t.factionId)
+      );
+      const ranked = [...factions]
+        .map(f => ({
+          f,
+          activeThreat: factionsWithThreats.has(f.id),
+          standing: Math.abs(f.party || 0),
+          touched: f.updated || 0
+        }))
+        .filter(x => x.activeThreat || x.standing > 0 || x.touched > 0)
+        .sort((a, b) => {
+          if (a.activeThreat !== b.activeThreat) return b.activeThreat - a.activeThreat;
+          if (a.touched !== b.touched) return b.touched - a.touched;
+          return b.standing - a.standing;
+        })
+        .slice(0, 5);
+
+      const sec = U.el('div', { class: 'watch__section' });
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Standing With'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('factions') }, 'Faction Ledger')
+      ]));
+      if (!ranked.length) {
+        sec.append(U.el('div', { class: 'watch__empty' }, 'No standings noted yet.'));
+      } else {
+        const list = U.el('ul', { class: 'watch__list' });
+        ranked.forEach(({ f, activeThreat }) => {
+          const party = f.party || 0;
+          const partyLabel = party === 0 ? 'neutral'
+            : (party > 0 ? '+' : '') + party;
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: async () => {
+              await Vault.set('factions-expand', f.id);
+              await Keep.mount('factions');
+            }
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, [
+              U.el('span', {}, (f.sigil || '\u2756') + ' ' + f.name),
+              activeThreat ? U.el('span', { class: 'watch__item-day-excerpt' },
+                '\u2620 clock ticking') : null
+            ].filter(Boolean)),
+            U.el('span', { class: 'watch__item-tag' }, partyLabel)
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+      }
+      grid.append(sec);
+    }
+
+    // RECENT CASTINGS (Oracle + Augury merged, sorted by ts desc)
+    {
+      const castings = [];
+      oracleHistory.forEach(o => {
+        const q = (o.q && o.q.trim()) ? '"' + o.q.trim() + '"' : '(no question)';
+        const verdict = (o.verdict || '') + ', ' + (o.qualifier || '');
+        castings.push({
+          ts: o.ts || 0,
+          kind: 'oracle',
+          headline: q,
+          summary: verdict
+        });
+      });
+      auguryHistory.forEach(a => {
+        const labels = { tarot: 'Tarot', runes: 'Runes', scry: 'Scrying' };
+        castings.push({
+          ts: a.ts || 0,
+          kind: 'augury',
+          headline: labels[a.method] || 'Augury',
+          summary: a.text || ''
+        });
+      });
+      castings.sort((a, b) => (b.ts || 0) - (a.ts || 0));
+      const recent = castings.slice(0, 5);
+
+      if (recent.length) {
+        const sec = U.el('div', { class: 'watch__section' });
+        sec.append(U.el('div', { class: 'watch__section-head' }, [
+          document.createTextNode('Recent Castings'),
+          U.el('button', { class: 'watch__section-action',
+            onclick: () => Keep.mount(recent[0].kind) }, recent[0].kind === 'oracle' ? 'Oracle' : 'Augury')
+        ]));
+        const list = U.el('ul', { class: 'watch__list' });
+        recent.forEach(c => {
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: () => Keep.mount(c.kind)
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, [
+              U.el('span', {}, c.headline),
+              c.summary ? U.el('span', { class: 'watch__item-day-excerpt' }, excerpt(c.summary, 70)) : null
+            ].filter(Boolean)),
+            U.el('span', { class: 'watch__item-tag' }, c.kind === 'oracle' ? 'oracle' : 'augury')
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+        grid.append(sec);
+      }
+    }
+
+    // RECENT SPARKS (last 5 phrases struck)
+    if (sparkHistory.length) {
+      const sec = U.el('div', { class: 'watch__section' });
+      sec.append(U.el('div', { class: 'watch__section-head' }, [
+        document.createTextNode('Recent Sparks'),
+        U.el('button', { class: 'watch__section-action',
+          onclick: () => Keep.mount('spark') }, 'The Spark')
+      ]));
+      const list = U.el('ul', { class: 'watch__list' });
+      sparkHistory.slice(0, 5).forEach(s => {
+        const li = U.el('button', {
+          class: 'watch__item',
+          onclick: () => Keep.mount('spark')
+        }, [
+          U.el('span', { class: 'watch__item-primary' }, excerpt(s.text || '', 90)),
+          U.el('span', { class: 'watch__item-tag' }, s.category || 'all')
+        ]);
+        list.append(li);
+      });
+      sec.append(list);
+      grid.append(sec);
+    }
+
+    // RECENT LORE (archive entries most recently updated)
+    {
+      const entries = Object.entries(archiveEntries)
+        .map(([name, e]) => ({ name, ...e }))
+        .filter(e => e.body || e.title)
+        .sort((a, b) => (b.updated || 0) - (a.updated || 0))
+        .slice(0, 5);
+
+      if (entries.length) {
+        const sec = U.el('div', { class: 'watch__section' });
+        sec.append(U.el('div', { class: 'watch__section-head' }, [
+          document.createTextNode('Recent Lore'),
+          U.el('button', { class: 'watch__section-action',
+            onclick: () => Keep.mount('archive') }, 'Archive')
+        ]));
+        const list = U.el('ul', { class: 'watch__list' });
+        entries.forEach(e => {
+          const firstLine = (e.body || '').replace(/^#+\s+/gm, '').split('\n').find(l => l.trim());
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: async () => {
+              await Vault.set('archive-current', e.name);
+              await Keep.mount('archive');
+            }
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, [
+              U.el('span', {}, e.title || e.name),
+              firstLine ? U.el('span', { class: 'watch__item-day-excerpt' }, excerpt(firstLine, 80)) : null
+            ].filter(Boolean)),
+            e.type ? U.el('span', { class: 'watch__item-tag' }, e.type) : null
+          ].filter(Boolean));
+          list.append(li);
+        });
+        sec.append(list);
+        grid.append(sec);
+      }
+    }
+
+    // THIS WEEK'S RECORDS (pins from the last 7 days, rolled up by recency)
+    {
+      // walk back through last 7 days collecting pinned paragraphs
+      const PIN_TAG_RE = /^([A-Z][A-Z\u00C0-\u017F\s'\u2019\-]*?(?:\([^)]+\))?):/;
+      const SAID_RE = /^([A-Z][A-Z\u00C0-\u017F\s'\u2019\-]+) SAID:/;
+      const week = [];
+      let cursor = { ...today };
+      for (let i = 0; i < 7; i++) {
+        const key = dayKey(cursor);
+        const note = notes[key];
+        if (note && note.body) {
+          const paragraphs = note.body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+          paragraphs.forEach(p => {
+            const firstLine = p.split('\n')[0];
+            let tag = null;
+            let rest = p;
+            const saidMatch = firstLine.match(SAID_RE);
+            const tagMatch = firstLine.match(PIN_TAG_RE);
+            if (saidMatch) {
+              tag = saidMatch[1].toLowerCase();
+              rest = firstLine;
+            } else if (tagMatch) {
+              tag = tagMatch[1].toLowerCase().split('(')[0].trim();
+              rest = p.slice(tagMatch[0].length).trim();
+            }
+            if (tag) {
+              week.push({
+                date: { ...cursor },
+                tag,
+                text: rest.split('\n').slice(0, 2).join(' ').trim()
+              });
+            }
+          });
+        }
+        cursor = previousDay(cursor);
+      }
+
+      if (week.length) {
+        const sec = U.el('div', { class: 'watch__section' });
+        sec.append(U.el('div', { class: 'watch__section-head' }, [
+          document.createTextNode("This Week's Records"),
+          U.el('button', { class: 'watch__section-action',
+            onclick: () => Keep.mount('almanac') }, 'Almanac')
+        ]));
+        const list = U.el('ul', { class: 'watch__list' });
+        week.slice(0, 8).forEach(rec => {
+          const li = U.el('button', {
+            class: 'watch__item',
+            onclick: () => Refs.openAlmanacAt(rec.date)
+          }, [
+            U.el('span', { class: 'watch__item-primary' }, [
+              U.el('span', {}, excerpt(rec.text, 85) || '(empty)'),
+              U.el('span', { class: 'watch__item-day-excerpt' },
+                fmtDate(rec.date))
+            ]),
+            U.el('span', { class: 'watch__item-tag' }, rec.tag)
+          ]);
+          list.append(li);
+        });
+        sec.append(list);
+        grid.append(sec);
+      }
+    }
+
+    wrap.append(grid);
+    body.append(wrap);
+
+    actions.append(
+      U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => Keep.mount('home') }, 'Browse Rooms')
+    );
+  }
+});
 
 /* =========================================================================
    MODULE: THE GATE (home)
@@ -4101,6 +5699,11 @@ Keep.register({
       else if (method === 'runes') drawRunes();
       else drawScry();
     }
+    async function saveAugury(m, text) {
+      const items = (await Vault.get('augury-history')) || [];
+      items.unshift({ method: m, text, ts: Date.now() });
+      await Vault.set('augury-history', items.slice(0, 50));
+    }
     function drawTarot() {
       output.append(U.el('div', { class: 'augury__title' }, '\u2767 Three of the Old Arcana \u2767'));
       const positions = ['What Was', 'What Is', 'What Shall Come'];
@@ -4118,6 +5721,7 @@ Keep.register({
       const reading = `${cards[0].meaning} gave way to ${cards[1].meaning}, and so ${cards[2].meaning}.`;
       output.append(U.el('div', { class: 'augury__reading' }, reading));
       output.append(pinBtn('TAROT (was, is, shall be): ' + cards.map(c => c.name).join(', ') + '.\n' + reading));
+      saveAugury('tarot', cards.map(c => c.name).join(', '));
     }
     function drawRunes() {
       output.append(U.el('div', { class: 'augury__title' }, '\u2767 Three Runes Cast \u2767'));
@@ -4134,6 +5738,7 @@ Keep.register({
       const reading = `${cast[0].meaning}. Then, ${cast[1].meaning}. At the last, ${cast[2].meaning}.`;
       output.append(U.el('div', { class: 'augury__reading' }, reading));
       output.append(pinBtn('RUNES: ' + cast.map(r => r.name).join(', ') + '.\n' + reading));
+      saveAugury('runes', cast.map(r => r.name).join(', '));
     }
     function drawScry() {
       output.append(U.el('div', { class: 'augury__title' }, '\u2767 The Water Shows \u2767'));
@@ -4154,6 +5759,7 @@ Keep.register({
       lines.forEach(l => block.append(U.el('div', {}, l || '\u00A0')));
       output.append(block);
       output.append(pinBtn('SCRYING: A ' + a + ' ' + n + ' ' + v + ', ' + w + '. Look for a ' + a2 + ' ' + n2 + '.'));
+      saveAugury('scry', 'A ' + a + ' ' + n);
     }
 
     function pinBtn(text) {
@@ -4166,6 +5772,309 @@ Keep.register({
     }
 
     draw();
+  }
+});
+
+/* =========================================================================
+   MODULE: THE SPARK (Prompt Generator)
+   A narrative prompt generator. Press Strike, get a phrase, use it to
+   surprise yourself when you do not know what happens next. Eight pools
+   covering different kinds of seed: image, complication, mood, presence,
+   omen, overheard fragment, token, scene turn. Pin any spark to the day.
+   ========================================================================= */
+Keep.register({
+  id: 'spark',
+  name: 'The Spark',
+  category: 'mysteries',
+  glyph: 'g-spark',
+  tagline: 'A phrase to start from when you do not know what happens next.',
+  sub: 'Pick a kind. Strike. Use what comes.',
+
+  async mount(body, actions) {
+    const POOLS = {
+      image: [
+        'The smell of iron.', 'A child watches.', 'Light through high windows.',
+        'Wet stone underfoot.', 'Birds, suddenly silent.', 'A door, slightly ajar.',
+        'Salt in the wind.', 'A figure on the road, far off.', 'Snow on rooftops.',
+        'The taste of rain.', 'A candle, guttering.', 'Old blood on stone.',
+        'Bells in another street.', 'Smoke from a chimney that should be cold.',
+        'The mist will not lift.', 'Footprints, then none.', 'A horse with no rider.',
+        'The wall is warm to the touch.', 'White moths around the lantern.',
+        'A bowl of water gone still.', 'Hawthorn in bloom out of season.',
+        'The shadow falls the wrong way.', 'A torn page on the floor.',
+        'The air smells of beeswax and old paper.', 'Soft footsteps above.'
+      ],
+      complication: [
+        'An old promise, broken.', 'The wrong person remembers your face.',
+        'The lock is already broken.', 'Someone has been here first.',
+        'You are bleeding and did not notice.', 'The road you meant to take is gone.',
+        'The name you were given is false.', 'The person you came to meet is dead.',
+        'The papers do not match.', 'There is no fire in the hearth.',
+        'The map is wrong.', 'The coin is not what it seems.',
+        'You have lost a day.', 'The seal is unfamiliar.', 'The horse is lame.',
+        'The bridge is down.', 'The watchmen know your face.',
+        'You have been followed.', 'The well is poisoned.', 'The body is missing.',
+        'The doors will not open from the inside.', 'The witness has fled.',
+        'The child knows your true name.', 'The pact does not bind here.',
+        'The light is failing faster than it should.'
+      ],
+      mood: [
+        'Grief, freshly unbandaged.', 'Hope, but unearned.',
+        'Suspicion under courtesy.', 'A laughter that does not reach the eyes.',
+        'Tired beyond words.', 'Tenderness, in an unsafe place.',
+        'Patience worn thin.', 'Old anger, not yet aimed.', 'A held breath.',
+        'Pride brittle as ice.', 'Forgiveness, refused.',
+        'Sorrow walking as composure.', 'Quiet rage.', 'Boredom in a perilous place.',
+        'The peace before a verdict.', 'Comfort in something forbidden.',
+        'Fear, well hidden.', 'Loneliness in a crowd.',
+        'Disgust that surprises you.', 'A grief so old it has become weather.',
+        'Awe, edged with horror.', 'Reverence, perhaps misplaced.',
+        'The wariness of a hunted animal.', 'Devotion turning sour.',
+        'Joy, with something owed for it.'
+      ],
+      presence: [
+        'A figure in the doorway, motionless.', 'An old friend, much changed.',
+        'A child who should not be here.', 'A familiar voice in the dark.',
+        'A stranger with your mother\u2019s hands.', 'A merchant who looks at you twice.',
+        'A beggar with clean nails.', 'A priest who will not bless you.',
+        'A dog that follows.', 'A noble in plain clothes.',
+        'A woman weeping who refuses help.', 'A man asleep, who you suspect is not.',
+        'A child selling a curious thing.',
+        'A musician playing a song you knew as a child.',
+        'A messenger with a sealed letter.',
+        'A drunk who suddenly meets your eye, sober.',
+        'Three soldiers, off-duty, watching too closely.',
+        'A woman with a sword she should not have.',
+        'An elder no one introduces.', 'A scribe taking notes on you.',
+        'A man with your face, fifteen years older.',
+        'A stranger who knows your business.',
+        'A figure in a window above the street.',
+        'A traveller from somewhere you have never heard of.',
+        'A face in a portrait you only just noticed.'
+      ],
+      omen: [
+        'The wind drops.', 'A bell, distant.', 'The moon is half-covered.',
+        'Three crows on a wall.', 'Snow on roses.',
+        'Frost on the inside of a window.', 'A dog will not enter the room.',
+        'The fire burns blue, briefly.', 'Bread breaks in three pieces.',
+        'The cards fall the same way twice.', 'A bird strikes the window.',
+        'The water in the cup trembles.',
+        'A name spoken twice by two different mouths.',
+        'A clock that stops at the same hour each day.',
+        'The smell of lilies, indoors.',
+        'The shadow of something that is not there.',
+        'Rain that does not fall on you.', 'A horse refuses to cross a stream.',
+        'The lamplight gutters in a draft you cannot feel.',
+        'The bell rings once when no one pulled it.',
+        'A wound opens that had healed.',
+        'The mirror holds your reflection a moment too long.',
+        'Birds flying the wrong way.',
+        'A coin spins on its edge and does not fall.',
+        'Your shadow doubles for a heartbeat.'
+      ],
+      overheard: [
+        '\u201C...and then it was gone.\u201D',
+        '\u201CThey never told you the truth.\u201D',
+        '\u201CDon\u2019t say his name in here.\u201D',
+        '\u201CIt was only a child.\u201D',
+        '\u201CThere were three of us once.\u201D',
+        '\u201CShe paid in old coin.\u201D',
+        '\u201CBurn it. Burn it now.\u201D',
+        '\u201CHe will not last the winter.\u201D',
+        '\u201CI knew her, before.\u201D',
+        '\u201C...keep walking, do not look.\u201D',
+        '\u201CIt was not always like this.\u201D',
+        '\u201CThey are waiting for you.\u201D',
+        '\u201CIf anyone asks, you were not here.\u201D',
+        '\u201CShe came back. That is the worst of it.\u201D',
+        '\u201CHe always said it would end this way.\u201D',
+        '\u201CWe were promised.\u201D',
+        '\u201CTwo crowns and not a copper more.\u201D',
+        '\u201CDo not light a fire tonight.\u201D',
+        '\u201C...the third one. Always the third one.\u201D',
+        '\u201CIt speaks the old tongue.\u201D',
+        '\u201CYou can almost see it, in this light.\u201D',
+        '\u201CIf you find him, do not bring him back.\u201D',
+        '\u201CShe lied to you about that, too.\u201D',
+        '\u201CI will do it, then. I will do it.\u201D',
+        '\u201CThere is no such town.\u201D'
+      ],
+      token: [
+        'A coin not from this realm.',
+        'A glove, embroidered with a sigil you almost know.',
+        'A letter, partly burnt.', 'A locket containing hair, not portrait.',
+        'A key, cold to the touch.', 'A child\u2019s drawing, of you.',
+        'A name carved into the underside of a table.',
+        'A ring with no gem, only an empty setting.',
+        'A button from a uniform no longer worn.',
+        'A map with no place names.', 'A book with one page torn out.',
+        'A bottle of something that should not be liquid.',
+        'A token of office that has been melted.',
+        'A black feather, perfectly preserved.',
+        'A pressed flower from a country you have not been to.',
+        'A pouch of teeth.', 'A ledger entry under your own name.',
+        'A sealed envelope addressed in a dead language.',
+        'A piece of broken pottery with an unfamiliar glaze.',
+        'A knife with rust where blood would be.',
+        'A wedding band, recently removed.',
+        'A small box that will not open.',
+        'A piece of cloth that does not burn.',
+        'A relic that has stopped working.',
+        'A bone, very old, very small.'
+      ],
+      turn: [
+        'Something is wrong here.', 'You realise you have been here before.',
+        'The door, when you look again, is closed.', 'Someone is missing.',
+        'The light has changed.', 'The room is colder than it was.',
+        'A voice you trusted, lies.',
+        'The truth is the opposite of what you assumed.',
+        'You have been lied to by a friend.',
+        'The danger is not where you thought.',
+        'Someone is watching from a place no one should be.',
+        'A face in the crowd, gone before you can place it.',
+        'You hear your own name from a stranger\u2019s mouth.',
+        'The way you came is no longer there.',
+        'The simple errand is not simple.',
+        'A door that was unlocked is now locked.',
+        'The bargain has a clause you did not see.',
+        'Your companion knows something they have not said.',
+        'The body is not who you thought it was.',
+        'The room reverses.',
+        'The hour is wrong on every clock.',
+        'A child speaks with the voice of an adult.',
+        'The witness disappears mid-sentence.',
+        'You realise the room has only one door.',
+        'A friend\u2019s face becomes briefly unfamiliar.'
+      ]
+    };
+
+    const CATEGORIES = [
+      { id: 'all',          name: 'All' },
+      { id: 'image',        name: 'Image' },
+      { id: 'complication', name: 'Complication' },
+      { id: 'mood',         name: 'Mood' },
+      { id: 'presence',     name: 'Presence' },
+      { id: 'omen',         name: 'Omen' },
+      { id: 'overheard',    name: 'Overheard' },
+      { id: 'token',        name: 'Token' },
+      { id: 'turn',         name: 'Turn' }
+    ];
+    function catName(id) { const c = CATEGORIES.find(x => x.id === id); return c ? c.name : id; }
+
+    // flat list of all phrases, each tagged with its category
+    const ALL_PHRASES = [];
+    for (const [cat, lines] of Object.entries(POOLS)) {
+      lines.forEach(text => ALL_PHRASES.push({ text, category: cat }));
+    }
+
+    let history = (await Vault.get('spark-history')) || [];
+    let activeCat = (await Vault.get('spark-category')) || 'all';
+    let current = history[0] || null;
+
+    const catRow = U.el('div', { class: 'spark__categories' });
+    const display = U.el('div', { class: 'spark__display' });
+    const controls = U.el('div', { class: 'spark__controls' });
+    const histWrap = U.el('div', { class: 'spark__history' });
+    body.append(catRow, display, controls, histWrap);
+
+    async function saveHistory() { await Vault.set('spark-history', history.slice(0, 50)); }
+    async function saveCat() { await Vault.set('spark-category', activeCat); }
+
+    function strike() {
+      const pool = activeCat === 'all' ? ALL_PHRASES : ALL_PHRASES.filter(p => p.category === activeCat);
+      // avoid the most recent draws so it does not immediately repeat
+      const recentTexts = history.slice(0, Math.min(20, Math.floor(pool.length / 3))).map(h => h.text);
+      const available = pool.filter(p => !recentTexts.includes(p.text));
+      const picked = U.pick(available.length ? available : pool);
+      current = { text: picked.text, category: picked.category, ts: Date.now() };
+      history.unshift(current);
+      history = history.slice(0, 50);
+      saveHistory();
+      renderDisplay();
+      renderHistory();
+    }
+
+    function renderCategories() {
+      catRow.innerHTML = '';
+      CATEGORIES.forEach(c => {
+        const b = U.el('button', {
+          class: 'spark__category' + (activeCat === c.id ? ' is-active' : ''),
+          onclick: async () => {
+            activeCat = c.id;
+            await saveCat();
+            renderCategories();
+          }
+        }, c.name);
+        catRow.append(b);
+      });
+    }
+
+    function renderDisplay() {
+      display.innerHTML = '';
+      if (!current) {
+        display.className = 'spark__display spark__display--empty';
+        display.append(U.el('div', { class: 'spark__display-text' }, 'Press Strike.'));
+        return;
+      }
+      display.className = 'spark__display';
+      display.append(
+        U.el('div', { class: 'spark__display-text' }, current.text),
+        U.el('div', { class: 'spark__display-cat' }, catName(current.category))
+      );
+    }
+
+    function renderControls() {
+      controls.innerHTML = '';
+      const strikeBtn = U.el('button', { class: 'spark__strike', onclick: () => strike() }, 'Strike');
+      const pinBtn = U.el('button', {
+        class: 'spark__pin',
+        disabled: !current,
+        onclick: async () => {
+          if (!current) return;
+          const text = 'SPARK [' + catName(current.category).toLowerCase() + ']: ' + current.text;
+          const today = await Refs.pinToToday(text);
+          U.toast('Pinned to ' + (await Refs.formatDate(today)));
+        }
+      }, 'Pin to Almanac');
+      controls.append(strikeBtn, pinBtn);
+    }
+
+    function renderHistory() {
+      histWrap.innerHTML = '';
+      histWrap.append(U.el('div', { class: 'spark__history-head' }, 'Recent Sparks'));
+      const list = U.el('div', { class: 'spark__history-list' });
+      if (!history.length) {
+        list.append(U.el('div', { class: 'spark__history-empty' }, 'None yet.'));
+      } else {
+        // show last 12, skip the most recent (which is already displayed)
+        const visible = history.slice(current ? 1 : 0, current ? 13 : 12);
+        if (!visible.length) {
+          list.append(U.el('div', { class: 'spark__history-empty' }, 'Strike again to fill the kindling.'));
+        } else {
+          visible.forEach(h => {
+            const item = U.el('button', {
+              class: 'spark__history-item',
+              title: 'Show this spark again',
+              onclick: () => {
+                current = h;
+                renderDisplay();
+                renderControls();
+              }
+            }, [
+              U.el('span', { class: 'spark__history-text' }, h.text),
+              U.el('span', { class: 'spark__history-cat' }, catName(h.category))
+            ]);
+            list.append(item);
+          });
+        }
+      }
+      histWrap.append(list);
+    }
+
+    renderCategories();
+    renderDisplay();
+    renderControls();
+    renderHistory();
   }
 });
 
@@ -5075,6 +6984,309 @@ Keep.register({
 });
 
 /* =========================================================================
+   MODULE: THE WAYFARER (PC sheet)
+   The player character. Distinct from Hall of Faces (the world's people) and
+   The Fellowship (those who walk beside the PC); this is the chronicler's
+   own. Multiple PCs supported for parties; one is the common case for solo.
+   ========================================================================= */
+Keep.register({
+  id: 'wayfarer',
+  name: 'The Wayfarer',
+  category: 'workshop',
+  glyph: 'g-wayfarer',
+  tagline: 'You who walk. The chronicler\u2019s own.',
+  sub: 'Name yourself. Carry what you carry. Remember why you walk.',
+
+  async mount(body, actions) {
+    const STATUSES = [
+      { id: 'hale',     name: 'Hale' },
+      { id: 'weary',    name: 'Weary' },
+      { id: 'wounded',  name: 'Wounded' },
+      { id: 'grievous', name: 'Grievous' },
+      { id: 'fallen',   name: 'Fallen' }
+    ];
+    const COLORS = [
+      { id: 'wine',   var: 'var(--wine)',     varD: 'var(--wine-d)',   soft: 'rgba(92,31,36,0.10)',   hex: '#5c1f24' },
+      { id: 'forest', var: 'var(--forest)',   varD: 'var(--forest-d)', soft: 'rgba(45,74,53,0.12)',   hex: '#2d4a35' },
+      { id: 'indigo', var: 'var(--indigo)',   varD: '#1a1834',         soft: 'rgba(42,40,72,0.13)',   hex: '#2a2848' },
+      { id: 'gold',   var: 'var(--gold-d)',   varD: '#5a4715',         soft: 'rgba(184,146,58,0.16)', hex: '#8a6c25' },
+      { id: 'ink',    var: 'var(--ink-soft)', varD: 'var(--ink)',      soft: 'rgba(58,47,36,0.10)',   hex: '#3a2f24' },
+      { id: 'salt',   var: '#7a6c52',         varD: '#4f4530',         soft: 'rgba(122,108,82,0.13)', hex: '#7a6c52' },
+      { id: 'iron',   var: '#4a5764',         varD: '#2a3340',         soft: 'rgba(74,87,100,0.14)',  hex: '#4a5764' },
+      { id: 'rust',   var: '#8a4a2c',         varD: '#5a2f1c',         soft: 'rgba(138,74,44,0.14)',  hex: '#8a4a2c' }
+    ];
+    function colorOf(id)  { return COLORS.find(c => c.id === id) || COLORS[0]; }
+    function statusOf(id) { return STATUSES.find(s => s.id === id) || STATUSES[0]; }
+
+    let pcs = (await Vault.get('wayfarer')) || [];
+
+    // archive backlinks
+    let archiveEntries = await Refs.archiveEntries();
+    function backlinksFor(name) {
+      const out = [];
+      const safe = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp('\\[\\[' + safe + '\\]\\]');
+      for (const [k, e] of Object.entries(archiveEntries)) {
+        if (re.test(e.body || '')) out.push(k);
+      }
+      return out;
+    }
+
+    const head = U.el('div', { class: 'wayfarer__head' });
+    const grid = U.el('div', { class: 'wayfarer__grid' });
+    body.append(head, grid);
+
+    actions.append(
+      U.el('button', { class: 'btn btn--primary', onclick: () => openWayfarerForm() }, 'Name Yourself')
+    );
+
+    async function save() { await Vault.set('wayfarer', pcs); }
+
+    function render() {
+      head.innerHTML = '';
+      head.append(
+        U.el('div', { class: 'wayfarer__count' },
+          pcs.length === 0 ? 'No wayfarer yet'
+            : pcs.length === 1 ? 'One wayfarer'
+            : pcs.length + ' wayfarers'),
+        U.el('div', {}, [
+          U.el('button', { class: 'btn btn--small', onclick: () => openWayfarerForm() }, '+ Name Yourself')
+        ])
+      );
+
+      grid.innerHTML = '';
+      if (!pcs.length) {
+        const empty = U.el('div', { class: 'wayfarer__empty' });
+        empty.append(
+          U.el('span', { class: 'wayfarer__empty-call' }, 'Who walks?'),
+          document.createTextNode('The Wayfarer is your own card. Name yourself, set your calling, mark what you carry. Solo players keep one. Parties may keep several.'),
+          U.el('div', { style: { marginTop: '1.2rem' } }, [
+            U.el('button', { class: 'btn btn--primary', onclick: () => openWayfarerForm() }, 'Name Yourself')
+          ])
+        );
+        grid.append(empty);
+        return;
+      }
+
+      // sort: hale first, fallen last, otherwise by name
+      const order = { hale: 0, weary: 1, wounded: 2, grievous: 3, fallen: 4 };
+      const sorted = [...pcs].sort((a, b) => {
+        const ao = order[a.status] ?? 99;
+        const bo = order[b.status] ?? 99;
+        if (ao !== bo) return ao - bo;
+        return (a.name || '').localeCompare(b.name || '');
+      });
+      sorted.forEach(pc => grid.append(renderCard(pc)));
+      applyPendingHighlight();
+    }
+
+    function renderCard(pc) {
+      const s = statusOf(pc.status);
+      const c = colorOf(pc.color || 'wine');
+      const card = U.el('div', {
+        class: 'wayfarer-card wayfarer-card--status-' + s.id + (s.id === 'fallen' ? ' wayfarer-card--fallen' : ''),
+        style: { '--accent': c.var, '--accent-d': c.varD, '--accent-soft': c.soft }
+      });
+      card.dataset.pcid = pc.id;
+
+      // caption: lineage and calling, joined cleanly
+      const captionBits = [];
+      if (pc.lineage) captionBits.push(pc.lineage);
+      if (pc.calling) captionBits.push(pc.calling);
+      const caption = captionBits.join(' \u00b7 ');
+
+      card.append(U.el('div', { class: 'wayfarer-card__head' }, [
+        U.el('div', { class: 'wayfarer-card__glyph' }, '\u2022'),
+        U.el('div', { class: 'wayfarer-card__title' }, [
+          U.el('div', { class: 'wayfarer-card__name' }, pc.name),
+          caption ? U.el('div', { class: 'wayfarer-card__caption' }, caption) : null
+        ].filter(Boolean)),
+        U.el('div', { class: 'wayfarer-card__status' }, s.name)
+      ]));
+      card.append(U.el('hr', { class: 'wayfarer-card__sep' }));
+
+      function addField(label, value, modifier) {
+        if (!value || !String(value).trim()) return;
+        const field = U.el('div', { class: 'wayfarer-card__field' + (modifier ? ' wayfarer-card__field--' + modifier : '') });
+        field.append(
+          U.el('div', { class: 'wayfarer-card__field-label' }, label),
+          U.el('div', { class: 'wayfarer-card__field-value' }, value)
+        );
+        card.append(field);
+      }
+
+      addField('Description', pc.description);
+      addField('Oath', pc.oath, 'oath');
+      addField('Bonds', pc.bonds);
+      addField('Carried', pc.carried);
+      addField('Notes', pc.notes);
+
+      // archive backlinks
+      const backs = backlinksFor(pc.name);
+      if (backs.length) {
+        const backField = U.el('div', { class: 'wayfarer-card__field' });
+        backField.append(
+          U.el('div', { class: 'wayfarer-card__field-label' }, 'Mentioned In')
+        );
+        const backWrap = U.el('div', { class: 'wayfarer-card__backlinks' });
+        backs.forEach(name => {
+          backWrap.append(U.el('button', {
+            class: 'tag',
+            title: 'Open in the Archive',
+            onclick: () => Refs.openArchiveEntry(name)
+          }, name));
+        });
+        backField.append(backWrap);
+        card.append(backField);
+      }
+
+      // actions
+      const acts = U.el('div', { class: 'wayfarer-card__actions' });
+      acts.append(
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openWayfarerForm(pc) }, 'Edit'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
+          if (!confirm('Retire "' + pc.name + '"? Their card will be erased.')) return;
+          pcs = pcs.filter(x => x.id !== pc.id);
+          await save();
+          render();
+        }}, 'Retire')
+      );
+      card.append(acts);
+
+      return card;
+    }
+
+    let pendingHighlight = await Vault.get('wayfarer-highlight');
+    if (pendingHighlight) await Vault.remove('wayfarer-highlight');
+    function applyPendingHighlight() {
+      if (!pendingHighlight) return;
+      const card = grid.querySelector('[data-pcid="' + pendingHighlight + '"]');
+      if (card) {
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 30);
+        card.classList.add('wayfarer-card--highlight');
+        setTimeout(() => card.classList.remove('wayfarer-card--highlight'), 2400);
+      }
+      pendingHighlight = null;
+    }
+
+    function openWayfarerForm(existing) {
+      const isEdit = !!existing;
+      const draft = existing
+        ? { ...existing }
+        : { id: U.uid(), name: '', lineage: '', calling: '', description: '',
+            oath: '', bonds: '', carried: '', notes: '',
+            status: 'hale', color: 'wine',
+            created: Date.now(), updated: Date.now() };
+
+      const ov = U.el('div', { class: 'modal-overlay' });
+      const dialog = U.el('div', { class: 'modal-card', style: { maxWidth: '560px' } });
+      dialog.append(
+        U.el('div', { class: 'card__corner card__corner--tl' }),
+        U.el('div', { class: 'card__corner card__corner--tr' }),
+        U.el('div', { class: 'card__corner card__corner--bl' }),
+        U.el('div', { class: 'card__corner card__corner--br' }),
+        U.el('h2', {}, isEdit ? 'Edit ' + (existing.name || 'Wayfarer') : 'Name Yourself')
+      );
+      const scroll = U.el('div', { class: 'modal-card__scroll' });
+
+      const nameInput    = U.el('input',    { class: 'input', placeholder: 'The name you carry', value: draft.name });
+      const lineageInput = U.el('input',    { class: 'input', placeholder: 'Of Greyfern, half-Northron, lowborn...', value: draft.lineage });
+      const callingInput = U.el('input',    { class: 'input', placeholder: 'Hedge-knight, wanderer, apostate priest...', value: draft.calling });
+      const descInput    = U.el('textarea', { class: 'textarea', placeholder: 'Appearance, manner, how you carry yourself.', style: { minHeight: '70px' } });
+      descInput.value    = draft.description || '';
+      const oathInput    = U.el('textarea', { class: 'textarea', placeholder: 'Why you walk. The thing you swore.', style: { minHeight: '60px' } });
+      oathInput.value    = draft.oath || '';
+      const bondsInput   = U.el('textarea', { class: 'textarea', placeholder: 'The people, places, vows that bind you.', style: { minHeight: '70px' } });
+      bondsInput.value   = draft.bonds || '';
+      const carriedInput = U.el('textarea', { class: 'textarea', placeholder: 'What you carry: blade, coin, keepsake, supply.', style: { minHeight: '70px' } });
+      carriedInput.value = draft.carried || '';
+      const notesInput   = U.el('textarea', { class: 'textarea', placeholder: 'Anything else.', style: { minHeight: '60px' } });
+      notesInput.value   = draft.notes || '';
+
+      // status picker
+      const statusWrap = U.el('div', { class: 'status-picker' });
+      STATUSES.forEach(s => {
+        const b = U.el('button', { onclick: () => {
+          draft.status = s.id;
+          statusWrap.querySelectorAll('button').forEach(x => x.classList.toggle('is-selected', x.dataset.sid === s.id));
+        }}, s.name);
+        b.dataset.sid = s.id;
+        if (s.id === draft.status) b.classList.add('is-selected');
+        statusWrap.append(b);
+      });
+
+      // colour picker
+      const colorWrap = U.el('div', { class: 'color-picker' });
+      COLORS.forEach(co => {
+        const sw = U.el('button', { class: 'color-swatch',
+          style: { background: co.hex }, title: co.id,
+          onclick: () => {
+            draft.color = co.id;
+            colorWrap.querySelectorAll('.color-swatch').forEach(x => x.classList.toggle('is-selected', x.dataset.cid === co.id));
+          }});
+        sw.dataset.cid = co.id;
+        if (co.id === draft.color) sw.classList.add('is-selected');
+        colorWrap.append(sw);
+      });
+
+      scroll.append(
+        U.el('div', { class: 'label' }, 'Name'),
+        nameInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Lineage'),
+        lineageInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Calling'),
+        callingInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Description'),
+        descInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Oath'),
+        oathInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Bonds'),
+        bondsInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Carried'),
+        carriedInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Notes'),
+        notesInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Condition'),
+        statusWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Accent Colour'),
+        colorWrap
+      );
+      dialog.append(scroll);
+
+      dialog.append(U.el('div', { class: 'modal-card__close' }, [
+        U.el('button', { class: 'btn btn--ghost', onclick: () => ov.remove() }, 'Cancel'),
+        U.el('button', { class: 'btn btn--primary', onclick: async () => {
+          if (!nameInput.value.trim()) { nameInput.focus(); return; }
+          draft.name        = nameInput.value.trim();
+          draft.lineage     = lineageInput.value.trim();
+          draft.calling     = callingInput.value.trim();
+          draft.description = descInput.value.trim();
+          draft.oath        = oathInput.value.trim();
+          draft.bonds       = bondsInput.value.trim();
+          draft.carried     = carriedInput.value.trim();
+          draft.notes       = notesInput.value.trim();
+          draft.updated     = Date.now();
+          if (isEdit) {
+            const idx = pcs.findIndex(x => x.id === existing.id);
+            if (idx >= 0) pcs[idx] = draft;
+          } else {
+            pcs.unshift(draft);
+          }
+          await save();
+          ov.remove();
+          render();
+        }}, isEdit ? 'Save' : 'Name')
+      ]));
+      ov.append(dialog);
+      document.body.append(ov);
+      setTimeout(() => nameInput.focus(), 50);
+    }
+
+    render();
+  }
+});
+
+/* =========================================================================
    MODULE: HALL OF FACES (NPC Conjurer)
    ========================================================================= */
 Keep.register({
@@ -5325,6 +7537,553 @@ Keep.register({
       await roll();
     }
     renderRoster();
+  }
+});
+
+/* =========================================================================
+   MODULE: THE FELLOWSHIP (Companions)
+   The people who walk with the PC. Distinct from the Hall of Faces (which is
+   the world's people the PC meets). Each companion carries an archetype with
+   a pool of voice lines, a bond gauge, a status, and a Speak button that
+   surfaces one in-character line on demand to bridge solo-play loneliness.
+   ========================================================================= */
+Keep.register({
+  id: 'fellowship',
+  name: 'The Fellowship',
+  category: 'workshop',
+  glyph: 'g-fellowship',
+  tagline: 'Companions who walk beside you. The bound, the loyal, the worn.',
+  sub: 'Each card holds one. Press Speak when you want them present.',
+
+  async mount(body, actions) {
+    const ARCHETYPES = [
+      { id: 'stoic', name: 'Stoic', glyph: '\u26E8', accent: 'var(--ink-soft)', accentD: 'var(--ink)', soft: 'rgba(58,47,36,0.10)',
+        lines: [
+          'We move.', 'It will hold.', 'I am still here.', 'Enough talk.',
+          'I have seen worse.', 'Then we keep walking.', 'Hold.', 'Look at me. Breathe.',
+          'Done.', 'No.', 'Not yet.', 'If you fall, I follow.',
+          'The horizon does not care.', 'Sleep. I watch.', 'Sharpen your blade.',
+          'It is what it is.', 'We are not finished.', 'This place wants us to leave.',
+          'Stand.', 'Worth dying for?', 'I will go first.', 'Quiet now.',
+          'My oath stands.', 'We bury our own.', 'Then so be it.'
+        ]
+      },
+      { id: 'sage', name: 'Sage', glyph: '\u2726', accent: 'var(--indigo)', accentD: '#1a1834', soft: 'rgba(42,40,72,0.13)',
+        lines: [
+          'The wind speaks of three roads.', 'What is named cannot be lost.',
+          'I have seen this before. In another life, perhaps.',
+          'The river does not argue with the stone.',
+          'Patience. The pattern reveals itself.',
+          'All bargains have a third party we do not see.',
+          'Truth has many doors, but only one threshold.',
+          'The young see only what is. The old see what was. The wise see what is becoming.',
+          'Listen. The silence here is not empty.',
+          'We are not the first to ask.',
+          'Names are doors. Be careful which you open.',
+          'The dead remember the living more clearly than the living remember the dead.',
+          'Salt and iron. Salt and iron.',
+          'What did the bird say? It said: look up.',
+          'Hmm. Curious.',
+          'There is a thread in this. We must pull gently.',
+          'A small kindness, now.',
+          'Three signs, then a sign refused. So it goes.',
+          'Even the moon mourns.',
+          'I have read of this. Or dreamt of it.',
+          'We are inside someone else\u2019s prayer.',
+          'Do not speak its true name aloud.',
+          'It is a year of returns.',
+          'Wait. Watch.',
+          'What we seek seeks us also.'
+        ]
+      },
+      { id: 'scout', name: 'Scout', glyph: '\u27A4', accent: 'var(--forest)', accentD: '#1c2f22', soft: 'rgba(45,74,53,0.12)',
+        lines: [
+          'Track here. Two days old.', 'Wait. Listen.',
+          'Someone has been here.', 'Three of them. Maybe four.',
+          'Smoke, that way.', 'Smells wrong.', 'Down. Stay down.',
+          'Move. Now.', 'Clear.', 'I count six. Maybe more in the trees.',
+          'Do not step there.', 'Bird has gone quiet.', 'Fresh blood.',
+          'Not human.', 'We are being followed.', 'I will scout ahead.',
+          'Two ways out. Three if we climb.', 'The wind is wrong.',
+          'This trail doubles back.', 'Snare. Easy work.',
+          'Up here. Better cover.', 'They knew we were coming.',
+          'Camp here. Defensible.', 'I will take first watch.',
+          'We lose them at the river.'
+        ]
+      },
+      { id: 'healer', name: 'Healer', glyph: '\u271A', accent: '#6b8e6b', accentD: '#3d5a3d', soft: 'rgba(107,142,107,0.13)',
+        lines: [
+          'You are bleeding.', 'Sit. Drink this.', 'Show me where.',
+          'Hold still. This will sting.', 'When did you last eat?',
+          'You have not slept in two days.', 'I can save them. Bring them here.',
+          'Press here. Hard.', 'Breathe with me. In. Out.',
+          'I have done what I can.', 'Pray, if you pray.',
+          'You should not have done that.', 'Lie down. Now.',
+          'It is not as bad as it looks.', 'It is as bad as it looks.',
+          'I need clean water.', 'This is beyond my craft.',
+          'They lived. Be grateful.', 'I will not lose another.',
+          'The wound is closing. Slowly.',
+          'Stay with me. Do you hear me? Stay.',
+          'Quiet now. Rest.',
+          'Do not move. The poison is still working.',
+          'I am sorry. I tried.', 'Live. That is all I ask.'
+        ]
+      },
+      { id: 'bard', name: 'Bard', glyph: '\u266A', accent: 'var(--gold-d)', accentD: '#5a4715', soft: 'rgba(184,146,58,0.16)',
+        lines: [
+          'Now that is a story.', 'Coin first, then verse.',
+          'Oh, oh, this is good. Mark this, mark this.',
+          'Three sad endings I know. Pick one.',
+          'Light a candle. Pour the wine. I have an audience now.',
+          'Was that a compliment? From you?',
+          'You see, the secret of any tale is what you leave out.',
+          'We are all in the song now, friend. Hope you like your rhymes.',
+          'I knew a man like that once. Buried him last spring.',
+          'If we die here, promise to remember the third verse exactly.',
+          'That, my friends, was style.',
+          'What rhymes with disaster? Faster, I suppose.',
+          'Drinks first. Plans after.', 'Tell me you brought coin.',
+          'I will sing it tomorrow. Probably.',
+          'Now listen, this is important. (It is not.)',
+          'Have you noticed the innkeeper looks like a man with a secret?',
+          'There is always one more thing to learn.',
+          'I will write you into the song. Choose your epitaph.',
+          'Beauty and ruin, friends. Beauty and ruin.',
+          'Yes, yes. We are heroes. Let me eat first.',
+          'I owe a man in Greyfern three crowns. Pretend you did not hear that.',
+          'Watch this.', 'Ah. That was not supposed to happen.',
+          'A song is just a memory that learned to walk.'
+        ]
+      },
+      { id: 'scoundrel', name: 'Scoundrel', glyph: '\u2620', accent: '#4a5764', accentD: '#2a3340', soft: 'rgba(74,87,100,0.14)',
+        lines: [
+          'And who pays for that?', 'Lock or window?',
+          'Walk casually. Like you belong.', 'We could just take it.',
+          'I know a man who knows a man.', 'Too easy. Something is off.',
+          'Hold this. Do not ask.', 'I was not there. Remember that.',
+          'Pockets first, swords later.', 'We split it three ways. Maybe.',
+          'If anyone asks, I am your cousin.',
+          'There is always a back door.',
+          'Coins talk. Silver talks louder.',
+          'I owe debts in three cities. We are going nowhere near them.',
+          'Trust no one. Especially me.',
+          'What is the take?', 'Quiet, you will wake them.',
+          'If this goes wrong, I am taking the horse.',
+          'Smile. We are old friends.',
+          'I lifted this off him. Do not ask.',
+          'Honest work? In this town?',
+          'I have a plan. It is bad. But it is a plan.',
+          'Run, but slowly.', 'Pretend you have seen a ghost.',
+          'Tell the truth. Just enough of it.'
+        ]
+      },
+      { id: 'devoted', name: 'Devoted', glyph: '\u2767', accent: 'var(--wine)', accentD: 'var(--wine-d)', soft: 'rgba(92,31,36,0.10)',
+        lines: [
+          'You should not have done that.', 'I am with you.',
+          'Wherever you go.', 'I would not have left you.',
+          'You looked tired this morning.',
+          'Eat something. Please.', 'I have been worried.',
+          'Do not try to lie to me. I know your faces.',
+          'You forget that you are also worth saving.',
+          'If they come for you, they come through me first.',
+          'I have a bad feeling about this. But I follow.',
+          'Take this. I brought it for you.',
+          'Sleep. I will keep watch.',
+          'You are not alone in this.',
+          'I have known you longer than I have known peace.',
+          'Promise me one thing. Promise me you will come back.',
+          'I named my horse after you. It is a bad horse.',
+          'You are stronger than you think.',
+          'Do not apologise. Not to me.',
+          'I would die for this. For you.',
+          'Whatever you decide. I am with you.',
+          'We have been through worse.',
+          'Look at me. You are not lost.',
+          'Together, then.',
+          'I prayed for you.'
+        ]
+      },
+      { id: 'reluctant', name: 'Reluctant', glyph: '\u2601', accent: '#7a6c52', accentD: '#4f4530', soft: 'rgba(122,108,82,0.13)',
+        lines: [
+          'We are going to die out here.', 'Fine. Fine.',
+          'I told you this was a bad idea.',
+          'Of course it is haunted. Why would it not be haunted.',
+          'I want it noted, for the record, that I objected.',
+          'You owe me. Heavily.',
+          'Three days of walking for this?',
+          'Lead on, then. As always.',
+          'Could be worse. Do not ask how.',
+          'Why do I follow you. I really must consider this.',
+          'Wonderful. More stairs.',
+          'I hate everything about this.',
+          'Look at it. Look at it.',
+          'I will require strong drink later.',
+          'We could just turn around. Just saying.',
+          'I should have stayed at the inn.',
+          'Wake me when it is over.',
+          'If I die, I will haunt you. Specifically.',
+          'And here I thought today might be peaceful.',
+          'Marvellous. Truly.',
+          'You owe me a meal. A real one. Not jerky.',
+          'I will follow you into the next disaster also. I know.',
+          'Yes, yes. I am coming.',
+          'We had food yesterday. Now we have rumours. Tremendous.',
+          'After you, hero.'
+        ]
+      }
+    ];
+
+    const STATUSES = [
+      { id: 'hale',     name: 'Hale' },
+      { id: 'wounded',  name: 'Wounded' },
+      { id: 'lost',     name: 'Lost' },
+      { id: 'fallen',   name: 'Fallen' },
+      { id: 'departed', name: 'Departed' }
+    ];
+
+    function bondLabel(v) {
+      if (v <= -3) return 'Estranged';
+      if (v <= -1) return 'Cold';
+      if (v === 0) return 'Stranger';
+      if (v <= 2)  return 'Travel-Mate';
+      if (v <= 4)  return 'Trusted';
+      if (v <= 6)  return 'Close';
+      if (v <= 8)  return 'Sworn';
+      return 'Heart-Bound';
+    }
+
+    function archetypeOf(id) { return ARCHETYPES.find(a => a.id === id) || ARCHETYPES[0]; }
+    function statusOf(id)    { return STATUSES.find(s => s.id === id) || STATUSES[0]; }
+
+    let companions = await Vault.get('fellowship');
+    if (!companions || !companions.length) {
+      companions = [
+        {
+          id: U.uid(),
+          name: 'Mira Greycloak',
+          archetype: 'scout',
+          voice: 'A wry, quiet thing. Walks lighter than her boots should allow.',
+          bond: 4,
+          status: 'hale',
+          customLines: [],
+          speakHistory: [],
+          created: Date.now(),
+          updated: Date.now()
+        },
+        {
+          id: U.uid(),
+          name: 'Brother Halric',
+          archetype: 'healer',
+          voice: 'Wears the green sash of a Greyfern wayfarer-priest. Carries more bandages than blessings.',
+          bond: 6,
+          status: 'hale',
+          customLines: [],
+          speakHistory: [],
+          created: Date.now(),
+          updated: Date.now()
+        }
+      ];
+      await Vault.set('fellowship', companions);
+    }
+
+    // archive backlinks
+    let archiveEntries = await Refs.archiveEntries();
+    function backlinksFor(name) {
+      const out = [];
+      const safe = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp('\\[\\[' + safe + '\\]\\]');
+      for (const [k, e] of Object.entries(archiveEntries)) {
+        if (re.test(e.body || '')) out.push(k);
+      }
+      return out;
+    }
+
+    const head = U.el('div', { class: 'fellowship__head' });
+    const grid = U.el('div', { class: 'fellowship__grid' });
+    body.append(head, grid);
+
+    actions.append(
+      U.el('button', { class: 'btn btn--primary', onclick: () => openCompanionForm() }, 'Welcome a Companion')
+    );
+
+    async function save() { await Vault.set('fellowship', companions); }
+
+    function speakAs(c) {
+      const arch = archetypeOf(c.archetype);
+      const pool = [...arch.lines, ...(c.customLines || [])];
+      const recent = (c.speakHistory || []).slice(0, Math.min(6, Math.floor(pool.length / 3)));
+      const available = pool.filter(l => !recent.includes(l));
+      const line = U.pick(available.length ? available : pool);
+      c.speakHistory = [line, ...(c.speakHistory || [])].slice(0, 12);
+      c.lastSpoken = line;
+      return line;
+    }
+
+    function statusOrder(s) {
+      return ['hale','wounded','lost','fallen','departed'].indexOf(s) + 1 || 99;
+    }
+
+    function render() {
+      head.innerHTML = '';
+      const alive = companions.filter(c => c.status !== 'fallen' && c.status !== 'departed').length;
+      head.append(
+        U.el('div', { class: 'fellowship__count' },
+          alive + ' walk with you' +
+          (companions.length > alive ? ' (' + (companions.length - alive) + ' remembered)' : '')),
+        U.el('div', {}, [
+          U.el('button', { class: 'btn btn--small', onclick: () => openCompanionForm() }, '+ Welcome a Companion')
+        ])
+      );
+
+      grid.innerHTML = '';
+      if (!companions.length) {
+        grid.append(U.el('div', { class: 'empty' }, 'No companions yet. Welcome one above.'));
+        return;
+      }
+      const sorted = [...companions].sort((a, b) => {
+        const ao = statusOrder(a.status), bo = statusOrder(b.status);
+        if (ao !== bo) return ao - bo;
+        return (b.bond || 0) - (a.bond || 0);
+      });
+      sorted.forEach(c => grid.append(renderCard(c)));
+      applyPendingHighlight();
+    }
+
+    let pendingHighlight = await Vault.get('fellowship-highlight');
+    if (pendingHighlight) await Vault.remove('fellowship-highlight');
+    function applyPendingHighlight() {
+      if (!pendingHighlight) return;
+      const card = grid.querySelector('[data-cid="' + pendingHighlight + '"]');
+      if (card) {
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 30);
+        card.classList.add('fellowship-card--highlight');
+        setTimeout(() => card.classList.remove('fellowship-card--highlight'), 2400);
+      }
+      pendingHighlight = null;
+    }
+
+    function renderCard(c) {
+      const arch = archetypeOf(c.archetype);
+      const s = statusOf(c.status);
+      const card = U.el('div', {
+        class: 'fellowship-card fellowship-card--status-' + s.id +
+          (s.id === 'fallen' || s.id === 'departed' ? ' fellowship-card--' + s.id : ''),
+        style: { '--accent': arch.accent, '--accent-d': arch.accentD, '--accent-soft': arch.soft }
+      });
+      card.dataset.cid = c.id;
+
+      // head
+      card.append(U.el('div', { class: 'fellowship-card__head' }, [
+        U.el('div', { class: 'fellowship-card__glyph' }, arch.glyph),
+        U.el('div', { class: 'fellowship-card__title' }, [
+          U.el('div', { class: 'fellowship-card__name' }, c.name),
+          U.el('div', { class: 'fellowship-card__meta' }, [
+            U.el('span', { class: 'fellowship-card__archetype' }, arch.name),
+            U.el('span', { class: 'fellowship-card__status' }, s.name)
+          ])
+        ])
+      ]));
+
+      if (c.voice) card.append(U.el('div', { class: 'fellowship-card__voice' }, c.voice));
+
+      // bond gauge
+      const bond = U.el('div', { class: 'fellowship-card__bond' });
+      bond.append(
+        U.el('div', { class: 'fellowship-card__bond-label' }, 'Bond'),
+        U.el('div', { class: 'fellowship-card__bond-value' },
+          bondLabel(c.bond || 0) + ' (' + ((c.bond || 0) >= 0 ? '+' : '') + (c.bond || 0) + ')')
+      );
+      const bar = U.el('div', { class: 'gauge fellowship-card__bond-bar' });
+      bar.append(U.el('div', { class: 'gauge__zero' }));
+      bar.append(U.el('div', { class: 'gauge__notch', style: { left: (((c.bond || 0) + 5) / 15 * 100) + '%' } }));
+      bond.append(bar);
+      const bondCtrls = U.el('div', { class: 'fellowship-card__bond-controls' });
+      const adjust = (delta) => async () => {
+        c.bond = Math.max(-5, Math.min(10, (c.bond || 0) + delta));
+        c.updated = Date.now();
+        await save();
+        render();
+      };
+      bondCtrls.append(
+        U.el('button', { class: 'gauge-btn', onclick: adjust(-1), title: 'closer to estrangement' }, '\u2212'),
+        U.el('button', { class: 'gauge-btn', onclick: adjust(1), title: 'closer to bond' }, '+')
+      );
+      bond.append(bondCtrls);
+      card.append(bond);
+
+      // quote display
+      const isQuiet = !c.lastSpoken;
+      const quote = U.el('div', { class: 'fellowship-card__quote' + (isQuiet ? ' fellowship-card__quote--empty' : '') });
+      const quoteText = U.el('div', { class: 'fellowship-card__quote-text' },
+        isQuiet ? 'silent' : c.lastSpoken);
+      quote.append(quoteText);
+      const qActs = U.el('div', { class: 'fellowship-card__quote-actions' });
+      qActs.append(
+        U.el('button', {
+          class: 'fellowship-card__quote-act',
+          title: 'Pin this line to the Almanac',
+          disabled: isQuiet,
+          onclick: async () => {
+            if (!c.lastSpoken) return;
+            const text = c.name.toUpperCase() + ' SAID: \u201C' + c.lastSpoken + '\u201D';
+            const today = await Refs.pinToToday(text);
+            U.toast('Pinned to ' + (await Refs.formatDate(today)));
+          }
+        }, '\u2767')
+      );
+      quote.append(qActs);
+      card.append(quote);
+
+      // SPEAK button
+      const speakBtn = U.el('button', {
+        class: 'fellowship-card__speak',
+        disabled: s.id === 'fallen' || s.id === 'departed',
+        onclick: async () => {
+          const line = speakAs(c);
+          await save();
+          // animate the quote update without a full re-render
+          const newQuote = U.el('div', { class: 'fellowship-card__quote' });
+          const newText = U.el('div', { class: 'fellowship-card__quote-text' }, line);
+          const newActs = U.el('div', { class: 'fellowship-card__quote-actions' }, [
+            U.el('button', {
+              class: 'fellowship-card__quote-act',
+              title: 'Pin this line to the Almanac',
+              onclick: async () => {
+                const text = c.name.toUpperCase() + ' SAID: \u201C' + line + '\u201D';
+                const today = await Refs.pinToToday(text);
+                U.toast('Pinned to ' + (await Refs.formatDate(today)));
+              }
+            }, '\u2767')
+          ]);
+          newQuote.append(newText, newActs);
+          quote.replaceWith(newQuote);
+        }
+      }, s.id === 'fallen' ? 'Silent' : (s.id === 'departed' ? 'Gone' : 'Speak'));
+      card.append(speakBtn);
+
+      // archive backlinks
+      const backs = backlinksFor(c.name);
+      if (backs.length) {
+        const backWrap = U.el('div', { class: 'fellowship-card__backlinks' });
+        backs.forEach(name => {
+          backWrap.append(U.el('button', {
+            class: 'tag',
+            title: 'Open in the Archive',
+            onclick: () => Refs.openArchiveEntry(name)
+          }, name));
+        });
+        card.append(backWrap);
+      }
+
+      // actions
+      const acts = U.el('div', { class: 'fellowship-card__actions' });
+      acts.append(
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openCompanionForm(c) }, 'Edit'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
+          if (!confirm('Release "' + c.name + '" from the Fellowship?')) return;
+          companions = companions.filter(x => x.id !== c.id);
+          await save();
+          render();
+        }}, 'Release')
+      );
+      card.append(acts);
+
+      return card;
+    }
+
+    function openCompanionForm(existing) {
+      const isEdit = !!existing;
+      const draft = existing
+        ? { ...existing, customLines: [...(existing.customLines || [])] }
+        : { id: U.uid(), name: '', archetype: 'stoic', voice: '', bond: 1, status: 'hale',
+            customLines: [], speakHistory: [], created: Date.now(), updated: Date.now() };
+
+      const ov = U.el('div', { class: 'modal-overlay' });
+      const dialog = U.el('div', { class: 'modal-card', style: { maxWidth: '560px' } });
+      dialog.append(
+        U.el('div', { class: 'card__corner card__corner--tl' }),
+        U.el('div', { class: 'card__corner card__corner--tr' }),
+        U.el('div', { class: 'card__corner card__corner--bl' }),
+        U.el('div', { class: 'card__corner card__corner--br' }),
+        U.el('h2', {}, isEdit ? 'Edit Companion' : 'Welcome a Companion')
+      );
+      const scroll = U.el('div', { class: 'modal-card__scroll' });
+
+      const nameInput = U.el('input', { class: 'input', placeholder: 'Mira Greycloak, Brother Halric...', value: draft.name });
+      const voiceInput = U.el('textarea', { class: 'textarea', placeholder: 'How they carry themselves. Accent, manner, appearance.', style: { minHeight: '70px' } });
+      voiceInput.value = draft.voice || '';
+
+      // archetype picker
+      const archWrap = U.el('div', { class: 'archetype-picker' });
+      ARCHETYPES.forEach(a => {
+        const b = U.el('button', { onclick: () => {
+          draft.archetype = a.id;
+          archWrap.querySelectorAll('button').forEach(x => x.classList.toggle('is-selected', x.dataset.aid === a.id));
+        }}, [
+          U.el('span', { class: 'archetype-picker__glyph' }, a.glyph),
+          U.el('span', {}, a.name)
+        ]);
+        b.dataset.aid = a.id;
+        if (a.id === draft.archetype) b.classList.add('is-selected');
+        archWrap.append(b);
+      });
+
+      // status picker
+      const statusWrap = U.el('div', { class: 'status-picker' });
+      STATUSES.forEach(s => {
+        const b = U.el('button', { onclick: () => {
+          draft.status = s.id;
+          statusWrap.querySelectorAll('button').forEach(x => x.classList.toggle('is-selected', x.dataset.sid === s.id));
+        }}, s.name);
+        b.dataset.sid = s.id;
+        if (s.id === draft.status) b.classList.add('is-selected');
+        statusWrap.append(b);
+      });
+
+      const linesInput = U.el('textarea', { class: 'textarea',
+        placeholder: 'Your own lines for this companion, one per line. These join the archetype\u2019s default pool.',
+        style: { minHeight: '110px' } });
+      linesInput.value = (draft.customLines || []).join('\n');
+
+      scroll.append(
+        U.el('div', { class: 'label' }, 'Name'),
+        nameInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Archetype'),
+        archWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Voice & Appearance'),
+        voiceInput,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Status'),
+        statusWrap,
+        U.el('div', { class: 'label', style: { marginTop: '0.7rem' } }, 'Custom Lines (optional)'),
+        linesInput
+      );
+      dialog.append(scroll);
+
+      dialog.append(U.el('div', { class: 'modal-card__close' }, [
+        U.el('button', { class: 'btn btn--ghost', onclick: () => ov.remove() }, 'Cancel'),
+        U.el('button', { class: 'btn btn--primary', onclick: async () => {
+          if (!nameInput.value.trim()) { nameInput.focus(); return; }
+          draft.name = nameInput.value.trim();
+          draft.voice = voiceInput.value.trim();
+          draft.customLines = linesInput.value.split('\n').map(s => s.trim()).filter(Boolean);
+          draft.updated = Date.now();
+          if (isEdit) {
+            const idx = companions.findIndex(x => x.id === existing.id);
+            if (idx >= 0) companions[idx] = draft;
+          } else {
+            companions.unshift(draft);
+          }
+          await save();
+          ov.remove();
+          render();
+        }}, isEdit ? 'Save' : 'Welcome')
+      ]));
+      ov.append(dialog);
+      document.body.append(ov);
+      setTimeout(() => nameInput.focus(), 50);
+    }
+
+    render();
   }
 });
 
@@ -6230,6 +8989,7 @@ Keep.register({
         if (!fromF.relations) fromF.relations = {};
         if (!fromF.relations[toF.id]) fromF.relations[toF.id] = { value: 0, note: '' };
         fromF.relations[toF.id].value = Math.max(-10, Math.min(10, fromF.relations[toF.id].value + delta));
+        fromF.updated = Date.now();
         await save();
         renderMatrix();
         syncLabel();
@@ -6301,6 +9061,7 @@ Keep.register({
       const controls = U.el('div', { class: 'faction-card__gauge-controls' });
       const adj = (delta) => async () => {
         f.party = Math.max(-10, Math.min(10, (f.party || 0) + delta));
+        f.updated = Date.now();
         await save();
         render();
         // re-open this card if it was open
@@ -6387,6 +9148,7 @@ Keep.register({
               if (!f.relations) f.relations = {};
               if (!f.relations[o.id]) f.relations[o.id] = { value: 0, note: '' };
               f.relations[o.id].value = Math.max(-10, f.relations[o.id].value - 1);
+              f.updated = Date.now();
               await save(); render();
               const same = grid.querySelector(`[data-fid="${f.id}"]`);
               if (same) same.classList.add('faction-card--open');
@@ -6395,6 +9157,7 @@ Keep.register({
               if (!f.relations) f.relations = {};
               if (!f.relations[o.id]) f.relations[o.id] = { value: 0, note: '' };
               f.relations[o.id].value = Math.min(10, f.relations[o.id].value + 1);
+              f.updated = Date.now();
               await save(); render();
               const same = grid.querySelector(`[data-fid="${f.id}"]`);
               if (same) same.classList.add('faction-card--open');
@@ -6503,6 +9266,7 @@ Keep.register({
           draft.name = nameInput.value.trim();
           draft.motto = mottoInput.value.trim();
           draft.goal = goalInput.value.trim();
+          draft.updated = Date.now();
           if (isEdit) {
             const idx = factions.findIndex(x => x.id === existing.id);
             if (idx >= 0) factions[idx] = draft;
@@ -6815,14 +9579,17 @@ Keep.register({
 
     // layer definitions
     const layerDefs = [
-      { id: 'rain',     name: 'Rain on Stone',  desc: 'A soft hiss, filtered to the eaves.', build: buildRain },
-      { id: 'wind',     name: 'Cold Wind',      desc: 'Low, slow gusts through narrow rooms.', build: buildWind },
-      { id: 'fire',     name: 'Hearthfire',     desc: 'Bass rumble with occasional pops.', build: buildFire },
-      { id: 'drone',    name: 'Cavern Drone',   desc: 'Deep oscillators with slow detune.', build: buildDrone },
+      { id: 'rain',     name: 'Rain on Stone',  desc: 'A soft hiss, filtered to the eaves. Distant thunder, seldom.', build: buildRain },
+      { id: 'wind',     name: 'Cold Wind',      desc: 'Low, slow gusts through narrow rooms. A distant bell, sometimes.', build: buildWind },
+      { id: 'fire',     name: 'Hearthfire',     desc: 'Bass rumble with occasional pops. A log collapses now and then.', build: buildFire },
+      { id: 'drone',    name: 'Cavern Drone',   desc: 'Deep oscillators with slow detune. Water drips far away.', build: buildDrone },
       { id: 'bells',    name: 'Distant Bell',   desc: 'A struck bell, far and seldom.', build: buildBells },
-      { id: 'tavern',   name: 'Tavern Murmur',  desc: 'Filtered noise and faint cup clinks.', build: buildTavern },
-      { id: 'waves',    name: 'Slow Surf',      desc: 'A long swell, in and out.', build: buildWaves },
-      { id: 'crows',    name: 'Crow Cry',       desc: 'Occasional rasps from the wood.', build: buildCrows }
+      { id: 'tavern',   name: 'Tavern Murmur',  desc: 'A room of voices. Cups clink. Sometimes a laugh.', build: buildTavern },
+      { id: 'waves',    name: 'Slow Surf',      desc: 'A long swell, in and out. The cry of a gull, occasionally.', build: buildWaves },
+      { id: 'crows',    name: 'Crow Cry',       desc: 'Occasional rasps from the wood.', build: buildCrows },
+      { id: 'wolf',     name: 'Wolves at Night',desc: 'A lone howl, and sometimes a more distant answer.', build: buildWolf },
+      { id: 'market',   name: 'Market Day',     desc: 'Crowd murmur, vendor calls, hammers and coins.', build: buildMarket },
+      { id: 'stone',    name: 'Stone Grinding', desc: 'Low rumble of something massive being moved. Dust falls.', build: buildStone }
     ];
 
     // build layer cards
@@ -6851,12 +9618,15 @@ Keep.register({
 
     // presets
     const presets = [
-      { name: 'Storm Vigil', layers: { rain: 0.65, wind: 0.55, drone: 0.2 } },
-      { name: 'The Tavern',  layers: { tavern: 0.7, fire: 0.4, bells: 0.15 } },
-      { name: 'Crypt',       layers: { drone: 0.6, wind: 0.3, bells: 0.1 } },
-      { name: 'Cliffside',   layers: { waves: 0.7, wind: 0.5, crows: 0.25 } },
-      { name: 'Hearthside',  layers: { fire: 0.7, wind: 0.15 } },
-      { name: 'Lonely Wood', layers: { wind: 0.4, crows: 0.3, drone: 0.2 } }
+      { name: 'Storm Vigil',    layers: { rain: 0.65, wind: 0.55, drone: 0.2 } },
+      { name: 'The Tavern',     layers: { tavern: 0.7, fire: 0.4, bells: 0.15 } },
+      { name: 'Crypt',          layers: { drone: 0.6, wind: 0.3, bells: 0.1 } },
+      { name: 'Cliffside',      layers: { waves: 0.7, wind: 0.5, crows: 0.25 } },
+      { name: 'Hearthside',     layers: { fire: 0.7, wind: 0.15 } },
+      { name: 'Lonely Wood',    layers: { wind: 0.4, crows: 0.3, drone: 0.2 } },
+      { name: 'Wolves at Door', layers: { wind: 0.45, wolf: 0.7, drone: 0.2 } },
+      { name: 'Market Square',  layers: { market: 0.7, bells: 0.15 } },
+      { name: 'Forge Depths',   layers: { stone: 0.7, drone: 0.3, fire: 0.25 } }
     ];
     presets.forEach(p => {
       presetRow.append(U.el('button', { class: 'btn btn--ghost btn--small', onclick: async () => { await applyPreset(p); }}, p.name));
@@ -6938,13 +9708,371 @@ Keep.register({
       return src;
     }
 
+    // One-shot noise: a buffer source of finite length, plays once.
+    function noiseOneShot(audio, type, dur) {
+      const len = Math.floor(audio.sampleRate * dur);
+      const buf = audio.createBuffer(1, len, audio.sampleRate);
+      const data = buf.getChannelData(0);
+      if (type === 'brown') {
+        let last = 0;
+        for (let i = 0; i < len; i++) {
+          const w = Math.random() * 2 - 1;
+          last = (last + 0.02 * w) / 1.02;
+          data[i] = last * 3.5;
+        }
+      } else if (type === 'pink') {
+        let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+        for (let i = 0; i < len; i++) {
+          const w = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + w * 0.0555179;
+          b1 = 0.99332 * b1 + w * 0.0750759;
+          b2 = 0.96900 * b2 + w * 0.1538520;
+          b3 = 0.86650 * b3 + w * 0.3104856;
+          b4 = 0.55000 * b4 + w * 0.5329522;
+          b5 = -0.7616 * b5 - w * 0.0168980;
+          data[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11;
+          b6 = w * 0.115926;
+        }
+      } else {
+        for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+      }
+      const src = audio.createBufferSource();
+      src.buffer = buf;
+      return src;
+    }
+
+    // Event scheduler. Calls fn at random intervals between minMs and maxMs.
+    // Returns a cancel function. Used to attach occasional one-shot events
+    // (a thunderclap inside rain, a laugh inside tavern) to a long-running
+    // layer. Each layer's stop() invokes its cancel function so events do
+    // not leak after a layer is silenced.
+    function schedule(minMs, maxMs, fn) {
+      const stopped = { v: false };
+      function tick() {
+        if (stopped.v) return;
+        const delay = minMs + Math.random() * (maxMs - minMs);
+        setTimeout(() => {
+          if (stopped.v) return;
+          try { fn(); } catch {}
+          tick();
+        }, delay);
+      }
+      tick();
+      return () => { stopped.v = true; };
+    }
+
+    // ---- ONE-SHOT EVENTS -----------------------------------------------
+    // Brief atmospheric sounds. Each composes oscillators, filters, and
+    // envelopes into a single ~0.1 to 4 second sound, then cleans up after
+    // itself. Called by layer schedules or directly (wolf howls).
+
+    function eventThunder(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      const duration = 3 + Math.random() * 2.5;
+      // Low rumble: brown noise heavily lowpassed, with frequency sweep
+      const rumble = noiseOneShot(audio, 'brown', duration + 0.5);
+      const lp = audio.createBiquadFilter();
+      lp.type = 'lowpass'; lp.Q.value = 0.7;
+      lp.frequency.setValueAtTime(80, t);
+      lp.frequency.linearRampToValueAtTime(160, t + 0.4);
+      lp.frequency.linearRampToValueAtTime(50, t + duration);
+      const g = audio.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.4, t + 0.2);
+      g.gain.linearRampToValueAtTime(0.22, t + duration * 0.5);
+      g.gain.exponentialRampToValueAtTime(0.001, t + duration);
+      rumble.connect(lp).connect(g).connect(dest);
+      rumble.start(t); rumble.stop(t + duration + 0.4);
+      // Sharp crack at the front (about half the time, for closer thunder)
+      if (Math.random() < 0.55) {
+        const crack = noiseOneShot(audio, 'white', 0.15);
+        const hp = audio.createBiquadFilter();
+        hp.type = 'highpass'; hp.frequency.value = 900;
+        const cg = audio.createGain();
+        cg.gain.setValueAtTime(0, t);
+        cg.gain.linearRampToValueAtTime(0.22, t + 0.005);
+        cg.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+        crack.connect(hp).connect(cg).connect(dest);
+        crack.start(t); crack.stop(t + 0.2);
+      }
+    }
+
+    function eventDistantBell(audio, dest) {
+      const f = [196, 220, 261.63][Math.floor(Math.random() * 3)];
+      const t = audio.currentTime + 0.05;
+      const carrier = audio.createOscillator();
+      carrier.type = 'sine'; carrier.frequency.value = f;
+      const mod = audio.createOscillator();
+      mod.type = 'sine'; mod.frequency.value = f * 2.4;
+      const modG = audio.createGain(); modG.gain.value = 200;
+      mod.connect(modG).connect(carrier.frequency);
+      const g = audio.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.12, t + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 5);
+      const lp = audio.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 850; // muffled distance
+      carrier.connect(g).connect(lp).connect(dest);
+      carrier.start(t); mod.start(t);
+      carrier.stop(t + 5.2); mod.stop(t + 5.2);
+    }
+
+    function eventLogCollapse(audio, dest) {
+      const t0 = audio.currentTime + 0.05;
+      // Big thunk
+      const thunk = noiseOneShot(audio, 'brown', 0.3);
+      const tLp = audio.createBiquadFilter();
+      tLp.type = 'lowpass'; tLp.frequency.value = 250;
+      const tG = audio.createGain();
+      tG.gain.setValueAtTime(0, t0);
+      tG.gain.linearRampToValueAtTime(0.5, t0 + 0.008);
+      tG.gain.exponentialRampToValueAtTime(0.001, t0 + 0.3);
+      thunk.connect(tLp).connect(tG).connect(dest);
+      thunk.start(t0); thunk.stop(t0 + 0.4);
+      // Shower of crackles trailing
+      for (let i = 0; i < 8; i++) {
+        const t = t0 + 0.05 + i * 0.045 + Math.random() * 0.08;
+        const buf = audio.createBuffer(1, Math.floor(audio.sampleRate * 0.05), audio.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let j = 0; j < d.length; j++) {
+          const env = Math.exp(-j / (audio.sampleRate * 0.012));
+          d[j] = (Math.random() * 2 - 1) * env;
+        }
+        const c = audio.createBufferSource(); c.buffer = buf;
+        const hp = audio.createBiquadFilter();
+        hp.type = 'highpass'; hp.frequency.value = 2400;
+        const g = audio.createGain(); g.gain.value = 0.08 + Math.random() * 0.08;
+        c.connect(hp).connect(g).connect(dest);
+        c.start(t);
+      }
+    }
+
+    function eventLaugh(audio, dest) {
+      const t0 = audio.currentTime + 0.05;
+      const num = 3 + Math.floor(Math.random() * 3);
+      const basePitch = 170 + Math.random() * 100;
+      for (let i = 0; i < num; i++) {
+        const t = t0 + i * (0.12 + Math.random() * 0.05);
+        const pitch = basePitch - i * 12 + (Math.random() * 20 - 10);
+        const saw = audio.createOscillator();
+        saw.type = 'sawtooth'; saw.frequency.value = pitch;
+        // vowel "ha" formants
+        const f1 = audio.createBiquadFilter();
+        f1.type = 'bandpass'; f1.Q.value = 6; f1.frequency.value = 720;
+        const f2 = audio.createBiquadFilter();
+        f2.type = 'bandpass'; f2.Q.value = 4; f2.frequency.value = 1480;
+        const lp = audio.createBiquadFilter();
+        lp.type = 'lowpass'; lp.frequency.value = 2400;
+        const g = audio.createGain();
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.06 + Math.random() * 0.04, t + 0.015);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+        saw.connect(f1).connect(lp).connect(g).connect(dest);
+        saw.connect(f2).connect(lp);
+        saw.start(t); saw.stop(t + 0.14);
+      }
+    }
+
+    function eventGull(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      const o = audio.createOscillator();
+      o.type = 'sawtooth';
+      const base = 800 + Math.random() * 250;
+      o.frequency.setValueAtTime(base, t);
+      o.frequency.linearRampToValueAtTime(base * 1.3, t + 0.12);
+      o.frequency.linearRampToValueAtTime(base * 0.7, t + 0.55);
+      const bp = audio.createBiquadFilter();
+      bp.type = 'bandpass'; bp.frequency.value = 1500; bp.Q.value = 3;
+      const g = audio.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.07, t + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.65);
+      o.connect(bp).connect(g).connect(dest);
+      o.start(t); o.stop(t + 0.75);
+    }
+
+    function eventDrip(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      const o = audio.createOscillator();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(1400, t);
+      o.frequency.exponentialRampToValueAtTime(500, t + 0.07);
+      const g = audio.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.13, t + 0.004);
+      g.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+      // Crude reverb via a single feedback delay
+      const delay = audio.createDelay(); delay.delayTime.value = 0.22;
+      const wet = audio.createGain(); wet.gain.value = 0.4;
+      const fb = audio.createGain(); fb.gain.value = 0.35;
+      o.connect(g);
+      g.connect(dest);
+      g.connect(delay);
+      delay.connect(fb).connect(delay);
+      delay.connect(wet).connect(dest);
+      o.start(t); o.stop(t + 0.5);
+      setTimeout(() => {
+        try { delay.disconnect(); fb.disconnect(); wet.disconnect(); } catch {}
+      }, 2500);
+    }
+
+    function eventChairScrape(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      const dur = 0.18 + Math.random() * 0.25;
+      const src = noiseOneShot(audio, 'pink', dur + 0.1);
+      const bp = audio.createBiquadFilter();
+      bp.type = 'bandpass';
+      const baseFreq = 550 + Math.random() * 400;
+      bp.frequency.setValueAtTime(baseFreq, t);
+      bp.frequency.linearRampToValueAtTime(baseFreq * 0.6, t + dur);
+      bp.Q.value = 3.5;
+      const g = audio.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.05, t + 0.04);
+      g.gain.linearRampToValueAtTime(0.03, t + dur - 0.04);
+      g.gain.linearRampToValueAtTime(0, t + dur);
+      src.connect(bp).connect(g).connect(dest);
+      src.start(t); src.stop(t + dur + 0.1);
+    }
+
+    function eventVendorCall(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      const dur = 0.45 + Math.random() * 0.4;
+      const pitch = 180 + Math.random() * 180;
+      const saw = audio.createOscillator();
+      saw.type = 'sawtooth';
+      saw.frequency.setValueAtTime(pitch * 0.85, t);
+      saw.frequency.linearRampToValueAtTime(pitch * 1.25, t + dur * 0.35);
+      saw.frequency.linearRampToValueAtTime(pitch * 0.5, t + dur);
+      const f1 = audio.createBiquadFilter();
+      f1.type = 'bandpass'; f1.Q.value = 5; f1.frequency.value = 700;
+      const f2 = audio.createBiquadFilter();
+      f2.type = 'bandpass'; f2.Q.value = 4; f2.frequency.value = 1500;
+      const lp = audio.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 2400;
+      const g = audio.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(0.08, t + 0.06);
+      g.gain.linearRampToValueAtTime(0.06, t + dur * 0.6);
+      g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+      saw.connect(f1).connect(lp).connect(g).connect(dest);
+      saw.connect(f2).connect(lp);
+      saw.start(t); saw.stop(t + dur + 0.1);
+    }
+
+    function eventCoinClink(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      const num = 1 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < num; i++) {
+        const ti = t + i * 0.05;
+        const o = audio.createOscillator();
+        o.type = 'triangle';
+        o.frequency.value = 1800 + Math.random() * 1600;
+        const g = audio.createGain();
+        g.gain.setValueAtTime(0, ti);
+        g.gain.linearRampToValueAtTime(0.04, ti + 0.003);
+        g.gain.exponentialRampToValueAtTime(0.001, ti + 0.13);
+        o.connect(g).connect(dest);
+        o.start(ti); o.stop(ti + 0.18);
+      }
+    }
+
+    function eventHammerStrike(audio, dest) {
+      const t = audio.currentTime + 0.05;
+      // Low thump
+      const thump = noiseOneShot(audio, 'brown', 0.12);
+      const tLp = audio.createBiquadFilter();
+      tLp.type = 'lowpass'; tLp.frequency.value = 280;
+      const tG = audio.createGain();
+      tG.gain.setValueAtTime(0, t);
+      tG.gain.linearRampToValueAtTime(0.35, t + 0.005);
+      tG.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+      thump.connect(tLp).connect(tG).connect(dest);
+      thump.start(t); thump.stop(t + 0.15);
+      // Metallic ring
+      const o = audio.createOscillator();
+      o.type = 'triangle';
+      o.frequency.value = 1100 + Math.random() * 500;
+      const rg = audio.createGain();
+      rg.gain.setValueAtTime(0, t);
+      rg.gain.linearRampToValueAtTime(0.08, t + 0.005);
+      rg.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      o.connect(rg).connect(dest);
+      o.start(t); o.stop(t + 0.5);
+    }
+
+    function eventDustFall(audio, dest) {
+      const t0 = audio.currentTime + 0.05;
+      const num = 4 + Math.floor(Math.random() * 5);
+      for (let i = 0; i < num; i++) {
+        const t = t0 + i * 0.06 + Math.random() * 0.05;
+        const buf = audio.createBuffer(1, Math.floor(audio.sampleRate * 0.04), audio.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let j = 0; j < d.length; j++) {
+          const env = Math.exp(-j / (audio.sampleRate * 0.012));
+          d[j] = (Math.random() * 2 - 1) * env;
+        }
+        const src = audio.createBufferSource(); src.buffer = buf;
+        const hp = audio.createBiquadFilter();
+        hp.type = 'highpass'; hp.frequency.value = 2000;
+        const g = audio.createGain(); g.gain.value = 0.03 + Math.random() * 0.04;
+        src.connect(hp).connect(g).connect(dest);
+        src.start(t);
+      }
+    }
+
+    // Wolf howl. Sawtooth + vowel formants ("ow" gliding to "oo") with a
+    // long pitch envelope. 35% chance of recursive distant answer for up
+    // to two echoes, producing a primary howl and a smaller pack response.
+    function eventWolfHowl(audio, dest, distance) {
+      distance = distance || 0;
+      const t = audio.currentTime + 0.05;
+      const dur = 1.8 + Math.random() * 1.4;
+      const fundFreq = (260 + Math.random() * 130) - distance * 30;
+      const peakFreq = fundFreq * 1.4;
+      const saw = audio.createOscillator();
+      saw.type = 'sawtooth';
+      saw.frequency.setValueAtTime(fundFreq * 0.7, t);
+      saw.frequency.linearRampToValueAtTime(peakFreq, t + dur * 0.3);
+      saw.frequency.linearRampToValueAtTime(peakFreq * 0.97, t + dur * 0.7);
+      saw.frequency.linearRampToValueAtTime(fundFreq * 0.5, t + dur);
+      const f1 = audio.createBiquadFilter();
+      f1.type = 'bandpass'; f1.Q.value = 5;
+      f1.frequency.setValueAtTime(680, t);
+      f1.frequency.linearRampToValueAtTime(420, t + dur);
+      const f2 = audio.createBiquadFilter();
+      f2.type = 'bandpass'; f2.Q.value = 3;
+      f2.frequency.setValueAtTime(1050, t);
+      f2.frequency.linearRampToValueAtTime(780, t + dur);
+      const lp = audio.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.value = 2600 - distance * 700;
+      const g = audio.createGain();
+      const vol = 0.16 * Math.pow(0.65, distance);
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(vol, t + 0.4);
+      g.gain.linearRampToValueAtTime(vol * 0.9, t + dur - 0.5);
+      g.gain.linearRampToValueAtTime(0, t + dur);
+      saw.connect(f1).connect(lp).connect(g).connect(dest);
+      saw.connect(f2).connect(lp);
+      saw.start(t); saw.stop(t + dur + 0.2);
+      if (distance < 2 && Math.random() < 0.35) {
+        setTimeout(() => eventWolfHowl(audio, dest, distance + 1),
+          dur * 1000 + 700 + Math.random() * 1400);
+      }
+    }
+
+    // ---- LAYERS --------------------------------------------------------
+
     function buildRain(audio, dest) {
       const noise = noiseSource(audio, 'pink');
       const hp = audio.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 1100; hp.Q.value = 0.5;
       const lp = audio.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 6500; lp.Q.value = 0.5;
       const gain = audio.createGain();
       noise.connect(hp).connect(lp).connect(gain).connect(dest);
-      return { gain, stop() { noise.stop(); } };
+      // distant thunder every 90s-240s
+      const cancelThunder = schedule(90000, 240000, () => eventThunder(audio, dest));
+      return { gain, stop() { noise.stop(); cancelThunder(); } };
     }
     function buildWind(audio, dest) {
       const noise = noiseSource(audio, 'brown');
@@ -6955,14 +10083,16 @@ Keep.register({
       const lfoG = audio.createGain(); lfoG.gain.value = 220;
       lfo.connect(lfoG).connect(lp.frequency); lfo.start();
       noise.connect(lp).connect(gain).connect(dest);
-      return { gain, stop() { noise.stop(); lfo.stop(); } };
+      // distant bell every 100s-240s
+      const cancelBell = schedule(100000, 240000, () => eventDistantBell(audio, dest));
+      return { gain, stop() { noise.stop(); lfo.stop(); cancelBell(); } };
     }
     function buildFire(audio, dest) {
       const noise = noiseSource(audio, 'brown');
       const lp = audio.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 360;
       const gain = audio.createGain();
       noise.connect(lp).connect(gain).connect(dest);
-      // crackles
+      // crackles (the existing continuous spit-and-pop)
       const stopped = { v: false };
       function scheduleCrackle() {
         if (stopped.v) return;
@@ -6981,7 +10111,9 @@ Keep.register({
         setTimeout(scheduleCrackle, 400 + Math.random() * 1400);
       }
       scheduleCrackle();
-      return { gain, stop() { stopped.v = true; noise.stop(); } };
+      // log collapse every 90s-240s
+      const cancelCollapse = schedule(90000, 240000, () => eventLogCollapse(audio, dest));
+      return { gain, stop() { stopped.v = true; noise.stop(); cancelCollapse(); } };
     }
     function buildDrone(audio, dest) {
       const o1 = audio.createOscillator(); o1.frequency.value = 55; o1.type = 'sine';
@@ -6995,7 +10127,9 @@ Keep.register({
       o1.connect(mix); o2.connect(mix); o3.connect(mix);
       mix.connect(gain).connect(dest);
       o1.start(); o2.start(); o3.start();
-      return { gain, stop() { o1.stop(); o2.stop(); o3.stop(); lfo.stop(); } };
+      // distant water drip every 60s-180s
+      const cancelDrip = schedule(60000, 180000, () => eventDrip(audio, dest));
+      return { gain, stop() { o1.stop(); o2.stop(); o3.stop(); lfo.stop(); cancelDrip(); } };
     }
     function buildBells(audio, dest) {
       const gain = audio.createGain();
@@ -7020,15 +10154,54 @@ Keep.register({
       strike();
       return { gain, stop() { stopped.v = true; } };
     }
+
+    // Tavern murmur: base speech-band noise plus two formant resonances
+    // (F1 and F2) modulated by independent slow LFOs to simulate the
+    // shifting vowel coloration of many voices. Overall amplitude has a
+    // slow swell. Adds occasional cup clinks, distant laughs, and chair
+    // scrapes. Sounds like a room of people rather than a wind tunnel.
     function buildTavern(audio, dest) {
-      const noise = noiseSource(audio, 'pink');
-      const bp = audio.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 540; bp.Q.value = 1.4;
-      const lfo = audio.createOscillator(); lfo.frequency.value = 0.13;
-      const lfoG = audio.createGain(); lfoG.gain.value = 130;
-      lfo.connect(lfoG).connect(bp.frequency); lfo.start();
       const gain = audio.createGain();
-      noise.connect(bp).connect(gain).connect(dest);
-      // sporadic cup clinks
+      gain.connect(dest);
+
+      // Base murmur, pink noise filtered to speech band
+      const noiseBase = noiseSource(audio, 'pink');
+      const baseBp = audio.createBiquadFilter();
+      baseBp.type = 'bandpass'; baseBp.frequency.value = 600; baseBp.Q.value = 0.45;
+      const baseLp = audio.createBiquadFilter();
+      baseLp.type = 'lowpass'; baseLp.frequency.value = 2800;
+      const baseG = audio.createGain(); baseG.gain.value = 0.45;
+      noiseBase.connect(baseBp).connect(baseLp).connect(baseG).connect(gain);
+
+      // Formant F1: ~400-870 Hz vowel resonance, sweeping slowly
+      const noiseF1 = noiseSource(audio, 'pink');
+      const f1Bp = audio.createBiquadFilter();
+      f1Bp.type = 'bandpass'; f1Bp.frequency.value = 650; f1Bp.Q.value = 7;
+      const f1Lfo = audio.createOscillator();
+      f1Lfo.type = 'sine'; f1Lfo.frequency.value = 0.13;
+      const f1LfoG = audio.createGain(); f1LfoG.gain.value = 220;
+      f1Lfo.connect(f1LfoG).connect(f1Bp.frequency); f1Lfo.start();
+      const f1G = audio.createGain(); f1G.gain.value = 0.35;
+      noiseF1.connect(f1Bp).connect(f1G).connect(gain);
+
+      // Formant F2: ~1200-2200 Hz vowel resonance, sweeping at different rate
+      const noiseF2 = noiseSource(audio, 'pink');
+      const f2Bp = audio.createBiquadFilter();
+      f2Bp.type = 'bandpass'; f2Bp.frequency.value = 1700; f2Bp.Q.value = 6;
+      const f2Lfo = audio.createOscillator();
+      f2Lfo.type = 'sine'; f2Lfo.frequency.value = 0.17;
+      const f2LfoG = audio.createGain(); f2LfoG.gain.value = 500;
+      f2Lfo.connect(f2LfoG).connect(f2Bp.frequency); f2Lfo.start();
+      const f2G = audio.createGain(); f2G.gain.value = 0.22;
+      noiseF2.connect(f2Bp).connect(f2G).connect(gain);
+
+      // Crowd swell, overall amplitude
+      const swellLfo = audio.createOscillator();
+      swellLfo.type = 'sine'; swellLfo.frequency.value = 0.05;
+      const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.15;
+      swellLfo.connect(swellLfoG).connect(gain.gain); swellLfo.start();
+
+      // Cup clinks (original behavior)
       const stopped = { v: false };
       function clink() {
         if (stopped.v) return;
@@ -7037,15 +10210,26 @@ Keep.register({
         o.frequency.value = 1200 + Math.random() * 800;
         const g = audio.createGain();
         g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(0.15, t + 0.005);
+        g.gain.linearRampToValueAtTime(0.12, t + 0.005);
         g.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
         o.connect(g).connect(dest);
         o.start(t); o.stop(t + 0.3);
-        setTimeout(clink, 3000 + Math.random() * 8000);
+        setTimeout(clink, 4000 + Math.random() * 9000);
       }
       clink();
-      return { gain, stop() { stopped.v = true; noise.stop(); lfo.stop(); } };
+
+      // Distant laugh every 40s-110s, chair scrape every 60s-150s
+      const cancelLaugh = schedule(40000, 110000, () => eventLaugh(audio, dest));
+      const cancelScrape = schedule(60000, 150000, () => eventChairScrape(audio, dest));
+
+      return { gain, stop() {
+        stopped.v = true;
+        noiseBase.stop(); noiseF1.stop(); noiseF2.stop();
+        f1Lfo.stop(); f2Lfo.stop(); swellLfo.stop();
+        cancelLaugh(); cancelScrape();
+      }};
     }
+
     function buildWaves(audio, dest) {
       const noise = noiseSource(audio, 'pink');
       const lp = audio.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 800;
@@ -7055,7 +10239,9 @@ Keep.register({
       const lfoG = audio.createGain(); lfoG.gain.value = 0.35;
       lfo.connect(lfoG).connect(swell.gain); lfo.start();
       noise.connect(lp).connect(swell).connect(gain).connect(dest);
-      return { gain, stop() { noise.stop(); lfo.stop(); } };
+      // distant gull every 60s-180s
+      const cancelGull = schedule(60000, 180000, () => eventGull(audio, dest));
+      return { gain, stop() { noise.stop(); lfo.stop(); cancelGull(); } };
     }
     function buildCrows(audio, dest) {
       const gain = audio.createGain(); gain.connect(dest);
@@ -7079,6 +10265,97 @@ Keep.register({
       }
       caw();
       return { gain, stop() { stopped.v = true; } };
+    }
+
+    // Wolf Howl: a sub-bass drone for presence, plus scheduled howls
+    // every 30s-90s. First howl fires shortly after the layer wakes so
+    // the user knows it is on. Each howl has a chance to spawn a more
+    // distant answering howl (pack behavior).
+    function buildWolf(audio, dest) {
+      const gain = audio.createGain();
+      gain.connect(dest);
+      // very low sub presence so the layer is not silent between howls
+      const sub = noiseSource(audio, 'brown');
+      const subLp = audio.createBiquadFilter();
+      subLp.type = 'lowpass'; subLp.frequency.value = 60;
+      const subG = audio.createGain(); subG.gain.value = 0.05;
+      sub.connect(subLp).connect(subG).connect(gain);
+      const cancelHowl = schedule(30000, 90000, () => eventWolfHowl(audio, dest));
+      // fire a howl shortly after the layer wakes so the user knows it is on
+      setTimeout(() => { try { eventWolfHowl(audio, dest); } catch {} },
+        1500 + Math.random() * 4000);
+      return { gain, stop() { sub.stop(); cancelHowl(); }};
+    }
+
+    // Market Day: crowd murmur, footfall rumble, slow amplitude swell.
+    // Frequent vendor calls (formant-synthesized "Hai!"), occasional
+    // hammer strikes and coin clinks. Lively and continuous.
+    function buildMarket(audio, dest) {
+      const gain = audio.createGain();
+      gain.connect(dest);
+      // Crowd murmur
+      const noise = noiseSource(audio, 'pink');
+      const bp = audio.createBiquadFilter();
+      bp.type = 'bandpass'; bp.frequency.value = 800; bp.Q.value = 0.4;
+      const lp = audio.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 2200;
+      const baseG = audio.createGain(); baseG.gain.value = 0.4;
+      noise.connect(bp).connect(lp).connect(baseG).connect(gain);
+      // Footfalls (low rumble)
+      const footNoise = noiseSource(audio, 'brown');
+      const footLp = audio.createBiquadFilter();
+      footLp.type = 'lowpass'; footLp.frequency.value = 200;
+      const footG = audio.createGain(); footG.gain.value = 0.3;
+      footNoise.connect(footLp).connect(footG).connect(gain);
+      // Crowd swell
+      const swellLfo = audio.createOscillator();
+      swellLfo.type = 'sine'; swellLfo.frequency.value = 0.04;
+      const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.12;
+      swellLfo.connect(swellLfoG).connect(gain.gain); swellLfo.start();
+      // Schedules
+      const cancelVendor = schedule(8000, 22000, () => eventVendorCall(audio, dest));
+      const cancelHammer = schedule(18000, 50000, () => eventHammerStrike(audio, dest));
+      const cancelCoin = schedule(10000, 28000, () => eventCoinClink(audio, dest));
+      return { gain, stop() {
+        noise.stop(); footNoise.stop(); swellLfo.stop();
+        cancelVendor(); cancelHammer(); cancelCoin();
+      }};
+    }
+
+    // Stone Grinding: low rumble of brown noise + mid-band rasp. Slow
+    // amplitude wobble suggests uneven friction. Slow frequency sweep on
+    // the rasp keeps it from feeling static. Occasional dust falls.
+    function buildStone(audio, dest) {
+      const gain = audio.createGain();
+      gain.connect(dest);
+      // Low rumble
+      const noise1 = noiseSource(audio, 'brown');
+      const lp1 = audio.createBiquadFilter();
+      lp1.type = 'lowpass'; lp1.frequency.value = 120; lp1.Q.value = 1;
+      const g1 = audio.createGain(); g1.gain.value = 1.2;
+      noise1.connect(lp1).connect(g1).connect(gain);
+      // High-mid rasp
+      const noise2 = noiseSource(audio, 'brown');
+      const bp = audio.createBiquadFilter();
+      bp.type = 'bandpass'; bp.frequency.value = 800; bp.Q.value = 1.5;
+      const g2 = audio.createGain(); g2.gain.value = 0.32;
+      noise2.connect(bp).connect(g2).connect(gain);
+      // Amplitude wobble for uneven friction
+      const lfo = audio.createOscillator();
+      lfo.type = 'triangle'; lfo.frequency.value = 0.3;
+      const lfoG = audio.createGain(); lfoG.gain.value = 0.18;
+      lfo.connect(lfoG).connect(gain.gain); lfo.start();
+      // Slow rasp sweep
+      const lfo2 = audio.createOscillator();
+      lfo2.type = 'sine'; lfo2.frequency.value = 0.06;
+      const lfo2G = audio.createGain(); lfo2G.gain.value = 80;
+      lfo2.connect(lfo2G).connect(bp.frequency); lfo2.start();
+      // Dust falls
+      const cancelDust = schedule(25000, 90000, () => eventDustFall(audio, dest));
+      return { gain, stop() {
+        noise1.stop(); noise2.stop(); lfo.stop(); lfo2.stop();
+        cancelDust();
+      }};
     }
   },
 
