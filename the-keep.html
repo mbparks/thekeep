@@ -1500,6 +1500,323 @@ small { font-size: 0.85em; color: var(--ink-faded); }
 .lists--big .lists__hp input { width: 60px; font-size: 1.2rem; }
 .lists--big .lists__add { display: none; }
 
+/* ----- MODULE: THE BONES (Dice Roller) -------------------------------- */
+.bones { display: flex; flex-direction: column; gap: 1.4rem; }
+
+.bones__builder {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.3rem 1.4rem;
+}
+.bones__section-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+
+.bones__picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.bones__die-btn {
+  flex: 1 0 auto;
+  min-width: 70px;
+  padding: 0.7rem 0.4rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.10em;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.08s;
+}
+.bones__die-btn:hover {
+  background: var(--p-2);
+  border-color: var(--gold);
+}
+.bones__die-btn:active { transform: translateY(1px); }
+
+.bones__pool-display {
+  min-height: 52px;
+  padding: 0.7rem 0.8rem;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+.bones__pool-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+}
+.bones__pool-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem 0.35rem 0.75rem;
+  background: var(--p-0);
+  border: 1px solid var(--ink-soft);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.bones__pool-chip:hover {
+  background: rgba(92, 31, 36, 0.08);
+  border-color: var(--wine);
+}
+.bones__pool-chip-x {
+  color: var(--ink-faded);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.bones__pool-chip:hover .bones__pool-chip-x { color: var(--wine); }
+[data-theme="dark"] .bones__pool-chip:hover .bones__pool-chip-x { color: #e36b78; }
+.bones__pool-display--shake { animation: bonesShake 0.4s; }
+@keyframes bonesShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+.bones__mod-section {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.2rem;
+}
+.bones__mod-label {
+  font-family: var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-right: 0.4rem;
+}
+.bones__mod-value {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  color: var(--ink);
+  min-width: 2.4rem;
+  text-align: center;
+}
+
+.bones__cast {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 2rem;
+  background: var(--wine);
+  color: #f5ebd6;
+  border: 1px solid var(--wine-d);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.bones__cast:hover { filter: brightness(1.08); }
+.bones__cast:active { transform: translateY(1px); }
+
+/* Result card */
+.bones__result {
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  padding: 1.4rem 1.5rem;
+  position: relative;
+}
+.bones__result-head {
+  font-family: var(--display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--gold-d);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .bones__result-head { color: var(--gold-l); }
+.bones__result-expr {
+  font-family: var(--rubric);
+  font-style: italic;
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.bones__result-breakdown {
+  display: flex; flex-direction: column;
+  gap: 0.55rem;
+  margin-bottom: 0.6rem;
+}
+.bones__result-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.bones__result-row-label {
+  font-family: var(--display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  min-width: 4rem;
+}
+.bones__result-row-rolls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.bones__result-die {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 0.4rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--ink);
+  animation: bonesDieIn 0.32s ease-out;
+}
+@keyframes bonesDieIn {
+  0% { transform: scale(0.5) rotate(-90deg); opacity: 0; }
+  60% { transform: scale(1.08) rotate(8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.bones__result-die--max {
+  background: rgba(184, 146, 58, 0.20);
+  border-color: var(--gold);
+  color: var(--gold-d);
+  font-weight: 600;
+  box-shadow: 0 0 0 2px rgba(184, 146, 58, 0.18);
+}
+[data-theme="dark"] .bones__result-die--max {
+  background: rgba(184, 146, 58, 0.24);
+  color: var(--gold-l);
+  box-shadow: 0 0 0 2px rgba(184, 146, 58, 0.26);
+}
+.bones__result-die--min {
+  background: rgba(92, 31, 36, 0.14);
+  border-color: var(--wine);
+  color: var(--wine);
+  font-weight: 600;
+}
+[data-theme="dark"] .bones__result-die--min {
+  background: rgba(200, 49, 62, 0.20);
+  border-color: #c8313e;
+  color: #e36b78;
+}
+.bones__result-row-sum {
+  margin-left: auto;
+  font-family: var(--display);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+}
+.bones__divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--p-3), transparent);
+  margin: 0.9rem 0;
+}
+.bones__result-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.bones__result-total-label {
+  font-family: var(--display);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+.bones__result-total-value {
+  font-family: var(--display);
+  font-size: 2.4rem;
+  color: var(--gold-d);
+  font-weight: 600;
+  line-height: 1;
+}
+[data-theme="dark"] .bones__result-total-value { color: var(--gold-l); }
+.bones__result-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* History */
+.bones__history {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.1rem 1.2rem;
+}
+.bones__history-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.bones__history-list { display: flex; flex-direction: column; }
+.bones__history-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.45rem 0.2rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.bones__history-row:last-child { border-bottom: none; }
+.bones__history-time {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+  min-width: 3rem;
+}
+.bones__history-expr {
+  font-family: var(--rubric);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+.bones__history-arrow {
+  font-family: var(--display);
+  color: var(--ink-faded);
+}
+.bones__history-total {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 600;
+  min-width: 2.2rem;
+  text-align: right;
+}
+
 /* ----- MODULE: HEARTH (Soundscape) ------------------------------------- */
 .hearth__intro {
   margin-bottom: 1.5rem;
@@ -3805,6 +4122,7 @@ body.popout-mode .folio {
     <symbol id="g-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M20 14 A 8 8 0 1 1 10 4 A 6 6 0 0 0 20 14 Z"/></symbol>
     <symbol id="g-sword" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 19 L13 11 L19 5 L17 11 L9 19 Z M5 19 L8 19 L8 16 M13 11 L15 13"/></symbol>
     <symbol id="g-flame" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 C 14 7 17 8 17 13 C 17 17 14 21 12 21 C 10 21 7 17 7 13 C 7 10 9 9 10 7 C 11 9 12 9 12 6 Z"/></symbol>
+    <symbol id="g-dice" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 8 L12 4 L20 8 L20 17 L12 21 L4 17 Z M4 8 L12 12 L20 8 M12 12 L12 21"/></symbol>
     <symbol id="g-scroll" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 4 H17 V20 H6 Z M6 4 C 4.5 4 3.5 5 3.5 6.5 C 3.5 8 4.5 9 6 9 M17 4 C 18.5 4 19.5 5 19.5 6.5 C 19.5 8 18.5 9 17 9 M17 15 C 18.5 15 19.5 16 19.5 17.5 C 19.5 19 18.5 20 17 20 M9 8 H14 M9 12 H14 M9 16 H13"/></symbol>
     <symbol id="g-tankard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 8 H15 V19 C 15 20 14.5 20.5 13.5 20.5 H7.5 C 6.5 20.5 6 20 6 19 Z M15 10.5 H18 C 19 10.5 19.5 11 19.5 12 V15 C 19.5 16 19 16.5 18 16.5 H15 M6 11.5 H15 M8 5 Q 8.5 6.5 8 8 M11 5 Q 11.5 6.5 11 8 M14 5 Q 14.5 6.5 14 8"/></symbol>
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
@@ -9774,6 +10092,267 @@ Keep.register({
       document.removeEventListener('keydown', this._keyHandler);
       this._keyHandler = null;
     }
+  }
+});
+
+/* =========================================================================
+   MODULE: THE BONES (Dice Roller)
+   Build a pool of dice (any count of any die type), set a modifier, then
+   cast. Each die animates in and is highlighted when it shows a max
+   value (boon) or a natural 1 on a d20/d100 (bane). History persists
+   per chronicle; results can be pinned to the Almanac.
+   ========================================================================= */
+Keep.register({
+  id: 'bones',
+  name: 'The Bones',
+  category: 'table',
+  glyph: 'g-dice',
+  tagline: 'Cast bones, count the spots.',
+  sub: 'Roll any dice in any number. The chronicler keeps the tallies.',
+
+  async mount(body, actions) {
+    const DICE_TYPES = [4, 6, 8, 10, 12, 20, 100];
+    let pool = [];   // [{ sides, count }]
+    let modifier = 0;
+    const history = (await Vault.get('bones-history')) || [];
+
+    const wrap = U.el('div', { class: 'bones' });
+
+    // ---- BUILDER -----------------------------------------------------
+    const builder = U.el('div', { class: 'bones__builder' });
+    builder.append(U.el('div', { class: 'bones__section-head' }, 'Your Pool'));
+
+    const picker = U.el('div', { class: 'bones__picker' });
+    DICE_TYPES.forEach(sides => {
+      picker.append(U.el('button', {
+        class: 'bones__die-btn',
+        title: 'Add a d' + sides + ' to the pool',
+        onclick: () => addDie(sides)
+      }, 'd' + sides));
+    });
+    builder.append(picker);
+
+    const poolDisplay = U.el('div', { class: 'bones__pool-display' });
+    builder.append(poolDisplay);
+
+    const modSection = U.el('div', { class: 'bones__mod-section' });
+    const modLabel = U.el('span', { class: 'bones__mod-label' }, 'Modifier');
+    const modMinus = U.el('button', {
+      class: 'btn btn--small btn--ghost',
+      onclick: () => setModifier(modifier - 1)
+    }, '\u2212');
+    const modValue = U.el('span', { class: 'bones__mod-value' }, '0');
+    const modPlus = U.el('button', {
+      class: 'btn btn--small btn--ghost',
+      onclick: () => setModifier(modifier + 1)
+    }, '+');
+    modSection.append(modLabel, modMinus, modValue, modPlus);
+    builder.append(modSection);
+
+    builder.append(U.el('button', {
+      class: 'bones__cast',
+      onclick: () => cast()
+    }, 'Cast the Bones'));
+
+    // ---- RESULT (hidden until first cast) ----------------------------
+    const result = U.el('div', { class: 'bones__result' });
+    result.style.display = 'none';
+
+    // ---- HISTORY -----------------------------------------------------
+    const historyDiv = U.el('div', { class: 'bones__history' });
+
+    wrap.append(builder, result, historyDiv);
+    body.append(wrap);
+
+    // ---- POOL OPERATIONS --------------------------------------------
+    function addDie(sides) {
+      const existing = pool.find(g => g.sides === sides);
+      if (existing) existing.count++;
+      else pool.push({ sides, count: 1 });
+      renderPool();
+    }
+    function removeDie(sides) {
+      const existing = pool.find(g => g.sides === sides);
+      if (!existing) return;
+      existing.count--;
+      if (existing.count <= 0) pool = pool.filter(g => g.sides !== sides);
+      renderPool();
+    }
+    function setModifier(v) {
+      modifier = v;
+      modValue.textContent = v === 0 ? '0' : (v > 0 ? '+' + v : v.toString());
+    }
+    function renderPool() {
+      poolDisplay.innerHTML = '';
+      if (!pool.length) {
+        poolDisplay.append(U.el('span', { class: 'bones__pool-empty' },
+          'No dice in pool. Tap a die above to add it.'));
+        return;
+      }
+      // sort by sides ascending for consistent display
+      const sorted = [...pool].sort((a, b) => a.sides - b.sides);
+      sorted.forEach(g => {
+        poolDisplay.append(U.el('button', {
+          class: 'bones__pool-chip',
+          title: 'Click to remove one d' + g.sides,
+          onclick: () => removeDie(g.sides)
+        }, [
+          U.el('span', {}, g.count + 'd' + g.sides),
+          U.el('span', { class: 'bones__pool-chip-x' }, '\u00D7')
+        ]));
+      });
+    }
+
+    function formatExpression(p, mod) {
+      const sorted = [...p].sort((a, b) => a.sides - b.sides);
+      const parts = sorted.map(g => g.count + 'd' + g.sides);
+      let expr = parts.join(' + ');
+      if (mod > 0) expr += ' + ' + mod;
+      if (mod < 0) expr += ' \u2212 ' + Math.abs(mod);
+      return expr;
+    }
+
+    // ---- CAST --------------------------------------------------------
+    async function cast() {
+      if (!pool.length) {
+        poolDisplay.classList.add('bones__pool-display--shake');
+        setTimeout(() => poolDisplay.classList.remove('bones__pool-display--shake'), 420);
+        return;
+      }
+      const sortedPool = [...pool].sort((a, b) => a.sides - b.sides);
+      const groups = sortedPool.map(g => {
+        const rolls = [];
+        for (let i = 0; i < g.count; i++) {
+          rolls.push(1 + Math.floor(Math.random() * g.sides));
+        }
+        return { sides: g.sides, count: g.count, rolls };
+      });
+      const groupSum = groups.reduce((s, g) =>
+        s + g.rolls.reduce((a, b) => a + b, 0), 0);
+      const rollData = {
+        ts: Date.now(),
+        groups,
+        modifier,
+        total: groupSum + modifier,
+        expression: formatExpression(pool, modifier)
+      };
+      renderResult(rollData);
+      history.unshift(rollData);
+      if (history.length > 50) history.length = 50;
+      await Vault.set('bones-history', history);
+      renderHistory();
+    }
+
+    function renderResult(roll) {
+      result.innerHTML = '';
+      result.style.display = '';
+      result.append(
+        U.el('div', { class: 'bones__result-head' }, '\u2767 The Cast \u2767'),
+        U.el('div', { class: 'bones__result-expr' }, roll.expression)
+      );
+      const breakdown = U.el('div', { class: 'bones__result-breakdown' });
+      roll.groups.forEach(g => {
+        const row = U.el('div', { class: 'bones__result-row' });
+        row.append(U.el('span', { class: 'bones__result-row-label' },
+          g.count + 'd' + g.sides + ':'));
+        const rolls = U.el('span', { class: 'bones__result-row-rolls' });
+        g.rolls.forEach(r => {
+          const isMax = r === g.sides;
+          // fumble styling reserved for d20 and d100 (the systems where
+          // a natural 1 is meaningful); on smaller dice a 1 is mundane
+          const isMin = r === 1 && (g.sides === 20 || g.sides === 100);
+          const cls = 'bones__result-die' +
+            (isMax ? ' bones__result-die--max' : '') +
+            (isMin ? ' bones__result-die--min' : '');
+          rolls.append(U.el('span', { class: cls }, r.toString()));
+        });
+        row.append(rolls);
+        if (g.count > 1) {
+          const sum = g.rolls.reduce((a, b) => a + b, 0);
+          row.append(U.el('span', { class: 'bones__result-row-sum' }, '= ' + sum));
+        }
+        breakdown.append(row);
+      });
+      if (roll.modifier !== 0) {
+        const row = U.el('div', { class: 'bones__result-row' });
+        row.append(
+          U.el('span', { class: 'bones__result-row-label' }, 'Modifier:'),
+          U.el('span', { class: 'bones__result-row-rolls' },
+            roll.modifier > 0 ? '+' + roll.modifier : roll.modifier.toString())
+        );
+        breakdown.append(row);
+      }
+      result.append(breakdown);
+      result.append(U.el('div', { class: 'bones__divider' }));
+      result.append(U.el('div', { class: 'bones__result-total' }, [
+        U.el('span', { class: 'bones__result-total-label' }, 'Total'),
+        U.el('span', { class: 'bones__result-total-value' }, roll.total.toString())
+      ]));
+      result.append(U.el('div', { class: 'bones__result-actions' }, [
+        U.el('button', {
+          class: 'btn btn--ghost btn--small',
+          onclick: async () => {
+            const breakdownText = roll.groups
+              .map(g => g.count + 'd' + g.sides + ': ' + g.rolls.join(', '))
+              .join('; ');
+            const modText = roll.modifier !== 0
+              ? '; modifier ' + (roll.modifier > 0 ? '+' : '') + roll.modifier
+              : '';
+            const text = 'BONES: ' + roll.expression + ' \u2192 ' + roll.total +
+              ' (' + breakdownText + modText + ')';
+            const today = await Refs.pinToToday(text);
+            U.toast('Pinned to ' + (await Refs.formatDate(today)));
+          }
+        }, 'Pin to Almanac'),
+        U.el('button', {
+          class: 'btn btn--ghost btn--small',
+          onclick: () => cast()
+        }, 'Cast Again')
+      ]));
+    }
+
+    // ---- HISTORY ----------------------------------------------------
+    function renderHistory() {
+      historyDiv.innerHTML = '';
+      if (!history.length) {
+        historyDiv.style.display = 'none';
+        return;
+      }
+      historyDiv.style.display = '';
+      historyDiv.append(U.el('div', { class: 'bones__history-head' }, 'Past Casts'));
+      const list = U.el('div', { class: 'bones__history-list' });
+      history.slice(0, 12).forEach(h => {
+        const time = new Date(h.ts);
+        const tStr = time.getHours().toString().padStart(2, '0') + ':' +
+          time.getMinutes().toString().padStart(2, '0');
+        const row = U.el('div', { class: 'bones__history-row' });
+        row.append(
+          U.el('span', { class: 'bones__history-time' }, tStr),
+          U.el('span', { class: 'bones__history-expr' }, h.expression),
+          U.el('span', { class: 'bones__history-arrow' }, '\u2192'),
+          U.el('span', { class: 'bones__history-total' }, h.total.toString())
+        );
+        list.append(row);
+      });
+      historyDiv.append(list);
+    }
+
+    renderPool();
+    renderHistory();
+    setModifier(0);
+
+    actions.append(
+      U.el('button', {
+        class: 'btn btn--ghost btn--small',
+        onclick: async () => {
+          if (!history.length) return;
+          if (!confirm('Clear all past casts?')) return;
+          history.length = 0;
+          await Vault.set('bones-history', history);
+          renderHistory();
+        }
+      }, 'Clear History')
+    );
   }
 });
 
