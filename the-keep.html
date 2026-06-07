@@ -1589,6 +1589,178 @@ small { font-size: 0.85em; color: var(--ink-faded); }
 }
 .hearth__master input { flex: 1; }
 
+/* ----- HEARTH: From Afar (external streams) -------------------------- */
+.hearth__afar {
+  margin-top: 1.5rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--p-3);
+  background: var(--p-0);
+  position: relative;
+}
+.hearth__afar-head {
+  margin-bottom: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.hearth__afar-title {
+  font-family: var(--display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+.hearth__afar-sub {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ink-faded);
+  line-height: 1.45;
+}
+.hearth__afar-add {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.hearth__afar-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--p-3);
+  background: var(--p-1);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.92rem;
+  font-family: var(--rubric);
+}
+.hearth__afar-input--name { flex: 0 1 200px; min-width: 140px; }
+.hearth__afar-list {
+  margin-bottom: 0.6rem;
+}
+.hearth__afar-list-head {
+  font-family: var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.4rem;
+}
+.hearth__afar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.hearth__afar-row:last-child { border-bottom: none; }
+.hearth__afar-row--playing {
+  background: rgba(184, 146, 58, 0.12);
+}
+.hearth__afar-row-name {
+  flex: 1;
+  font-family: var(--rubric);
+  font-size: 0.96rem;
+  color: var(--ink);
+  min-width: 0;
+  word-break: break-word;
+}
+.hearth__afar-row-type {
+  font-family: var(--display);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.45rem;
+  background: var(--p-2);
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+.hearth__afar-empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.6rem 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.hearth__afar-player {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dotted var(--p-3);
+}
+.hearth__afar-now {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-d);
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+.hearth__afar-player iframe,
+.hearth__afar-player audio {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--p-3);
+}
+.hearth__afar-player audio { height: 40px; }
+.hearth__afar-loading {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  text-align: center;
+  padding: 1.5rem;
+}
+.hearth__afar-error {
+  border: 1px solid var(--wine);
+  background: rgba(92, 31, 36, 0.06);
+  padding: 1rem 1.2rem;
+}
+[data-theme="dark"] .hearth__afar-error {
+  border-color: #c8313e;
+  background: rgba(200, 49, 62, 0.12);
+}
+.hearth__afar-error-head {
+  font-family: var(--display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--wine);
+  margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .hearth__afar-error-head { color: #e36b78; }
+.hearth__afar-error-name {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.hearth__afar-error-msg {
+  font-family: var(--rubric);
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.hearth__afar-error-url {
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: var(--ink-faded);
+  padding: 0.4rem 0.55rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+.hearth__afar-error-help {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
 /* ----- CAMPAIGN CHIP & MENU ------------------------------------------- */
 .banner__campaign { position: relative; }
 
@@ -9570,8 +9742,9 @@ Keep.register({
 
     const presetRow = U.el('div', { class: 'hearth__presets' });
     const layersGrid = U.el('div', { class: 'hearth__layers' });
+    const fromAfar = U.el('div', { class: 'hearth__afar' });
 
-    body.append(intro, masterPanel, presetRow, layersGrid);
+    body.append(intro, masterPanel, presetRow, layersGrid, fromAfar);
 
     actions.append(
       U.el('button', { class: 'btn btn--ghost', onclick: () => { silence(); }}, 'Silence All')
@@ -9584,11 +9757,11 @@ Keep.register({
       { id: 'fire',     name: 'Hearthfire',     desc: 'Bass rumble with occasional pops. A log collapses now and then.', build: buildFire },
       { id: 'drone',    name: 'Cavern Drone',   desc: 'Deep oscillators with slow detune. Water drips far away.', build: buildDrone },
       { id: 'bells',    name: 'Distant Bell',   desc: 'A struck bell, far and seldom.', build: buildBells },
-      { id: 'tavern',   name: 'Tavern Murmur',  desc: 'A room of voices. Cups clink. Sometimes a laugh.', build: buildTavern },
+      { id: 'tavern',   name: 'Tavern Murmur',  desc: 'A busy room: warm bed, cup clinks, occasional laughter. Pair with From Afar for voices.', build: buildTavern },
       { id: 'waves',    name: 'Slow Surf',      desc: 'A long swell, in and out. The cry of a gull, occasionally.', build: buildWaves },
       { id: 'crows',    name: 'Crow Cry',       desc: 'Occasional rasps from the wood.', build: buildCrows },
       { id: 'wolf',     name: 'Wolves at Night',desc: 'A lone howl, and sometimes a more distant answer.', build: buildWolf },
-      { id: 'market',   name: 'Market Day',     desc: 'Crowd murmur, vendor calls, hammers and coins.', build: buildMarket },
+      { id: 'market',   name: 'Market Day',     desc: 'Footfalls, vendor calls, hammers and coins. Pair with From Afar for crowd chatter.', build: buildMarket },
       { id: 'stone',    name: 'Stone Grinding', desc: 'Low rumble of something massive being moved. Dust falls.', build: buildStone }
     ];
 
@@ -9631,6 +9804,316 @@ Keep.register({
     presets.forEach(p => {
       presetRow.append(U.el('button', { class: 'btn btn--ghost btn--small', onclick: async () => { await applyPreset(p); }}, p.name));
     });
+
+    // ---- FROM AFAR (external streams) ----------------------------------
+    // Plays user-provided YouTube videos or direct audio URLs as
+    // accompanying ambience. Independent of the synth engine: streams
+    // play through their own HTML element (iframe for YouTube, <audio>
+    // for direct URLs) and have their own volume controls. Streams are
+    // persisted per-chronicle under 'hearth-streams'.
+    //
+    // On first visit, seeds eight curated ambience videos covering the
+    // common fantasy-GM scenes. These are well-established YouTube
+    // uploads from long-standing ambience channels (Sword Coast
+    // Soundscapes, Michael Ghelfi, Relaxing White Noise, Calmed by
+    // Nature, etc), chosen for likely persistence. If any URL stops
+    // working, the YouTube IFrame Player API surfaces the error and
+    // we display a clear message with the URL so the user can replace it.
+    const SEED_STREAMS = [
+      { name: 'Medieval Tavern',     url: 'https://www.youtube.com/watch?v=KecVJnJcSI4' },
+      { name: 'Medieval Market',     url: 'https://www.youtube.com/watch?v=XZ5CB5s2WRY' },
+      { name: 'Crackling Fireplace', url: 'https://www.youtube.com/watch?v=K33gndcdmqg' },
+      { name: 'Cave / Dungeon',      url: 'https://www.youtube.com/watch?v=XZTfth3W1Wc' },
+      { name: 'Heavy Thunderstorm',  url: 'https://www.youtube.com/watch?v=nDq6TstdEi8' },
+      { name: 'Forest at Night',     url: 'https://www.youtube.com/watch?v=hTnDmWid0tY' },
+      { name: 'Coast and Sea',       url: 'https://www.youtube.com/watch?v=376zx9crLP8' },
+      { name: 'Castle in Snow',      url: 'https://www.youtube.com/watch?v=NVLeh6x0VdU' }
+    ];
+
+    const streams = (await Vault.get('hearth-streams')) || [];
+    const seeded = await Vault.get('hearth-streams-seeded');
+    if (!seeded && !streams.length) {
+      SEED_STREAMS.forEach(s => {
+        streams.push({ id: U.uid(), name: s.name, url: s.url, type: 'youtube' });
+      });
+      await Vault.set('hearth-streams', streams);
+      await Vault.set('hearth-streams-seeded', true);
+    }
+
+    // Lazy-load the YouTube IFrame Player API. We use it (instead of a
+    // raw iframe) so onError fires when a video is removed, made
+    // private, or blocked from embedded playback, letting us replace
+    // the player with a clear error message.
+    self.ytApiState = self.ytApiState || { loaded: false, loading: false, callbacks: [] };
+    function loadYouTubeAPI() {
+      return new Promise((resolve, reject) => {
+        if (window.YT && window.YT.Player) {
+          self.ytApiState.loaded = true;
+          resolve();
+          return;
+        }
+        self.ytApiState.callbacks.push({ resolve, reject });
+        if (self.ytApiState.loading) return;
+        self.ytApiState.loading = true;
+        const timeout = setTimeout(() => {
+          self.ytApiState.loading = false;
+          const cbs = self.ytApiState.callbacks;
+          self.ytApiState.callbacks = [];
+          cbs.forEach(cb => cb.reject(new Error('YouTube IFrame API failed to load')));
+        }, 10000);
+        window.onYouTubeIframeAPIReady = () => {
+          clearTimeout(timeout);
+          self.ytApiState.loaded = true;
+          self.ytApiState.loading = false;
+          const cbs = self.ytApiState.callbacks;
+          self.ytApiState.callbacks = [];
+          cbs.forEach(cb => cb.resolve());
+        };
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+      });
+    }
+
+    fromAfar.append(
+      U.el('div', { class: 'hearth__afar-head' }, [
+        U.el('div', { class: 'hearth__afar-title' }, '\u2767 From Afar \u2767'),
+        U.el('div', { class: 'hearth__afar-sub' },
+          'Pipe in atmosphere from elsewhere. Eight ambience videos are seeded for common fantasy scenes; add your own YouTube links or direct audio URLs below. Network access is required for this feature only; everything else runs offline. If a seeded URL stops working, the player will show an error with the URL so you can replace it.')
+      ])
+    );
+
+    const urlInput = U.el('input', { type: 'text', placeholder: 'Paste URL...', class: 'hearth__afar-input' });
+    const nameInput = U.el('input', { type: 'text', placeholder: 'Name (optional)', class: 'hearth__afar-input hearth__afar-input--name' });
+    const saveBtn = U.el('button', { class: 'btn btn--small' }, '+ Save Stream');
+    const addRow = U.el('div', { class: 'hearth__afar-add' });
+    addRow.append(urlInput, nameInput, saveBtn);
+    fromAfar.append(addRow);
+
+    const list = U.el('div', { class: 'hearth__afar-list' });
+    const playerArea = U.el('div', { class: 'hearth__afar-player' });
+    fromAfar.append(list, playerArea);
+
+    // YouTube URL parsing for common formats
+    function parseYouTubeId(url) {
+      const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+        /youtube\.com\/.*[?&]v=([a-zA-Z0-9_-]{11})/
+      ];
+      for (const p of patterns) {
+        const m = url.match(p);
+        if (m) return m[1];
+      }
+      return null;
+    }
+
+    function autoNameFromUrl(url) {
+      const ytId = parseYouTubeId(url);
+      if (ytId) return 'YouTube \u00b7 ' + ytId.slice(0, 6);
+      try {
+        const u = new URL(url);
+        return u.hostname.replace(/^www\./, '');
+      } catch {
+        return 'Stream';
+      }
+    }
+
+    function stopStream() {
+      if (!self.currentStreamId && !self.streamEl && !self.streamPlayer) return;
+      try {
+        if (self.streamPlayer && self.streamPlayer.destroy) {
+          self.streamPlayer.destroy();
+        }
+        if (self.streamEl) {
+          if (self.streamEl.tagName === 'AUDIO') {
+            self.streamEl.pause();
+            self.streamEl.src = '';
+          }
+          try { self.streamEl.remove(); } catch {}
+        }
+      } catch {}
+      self.streamEl = null;
+      self.streamPlayer = null;
+      self.currentStreamId = null;
+      playerArea.innerHTML = '';
+      renderList();
+    }
+
+    async function playStream(s) {
+      if (self.currentStreamId === s.id) {
+        stopStream();
+        return;
+      }
+      stopStream();
+      self.currentStreamId = s.id;
+
+      // Render an error block in the player area when a stream fails.
+      // Shows the stream name, the failure reason, the full URL (so the
+      // user can see exactly which one to fix), and a hint to use Edit.
+      function handleError(msg) {
+        playerArea.innerHTML = '';
+        playerArea.append(
+          U.el('div', { class: 'hearth__afar-error' }, [
+            U.el('div', { class: 'hearth__afar-error-head' }, '\u26A0 Stream Failed'),
+            U.el('div', { class: 'hearth__afar-error-name' }, '\u201C' + s.name + '\u201D'),
+            U.el('div', { class: 'hearth__afar-error-msg' }, msg),
+            U.el('div', { class: 'hearth__afar-error-url' }, s.url),
+            U.el('div', { class: 'hearth__afar-error-help' },
+              'The URL may be outdated, removed, or blocked from embedded playback. Click Edit on this stream to replace the URL, or Remove to delete it.')
+          ])
+        );
+        self.streamEl = null;
+        self.streamPlayer = null;
+        self.currentStreamId = null;
+        renderList();
+      }
+
+      const ytId = parseYouTubeId(s.url);
+
+      if (ytId) {
+        // YouTube: wrap iframe with YT.Player so we can listen for onError.
+        playerArea.append(U.el('div', { class: 'hearth__afar-loading' }, 'Loading player\u2026'));
+        let player;
+        try {
+          await loadYouTubeAPI();
+        } catch (e) {
+          handleError('YouTube player failed to load: ' + (e.message || 'network or blocker'));
+          return;
+        }
+        // The user may have stopped/changed streams while loading
+        if (self.currentStreamId !== s.id) return;
+        playerArea.innerHTML = '';
+        playerArea.append(U.el('div', { class: 'hearth__afar-now' }, '\u2767 Now: ' + s.name + ' \u2767'));
+        const div = document.createElement('div');
+        div.id = 'yt-player-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+        playerArea.append(div);
+        try {
+          player = new window.YT.Player(div.id, {
+            width: '100%',
+            height: '220',
+            videoId: ytId,
+            playerVars: {
+              autoplay: 1,
+              loop: 1,
+              playlist: ytId,
+              controls: 1,
+              rel: 0,
+              modestbranding: 1
+            },
+            events: {
+              onError: (event) => {
+                // YouTube Player error codes. 101, 150, and 153 are all
+                // variants of "embedded playback disabled by uploader";
+                // 153 is undocumented but observed in the wild. Unknown
+                // codes most commonly mean the same thing, so the
+                // fallback message says so plainly.
+                const errorMsgs = {
+                  2:   'invalid video ID',
+                  5:   'HTML5 player error',
+                  100: 'video not found, removed, or made private',
+                  101: 'embedded playback disabled by the video owner',
+                  150: 'embedded playback disabled by the video owner',
+                  153: 'embedded playback disabled by the video owner'
+                };
+                const msg = errorMsgs[event.data] ||
+                  ('YouTube error code ' + event.data + ' (likely embedded playback disabled)');
+                handleError(msg);
+              }
+            }
+          });
+          self.streamPlayer = player;
+          self.streamEl = div;
+        } catch (e) {
+          handleError('YouTube player could not start: ' + (e.message || 'unknown'));
+          return;
+        }
+      } else {
+        // Direct audio: HTML5 <audio> with error event listener.
+        playerArea.innerHTML = '';
+        playerArea.append(U.el('div', { class: 'hearth__afar-now' }, '\u2767 Now: ' + s.name + ' \u2767'));
+        const audio = document.createElement('audio');
+        audio.src = s.url;
+        audio.loop = true;
+        audio.controls = true;
+        audio.autoplay = true;
+        audio.addEventListener('error', () => {
+          handleError('audio failed to load (URL may be invalid, removed, or in an unsupported format)');
+        });
+        playerArea.append(audio);
+        self.streamEl = audio;
+      }
+      renderList();
+    }
+
+    async function saveCurrentStream() {
+      const url = urlInput.value.trim();
+      if (!url) { urlInput.focus(); return; }
+      const name = nameInput.value.trim() || autoNameFromUrl(url);
+      const type = parseYouTubeId(url) ? 'youtube' : 'audio';
+      streams.push({ id: U.uid(), name, url, type });
+      await Vault.set('hearth-streams', streams);
+      urlInput.value = '';
+      nameInput.value = '';
+      renderList();
+    }
+    saveBtn.addEventListener('click', saveCurrentStream);
+    urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') saveCurrentStream(); });
+    nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') saveCurrentStream(); });
+
+    async function editStream(s) {
+      const newName = prompt('Name:', s.name);
+      if (newName === null) return;
+      const newUrl = prompt('URL:', s.url);
+      if (newUrl === null) return;
+      s.name = (newName.trim() || s.name);
+      s.url = (newUrl.trim() || s.url);
+      s.type = parseYouTubeId(s.url) ? 'youtube' : 'audio';
+      await Vault.set('hearth-streams', streams);
+      // if it was playing, reload it
+      if (self.currentStreamId === s.id) {
+        stopStream();
+        playStream(s);
+      } else {
+        renderList();
+      }
+    }
+
+    async function removeStream(s) {
+      if (!confirm('Remove "' + s.name + '"?')) return;
+      if (self.currentStreamId === s.id) stopStream();
+      const idx = streams.findIndex(x => x.id === s.id);
+      if (idx >= 0) streams.splice(idx, 1);
+      await Vault.set('hearth-streams', streams);
+      renderList();
+    }
+
+    function renderList() {
+      list.innerHTML = '';
+      if (!streams.length) {
+        list.append(U.el('div', { class: 'hearth__afar-empty' },
+          'No streams yet. Paste a URL above and save it. Saved streams persist with this chronicle.'));
+        return;
+      }
+      list.append(U.el('div', { class: 'hearth__afar-list-head' }, 'Saved Streams'));
+      streams.forEach(s => {
+        const isPlaying = self.currentStreamId === s.id;
+        const row = U.el('div', {
+          class: 'hearth__afar-row' + (isPlaying ? ' hearth__afar-row--playing' : '')
+        });
+        row.append(
+          U.el('div', { class: 'hearth__afar-row-name' }, s.name),
+          U.el('div', { class: 'hearth__afar-row-type' }, s.type === 'youtube' ? 'YouTube' : 'Audio'),
+          U.el('button', {
+            class: 'btn btn--small' + (isPlaying ? '' : ' btn--ghost'),
+            onclick: () => playStream(s)
+          }, isPlaying ? 'Stop' : 'Play'),
+          U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => editStream(s) }, 'Edit'),
+          U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => removeStream(s) }, '\u2715')
+        );
+        list.append(row);
+      });
+    }
+    renderList();
 
     async function wake() {
       if (self.audio) return;
@@ -9759,126 +10242,6 @@ Keep.register({
       }
       tick();
       return () => { stopped.v = true; };
-    }
-
-    // ---- PROCEDURAL BABBLE ---------------------------------------------
-    // makeSpeaker is a one-voice synth: a sawtooth glottal source
-    // (standing in for vocal folds) routed through three parallel
-    // bandpass filters tuned to vowel formants (F1, F2, F3). A syllable
-    // loop opens an envelope, glides the formants to a new vowel,
-    // applies a pitch contour, holds briefly, releases, then waits a
-    // short gap (sometimes a long one) before the next syllable. The
-    // result sounds like a person muttering. Run several speakers at
-    // different pitches and pan positions and you have a crowd.
-    //
-    // params: { pitch, gain, pan, pauseChance, syllableMin, syllableMax }
-    // pitch ~75-110 = man, ~180-240 = woman, ~250+ = youth/child.
-    // Formant frequencies are scaled up for higher-pitched voices to
-    // approximate the shorter vocal tract of women and children.
-    function makeSpeaker(audio, dest, params) {
-      const out = audio.createGain();
-      out.gain.value = 0;
-      let panner = null;
-      try {
-        panner = audio.createStereoPanner();
-        panner.pan.value = params.pan || 0;
-        out.connect(panner).connect(dest);
-      } catch {
-        out.connect(dest);
-      }
-
-      // glottal source (sawtooth approximates a buzzing pulse train)
-      const osc = audio.createOscillator();
-      osc.type = 'sawtooth';
-      osc.frequency.value = params.pitch;
-      osc.start();
-
-      // natural pitch wobble at vibrato rate
-      const wobbleLfo = audio.createOscillator();
-      wobbleLfo.type = 'sine';
-      wobbleLfo.frequency.value = 4.5 + Math.random() * 1.5;
-      const wobbleG = audio.createGain();
-      wobbleG.gain.value = params.pitch * 0.015;
-      wobbleLfo.connect(wobbleG).connect(osc.frequency);
-      wobbleLfo.start();
-
-      // shorter vocal tract = higher formants
-      const fScale = params.pitch > 250 ? 1.30 : (params.pitch > 175 ? 1.18 : 1.0);
-
-      const f1 = audio.createBiquadFilter();
-      f1.type = 'bandpass'; f1.Q.value = 12; f1.frequency.value = 600 * fScale;
-      const f2 = audio.createBiquadFilter();
-      f2.type = 'bandpass'; f2.Q.value = 10; f2.frequency.value = 1200 * fScale;
-      const f3 = audio.createBiquadFilter();
-      f3.type = 'bandpass'; f3.Q.value = 8;  f3.frequency.value = 2400 * fScale;
-
-      const formantMix = audio.createGain();
-      osc.connect(f1).connect(formantMix);
-      osc.connect(f2).connect(formantMix);
-      osc.connect(f3).connect(formantMix);
-      formantMix.connect(out);
-
-      // vowel formants in Hz (men's reference; multiplied by fScale per-voice)
-      const vowels = [
-        [730, 1090, 2440], // ah (father)
-        [660, 1720, 2410], // ae (bat)
-        [530, 1840, 2480], // eh (bed)
-        [400, 2000, 2550], // ih (bit)
-        [270, 2290, 3010], // ee (beet)
-        [570, 840,  2410], // aw (bought)
-        [300, 870,  2240], // oo (boot)
-        [500, 1500, 2500]  // schwa
-      ];
-
-      const syllMin = params.syllableMin || 0.13;
-      const syllMax = params.syllableMax || 0.30;
-      const pauseChance = params.pauseChance || 0.15;
-
-      const stopped = { v: false };
-      function syllable() {
-        if (stopped.v) return;
-        const t = audio.currentTime + 0.02;
-        const v = vowels[Math.floor(Math.random() * vowels.length)];
-        const dur = syllMin + Math.random() * (syllMax - syllMin);
-
-        // per-syllable pitch contour (people don't drone in monotone)
-        const pitchVar = 0.92 + Math.random() * 0.16;
-        const startPitch = params.pitch * pitchVar;
-        const endPitch = startPitch * (Math.random() < 0.5 ? 1.06 : 0.94);
-        osc.frequency.cancelScheduledValues(t);
-        osc.frequency.setValueAtTime(startPitch, t);
-        osc.frequency.linearRampToValueAtTime(endPitch, t + dur);
-
-        // glide formants from wherever they were to the new vowel
-        f1.frequency.cancelScheduledValues(t);
-        f2.frequency.cancelScheduledValues(t);
-        f3.frequency.cancelScheduledValues(t);
-        f1.frequency.linearRampToValueAtTime(v[0] * fScale, t + 0.05);
-        f2.frequency.linearRampToValueAtTime(v[1] * fScale, t + 0.05);
-        f3.frequency.linearRampToValueAtTime(v[2] * fScale, t + 0.05);
-
-        // syllable envelope (open quickly, hold briefly, close softly)
-        out.gain.cancelScheduledValues(t);
-        out.gain.setValueAtTime(0, t);
-        out.gain.linearRampToValueAtTime(params.gain, t + 0.035);
-        out.gain.setValueAtTime(params.gain, t + dur - 0.05);
-        out.gain.linearRampToValueAtTime(0, t + dur);
-
-        // schedule next syllable (sometimes after a long pause as if
-        // the speaker is listening rather than talking)
-        const shortGap = 0.05 + Math.random() * 0.15;
-        const longGap = Math.random() < pauseChance ? (0.8 + Math.random() * 2.5) : 0;
-        setTimeout(syllable, (dur + shortGap + longGap) * 1000);
-      }
-      // random initial delay so multiple speakers don't sync up
-      setTimeout(syllable, 200 + Math.random() * 1500);
-
-      return {
-        stop() {
-          stopped.v = true;
-          try { osc.stop(); wobbleLfo.stop(); } catch {}
-        }
-      };
     }
 
     // ---- ONE-SHOT EVENTS -----------------------------------------------
@@ -10275,46 +10638,31 @@ Keep.register({
       return { gain, stop() { stopped.v = true; } };
     }
 
-    // Tavern murmur: six procedural voices speaking at different pitches,
-    // pan positions, and pace. A faint room tone underneath. Everything is
-    // bussed through a master lowpass that simulates hearing through the
-    // air across a few tables. Cup clinks, laughter, and chair scrapes
-    // play occasionally on the same bus so they share the room acoustics.
+    // Tavern: room tone bed. A warm pink-noise bed (the rustle of a busy
+    // room, fire ambience, distant motion) with cup clinks and occasional
+    // laughter or chair scrapes. The Hearth does not try to synthesise
+    // voices, which never sound right. Pair with From Afar for real
+    // crowd audio.
     function buildTavern(audio, dest) {
       const gain = audio.createGain();
       gain.connect(dest);
 
-      // Master muffle (the room's distance and absorption)
-      const masterLp = audio.createBiquadFilter();
-      masterLp.type = 'lowpass';
-      masterLp.frequency.value = 2600;
-      const voiceBus = audio.createGain();
-      voiceBus.connect(masterLp).connect(gain);
-
-      // Low room tone, mostly hum
+      // Warm room-tone bed
       const noise = noiseSource(audio, 'pink');
+      const noiseBp = audio.createBiquadFilter();
+      noiseBp.type = 'bandpass'; noiseBp.frequency.value = 800; noiseBp.Q.value = 0.45;
       const noiseLp = audio.createBiquadFilter();
-      noiseLp.type = 'lowpass'; noiseLp.frequency.value = 700;
-      const noiseG = audio.createGain(); noiseG.gain.value = 0.10;
-      noise.connect(noiseLp).connect(noiseG).connect(voiceBus);
+      noiseLp.type = 'lowpass'; noiseLp.frequency.value = 1800;
+      const noiseG = audio.createGain(); noiseG.gain.value = 0.45;
+      noise.connect(noiseBp).connect(noiseLp).connect(noiseG).connect(gain);
 
-      // Six distinct speakers, varied pitch and position
-      const speakers = [
-        makeSpeaker(audio, voiceBus, { pitch: 95,  gain: 0.10, pan: -0.4, pauseChance: 0.18 }),
-        makeSpeaker(audio, voiceBus, { pitch: 115, gain: 0.10, pan: -0.1, pauseChance: 0.15 }),
-        makeSpeaker(audio, voiceBus, { pitch: 200, gain: 0.10, pan: 0.3,  pauseChance: 0.12 }),
-        makeSpeaker(audio, voiceBus, { pitch: 230, gain: 0.10, pan: -0.2, pauseChance: 0.20 }),
-        makeSpeaker(audio, voiceBus, { pitch: 75,  gain: 0.09, pan: 0.5,  pauseChance: 0.25 }),
-        makeSpeaker(audio, voiceBus, { pitch: 260, gain: 0.08, pan: 0.1,  pauseChance: 0.15 })
-      ];
-
-      // Crowd swell
+      // Slow swell so the bed breathes
       const swellLfo = audio.createOscillator();
       swellLfo.type = 'sine'; swellLfo.frequency.value = 0.05;
       const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.12;
       swellLfo.connect(swellLfoG).connect(gain.gain); swellLfo.start();
 
-      // Cup clinks (routed through voiceBus so they get muffled with the rest)
+      // Cup clinks (sporadic, recognisably ceramic)
       const stopped = { v: false };
       function clink() {
         if (stopped.v) return;
@@ -10323,22 +10671,23 @@ Keep.register({
         o.frequency.value = 1200 + Math.random() * 800;
         const g = audio.createGain();
         g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(0.10, t + 0.005);
+        g.gain.linearRampToValueAtTime(0.12, t + 0.005);
         g.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-        o.connect(g).connect(voiceBus);
+        o.connect(g).connect(dest);
         o.start(t); o.stop(t + 0.3);
         setTimeout(clink, 4000 + Math.random() * 9000);
       }
       clink();
 
-      // Distant laugh every 40s-110s, chair scrape every 60s-150s
-      const cancelLaugh = schedule(40000, 110000, () => eventLaugh(audio, voiceBus));
-      const cancelScrape = schedule(60000, 150000, () => eventChairScrape(audio, voiceBus));
+      // Brief stylised laughs and chair scrapes (events are short enough
+      // that they don't trigger the "fake voice" response the way
+      // continuous babble does)
+      const cancelLaugh = schedule(40000, 110000, () => eventLaugh(audio, dest));
+      const cancelScrape = schedule(60000, 150000, () => eventChairScrape(audio, dest));
 
       return { gain, stop() {
         stopped.v = true;
         noise.stop();
-        speakers.forEach(s => s.stop());
         swellLfo.stop();
         cancelLaugh(); cancelScrape();
       }};
@@ -10401,62 +10750,42 @@ Keep.register({
       return { gain, stop() { sub.stop(); cancelHowl(); }};
     }
 
-    // Market Day: eight procedural voices spread wide across the stereo
-    // field, less muffled than the tavern (open air carries more high
-    // frequency), with a footfall rumble underneath and frequent vendor
-    // calls and craft sounds layered on top.
+    // Market Day: open-air room tone with footfall rumble. Frequent
+    // vendor calls (brief one-shot events, stylised enough to read as
+    // "shouted" rather than as continuous speech), occasional hammer
+    // strikes and coin clinks. Pair with From Afar for actual crowd
+    // chatter.
     function buildMarket(audio, dest) {
       const gain = audio.createGain();
       gain.connect(dest);
 
-      // Open-air mufflers (less aggressive lowpass than tavern)
-      const masterLp = audio.createBiquadFilter();
-      masterLp.type = 'lowpass';
-      masterLp.frequency.value = 3600;
-      const voiceBus = audio.createGain();
-      voiceBus.connect(masterLp).connect(gain);
-
-      // Open-air room tone (brighter than tavern)
+      // Open-air room tone
       const noise = noiseSource(audio, 'pink');
       const noiseLp = audio.createBiquadFilter();
-      noiseLp.type = 'lowpass'; noiseLp.frequency.value = 1400;
-      const noiseG = audio.createGain(); noiseG.gain.value = 0.12;
-      noise.connect(noiseLp).connect(noiseG).connect(voiceBus);
+      noiseLp.type = 'lowpass'; noiseLp.frequency.value = 2200;
+      const noiseG = audio.createGain(); noiseG.gain.value = 0.35;
+      noise.connect(noiseLp).connect(noiseG).connect(gain);
 
-      // Footfall rumble (bypasses the muffler so the low end stays present)
+      // Footfall rumble
       const footNoise = noiseSource(audio, 'brown');
       const footLp = audio.createBiquadFilter();
-      footLp.type = 'lowpass'; footLp.frequency.value = 180;
-      const footG = audio.createGain(); footG.gain.value = 0.25;
+      footLp.type = 'lowpass'; footLp.frequency.value = 200;
+      const footG = audio.createGain(); footG.gain.value = 0.3;
       footNoise.connect(footLp).connect(footG).connect(gain);
 
-      // Eight voices, varied pitch, wider pan spread (open market is spatial)
-      const speakers = [
-        makeSpeaker(audio, voiceBus, { pitch: 90,  gain: 0.09, pan: -0.7, pauseChance: 0.20 }),
-        makeSpeaker(audio, voiceBus, { pitch: 110, gain: 0.09, pan: -0.3, pauseChance: 0.15 }),
-        makeSpeaker(audio, voiceBus, { pitch: 130, gain: 0.09, pan: 0.6,  pauseChance: 0.18 }),
-        makeSpeaker(audio, voiceBus, { pitch: 195, gain: 0.09, pan: -0.5, pauseChance: 0.12 }),
-        makeSpeaker(audio, voiceBus, { pitch: 220, gain: 0.09, pan: 0.4,  pauseChance: 0.15 }),
-        makeSpeaker(audio, voiceBus, { pitch: 250, gain: 0.08, pan: 0.0,  pauseChance: 0.18 }),
-        makeSpeaker(audio, voiceBus, { pitch: 280, gain: 0.07, pan: -0.1, pauseChance: 0.25 }),
-        makeSpeaker(audio, voiceBus, { pitch: 75,  gain: 0.08, pan: 0.8,  pauseChance: 0.22 })
-      ];
-
-      // Crowd swell
+      // Crowd swell so the bed breathes
       const swellLfo = audio.createOscillator();
       swellLfo.type = 'sine'; swellLfo.frequency.value = 0.04;
       const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.12;
       swellLfo.connect(swellLfoG).connect(gain.gain); swellLfo.start();
 
-      // Vendor calls bus through voice muffler (they ARE voices). Hammer
-      // strikes and coin clinks stay dry; they're close foreground sounds.
-      const cancelVendor = schedule(8000, 22000, () => eventVendorCall(audio, voiceBus));
+      // Events: vendor calls, hammer strikes, coin clinks
+      const cancelVendor = schedule(8000, 22000, () => eventVendorCall(audio, dest));
       const cancelHammer = schedule(18000, 50000, () => eventHammerStrike(audio, dest));
       const cancelCoin = schedule(10000, 28000, () => eventCoinClink(audio, dest));
 
       return { gain, stop() {
         noise.stop(); footNoise.stop();
-        speakers.forEach(s => s.stop());
         swellLfo.stop();
         cancelVendor(); cancelHammer(); cancelCoin();
       }};
@@ -10505,6 +10834,22 @@ Keep.register({
       try { this.audio.close(); } catch {}
       this.audio = null; this.layers = {}; this.master = null; this.active = false;
     }
+    // Stop any external "From Afar" stream
+    if (this.streamPlayer && this.streamPlayer.destroy) {
+      try { this.streamPlayer.destroy(); } catch {}
+    }
+    if (this.streamEl) {
+      try {
+        if (this.streamEl.tagName === 'AUDIO') {
+          this.streamEl.pause();
+          this.streamEl.src = '';
+        }
+        this.streamEl.remove();
+      } catch {}
+    }
+    this.streamEl = null;
+    this.streamPlayer = null;
+    this.currentStreamId = null;
   }
 });
 
