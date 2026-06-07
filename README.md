@@ -1,3 +1,5 @@
+<img width="1881" height="919" alt="thekeep" src="https://github.com/user-attachments/assets/9348c82c-11db-4e88-9dcf-bcf3caf2a124" />
+
 # The Keep
 
 A single-file, browser-based companion for medieval-fantasy tabletop campaigns.
