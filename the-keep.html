@@ -3388,6 +3388,501 @@ body.popout-mode .folio {
   border-color: var(--ink);
 }
 
+/* ----- MODULE: LOOT (Treasure Generator) ------------------------------ */
+.loot { display: flex; flex-direction: column; gap: 1.4rem; }
+
+.loot__builder {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.3rem 1.4rem;
+}
+.loot__intro {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.loot__section-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.loot__tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+.loot__tier {
+  padding: 0.75rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s, transform 0.08s;
+  display: flex; flex-direction: column;
+  gap: 0.2rem;
+}
+.loot__tier:hover { background: var(--p-2); border-color: var(--gold); }
+.loot__tier:active { transform: translateY(1px); }
+.loot__tier--active {
+  background: var(--p-2);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+.loot__tier-name {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.loot__tier-sub {
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  line-height: 1.35;
+}
+.loot__roll {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 2rem;
+  background: var(--gold-d);
+  color: #f5ebd6;
+  border: 1px solid var(--gold-d);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.loot__roll:hover { filter: brightness(1.10); }
+.loot__roll:active { transform: translateY(1px); }
+[data-theme="dark"] .loot__roll {
+  background: var(--gold-d);
+  color: #1f1c17;
+}
+
+/* Result */
+.loot__result {
+  background: var(--p-0);
+  border: 1px solid var(--gold);
+  padding: 1.4rem 1.5rem;
+}
+.loot__result-head {
+  font-family: var(--display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--gold-d);
+  text-align: center;
+  margin-bottom: 0.4rem;
+}
+[data-theme="dark"] .loot__result-head { color: var(--gold-l); }
+.loot__result-tier {
+  font-family: var(--rubric);
+  font-style: italic;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.loot__group {
+  margin-bottom: 1rem;
+}
+.loot__group:last-of-type { margin-bottom: 0.4rem; }
+.loot__group-label {
+  font-family: var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.45rem;
+}
+.loot__coins {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  align-items: baseline;
+  padding: 0.6rem 0.8rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+}
+.loot__coin {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: var(--display);
+}
+.loot__coin-value {
+  font-size: 1.1rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+.loot__coin-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.loot__items { display: flex; flex-direction: column; gap: 0.45rem; }
+.loot__item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  animation: lootIn 0.32s ease-out;
+}
+@keyframes lootIn {
+  from { transform: translateY(6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.loot__item-text {
+  font-family: var(--rubric);
+  color: var(--ink);
+  flex: 1;
+  line-height: 1.4;
+}
+.loot__item-add {
+  flex-shrink: 0;
+  padding: 0.3rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--p-3);
+  color: var(--ink-soft);
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.loot__item-add:hover {
+  background: var(--gold-l);
+  border-color: var(--gold);
+  color: var(--ink);
+}
+[data-theme="dark"] .loot__item-add:hover {
+  background: rgba(184, 146, 58, 0.18);
+  color: var(--ink);
+}
+.loot__item-add--done {
+  background: rgba(45, 74, 53, 0.12);
+  border-color: var(--forest);
+  color: var(--forest);
+  cursor: default;
+}
+[data-theme="dark"] .loot__item-add--done {
+  background: rgba(95, 162, 116, 0.18);
+  border-color: #5fa274;
+  color: #5fa274;
+}
+.loot__wonder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.8rem 0.9rem;
+  background: rgba(184, 146, 58, 0.08);
+  border: 1px solid var(--gold);
+  animation: lootIn 0.4s ease-out;
+}
+[data-theme="dark"] .loot__wonder {
+  background: rgba(184, 146, 58, 0.14);
+}
+.loot__wonder-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+.loot__wonder-name {
+  flex: 1;
+  font-family: var(--display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--gold-d);
+}
+[data-theme="dark"] .loot__wonder-name { color: var(--gold-l); }
+.loot__wonder-desc {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+.loot__empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  padding: 0.5rem 0;
+}
+.loot__result-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 0.9rem;
+  border-top: 1px dotted var(--p-3);
+}
+
+/* ----- MODULE: THE COFFER (Party Wealth) ------------------------------ */
+.coffer { display: flex; flex-direction: column; gap: 1.4rem; }
+.coffer__intro {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
+}
+.coffer__balance {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.3rem 1.5rem;
+}
+.coffer__balance-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.coffer__balance-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.coffer__denom {
+  text-align: center;
+  padding: 0.7rem 0.4rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+}
+.coffer__denom-value {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.coffer__denom--zero .coffer__denom-value { color: var(--ink-faded); opacity: 0.5; }
+.coffer__denom-label {
+  font-family: var(--display);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-top: 0.25rem;
+}
+.coffer__worth {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 0.7rem;
+  border-top: 1px dotted var(--p-3);
+}
+.coffer__worth-label {
+  font-family: var(--display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+.coffer__worth-value {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  color: var(--gold-d);
+  font-weight: 600;
+}
+[data-theme="dark"] .coffer__worth-value { color: var(--gold-l); }
+
+.coffer__form {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.3rem 1.4rem;
+}
+.coffer__form-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.coffer__inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.coffer__input-wrap {
+  display: flex; flex-direction: column;
+  gap: 0.2rem;
+}
+.coffer__input-wrap label {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.coffer__input {
+  width: 100%;
+  padding: 0.55rem 0.6rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--ink);
+  text-align: center;
+}
+.coffer__input:focus { outline: none; border-color: var(--gold); background: var(--p-0); }
+.coffer__note {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--rubric);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.coffer__note:focus { outline: none; border-color: var(--gold); background: var(--p-0); }
+.coffer__actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.coffer__deposit, .coffer__withdraw {
+  flex: 1;
+  min-width: 130px;
+  padding: 0.7rem 1rem;
+  font-family: var(--display);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.08s;
+}
+.coffer__deposit {
+  background: var(--forest);
+  color: #f5ebd6;
+  border: 1px solid var(--forest);
+}
+.coffer__withdraw {
+  background: transparent;
+  color: var(--wine);
+  border: 1px solid var(--wine);
+}
+.coffer__deposit:hover { filter: brightness(1.10); }
+.coffer__withdraw:hover { background: rgba(92, 31, 36, 0.08); }
+[data-theme="dark"] .coffer__withdraw:hover { background: rgba(200, 49, 62, 0.14); }
+.coffer__deposit:active, .coffer__withdraw:active { transform: translateY(1px); }
+[data-theme="dark"] .coffer__deposit { background: var(--forest); color: #1f1c17; }
+[data-theme="dark"] .coffer__withdraw { color: #e36b78; border-color: #c8313e; }
+
+.coffer__split {
+  margin-top: 0.7rem;
+  padding-top: 0.8rem;
+  border-top: 1px dotted var(--p-3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.coffer__split-label {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.coffer__split-input {
+  width: 60px;
+  padding: 0.4rem 0.5rem;
+  background: var(--p-1);
+  border: 1px solid var(--p-3);
+  font-family: var(--display);
+  text-align: center;
+  color: var(--ink);
+}
+.coffer__split-input:focus { outline: none; border-color: var(--gold); }
+.coffer__split-result {
+  flex: 1;
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--gold-d);
+  font-size: 0.92rem;
+}
+[data-theme="dark"] .coffer__split-result { color: var(--gold-l); }
+
+.coffer__ledger {
+  background: var(--p-0);
+  border: 1px solid var(--p-3);
+  padding: 1.1rem 1.2rem;
+}
+.coffer__ledger-head {
+  font-family: var(--display);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--p-3);
+}
+.coffer__ledger-row {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  gap: 0.7rem;
+  padding: 0.5rem 0.2rem;
+  border-bottom: 1px dotted var(--p-3);
+  align-items: baseline;
+}
+.coffer__ledger-row:last-child { border-bottom: none; }
+.coffer__ledger-time {
+  font-family: var(--display);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+}
+.coffer__ledger-note {
+  font-family: var(--rubric);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.coffer__ledger-amt {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+.coffer__ledger-amt--gain { color: var(--forest); }
+.coffer__ledger-amt--loss { color: var(--wine); }
+[data-theme="dark"] .coffer__ledger-amt--gain { color: #5fa274; }
+[data-theme="dark"] .coffer__ledger-amt--loss { color: #e36b78; }
+.coffer__empty {
+  font-family: var(--rubric);
+  font-style: italic;
+  color: var(--ink-faded);
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
 /* ----- MODULE: THREATS (Clocks) --------------------------------------- */
 .threats__head {
   margin-bottom: 1.25rem;
@@ -4123,6 +4618,8 @@ body.popout-mode .folio {
     <symbol id="g-sword" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 19 L13 11 L19 5 L17 11 L9 19 Z M5 19 L8 19 L8 16 M13 11 L15 13"/></symbol>
     <symbol id="g-flame" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 C 14 7 17 8 17 13 C 17 17 14 21 12 21 C 10 21 7 17 7 13 C 7 10 9 9 10 7 C 11 9 12 9 12 6 Z"/></symbol>
     <symbol id="g-dice" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 8 L12 4 L20 8 L20 17 L12 21 L4 17 Z M4 8 L12 12 L20 8 M12 12 L12 21"/></symbol>
+    <symbol id="g-loot" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 7 C 5 8.1 8.1 9 12 9 C 15.9 9 19 8.1 19 7 C 19 5.9 15.9 5 12 5 C 8.1 5 5 5.9 5 7 Z M5 7 V11 C 5 12.1 8.1 13 12 13 C 15.9 13 19 12.1 19 11 V7 M5 11 V15 C 5 16.1 8.1 17 12 17 C 15.9 17 19 16.1 19 15 V11 M5 15 V19 C 5 20.1 8.1 21 12 21 C 15.9 21 19 20.1 19 19 V15"/></symbol>
+    <symbol id="g-coffer" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 10 L18 10 C 18.5 10 19 10.5 19 11 L 19 19 C 19 20.1 18.1 21 17 21 L 7 21 C 5.9 21 5 20.1 5 19 L 5 11 C 5 10.5 5.5 10 6 10 Z M8 10 C 8 8 10 5 12 5 C 14 5 16 8 16 10 M9 14 L 15 14"/></symbol>
     <symbol id="g-scroll" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 4 H17 V20 H6 Z M6 4 C 4.5 4 3.5 5 3.5 6.5 C 3.5 8 4.5 9 6 9 M17 4 C 18.5 4 19.5 5 19.5 6.5 C 19.5 8 18.5 9 17 9 M17 15 C 18.5 15 19.5 16 19.5 17.5 C 19.5 19 18.5 20 17 20 M9 8 H14 M9 12 H14 M9 16 H13"/></symbol>
     <symbol id="g-tankard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 8 H15 V19 C 15 20 14.5 20.5 13.5 20.5 H7.5 C 6.5 20.5 6 20 6 19 Z M15 10.5 H18 C 19 10.5 19.5 11 19.5 12 V15 C 19.5 16 19 16.5 18 16.5 H15 M6 11.5 H15 M8 5 Q 8.5 6.5 8 8 M11 5 Q 11.5 6.5 11 8 M14 5 Q 14.5 6.5 14 8"/></symbol>
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
@@ -6503,6 +7000,93 @@ Keep.register({
       ]
     };
 
+    // Threadwork: a structured plot hook generator built from three
+    // sub-pools. Strike composes "{person} {need}, {complication}."
+    // 25 of each = 15,625 unique combinations.
+    const THREAD = {
+      persons: [
+        'An aging knight, exiled',
+        'A young scribe with too many secrets',
+        'A haunted woman of the marshlands',
+        'A widowed innkeeper',
+        'A travelling priest of an unfashionable god',
+        'A merchant whose ledgers do not balance',
+        'A retired soldier with a tremor in her hands',
+        'A fisherman who has seen something in the deep',
+        'A grieving mother',
+        'A blind cartographer',
+        'A monk turned out of her order',
+        'A noble\u2019s bastard, recently disinherited',
+        'A washerwoman who reads palms after dark',
+        'A street performer with a counterfeit licence',
+        'A grain merchant in over his head',
+        'A ferryman who only crosses at midnight',
+        'A locksmith with a strange clientele',
+        'A horse trader missing two fingers',
+        'A musician with no name and three aliases',
+        'A graveyard keeper losing her memory',
+        'A hermit who used to be famous',
+        'A spy returning from a war that has ended',
+        'A trader of old maps',
+        'A herbalist mourning her apprentice',
+        'A retired thief, now lawful'
+      ],
+      needs: [
+        'needs to recover a stolen relic',
+        'seeks word of a missing sister',
+        'must deliver a sealed letter to the wrong city',
+        'wants someone followed without their knowledge',
+        'would have a debt collected, quietly',
+        'seeks safe passage for a child',
+        'would speak with the dead',
+        'needs a name proven false',
+        'wants a witness silenced',
+        'seeks the truth about her father\u2019s death',
+        'wishes a marriage prevented',
+        'needs a tomb opened, then closed again',
+        'wants an old wrong written into the record',
+        'seeks a buyer for something stolen long ago',
+        'needs an escort through dangerous country',
+        'wants to find the maker of a particular sigil',
+        'needs a ghost laid to rest',
+        'seeks a place to disappear into',
+        'would have a vow released',
+        'needs to retrieve a body before the family hears',
+        'wants a forgery exposed without scandal',
+        'seeks the same map you carry',
+        'needs a dying confession heard',
+        'wants the truth she remembers verified',
+        'seeks the safe return of a hostage'
+      ],
+      complications: [
+        'but the rival cult got there first',
+        'but the missing person does not want to be found',
+        'but the letter is in a code no one alive can read',
+        'but the target is your old friend',
+        'but the debt is owed to your former master',
+        'but the child is not what they appear',
+        'but the dead refuse to be summoned',
+        'but the name belongs to a noble house with reach',
+        'but the witness is a child',
+        'but her father\u2019s killer wears your face',
+        'but the bride is willing',
+        'but the tomb has not been forgotten by its occupant',
+        'but the record-keeper has been bribed',
+        'but the buyer is a faction you swore never to deal with',
+        'but the country has changed since the road was last walked',
+        'but the sigil was last seen on a wanted poster bearing your name',
+        'but the ghost is still required, by someone',
+        'but the place she names has burned to the ground',
+        'but the gods who heard the vow are not finished with her',
+        'but the body is in the care of the city watch',
+        'but the forger is a child of a powerful lord',
+        'but the map is hers, drawn from memory of a place that no longer exists',
+        'but the dying will only confess to one long dead',
+        'but her memory is failing faster than she admits',
+        'but the hostage\u2019s family does not want them back'
+      ]
+    };
+
     const CATEGORIES = [
       { id: 'all',          name: 'All' },
       { id: 'image',        name: 'Image' },
@@ -6512,7 +7096,8 @@ Keep.register({
       { id: 'omen',         name: 'Omen' },
       { id: 'overheard',    name: 'Overheard' },
       { id: 'token',        name: 'Token' },
-      { id: 'turn',         name: 'Turn' }
+      { id: 'turn',         name: 'Turn' },
+      { id: 'thread',       name: 'Thread' }
     ];
     function catName(id) { const c = CATEGORIES.find(x => x.id === id); return c ? c.name : id; }
 
@@ -6536,6 +7121,27 @@ Keep.register({
     async function saveCat() { await Vault.set('spark-category', activeCat); }
 
     function strike() {
+      // Thread is a composed prompt: pick one person + one need + one
+      // complication and stitch them together. Recent-avoidance still
+      // applies, comparing against the full composed string.
+      if (activeCat === 'thread') {
+        const recentTexts = history.slice(0, 8).map(h => h.text);
+        let composed;
+        for (let attempt = 0; attempt < 12; attempt++) {
+          const p = U.pick(THREAD.persons);
+          const n = U.pick(THREAD.needs);
+          const c = U.pick(THREAD.complications);
+          composed = p + ' ' + n + ', ' + c + '.';
+          if (!recentTexts.includes(composed)) break;
+        }
+        current = { text: composed, category: 'thread', ts: Date.now() };
+        history.unshift(current);
+        history = history.slice(0, 50);
+        saveHistory();
+        renderDisplay();
+        renderHistory();
+        return;
+      }
       const pool = activeCat === 'all' ? ALL_PHRASES : ALL_PHRASES.filter(p => p.category === activeCat);
       // avoid the most recent draws so it does not immediately repeat
       const recentTexts = history.slice(0, Math.min(20, Math.floor(pool.length / 3))).map(h => h.text);
@@ -8643,6 +9249,369 @@ Keep.register({
 });
 
 /* =========================================================================
+   MODULE: LOOT (Treasure Generator)
+   Tap a tier (paltry/modest/rich/royal) and roll. Generates coins by
+   denomination, mundane oddments (1 to 5), and an occasional named
+   wonder. Each item can be one-clicked into the Cabinet; coins can be
+   one-clicked into the Coffer. Pin the whole haul to the Almanac.
+   ========================================================================= */
+Keep.register({
+  id: 'loot',
+  name: 'Loot',
+  category: 'workshop',
+  glyph: 'g-loot',
+  tagline: 'Coins, oddments, and the occasional wonder.',
+  sub: 'Roll the haul. Add what matters to the Cabinet. Drop the coin in the Coffer.',
+
+  async mount(body, actions) {
+    const TIERS = {
+      paltry: {
+        name: 'Paltry',
+        sub: 'A beggar\u2019s pocket, or what a drunk left behind.',
+        coins: () => ({
+          cu: dN(2, 6),
+          ag: chance(0.5) ? dN(1, 6) : 0,
+          au: 0,
+          pt: 0
+        }),
+        items: { min: 1, max: 2 },
+        wonder: 0.05
+      },
+      modest: {
+        name: 'Modest',
+        sub: 'A tradesman\u2019s purse, a guard\u2019s footlocker.',
+        coins: () => ({
+          cu: dN(2, 8),
+          ag: dN(3, 6),
+          au: chance(0.6) ? dN(1, 6) : 0,
+          pt: 0
+        }),
+        items: { min: 1, max: 3 },
+        wonder: 0.15
+      },
+      rich: {
+        name: 'Rich',
+        sub: 'A noble\u2019s coffer, a bandit lord\u2019s share.',
+        coins: () => ({
+          cu: dN(1, 6),
+          ag: dN(2, 8),
+          au: dN(5, 6),
+          pt: chance(0.5) ? dN(1, 6) : 0
+        }),
+        items: { min: 2, max: 4 },
+        wonder: 0.35
+      },
+      royal: {
+        name: 'Royal',
+        sub: 'A king\u2019s tribute, a vault long sealed.',
+        coins: () => ({
+          cu: 0,
+          ag: dN(2, 10),
+          au: dN(10, 6),
+          pt: dN(3, 6)
+        }),
+        items: { min: 3, max: 5 },
+        wonder: 0.65
+      }
+    };
+
+    const ODDMENTS = [
+      'A bolt of moth-eaten cloth',
+      'An iron skillet, dented',
+      'A bundle of letters, none recent',
+      'A coil of good rope',
+      'A whetstone, well-used',
+      'A traveller\u2019s cloak with mended hem',
+      'A wooden bowl carved with a sigil',
+      'A leather strap with a worn buckle',
+      'A worn dagger, the maker\u2019s mark scratched out',
+      'A silver candlestick, slightly tarnished',
+      'A chipped goblet of pewter',
+      'An empty vial that smells of nothing',
+      'A rusted key on a ring of five',
+      'A carved wooden idol of an unfamiliar god',
+      'A handful of glass beads on a string',
+      'A writing kit, ink long dried',
+      'A broken lute with two strings missing',
+      'A moth-eaten tapestry, folded small',
+      'A moldering book in a foreign script',
+      'A bag of iron nails',
+      'A tinderbox with three strikers',
+      'A small loaf of stale bread',
+      'A roll of bandage, mostly clean',
+      'A half-melted candle',
+      'A clay pipe, well chewed',
+      'A pair of soft boots in the wrong size',
+      'A flask of vinegar, mislabelled',
+      'A pouch of mixed buttons',
+      'A water-damaged map of somewhere',
+      'A chess piece (white queen) with no companions'
+    ];
+
+    const WONDERS = [
+      { name: 'The Whispering Mirror',           desc: 'Shows a face other than your own when held to the moon.' },
+      { name: 'Belt of the Stone Bear',          desc: 'The wearer cannot be moved against their will while their feet touch earth.' },
+      { name: 'Ironwood Ring of Vance',          desc: 'Turns warm in the presence of lies.' },
+      { name: 'Crown of Thirteen Sorrows',       desc: 'The wearer dreams strangers\u2019 griefs each night until removed.' },
+      { name: 'The Quiet Lantern',               desc: 'Lights without flame, but only in rooms where someone has wept that day.' },
+      { name: 'Inkstone of Marcus',              desc: 'Words written with its ink fade if spoken aloud before they dry.' },
+      { name: 'The Hollow Coin',                 desc: 'When flipped, lands edge-on for an answer too true to bear.' },
+      { name: 'Cloak of the Twelfth Watch',      desc: 'Renders the wearer unremarkable, but only between midnight and dawn.' },
+      { name: 'The Pilgrim\u2019s Cup',          desc: 'Water drunk from it tastes of the last drink of the previous bearer.' },
+      { name: 'Bone Flute of the Marsh-King',    desc: 'Calls toads from any wet ground within a mile. They do not leave.' },
+      { name: 'The Memory Stone',                desc: 'Holds one memory at a time, drawn from the bearer on the night of the new moon.' },
+      { name: 'Sealing Wax of the Last Court',   desc: 'Letters sealed with it cannot be opened by anyone but the addressed, alive or dead.' },
+      { name: 'Vellum of the Unspoken Name',     desc: 'Bears a name visible only to those who have heard it whispered.' },
+      { name: 'The Patient Knife',               desc: 'Refuses to draw blood from the same hand twice.' },
+      { name: 'Amulet of the Brackish River',    desc: 'Wearer can drink any water without harm. Their breath smells of silt.' },
+      { name: 'Lockpick of the Eighth Hour',     desc: 'Opens any lock once per day at exactly the hour of its forging.' },
+      { name: 'The Salt-Eaten Compass',          desc: 'Points toward the last lie the bearer told.' },
+      { name: 'Glove of the Honest Hand',        desc: 'The wearer cannot strike first, but never strikes badly.' },
+      { name: 'The Drowning Bell',               desc: 'When rung, every sleeper within hearing distance dreams of dark water.' },
+      { name: 'Boots of the Vagrant Saint',      desc: 'Soles never wear, but the wearer cannot sleep two nights under the same roof.' },
+      { name: 'The Bell-Mason\u2019s Chisel',    desc: 'Carves stone as easily as wax for one hour after a death is mourned upon it.' },
+      { name: 'Ring of the Three Petitions',     desc: 'Grants three small wishes, then becomes plain iron. The bearer never knows which wish was the third.' },
+      { name: 'Mirror of the Lesser Truth',      desc: 'Shows the viewer not as they are, but as the last person they wronged saw them.' },
+      { name: 'The Forager\u2019s Knot',         desc: 'A rope that grows tight in the presence of poison.' },
+      { name: 'Cup of the Long Vigil',           desc: 'Wine drunk from it does not intoxicate, but the bearer feels the sorrow of all who drank before.' },
+      { name: 'The Wandering Coin',              desc: 'Returns to the previous owner\u2019s pocket if not given away within seven days.' },
+      { name: 'Hood of the Field Confessor',     desc: 'The wearer hears truth in any voice that addresses them, but cannot speak truth in return.' },
+      { name: 'Brass Key of the Eastern Gate',   desc: 'Opens any door facing east at sunrise, then crumbles. Reforms by the next eastern dawn.' },
+      { name: 'The Inheritor\u2019s Spoon',      desc: 'Food eaten from it tastes of the eater\u2019s childhood, whether they remember it or not.' },
+      { name: 'Veil of the Sister Who Stayed',   desc: 'A grey cloth that, when laid across a sleeper\u2019s face, brings them dreams of someone they refused to follow.' }
+    ];
+
+    const COIN_LABELS = { cu: 'copper', ag: 'silver', au: 'gold', pt: 'platinum' };
+
+    function dN(count, sides) {
+      let total = 0;
+      for (let i = 0; i < count; i++) total += 1 + Math.floor(Math.random() * sides);
+      return total;
+    }
+    function chance(p) { return Math.random() < p; }
+    function pickN(arr, n) {
+      const shuffled = [...arr].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, n);
+    }
+
+    let activeTier = (await Vault.get('loot-tier')) || 'modest';
+    let lastHaul = null;
+    const today = await Refs.today();
+
+    // ---- UI scaffolding ---------------------------------------------
+    const wrap = U.el('div', { class: 'loot' });
+
+    const builder = U.el('div', { class: 'loot__builder' });
+    builder.append(
+      U.el('div', { class: 'loot__intro' },
+        'Choose a tier, then roll. The world provides coins, oddments, and now and again a wonder.'),
+      U.el('div', { class: 'loot__section-head' }, 'Tier')
+    );
+    const tierRow = U.el('div', { class: 'loot__tiers' });
+    Object.entries(TIERS).forEach(([key, t]) => {
+      const btn = U.el('button', {
+        class: 'loot__tier' + (activeTier === key ? ' loot__tier--active' : ''),
+        onclick: async () => {
+          activeTier = key;
+          await Vault.set('loot-tier', key);
+          renderTiers();
+        }
+      }, [
+        U.el('span', { class: 'loot__tier-name' }, t.name),
+        U.el('span', { class: 'loot__tier-sub' }, t.sub)
+      ]);
+      btn.dataset.tier = key;
+      tierRow.append(btn);
+    });
+    builder.append(tierRow);
+
+    builder.append(U.el('button', {
+      class: 'loot__roll',
+      onclick: () => roll()
+    }, 'Roll the Haul'));
+
+    const result = U.el('div', { class: 'loot__result' });
+    result.style.display = 'none';
+
+    wrap.append(builder, result);
+    body.append(wrap);
+
+    function renderTiers() {
+      tierRow.querySelectorAll('.loot__tier').forEach(b => {
+        b.classList.toggle('loot__tier--active', b.dataset.tier === activeTier);
+      });
+    }
+
+    // ---- ROLL --------------------------------------------------------
+    function roll() {
+      const tier = TIERS[activeTier];
+      const coins = tier.coins();
+      const numItems = tier.items.min +
+        Math.floor(Math.random() * (tier.items.max - tier.items.min + 1));
+      const items = pickN(ODDMENTS, numItems);
+      const wonder = chance(tier.wonder) ? U.pick(WONDERS) : null;
+      lastHaul = {
+        tier: activeTier,
+        coins,
+        items: items.map(t => ({ text: t, added: false })),
+        wonder: wonder ? { name: wonder.name, desc: wonder.desc, added: false } : null,
+        coinsAdded: false
+      };
+      renderResult();
+    }
+
+    function renderResult() {
+      result.innerHTML = '';
+      if (!lastHaul) { result.style.display = 'none'; return; }
+      result.style.display = '';
+      const tier = TIERS[lastHaul.tier];
+
+      result.append(
+        U.el('div', { class: 'loot__result-head' }, '\u2767 The Haul \u2767'),
+        U.el('div', { class: 'loot__result-tier' }, tier.name + ': ' + tier.sub)
+      );
+
+      // Coins
+      const hasCoins = Object.values(lastHaul.coins).some(v => v > 0);
+      const coinsGroup = U.el('div', { class: 'loot__group' });
+      coinsGroup.append(U.el('div', { class: 'loot__group-label' }, 'Coin'));
+      if (hasCoins) {
+        const coinsRow = U.el('div', { class: 'loot__coins' });
+        ['cu', 'ag', 'au', 'pt'].forEach(k => {
+          if (!lastHaul.coins[k]) return;
+          coinsRow.append(U.el('span', { class: 'loot__coin' }, [
+            U.el('span', { class: 'loot__coin-value' }, lastHaul.coins[k].toString()),
+            U.el('span', { class: 'loot__coin-label' }, COIN_LABELS[k])
+          ]));
+        });
+        coinsGroup.append(coinsRow);
+      } else {
+        coinsGroup.append(U.el('div', { class: 'loot__empty' }, 'No coin in this haul.'));
+      }
+      result.append(coinsGroup);
+
+      // Oddments
+      const oddGroup = U.el('div', { class: 'loot__group' });
+      oddGroup.append(U.el('div', { class: 'loot__group-label' }, 'Oddments'));
+      const oddList = U.el('div', { class: 'loot__items' });
+      lastHaul.items.forEach((item, idx) => {
+        const row = U.el('div', { class: 'loot__item' });
+        row.append(U.el('span', { class: 'loot__item-text' }, item.text));
+        const addBtn = U.el('button', {
+          class: 'loot__item-add' + (item.added ? ' loot__item-add--done' : ''),
+          disabled: item.added,
+          onclick: async () => {
+            await addItemToCabinet(item.text, 'curiosity');
+            lastHaul.items[idx].added = true;
+            renderResult();
+          }
+        }, item.added ? 'Added' : '+ Cabinet');
+        row.append(addBtn);
+        oddList.append(row);
+      });
+      oddGroup.append(oddList);
+      result.append(oddGroup);
+
+      // Wonder
+      if (lastHaul.wonder) {
+        const wGroup = U.el('div', { class: 'loot__group' });
+        wGroup.append(U.el('div', { class: 'loot__group-label' }, 'Wonder'));
+        const w = U.el('div', { class: 'loot__wonder' });
+        const head = U.el('div', { class: 'loot__wonder-head' });
+        head.append(U.el('span', { class: 'loot__wonder-name' }, lastHaul.wonder.name));
+        const wAdd = U.el('button', {
+          class: 'loot__item-add' + (lastHaul.wonder.added ? ' loot__item-add--done' : ''),
+          disabled: lastHaul.wonder.added,
+          onclick: async () => {
+            await addItemToCabinet(lastHaul.wonder.name, 'relic', lastHaul.wonder.desc);
+            lastHaul.wonder.added = true;
+            renderResult();
+          }
+        }, lastHaul.wonder.added ? 'Added' : '+ Cabinet');
+        head.append(wAdd);
+        w.append(head);
+        w.append(U.el('div', { class: 'loot__wonder-desc' }, lastHaul.wonder.desc));
+        wGroup.append(w);
+        result.append(wGroup);
+      }
+
+      // Actions
+      const actionsRow = U.el('div', { class: 'loot__result-actions' });
+      if (hasCoins) {
+        const coinBtn = U.el('button', {
+          class: 'btn btn--ghost btn--small' + (lastHaul.coinsAdded ? '' : ''),
+          disabled: lastHaul.coinsAdded,
+          onclick: async () => {
+            await depositToCoffer(lastHaul.coins);
+            lastHaul.coinsAdded = true;
+            renderResult();
+          }
+        }, lastHaul.coinsAdded ? 'Coin added to Coffer' : '+ Coffer');
+        actionsRow.append(coinBtn);
+      }
+      actionsRow.append(
+        U.el('button', { class: 'btn btn--ghost btn--small', onclick: pinHaul }, 'Pin to Almanac'),
+        U.el('button', { class: 'btn btn--ghost btn--small', onclick: () => roll() }, 'Roll Again')
+      );
+      result.append(actionsRow);
+    }
+
+    // ---- Cabinet / Coffer integration -------------------------------
+    async function addItemToCabinet(name, kind, description) {
+      const items = (await Vault.get('cabinet')) || [];
+      items.push({
+        id: U.uid(),
+        name,
+        kind,
+        status: 'held',
+        description: description || '',
+        heldBy: 'the party',
+        foundAt: 'a recent haul',
+        foundOn: { ...today },
+        worth: kind === 'relic' ? 'priceless' : 'modest',
+        created: Date.now(), updated: Date.now()
+      });
+      await Vault.set('cabinet', items);
+      U.toast('Added to the Cabinet');
+    }
+
+    async function depositToCoffer(coins) {
+      const c = (await Vault.get('coffer')) || { cu: 0, ag: 0, au: 0, pt: 0, ledger: [] };
+      c.cu = (c.cu || 0) + (coins.cu || 0);
+      c.ag = (c.ag || 0) + (coins.ag || 0);
+      c.au = (c.au || 0) + (coins.au || 0);
+      c.pt = (c.pt || 0) + (coins.pt || 0);
+      c.ledger = c.ledger || [];
+      c.ledger.unshift({
+        ts: Date.now(),
+        change: { ...coins },
+        note: 'A haul, found.'
+      });
+      if (c.ledger.length > 200) c.ledger.length = 200;
+      await Vault.set('coffer', c);
+      U.toast('Coin added to the Coffer');
+    }
+
+    async function pinHaul() {
+      const tier = TIERS[lastHaul.tier];
+      const coinStr = ['cu', 'ag', 'au', 'pt']
+        .filter(k => lastHaul.coins[k])
+        .map(k => lastHaul.coins[k] + ' ' + COIN_LABELS[k])
+        .join(', ');
+      let text = 'LOOT [' + tier.name.toLowerCase() + ']: ' + (coinStr || 'no coin');
+      if (lastHaul.items.length) {
+        text += '; ' + lastHaul.items.map(i => i.text).join('; ');
+      }
+      if (lastHaul.wonder) {
+        text += '; ' + lastHaul.wonder.name + ' (' + lastHaul.wonder.desc + ')';
+      }
+      const t = await Refs.pinToToday(text);
+      U.toast('Pinned to ' + (await Refs.formatDate(t)));
+    }
+  }
+});
+
+/* =========================================================================
    MODULE: THE CABINET (Things Found)
    A registry of relics, letters, weapons, and curiosities the party has
    acquired or seen. Different from the Archive: structured fields, status
@@ -9000,6 +9969,273 @@ Keep.register({
     npcRosterCache = await Refs.npcRoster();
 
     render();
+  }
+});
+
+/* =========================================================================
+   MODULE: THE COFFER (Party Wealth)
+   Coin tracker by denomination (copper / silver / gold / platinum) with
+   a transaction ledger. Deposits and withdrawals are noted; the running
+   balance shows worth in gold for quick reckoning. A split utility
+   divides current wealth among an arbitrary number of shares.
+   ========================================================================= */
+Keep.register({
+  id: 'coffer',
+  name: 'The Coffer',
+  category: 'workshop',
+  glyph: 'g-coffer',
+  tagline: 'Coin kept against need.',
+  sub: 'Deposits and withdrawals, in copper, silver, gold, and platinum.',
+
+  async mount(body, actions) {
+    const DENOMS = [
+      { key: 'cu', name: 'Copper',   short: 'cu', toGold: 0.01 },
+      { key: 'ag', name: 'Silver',   short: 'ag', toGold: 0.1  },
+      { key: 'au', name: 'Gold',     short: 'au', toGold: 1    },
+      { key: 'pt', name: 'Platinum', short: 'pt', toGold: 10   }
+    ];
+
+    let state = (await Vault.get('coffer')) || {
+      cu: 0, ag: 0, au: 0, pt: 0, ledger: []
+    };
+    if (!state.ledger) state.ledger = [];
+
+    async function save() {
+      // cap the ledger so storage does not balloon over a long chronicle
+      if (state.ledger.length > 200) state.ledger.length = 200;
+      await Vault.set('coffer', state);
+    }
+
+    function worthInGold() {
+      return DENOMS.reduce((s, d) => s + (state[d.key] || 0) * d.toGold, 0);
+    }
+    function fmtGold(g) {
+      if (g === 0) return '0';
+      if (g >= 100) return Math.round(g).toString();
+      if (g >= 10) return g.toFixed(1);
+      return g.toFixed(2);
+    }
+    function fmtCoins(c) {
+      const parts = DENOMS.filter(d => c[d.key])
+        .map(d => c[d.key] + ' ' + d.short);
+      return parts.length ? parts.join(', ') : '0';
+    }
+
+    // ---- DOM scaffolding --------------------------------------------
+    const wrap = U.el('div', { class: 'coffer' });
+
+    wrap.append(U.el('div', { class: 'coffer__intro' },
+      'The party\u2019s shared purse. Add coin when found, subtract when spent. The Loot room can deposit straight here.'));
+
+    // Balance card
+    const balance = U.el('div', { class: 'coffer__balance' });
+    balance.append(U.el('div', { class: 'coffer__balance-head' }, 'The Purse'));
+    const denomRow = U.el('div', { class: 'coffer__balance-row' });
+    balance.append(denomRow);
+    const worthRow = U.el('div', { class: 'coffer__worth' });
+    balance.append(worthRow);
+    wrap.append(balance);
+
+    // Form card
+    const form = U.el('div', { class: 'coffer__form' });
+    form.append(U.el('div', { class: 'coffer__form-head' }, 'Move Coin'));
+    const inputs = U.el('div', { class: 'coffer__inputs' });
+    const inputRefs = {};
+    DENOMS.forEach(d => {
+      const wrapEl = U.el('div', { class: 'coffer__input-wrap' });
+      const inp = U.el('input', {
+        type: 'number',
+        min: '0',
+        step: '1',
+        placeholder: '0',
+        class: 'coffer__input'
+      });
+      inputRefs[d.key] = inp;
+      wrapEl.append(U.el('label', {}, d.name), inp);
+      inputs.append(wrapEl);
+    });
+    form.append(inputs);
+
+    const noteInput = U.el('input', {
+      type: 'text',
+      class: 'coffer__note',
+      placeholder: 'A note, brief (e.g. "the goblin king\u2019s hoard")'
+    });
+    form.append(noteInput);
+
+    const formActions = U.el('div', { class: 'coffer__actions' });
+    formActions.append(
+      U.el('button', {
+        class: 'coffer__deposit',
+        onclick: () => move(+1)
+      }, '+ Deposit'),
+      U.el('button', {
+        class: 'coffer__withdraw',
+        onclick: () => move(-1)
+      }, '\u2212 Withdraw')
+    );
+    form.append(formActions);
+
+    // Split utility
+    const split = U.el('div', { class: 'coffer__split' });
+    split.append(U.el('span', { class: 'coffer__split-label' }, 'Split among'));
+    const splitInput = U.el('input', {
+      type: 'number',
+      min: '1',
+      step: '1',
+      value: '4',
+      class: 'coffer__split-input',
+      oninput: renderSplit
+    });
+    split.append(splitInput, U.el('span', { class: 'coffer__split-label' }, 'shares:'));
+    const splitOut = U.el('span', { class: 'coffer__split-result' });
+    split.append(splitOut);
+    form.append(split);
+    wrap.append(form);
+
+    // Ledger card
+    const ledgerCard = U.el('div', { class: 'coffer__ledger' });
+    ledgerCard.append(U.el('div', { class: 'coffer__ledger-head' }, 'Ledger'));
+    const ledgerList = U.el('div', { class: 'coffer__ledger-list' });
+    ledgerCard.append(ledgerList);
+    wrap.append(ledgerCard);
+
+    body.append(wrap);
+
+    // ---- RENDER -----------------------------------------------------
+    function renderBalance() {
+      denomRow.innerHTML = '';
+      DENOMS.forEach(d => {
+        const v = state[d.key] || 0;
+        const cell = U.el('div', {
+          class: 'coffer__denom' + (v === 0 ? ' coffer__denom--zero' : '')
+        });
+        cell.append(
+          U.el('div', { class: 'coffer__denom-value' }, v.toString()),
+          U.el('div', { class: 'coffer__denom-label' }, d.name)
+        );
+        denomRow.append(cell);
+      });
+      worthRow.innerHTML = '';
+      worthRow.append(
+        U.el('span', { class: 'coffer__worth-label' }, 'Worth in gold'),
+        U.el('span', { class: 'coffer__worth-value' }, fmtGold(worthInGold()))
+      );
+    }
+
+    function renderSplit() {
+      const n = parseInt(splitInput.value, 10);
+      if (!n || n < 1) { splitOut.textContent = ''; return; }
+      const g = worthInGold();
+      if (!g) { splitOut.textContent = 'Nothing to divide.'; return; }
+      const per = g / n;
+      splitOut.textContent = fmtGold(per) + ' gold each';
+    }
+
+    function renderLedger() {
+      ledgerList.innerHTML = '';
+      if (!state.ledger.length) {
+        ledgerList.append(U.el('div', { class: 'coffer__empty' },
+          'No entries yet. The purse is fresh.'));
+        return;
+      }
+      state.ledger.slice(0, 25).forEach(entry => {
+        const d = new Date(entry.ts);
+        const tStr = d.getMonth() + 1 + '/' + d.getDate() + ' ' +
+          d.getHours().toString().padStart(2, '0') + ':' +
+          d.getMinutes().toString().padStart(2, '0');
+        const row = U.el('div', { class: 'coffer__ledger-row' });
+        const sign = entry.sign === undefined ? 1 : entry.sign;
+        const amtClass = 'coffer__ledger-amt ' +
+          (sign > 0 ? 'coffer__ledger-amt--gain' : 'coffer__ledger-amt--loss');
+        const amtText = (sign > 0 ? '+' : '\u2212') + fmtCoins(entry.change);
+        row.append(
+          U.el('span', { class: 'coffer__ledger-time' }, tStr),
+          U.el('span', { class: 'coffer__ledger-note' },
+            entry.note || (sign > 0 ? 'deposit' : 'withdrawal')),
+          U.el('span', { class: amtClass }, amtText)
+        );
+        ledgerList.append(row);
+      });
+    }
+
+    // ---- ACTIONS ----------------------------------------------------
+    function readInputs() {
+      const c = { cu: 0, ag: 0, au: 0, pt: 0 };
+      DENOMS.forEach(d => {
+        const v = parseInt(inputRefs[d.key].value, 10);
+        if (!isNaN(v) && v > 0) c[d.key] = v;
+      });
+      return c;
+    }
+    function clearInputs() {
+      DENOMS.forEach(d => { inputRefs[d.key].value = ''; });
+      noteInput.value = '';
+    }
+
+    async function move(sign) {
+      const c = readInputs();
+      const total = c.cu + c.ag + c.au + c.pt;
+      if (!total) {
+        U.toast('Enter at least one coin amount.');
+        return;
+      }
+      if (sign < 0) {
+        // ensure we have enough in each denomination being withdrawn
+        const short = DENOMS.find(d => c[d.key] > (state[d.key] || 0));
+        if (short) {
+          U.toast('Not enough ' + short.name.toLowerCase() + ' in the purse.');
+          return;
+        }
+      }
+      DENOMS.forEach(d => {
+        state[d.key] = (state[d.key] || 0) + sign * c[d.key];
+      });
+      state.ledger.unshift({
+        ts: Date.now(),
+        sign,
+        change: { ...c },
+        note: noteInput.value.trim()
+      });
+      await save();
+      clearInputs();
+      renderBalance();
+      renderLedger();
+      renderSplit();
+    }
+
+    // Actions area: pin the purse, reset entirely
+    actions.append(
+      U.el('button', {
+        class: 'btn btn--ghost btn--small',
+        title: 'Record current balance in today\u2019s note',
+        onclick: async () => {
+          const parts = DENOMS
+            .filter(d => state[d.key])
+            .map(d => state[d.key] + ' ' + d.short);
+          const g = worthInGold();
+          const text = 'COFFER: ' + (parts.length ? parts.join(', ') : 'empty') +
+            ' (worth ' + fmtGold(g) + ' gold)';
+          const t = await Refs.pinToToday(text);
+          U.toast('Pinned to ' + (await Refs.formatDate(t)));
+        }
+      }, 'Pin Balance'),
+      U.el('button', {
+        class: 'btn btn--ghost btn--small',
+        onclick: async () => {
+          if (!confirm('Empty the coffer and clear the ledger?')) return;
+          state = { cu: 0, ag: 0, au: 0, pt: 0, ledger: [] };
+          await save();
+          renderBalance();
+          renderLedger();
+          renderSplit();
+        }
+      }, 'Empty Purse')
+    );
+
+    renderBalance();
+    renderLedger();
+    renderSplit();
   }
 });
 
