@@ -11,11 +11,7 @@ It works for a group GM and for a solo player. The same rooms that help a Game M
 - One self-contained HTML file. Open in any modern browser. No install, no build step, no server. The only outside calls are optional YouTube ambience streams in The Hearth.
 - Per-chronicle persistence. Run as many campaigns as you want, each kept separate.
 - Light and dark themes. Parchment-and-ink for noble adventures, Cult of Shadow for those who play the villains.
-<<<<<<< Updated upstream
-- Twenty-three interconnected modules, each a "room" in the keep.
-=======
 - Twenty-four interconnected modules, each a "room" in the keep.
->>>>>>> Stashed changes
 - A session-prep landing page (The Watch) that aggregates current state across rooms.
 - Universal search across everything (press `/`).
 - Full chronicle backup and restore (JSON).
@@ -193,12 +189,8 @@ The rooms know about each other. Some of the connections that compound across a 
 - Universal search opens specific records via per-module transient navigation keys, so a hit in the Cabinet group does not just take you to the Cabinet but to the exact item, scrolled into view and briefly glowing. The Watch uses the same navigation contract.
 - **Loot** generates oddments and named wonders that one-click into the Cabinet (with the correct kind, description, holder, and date prefilled) and coins that one-click into the Coffer (with an auto-generated ledger note).
 - **The Skirmish** pulls allies from the Fellowship (with default HP and initiative modifier by archetype) and the Hall of Faces, generates foes from archetype pools, and on encounter end writes Fellowship statuses back for any allies who went down (wounded by default; user can override to lost or fallen before confirming).
-<<<<<<< Updated upstream
-- **Quest** is the orchestrator. It pulls companions from the Fellowship as your party, runs procedural beats with companion voice moments, and at climax hands off into one of the other rooms: Skirmish (prefills the encounter with both your chosen allies and setting-appropriate foes), Loot (preselects the right tier), or the Cabinet (writes a setting-themed named find with description and date). The Almanac records the day regardless of which path the climax takes.
-=======
 - **Quest** is one of two orchestrators. It pulls companions from the Fellowship as your party, runs procedural beats with companion voice moments, and at climax hands off into one of the other rooms: Skirmish (prefills the encounter with both your chosen allies and setting-appropriate foes), Loot (preselects the right tier), or the Cabinet (writes a setting-themed named find with description and date). The Almanac records the day regardless of which path the climax takes. When Quest was launched from an Atlas POI, the builder shows a gold-bordered "From the Atlas" banner with the POI's name, type, and region, and the in-run header appends the POI name to the setting line.
 - **The Atlas** is the other orchestrator, working at the geographic level. Each POI on a generated map can hand off through its popover. *Launch Quest Here* writes a `quest-active` building state with the POI's setting preselected and an `originPoi` block (name, type, region, biome) that Quest surfaces in its header. *Roll a Tavern Here* writes `tavern-location-hint`; the Tavern rolls a fresh place and renders "in {POI name}" under the name. *Roll a Face Here* writes `faces-location-hint`; the Hall conjures an NPC tagged with the POI as its location and shows the location on the role line. *Seed a Faction* writes `factions-poi-hint` with a POI-type-aware faction name (bandit camps become Crews, monasteries become Orders, pirate havens become "Captains of {name}", jaguar shrines become "Cults of {name}", manors become Houses); the Faction Ledger appends the new faction. *Note as Threat* writes `threats-poi-hint`; the Threats room opens a new eight-segment clock with the POI as its name and the backstory as its description. *To the Archive* creates a tagged Place entry seeded with the backstory plus a "Located in {region}" footer. *Pin to Almanac* drops a dated note. The set of buttons that appear is filtered per POI type: a pirate haven offers all of them, a lonely standing stone offers only Archive and Almanac.
->>>>>>> Stashed changes
 
 ## Browser Support
 
@@ -206,11 +198,7 @@ Tested in current Chrome, Firefox, and Safari. Uses Web Audio for the Hearth, SV
 
 ## Development
 
-<<<<<<< Updated upstream
-The Keep is one HTML file with embedded CSS and JavaScript, written in vanilla ES2020. About sixteen thousand lines at this writing. Modular structure: each room is a self-contained object registered via `Keep.register({...})` with `mount(body, actions)` and optional `unmount()`.
-=======
 The Keep is one HTML file with embedded CSS and JavaScript, written in vanilla ES2020. About nineteen thousand lines at this writing. Modular structure: each room is a self-contained object registered via `Keep.register({...})` with `mount(body, actions)` and optional `unmount()`.
->>>>>>> Stashed changes
 
 Persistence is abstracted through a `Vault` helper with three surfaces:
 

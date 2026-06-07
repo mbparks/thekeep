@@ -1511,8 +1511,6 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   line-height: 1.5;
   margin-bottom: 0.4rem;
 }
-<<<<<<< Updated upstream
-=======
 .quest__origin {
   background: var(--p-0);
   border: 1px solid var(--gold);
@@ -1544,7 +1542,6 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   color: var(--ink-faded);
   font-size: 0.88rem;
 }
->>>>>>> Stashed changes
 .quest__build-section {
   background: var(--p-0);
   border: 1px solid var(--p-3);
@@ -4689,8 +4686,6 @@ body.popout-mode .folio {
   border-color: var(--ink);
 }
 
-<<<<<<< Updated upstream
-=======
 /* ----- MODULE: ATLAS (Region Map Generator) --------------------------- */
 .atlas {
   display: grid;
@@ -5127,7 +5122,6 @@ body.popout-mode .folio {
   }
 }
 
->>>>>>> Stashed changes
 /* ----- MODULE: LOOT (Treasure Generator) ------------------------------ */
 .loot { display: flex; flex-direction: column; gap: 1.4rem; }
 
@@ -6362,10 +6356,7 @@ body.popout-mode .folio {
     <symbol id="g-coffer" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 10 L18 10 C 18.5 10 19 10.5 19 11 L 19 19 C 19 20.1 18.1 21 17 21 L 7 21 C 5.9 21 5 20.1 5 19 L 5 11 C 5 10.5 5.5 10 6 10 Z M8 10 C 8 8 10 5 12 5 C 14 5 16 8 16 10 M9 14 L 15 14"/></symbol>
     <symbol id="g-skirmish" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 19 L 19 5  M3 17 L 7 21  M19 19 L 5 5  M21 17 L 17 21"/></symbol>
     <symbol id="g-quest" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M5 21 V11 C 5 7 8 4 12 4 C 16 4 19 7 19 11 V21 M9 21 V14 C 9 12.5 10.3 11 12 11 C 13.7 11 15 12.5 15 14 V21 M12 11 V21 M5 21 H19"/></symbol>
-<<<<<<< Updated upstream
-=======
     <symbol id="g-atlas" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 3 L13.5 12 L12 21 L10.5 12 Z M3 12 L12 13.5 L21 12 L12 10.5 Z"/></symbol>
->>>>>>> Stashed changes
     <symbol id="g-scroll" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 4 H17 V20 H6 Z M6 4 C 4.5 4 3.5 5 3.5 6.5 C 3.5 8 4.5 9 6 9 M17 4 C 18.5 4 19.5 5 19.5 6.5 C 19.5 8 18.5 9 17 9 M17 15 C 18.5 15 19.5 16 19.5 17.5 C 19.5 19 18.5 20 17 20 M9 8 H14 M9 12 H14 M9 16 H13"/></symbol>
     <symbol id="g-tankard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 8 H15 V19 C 15 20 14.5 20.5 13.5 20.5 H7.5 C 6.5 20.5 6 20 6 19 Z M15 10.5 H18 C 19 10.5 19.5 11 19.5 12 V15 C 19.5 16 19 16.5 18 16.5 H15 M6 11.5 H15 M8 5 Q 8.5 6.5 8 8 M11 5 Q 11.5 6.5 11 8 M14 5 Q 14.5 6.5 14 8"/></symbol>
     <symbol id="g-standard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 3 V21 M6 5 L19 5 L16 9 L19 13 L6 13 M10 8 H15 M9 11 H16"/></symbol>
@@ -11027,8 +11018,6 @@ Keep.register({
 });
 
 /* =========================================================================
-<<<<<<< Updated upstream
-=======
    MODULE: ATLAS (Region Map Generator)
    Pick a biome, set a POI count, optionally name the region. Produces a
    hand-drawn SVG map of a dozen places, each with a 3-4 sentence
@@ -13192,7 +13181,6 @@ Keep.register({
 });
 
 /* =========================================================================
->>>>>>> Stashed changes
    MODULE: LOOT (Treasure Generator)
    Tap a tier (paltry/modest/rich/royal) and roll. Generates coins by
    denomination, mundane oddments (1 to 5), and an occasional named
@@ -16120,8 +16108,6 @@ Keep.register({
       wrap.append(U.el('div', { class: 'quest__intro' },
         'A short going-in. Pick a place, your companions, and the shape of the end.'));
 
-<<<<<<< Updated upstream
-=======
       // If launched from Atlas, surface where this Quest is anchored.
       if (state.originPoi) {
         const banner = U.el('div', { class: 'quest__origin' });
@@ -16134,7 +16120,6 @@ Keep.register({
         wrap.append(banner);
       }
 
->>>>>>> Stashed changes
       // SETTING
       const settingSection = U.el('div', { class: 'quest__build-section' });
       settingSection.append(U.el('div', { class: 'quest__build-head' }, 'Where'));
@@ -16239,12 +16224,8 @@ Keep.register({
       head.append(
         U.el('span', { class: 'quest__progress' },
           'Beat ' + (state.beatIdx + 1) + ' of ' + state.beatCount),
-<<<<<<< Updated upstream
-        U.el('span', { class: 'quest__where' }, setting.name)
-=======
         U.el('span', { class: 'quest__where' },
           setting.name + (state.originPoi ? ' \u00B7 ' + state.originPoi.name : ''))
->>>>>>> Stashed changes
       );
       const bar = U.el('div', { class: 'quest__progress-bar' });
       bar.append(U.el('div', {
