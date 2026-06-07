@@ -1761,6 +1761,41 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   line-height: 1.4;
 }
 
+/* ----- HEARTH: Popout window mode ------------------------------------ */
+/* When the Hearth is opened in its own browser window via the Pop Out
+   button, body gets the 'popout-mode' class. We hide the banner, nav,
+   folio title (but keep actions so Silence All stays reachable),
+   search button, modals, and anything else that's not the Hearth
+   controls. The Hearth fills the available space. */
+body.popout-mode .banner,
+body.popout-mode .nav,
+body.popout-mode #nav,
+body.popout-mode .folio__title,
+body.popout-mode .folio__sub,
+body.popout-mode .search-overlay,
+body.popout-mode .modal-overlay {
+  display: none !important;
+}
+body.popout-mode .folio__head {
+  border-bottom: 1px dotted var(--p-3);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
+  justify-content: flex-end;
+}
+body.popout-mode .layout {
+  display: block !important;
+  grid-template-columns: none !important;
+  padding: 0.5rem !important;
+}
+body.popout-mode #folio,
+body.popout-mode .folio {
+  max-width: none !important;
+  padding: 1rem !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 /* ----- CAMPAIGN CHIP & MENU ------------------------------------------- */
 .banner__campaign { position: relative; }
 
@@ -4721,6 +4756,18 @@ const Keep = (() => {
     nav = document.getElementById('nav');
     chipWrap = document.getElementById('banner-campaign');
 
+    // Hearth popout mode: opened via window.open from the Pop Out button.
+    // The body gets a CSS class that hides the banner, nav, and folio
+    // header, so the Hearth controls are the only thing visible. The
+    // popup runs its own AudioContext entirely independent of the main
+    // window, so navigating in the main window has no effect on
+    // playback here, and closing this window stops the audio cleanly.
+    const isHearthPopout = window.location.hash === '#hearth-popout';
+    if (isHearthPopout) {
+      document.body.classList.add('popout-mode');
+      document.title = 'The Hearth, The Keep';
+    }
+
     const activeId = await Campaigns.migrate();
     Vault.setActiveCampaign(activeId);
 
@@ -4728,6 +4775,11 @@ const Keep = (() => {
     initSearchBindings();
     renderNav();
     await renderChip();
+
+    if (isHearthPopout) {
+      mount('hearth');
+      return;
+    }
 
     const last = await Vault.get('last-module');
     mount(last && modules.has(last) ? last : 'watch');
@@ -9745,6 +9797,28 @@ Keep.register({
     const fromAfar = U.el('div', { class: 'hearth__afar' });
 
     body.append(intro, masterPanel, presetRow, layersGrid, fromAfar);
+
+    // Pop Out opens the Hearth in a new browser window via #hearth-popout.
+    // That window loads the same HTML file, detects the hash, hides all
+    // chrome, and runs an independent AudioContext. The user can navigate
+    // the main window freely; the popup keeps playing. Closing the popup
+    // stops the audio. Button hides in popout mode (would be redundant).
+    const isPopout = window.location.hash === '#hearth-popout';
+    if (!isPopout) {
+      actions.append(
+        U.el('button', {
+          class: 'btn btn--ghost',
+          title: 'Open the Hearth in a separate window so audio continues while you navigate the rest of the Keep',
+          onclick: () => {
+            window.open(
+              window.location.pathname + window.location.search + '#hearth-popout',
+              'theKeepHearth',
+              'width=720,height=820,resizable=yes,scrollbars=yes'
+            );
+          }
+        }, 'Pop Out')
+      );
+    }
 
     actions.append(
       U.el('button', { class: 'btn btn--ghost', onclick: () => { silence(); }}, 'Silence All')
