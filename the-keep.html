@@ -9761,6 +9761,126 @@ Keep.register({
       return () => { stopped.v = true; };
     }
 
+    // ---- PROCEDURAL BABBLE ---------------------------------------------
+    // makeSpeaker is a one-voice synth: a sawtooth glottal source
+    // (standing in for vocal folds) routed through three parallel
+    // bandpass filters tuned to vowel formants (F1, F2, F3). A syllable
+    // loop opens an envelope, glides the formants to a new vowel,
+    // applies a pitch contour, holds briefly, releases, then waits a
+    // short gap (sometimes a long one) before the next syllable. The
+    // result sounds like a person muttering. Run several speakers at
+    // different pitches and pan positions and you have a crowd.
+    //
+    // params: { pitch, gain, pan, pauseChance, syllableMin, syllableMax }
+    // pitch ~75-110 = man, ~180-240 = woman, ~250+ = youth/child.
+    // Formant frequencies are scaled up for higher-pitched voices to
+    // approximate the shorter vocal tract of women and children.
+    function makeSpeaker(audio, dest, params) {
+      const out = audio.createGain();
+      out.gain.value = 0;
+      let panner = null;
+      try {
+        panner = audio.createStereoPanner();
+        panner.pan.value = params.pan || 0;
+        out.connect(panner).connect(dest);
+      } catch {
+        out.connect(dest);
+      }
+
+      // glottal source (sawtooth approximates a buzzing pulse train)
+      const osc = audio.createOscillator();
+      osc.type = 'sawtooth';
+      osc.frequency.value = params.pitch;
+      osc.start();
+
+      // natural pitch wobble at vibrato rate
+      const wobbleLfo = audio.createOscillator();
+      wobbleLfo.type = 'sine';
+      wobbleLfo.frequency.value = 4.5 + Math.random() * 1.5;
+      const wobbleG = audio.createGain();
+      wobbleG.gain.value = params.pitch * 0.015;
+      wobbleLfo.connect(wobbleG).connect(osc.frequency);
+      wobbleLfo.start();
+
+      // shorter vocal tract = higher formants
+      const fScale = params.pitch > 250 ? 1.30 : (params.pitch > 175 ? 1.18 : 1.0);
+
+      const f1 = audio.createBiquadFilter();
+      f1.type = 'bandpass'; f1.Q.value = 12; f1.frequency.value = 600 * fScale;
+      const f2 = audio.createBiquadFilter();
+      f2.type = 'bandpass'; f2.Q.value = 10; f2.frequency.value = 1200 * fScale;
+      const f3 = audio.createBiquadFilter();
+      f3.type = 'bandpass'; f3.Q.value = 8;  f3.frequency.value = 2400 * fScale;
+
+      const formantMix = audio.createGain();
+      osc.connect(f1).connect(formantMix);
+      osc.connect(f2).connect(formantMix);
+      osc.connect(f3).connect(formantMix);
+      formantMix.connect(out);
+
+      // vowel formants in Hz (men's reference; multiplied by fScale per-voice)
+      const vowels = [
+        [730, 1090, 2440], // ah (father)
+        [660, 1720, 2410], // ae (bat)
+        [530, 1840, 2480], // eh (bed)
+        [400, 2000, 2550], // ih (bit)
+        [270, 2290, 3010], // ee (beet)
+        [570, 840,  2410], // aw (bought)
+        [300, 870,  2240], // oo (boot)
+        [500, 1500, 2500]  // schwa
+      ];
+
+      const syllMin = params.syllableMin || 0.13;
+      const syllMax = params.syllableMax || 0.30;
+      const pauseChance = params.pauseChance || 0.15;
+
+      const stopped = { v: false };
+      function syllable() {
+        if (stopped.v) return;
+        const t = audio.currentTime + 0.02;
+        const v = vowels[Math.floor(Math.random() * vowels.length)];
+        const dur = syllMin + Math.random() * (syllMax - syllMin);
+
+        // per-syllable pitch contour (people don't drone in monotone)
+        const pitchVar = 0.92 + Math.random() * 0.16;
+        const startPitch = params.pitch * pitchVar;
+        const endPitch = startPitch * (Math.random() < 0.5 ? 1.06 : 0.94);
+        osc.frequency.cancelScheduledValues(t);
+        osc.frequency.setValueAtTime(startPitch, t);
+        osc.frequency.linearRampToValueAtTime(endPitch, t + dur);
+
+        // glide formants from wherever they were to the new vowel
+        f1.frequency.cancelScheduledValues(t);
+        f2.frequency.cancelScheduledValues(t);
+        f3.frequency.cancelScheduledValues(t);
+        f1.frequency.linearRampToValueAtTime(v[0] * fScale, t + 0.05);
+        f2.frequency.linearRampToValueAtTime(v[1] * fScale, t + 0.05);
+        f3.frequency.linearRampToValueAtTime(v[2] * fScale, t + 0.05);
+
+        // syllable envelope (open quickly, hold briefly, close softly)
+        out.gain.cancelScheduledValues(t);
+        out.gain.setValueAtTime(0, t);
+        out.gain.linearRampToValueAtTime(params.gain, t + 0.035);
+        out.gain.setValueAtTime(params.gain, t + dur - 0.05);
+        out.gain.linearRampToValueAtTime(0, t + dur);
+
+        // schedule next syllable (sometimes after a long pause as if
+        // the speaker is listening rather than talking)
+        const shortGap = 0.05 + Math.random() * 0.15;
+        const longGap = Math.random() < pauseChance ? (0.8 + Math.random() * 2.5) : 0;
+        setTimeout(syllable, (dur + shortGap + longGap) * 1000);
+      }
+      // random initial delay so multiple speakers don't sync up
+      setTimeout(syllable, 200 + Math.random() * 1500);
+
+      return {
+        stop() {
+          stopped.v = true;
+          try { osc.stop(); wobbleLfo.stop(); } catch {}
+        }
+      };
+    }
+
     // ---- ONE-SHOT EVENTS -----------------------------------------------
     // Brief atmospheric sounds. Each composes oscillators, filters, and
     // envelopes into a single ~0.1 to 4 second sound, then cleans up after
@@ -10155,53 +10275,46 @@ Keep.register({
       return { gain, stop() { stopped.v = true; } };
     }
 
-    // Tavern murmur: base speech-band noise plus two formant resonances
-    // (F1 and F2) modulated by independent slow LFOs to simulate the
-    // shifting vowel coloration of many voices. Overall amplitude has a
-    // slow swell. Adds occasional cup clinks, distant laughs, and chair
-    // scrapes. Sounds like a room of people rather than a wind tunnel.
+    // Tavern murmur: six procedural voices speaking at different pitches,
+    // pan positions, and pace. A faint room tone underneath. Everything is
+    // bussed through a master lowpass that simulates hearing through the
+    // air across a few tables. Cup clinks, laughter, and chair scrapes
+    // play occasionally on the same bus so they share the room acoustics.
     function buildTavern(audio, dest) {
       const gain = audio.createGain();
       gain.connect(dest);
 
-      // Base murmur, pink noise filtered to speech band
-      const noiseBase = noiseSource(audio, 'pink');
-      const baseBp = audio.createBiquadFilter();
-      baseBp.type = 'bandpass'; baseBp.frequency.value = 600; baseBp.Q.value = 0.45;
-      const baseLp = audio.createBiquadFilter();
-      baseLp.type = 'lowpass'; baseLp.frequency.value = 2800;
-      const baseG = audio.createGain(); baseG.gain.value = 0.45;
-      noiseBase.connect(baseBp).connect(baseLp).connect(baseG).connect(gain);
+      // Master muffle (the room's distance and absorption)
+      const masterLp = audio.createBiquadFilter();
+      masterLp.type = 'lowpass';
+      masterLp.frequency.value = 2600;
+      const voiceBus = audio.createGain();
+      voiceBus.connect(masterLp).connect(gain);
 
-      // Formant F1: ~400-870 Hz vowel resonance, sweeping slowly
-      const noiseF1 = noiseSource(audio, 'pink');
-      const f1Bp = audio.createBiquadFilter();
-      f1Bp.type = 'bandpass'; f1Bp.frequency.value = 650; f1Bp.Q.value = 7;
-      const f1Lfo = audio.createOscillator();
-      f1Lfo.type = 'sine'; f1Lfo.frequency.value = 0.13;
-      const f1LfoG = audio.createGain(); f1LfoG.gain.value = 220;
-      f1Lfo.connect(f1LfoG).connect(f1Bp.frequency); f1Lfo.start();
-      const f1G = audio.createGain(); f1G.gain.value = 0.35;
-      noiseF1.connect(f1Bp).connect(f1G).connect(gain);
+      // Low room tone, mostly hum
+      const noise = noiseSource(audio, 'pink');
+      const noiseLp = audio.createBiquadFilter();
+      noiseLp.type = 'lowpass'; noiseLp.frequency.value = 700;
+      const noiseG = audio.createGain(); noiseG.gain.value = 0.10;
+      noise.connect(noiseLp).connect(noiseG).connect(voiceBus);
 
-      // Formant F2: ~1200-2200 Hz vowel resonance, sweeping at different rate
-      const noiseF2 = noiseSource(audio, 'pink');
-      const f2Bp = audio.createBiquadFilter();
-      f2Bp.type = 'bandpass'; f2Bp.frequency.value = 1700; f2Bp.Q.value = 6;
-      const f2Lfo = audio.createOscillator();
-      f2Lfo.type = 'sine'; f2Lfo.frequency.value = 0.17;
-      const f2LfoG = audio.createGain(); f2LfoG.gain.value = 500;
-      f2Lfo.connect(f2LfoG).connect(f2Bp.frequency); f2Lfo.start();
-      const f2G = audio.createGain(); f2G.gain.value = 0.22;
-      noiseF2.connect(f2Bp).connect(f2G).connect(gain);
+      // Six distinct speakers, varied pitch and position
+      const speakers = [
+        makeSpeaker(audio, voiceBus, { pitch: 95,  gain: 0.10, pan: -0.4, pauseChance: 0.18 }),
+        makeSpeaker(audio, voiceBus, { pitch: 115, gain: 0.10, pan: -0.1, pauseChance: 0.15 }),
+        makeSpeaker(audio, voiceBus, { pitch: 200, gain: 0.10, pan: 0.3,  pauseChance: 0.12 }),
+        makeSpeaker(audio, voiceBus, { pitch: 230, gain: 0.10, pan: -0.2, pauseChance: 0.20 }),
+        makeSpeaker(audio, voiceBus, { pitch: 75,  gain: 0.09, pan: 0.5,  pauseChance: 0.25 }),
+        makeSpeaker(audio, voiceBus, { pitch: 260, gain: 0.08, pan: 0.1,  pauseChance: 0.15 })
+      ];
 
-      // Crowd swell, overall amplitude
+      // Crowd swell
       const swellLfo = audio.createOscillator();
       swellLfo.type = 'sine'; swellLfo.frequency.value = 0.05;
-      const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.15;
+      const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.12;
       swellLfo.connect(swellLfoG).connect(gain.gain); swellLfo.start();
 
-      // Cup clinks (original behavior)
+      // Cup clinks (routed through voiceBus so they get muffled with the rest)
       const stopped = { v: false };
       function clink() {
         if (stopped.v) return;
@@ -10210,22 +10323,23 @@ Keep.register({
         o.frequency.value = 1200 + Math.random() * 800;
         const g = audio.createGain();
         g.gain.setValueAtTime(0, t);
-        g.gain.linearRampToValueAtTime(0.12, t + 0.005);
+        g.gain.linearRampToValueAtTime(0.10, t + 0.005);
         g.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-        o.connect(g).connect(dest);
+        o.connect(g).connect(voiceBus);
         o.start(t); o.stop(t + 0.3);
         setTimeout(clink, 4000 + Math.random() * 9000);
       }
       clink();
 
       // Distant laugh every 40s-110s, chair scrape every 60s-150s
-      const cancelLaugh = schedule(40000, 110000, () => eventLaugh(audio, dest));
-      const cancelScrape = schedule(60000, 150000, () => eventChairScrape(audio, dest));
+      const cancelLaugh = schedule(40000, 110000, () => eventLaugh(audio, voiceBus));
+      const cancelScrape = schedule(60000, 150000, () => eventChairScrape(audio, voiceBus));
 
       return { gain, stop() {
         stopped.v = true;
-        noiseBase.stop(); noiseF1.stop(); noiseF2.stop();
-        f1Lfo.stop(); f2Lfo.stop(); swellLfo.stop();
+        noise.stop();
+        speakers.forEach(s => s.stop());
+        swellLfo.stop();
         cancelLaugh(); cancelScrape();
       }};
     }
@@ -10287,37 +10401,63 @@ Keep.register({
       return { gain, stop() { sub.stop(); cancelHowl(); }};
     }
 
-    // Market Day: crowd murmur, footfall rumble, slow amplitude swell.
-    // Frequent vendor calls (formant-synthesized "Hai!"), occasional
-    // hammer strikes and coin clinks. Lively and continuous.
+    // Market Day: eight procedural voices spread wide across the stereo
+    // field, less muffled than the tavern (open air carries more high
+    // frequency), with a footfall rumble underneath and frequent vendor
+    // calls and craft sounds layered on top.
     function buildMarket(audio, dest) {
       const gain = audio.createGain();
       gain.connect(dest);
-      // Crowd murmur
+
+      // Open-air mufflers (less aggressive lowpass than tavern)
+      const masterLp = audio.createBiquadFilter();
+      masterLp.type = 'lowpass';
+      masterLp.frequency.value = 3600;
+      const voiceBus = audio.createGain();
+      voiceBus.connect(masterLp).connect(gain);
+
+      // Open-air room tone (brighter than tavern)
       const noise = noiseSource(audio, 'pink');
-      const bp = audio.createBiquadFilter();
-      bp.type = 'bandpass'; bp.frequency.value = 800; bp.Q.value = 0.4;
-      const lp = audio.createBiquadFilter();
-      lp.type = 'lowpass'; lp.frequency.value = 2200;
-      const baseG = audio.createGain(); baseG.gain.value = 0.4;
-      noise.connect(bp).connect(lp).connect(baseG).connect(gain);
-      // Footfalls (low rumble)
+      const noiseLp = audio.createBiquadFilter();
+      noiseLp.type = 'lowpass'; noiseLp.frequency.value = 1400;
+      const noiseG = audio.createGain(); noiseG.gain.value = 0.12;
+      noise.connect(noiseLp).connect(noiseG).connect(voiceBus);
+
+      // Footfall rumble (bypasses the muffler so the low end stays present)
       const footNoise = noiseSource(audio, 'brown');
       const footLp = audio.createBiquadFilter();
-      footLp.type = 'lowpass'; footLp.frequency.value = 200;
-      const footG = audio.createGain(); footG.gain.value = 0.3;
+      footLp.type = 'lowpass'; footLp.frequency.value = 180;
+      const footG = audio.createGain(); footG.gain.value = 0.25;
       footNoise.connect(footLp).connect(footG).connect(gain);
+
+      // Eight voices, varied pitch, wider pan spread (open market is spatial)
+      const speakers = [
+        makeSpeaker(audio, voiceBus, { pitch: 90,  gain: 0.09, pan: -0.7, pauseChance: 0.20 }),
+        makeSpeaker(audio, voiceBus, { pitch: 110, gain: 0.09, pan: -0.3, pauseChance: 0.15 }),
+        makeSpeaker(audio, voiceBus, { pitch: 130, gain: 0.09, pan: 0.6,  pauseChance: 0.18 }),
+        makeSpeaker(audio, voiceBus, { pitch: 195, gain: 0.09, pan: -0.5, pauseChance: 0.12 }),
+        makeSpeaker(audio, voiceBus, { pitch: 220, gain: 0.09, pan: 0.4,  pauseChance: 0.15 }),
+        makeSpeaker(audio, voiceBus, { pitch: 250, gain: 0.08, pan: 0.0,  pauseChance: 0.18 }),
+        makeSpeaker(audio, voiceBus, { pitch: 280, gain: 0.07, pan: -0.1, pauseChance: 0.25 }),
+        makeSpeaker(audio, voiceBus, { pitch: 75,  gain: 0.08, pan: 0.8,  pauseChance: 0.22 })
+      ];
+
       // Crowd swell
       const swellLfo = audio.createOscillator();
       swellLfo.type = 'sine'; swellLfo.frequency.value = 0.04;
       const swellLfoG = audio.createGain(); swellLfoG.gain.value = 0.12;
       swellLfo.connect(swellLfoG).connect(gain.gain); swellLfo.start();
-      // Schedules
-      const cancelVendor = schedule(8000, 22000, () => eventVendorCall(audio, dest));
+
+      // Vendor calls bus through voice muffler (they ARE voices). Hammer
+      // strikes and coin clinks stay dry; they're close foreground sounds.
+      const cancelVendor = schedule(8000, 22000, () => eventVendorCall(audio, voiceBus));
       const cancelHammer = schedule(18000, 50000, () => eventHammerStrike(audio, dest));
       const cancelCoin = schedule(10000, 28000, () => eventCoinClink(audio, dest));
+
       return { gain, stop() {
-        noise.stop(); footNoise.stop(); swellLfo.stop();
+        noise.stop(); footNoise.stop();
+        speakers.forEach(s => s.stop());
+        swellLfo.stop();
         cancelVendor(); cancelHammer(); cancelCoin();
       }};
     }
