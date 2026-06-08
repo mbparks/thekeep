@@ -1594,6 +1594,16 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   color: var(--ink-faded);
   line-height: 1.35;
 }
+.quest__setting-variants {
+  font-family: var(--serif);
+  font-size: 0.74rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.02em;
+  margin-top: 0.4rem;
+  padding-top: 0.35rem;
+  border-top: 1px dotted var(--p-3);
+  line-height: 1.45;
+}
 
 .quest__option-row {
   display: flex;
@@ -15535,6 +15545,7 @@ Keep.register({
       dungeon: {
         name: 'Dungeon',
         sub: 'Old stone, older bones, a way that goes only down.',
+        variants: ['ruin', 'old mine', 'sunken temple', 'tomb complex', 'dungeon', 'dragon lair', 'crystal chamber', 'fungal grove', 'lost city', 'overgrown temple'],
         features: [
           'You step into a long hall lit by stranger fire.',
           'A stairwell descends, the steps worn smooth by traffic that has stopped.',
@@ -15613,6 +15624,7 @@ Keep.register({
       castle: {
         name: 'Castle',
         sub: 'High windows, listening walls, candles still lit.',
+        variants: ['manor house', 'monastery', 'ice fortress', 'watchtower', 'sunless city'],
         features: [
           'The grand stair turns once and rises into half-light.',
           'A great hall, its banners taken down but not burned.',
@@ -15691,6 +15703,7 @@ Keep.register({
       farmhouse: {
         name: 'Abandoned Farmhouse',
         sub: 'Mundane horror. Small rooms. Recent silence.',
+        variants: ['hermitage', 'witch’s hut', 'windmill', 'wayside chapel', 'woodcutter’s lodge', 'castaway camp'],
         features: [
           'The front door stands open, the wind moving the hinges slightly.',
           'The kitchen, cold but recently used: bread on the table, half-cut.',
@@ -15769,6 +15782,7 @@ Keep.register({
       graveyard: {
         name: 'Haunted Graveyard',
         sub: 'Slow dread, candle-light, the dead listening.',
+        variants: ['standing stones', 'graveyard', 'sacred grove', 'bone field', 'beast shrine'],
         features: [
           'The gate stands open, the chain neatly coiled beside it.',
           'A field of low stones, weathered, none very recent.',
@@ -15847,6 +15861,7 @@ Keep.register({
       shipwreck: {
         name: 'Shipwreck',
         sub: 'Salt, claustrophobia, things still moving below.',
+        variants: ['shipwreck', 'marked buoy'],
         features: [
           'The hull has split; you climb through the breach, into the half-flooded lower deck.',
           'The captain\u2019s quarters, the door still locked from the outside.',
@@ -15925,6 +15940,7 @@ Keep.register({
       hideout: {
         name: 'Enemy Hideout',
         sub: 'Living opposition. Smoke, tracks, a watch to slip.',
+        variants: ['bandit camp', 'smugglers’ cave', 'pirate haven'],
         features: [
           'The mouth of the cave is half-curtained by hide; the smoke inside is fresh.',
           'A clearing in the woods, with three lean-tos and a banked fire.',
@@ -16348,7 +16364,10 @@ Keep.register({
         });
         card.append(
           U.el('span', { class: 'quest__setting-name' }, s.name),
-          U.el('span', { class: 'quest__setting-sub' }, s.sub)
+          U.el('span', { class: 'quest__setting-sub' }, s.sub),
+          s.variants && s.variants.length
+            ? U.el('span', { class: 'quest__setting-variants' }, s.variants.join(' \u00B7 '))
+            : null
         );
         settingsGrid.append(card);
       });
@@ -16437,11 +16456,17 @@ Keep.register({
       const beat = state.beats[state.beatIdx];
 
       const head = U.el('div', { class: 'quest__head' });
+      // Prefer the Atlas POI's typeLabel when this Quest was launched
+      // from a map; it reflects what the player actually picked
+      // (e.g. "Monastery" instead of the generic "Castle").
+      const whereName = (state.originPoi && state.originPoi.type)
+        ? state.originPoi.type.replace(/\b\w/g, c => c.toUpperCase())
+        : setting.name;
       head.append(
         U.el('span', { class: 'quest__progress' },
           'Beat ' + (state.beatIdx + 1) + ' of ' + state.beatCount),
         U.el('span', { class: 'quest__where' },
-          setting.name + (state.originPoi ? ' \u00B7 ' + state.originPoi.name : ''))
+          whereName + (state.originPoi ? ' \u00B7 ' + state.originPoi.name : ''))
       );
       const bar = U.el('div', { class: 'quest__progress-bar' });
       bar.append(U.el('div', {
