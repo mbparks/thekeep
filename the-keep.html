@@ -9938,6 +9938,220 @@ Keep.register({
     function colorOf(id)  { return COLORS.find(c => c.id === id) || COLORS[0]; }
     function statusOf(id) { return STATUSES.find(s => s.id === id) || STATUSES[0]; }
 
+    // ----- Crossing (Odyssey interop) -----------------------------
+    // status (text tag) ↔ HP (numeric) translation. Keep stays narrative;
+    // Odyssey gets numbers. Stats default to zero on first export and the
+    // player tunes them in Odyssey. The pc.odyssey blob round-trips
+    // Odyssey-only data (stats, almanac, traits) so subsequent crossings
+    // preserve mid-game state.
+    const STATUS_TO_HP = { hale: 6, weary: 4, wounded: 2, grievous: 1, fallen: 0 };
+    function hpToStatus(hp) {
+      if (!hp || !hp.max) return 'hale';
+      const pct = hp.current / hp.max;
+      if (pct >= 0.8) return 'hale';
+      if (pct >= 0.5) return 'weary';
+      if (pct >= 0.3) return 'wounded';
+      if (pct >  0)   return 'grievous';
+      return 'fallen';
+    }
+
+    function wayfarerToOdyssey(pc) {
+      const o = pc.odyssey || {};
+      return {
+        format: 'odyssey-wayfarer',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        exportedFrom: 'The Keep',
+        character: {
+          id: pc.id,
+          name: pc.name,
+          archetype: pc.calling || '',
+          level: o.level || 1,
+          stats: o.stats || { might: 0, wits: 0, grace: 0, heart: 0 },
+          hp: o.hp || { max: 6, current: STATUS_TO_HP[pc.status] != null ? STATUS_TO_HP[pc.status] : 6 },
+          traits: Array.isArray(o.traits) ? o.traits : [],
+          inventory: (pc.carried || '').split(/[,\n]/).map(s => s.trim()).filter(Boolean),
+          almanac: o.almanac || { marks: {} },
+          notes: pc.notes || '',
+          schemaVersion: 1,
+          x: { 'the-keep': {
+            lineage: pc.lineage || '',
+            oath: pc.oath || '',
+            bonds: pc.bonds || '',
+            description: pc.description || '',
+            color: pc.color || 'wine',
+            status: pc.status || 'hale',
+            created: pc.created || Date.now()
+          }}
+        }
+      };
+    }
+
+    function odysseyToWayfarer(envelope) {
+      // Accept either an envelope or a raw character object.
+      const c = (envelope && envelope.format === 'odyssey-wayfarer' && envelope.character)
+        ? envelope.character
+        : envelope;
+      if (!c || typeof c !== 'object' || !c.id || !c.name) {
+        throw new Error('That is not a legible wayfarer.');
+      }
+      const k = (c.x && c.x['the-keep']) || {};
+      return {
+        id: c.id,
+        name: c.name,
+        lineage: k.lineage || '',
+        calling: c.archetype || '',
+        description: k.description || '',
+        oath: k.oath || '',
+        bonds: k.bonds || '',
+        carried: Array.isArray(c.inventory) ? c.inventory.join('\n') : '',
+        notes: c.notes || '',
+        // Prefer hp-derived status (canonical mechanical state from Odyssey
+        // play); fall back to preserved Keep status only when hp is missing.
+        status: c.hp ? hpToStatus(c.hp) : (k.status || 'hale'),
+        color: k.color || 'wine',
+        created: k.created || Date.now(),
+        updated: Date.now(),
+        // Preserve Odyssey-only data so the next Send to Odyssey carries
+        // forward stats/traits/almanac without losing mid-game progress.
+        odyssey: {
+          level: c.level,
+          stats: c.stats,
+          hp: c.hp,
+          traits: c.traits,
+          almanac: c.almanac
+        }
+      };
+    }
+
+    function openCrossingExport(pc) {
+      const envelope = wayfarerToOdyssey(pc);
+      const json = JSON.stringify(envelope, null, 2);
+      const safeName = (pc.name || 'wayfarer')
+        .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+      const ov = U.el('div', { class: 'modal-overlay' });
+      const dialog = U.el('div', { class: 'modal-card', style: { maxWidth: '560px' } });
+      dialog.append(
+        U.el('div', { class: 'card__corner card__corner--tl' }),
+        U.el('div', { class: 'card__corner card__corner--tr' }),
+        U.el('div', { class: 'card__corner card__corner--bl' }),
+        U.el('div', { class: 'card__corner card__corner--br' }),
+        U.el('h2', {}, 'Send to Odyssey')
+      );
+
+      const scroll = U.el('div', { class: 'modal-card__scroll' });
+      scroll.append(
+        U.el('p', { style: { fontStyle: 'italic', color: 'var(--ink-faded)', marginBottom: '0.6rem' } },
+          pc.name + '. Copy this text, or download it, to carry into Odyssey.')
+      );
+      const ta = U.el('textarea', {
+        class: 'textarea',
+        style: { minHeight: '220px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: '0.78rem' },
+        readonly: true
+      });
+      ta.value = json;
+      scroll.append(ta);
+      dialog.append(scroll);
+
+      const feedback = U.el('span', { style: { marginLeft: '0.6rem', fontStyle: 'italic', color: 'var(--forest)' } }, '');
+
+      dialog.append(U.el('div', { class: 'modal-card__close' }, [
+        U.el('button', { class: 'btn btn--ghost', onclick: () => ov.remove() }, 'Close'),
+        U.el('button', { class: 'btn', onclick: () => {
+          const done = () => {
+            feedback.textContent = 'Copied.';
+            setTimeout(() => { feedback.textContent = ''; }, 2000);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(json).then(done).catch(() => { ta.select(); document.execCommand('copy'); done(); });
+          } else {
+            ta.select();
+            try { document.execCommand('copy'); done(); }
+            catch (e) { feedback.textContent = 'Copy failed.'; }
+          }
+        }}, 'Copy'),
+        U.el('button', { class: 'btn', onclick: () => {
+          const blob = new Blob([json], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = U.el('a', { href: url, download: 'odyssey-wayfarer-' + safeName + '.json' });
+          document.body.append(a);
+          a.click();
+          a.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 200);
+        }}, 'Download'),
+        feedback
+      ]));
+
+      ov.append(dialog);
+      document.body.append(ov);
+    }
+
+    function openCrossingImport() {
+      const ov = U.el('div', { class: 'modal-overlay' });
+      const dialog = U.el('div', { class: 'modal-card', style: { maxWidth: '560px' } });
+      dialog.append(
+        U.el('div', { class: 'card__corner card__corner--tl' }),
+        U.el('div', { class: 'card__corner card__corner--tr' }),
+        U.el('div', { class: 'card__corner card__corner--bl' }),
+        U.el('div', { class: 'card__corner card__corner--br' }),
+        U.el('h2', {}, 'Bring from Odyssey')
+      );
+
+      const scroll = U.el('div', { class: 'modal-card__scroll' });
+      scroll.append(
+        U.el('p', { style: { fontStyle: 'italic', color: 'var(--ink-faded)', marginBottom: '0.6rem' } },
+          'Paste a wayfarer\u2019s JSON below. If their id already lives in your Keep, that wayfarer will be updated. Otherwise a new one will be added.')
+      );
+      const ta = U.el('textarea', {
+        class: 'textarea',
+        style: { minHeight: '220px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: '0.78rem' },
+        placeholder: 'Paste a wayfarer\u2019s JSON here...'
+      });
+      scroll.append(ta);
+
+      const status = U.el('p', { style: { marginTop: '0.6rem', fontStyle: 'italic', minHeight: '1.2em' } }, '');
+      scroll.append(status);
+      dialog.append(scroll);
+
+      dialog.append(U.el('div', { class: 'modal-card__close' }, [
+        U.el('button', { class: 'btn btn--ghost', onclick: () => ov.remove() }, 'Cancel'),
+        U.el('button', { class: 'btn btn--primary', onclick: async () => {
+          const text = ta.value.trim();
+          if (!text) { ta.focus(); return; }
+          let parsed;
+          try { parsed = JSON.parse(text); }
+          catch (e) {
+            status.style.color = 'var(--wine)';
+            status.textContent = 'That is not legible JSON.';
+            return;
+          }
+          let imported;
+          try { imported = odysseyToWayfarer(parsed); }
+          catch (e) {
+            status.style.color = 'var(--wine)';
+            status.textContent = e.message;
+            return;
+          }
+          const idx = pcs.findIndex(x => x.id === imported.id);
+          if (idx >= 0) {
+            if (!confirm('A wayfarer with that id already lives here (\u201c' + pcs[idx].name + '\u201d). Replace?')) return;
+            pcs[idx] = imported;
+          } else {
+            pcs.unshift(imported);
+          }
+          await save();
+          await Vault.set('wayfarer-highlight', imported.id);
+          ov.remove();
+          render();
+        }}, 'Bring in')
+      ]));
+
+      ov.append(dialog);
+      document.body.append(ov);
+      setTimeout(() => ta.focus(), 50);
+    }
+
     let pcs = (await Vault.get('wayfarer')) || [];
 
     // archive backlinks
@@ -9957,7 +10171,8 @@ Keep.register({
     body.append(head, grid);
 
     actions.append(
-      U.el('button', { class: 'btn btn--primary', onclick: () => openWayfarerForm() }, 'Name Yourself')
+      U.el('button', { class: 'btn btn--primary', onclick: () => openWayfarerForm() }, 'Name Yourself'),
+      U.el('button', { class: 'btn btn--ghost', onclick: () => openCrossingImport() }, 'Bring from Odyssey')
     );
 
     async function save() { await Vault.set('wayfarer', pcs); }
@@ -10064,6 +10279,7 @@ Keep.register({
       const acts = U.el('div', { class: 'wayfarer-card__actions' });
       acts.append(
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openWayfarerForm(pc) }, 'Edit'),
+        U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openCrossingExport(pc) }, 'Send to Odyssey'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
           if (!confirm('Retire "' + pc.name + '"? Their card will be erased.')) return;
           pcs = pcs.filter(x => x.id !== pc.id);
