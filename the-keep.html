@@ -1214,6 +1214,40 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   color: var(--ink-faded);
 }
 .almanac__panel-moon { font-style: italic; color: var(--ink-soft); margin-bottom: 0.5rem; font-family: var(--rubric); }
+.almanac__pins {
+  margin-top: 0.4rem;
+}
+.almanac__pins-row {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+  margin-top: 0.3rem;
+}
+.almanac__pin-chip {
+  background: rgba(184,146,58,0.10);
+  border: 1px solid rgba(184,146,58,0.40);
+  padding: 0.35rem 0.55rem 0.3rem;
+  cursor: pointer;
+  display: inline-flex; flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  text-align: left;
+  font-family: var(--serif);
+  color: var(--ink);
+  transition: background 0.12s, border-color 0.12s;
+}
+.almanac__pin-chip:hover { background: rgba(184,146,58,0.22); border-color: var(--gold); }
+.almanac__pin-chip-mod {
+  font-family: var(--display);
+  font-size: 0.58rem;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--gold-d);
+}
+[data-theme="dark"] .almanac__pin-chip-mod { color: var(--gold-l); }
+.almanac__pin-chip-label {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
 .almanac__weather-row { display: flex; gap: 0.4rem; margin-bottom: 0.75rem; }
 .almanac__weather-row input { flex: 1; }
 
@@ -1316,7 +1350,16 @@ small { font-size: 0.85em; color: var(--ink-faded); }
   color: var(--ink);
 }
 .archive__title:focus { outline: none; border-bottom: 1px solid var(--gold); }
-.archive__meta { display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: center; }
+.archive__meta { display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+.archive__origin-chip {
+  background: rgba(184,146,58,0.14);
+  border-color: rgba(184,146,58,0.50);
+  color: var(--gold-d);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.archive__origin-chip:hover { background: rgba(184,146,58,0.28); border-color: var(--gold); }
+[data-theme="dark"] .archive__origin-chip { color: var(--gold-l); }
 .archive__editor {
   width: 100%;
   border: 1px dashed var(--p-3);
@@ -3689,6 +3732,18 @@ body.popout-mode .folio {
   color: var(--ink-faded);
   margin-top: 0.15rem;
 }
+.faction-card__origin {
+  margin: 0.3rem 0 0.45rem 0;
+}
+.faction-card__origin-chip {
+  background: rgba(184,146,58,0.14);
+  border-color: rgba(184,146,58,0.50);
+  color: var(--gold-d);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.faction-card__origin-chip:hover { background: rgba(184,146,58,0.28); border-color: var(--gold); }
+[data-theme="dark"] .faction-card__origin-chip { color: var(--gold-l); }
 .faction-card__expand {
   background: transparent;
   border: 1px solid var(--p-3);
@@ -3962,6 +4017,37 @@ body.popout-mode .folio {
   transition: background 0.15s;
 }
 .faces__backlinks .tag:hover { background: rgba(184,146,58,0.32); }
+
+.cabinet-card__backlinks {
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+  border-top: 1px dotted var(--p-3);
+}
+.cabinet-card__backlinks-label {
+  font-family: var(--display);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.25rem;
+}
+.cabinet-card__backlinks-row {
+  display: flex; flex-wrap: wrap; gap: 0.25rem;
+}
+.cabinet-card__backlinks-row .tag {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cabinet-card__backlinks-row .tag:hover { background: rgba(184,146,58,0.32); }
+.cabinet-card__origin-chip {
+  background: rgba(184,146,58,0.14);
+  border-color: rgba(184,146,58,0.50);
+  color: var(--gold-d);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.cabinet-card__origin-chip:hover { background: rgba(184,146,58,0.28); border-color: var(--gold); }
+[data-theme="dark"] .cabinet-card__origin-chip { color: var(--gold-l); }
 
 .pin-btn {
   margin-top: 1rem;
@@ -5001,6 +5087,22 @@ body.popout-mode .folio {
   line-height: 1.55;
   margin-bottom: 0.7rem;
 }
+.atlas__popover-backlinks {
+  margin-bottom: 0.7rem;
+  padding-top: 0.5rem;
+  border-top: 1px dotted var(--p-3);
+}
+.atlas__popover-backlinks-label {
+  font-family: var(--display);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.3rem;
+}
+.atlas__popover-backlinks-row {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+}
 .atlas__popover-actions {
   display: flex;
   flex-wrap: wrap;
@@ -5843,6 +5945,12 @@ body.popout-mode .folio {
   border-color: rgba(92,31,36,0.35);
   color: var(--wine);
 }
+.wikilink-tooltip__type--atlas {
+  background: rgba(184,146,58,0.20);
+  border-color: rgba(184,146,58,0.55);
+  color: var(--gold-d);
+}
+[data-theme="dark"] .wikilink-tooltip__type--atlas { color: var(--gold-l); }
 
 /* faction matrix view */
 .factions__toggle { display: inline-flex; }
@@ -6745,6 +6853,26 @@ const U = {
   }
 };
 
+/* ----- 2a. SHARED PALETTE ---------------------------------------------- */
+/* One heraldic palette used by every room that needs an accent color
+   choice: The Wayfarer (PC card accents), Faction Ledger (faction colors
+   and matrix relations), and Threats (clock fills). Modules pick from
+   this list by id; ids are stable for storage. Order is wine, forest,
+   gold, indigo, ink, salt, iron, rust. */
+U.PALETTE = [
+  { id: 'wine',   var: 'var(--wine)',     varD: 'var(--wine-d)',   soft: 'rgba(92,31,36,0.10)',   hex: '#5c1f24' },
+  { id: 'forest', var: 'var(--forest)',   varD: 'var(--forest-d)', soft: 'rgba(45,74,53,0.12)',   hex: '#2d4a35' },
+  { id: 'gold',   var: 'var(--gold-d)',   varD: '#5a4715',         soft: 'rgba(184,146,58,0.16)', hex: '#8a6c25' },
+  { id: 'indigo', var: 'var(--indigo)',   varD: '#1a1834',         soft: 'rgba(42,40,72,0.13)',   hex: '#2a2848' },
+  { id: 'ink',    var: 'var(--ink-soft)', varD: 'var(--ink)',      soft: 'rgba(58,47,36,0.10)',   hex: '#3a2f24' },
+  { id: 'salt',   var: '#7a6c52',         varD: '#4f4530',         soft: 'rgba(122,108,82,0.13)', hex: '#7a6c52' },
+  { id: 'iron',   var: '#4a5764',         varD: '#2a3340',         soft: 'rgba(74,87,100,0.14)',  hex: '#4a5764' },
+  { id: 'rust',   var: '#8a4a2c',         varD: '#5a2f1c',         soft: 'rgba(138,74,44,0.14)',  hex: '#8a4a2c' }
+];
+U.colorFromPalette = function(id) {
+  return U.PALETTE.find(c => c.id === id) || U.PALETTE[0];
+};
+
 /* ----- 2b. CROSS-MODULE REFS ------------------------------------------- */
 /* One module looks at another's data via Refs, never via direct key knowledge.
    This keeps every cross-reference (NPC wikilinks, pin-to-today, backlinks,
@@ -6777,19 +6905,81 @@ const Refs = {
   dayKey(date) { return `${date.year}-${date.month}-${date.day}`; },
   async formatDate(date) {
     const cal = await this.calendar();
-    return `${date.day} ${cal.months[date.month]} ${date.year}`;
+    return this.formatDateWith(date, cal);
+  },
+  // Sync variants for rooms that have already fetched the calendar
+  // (Watch, Cabinet, Almanac, Coffer). The async formatDate above is
+  // a thin wrapper around these; one canonical chronicle date format
+  // ("12 Frostmoon, 712") lives here so the chronicle reads the same
+  // in toasts, item meta, and panel headers.
+  formatDateWith(date, calendar) {
+    if (!date || typeof date !== 'object') return '';
+    return date.day + ' ' + (calendar.months[date.month] || '?') + ', ' + date.year;
+  },
+  formatDateLongWith(date, calendar) {
+    if (!date || typeof date !== 'object') return '';
+    const dn = calendar.daynames[(date.day - 1) % calendar.daynames.length] || '';
+    return (dn ? dn + ', ' : '') + this.formatDateWith(date, calendar);
   },
 
-  async pinToToday(text) {
+  async pinToToday(text, origin) {
     const today = await this.today();
     const notes = (await Vault.get('almanac-notes')) || {};
     const key = this.dayKey(today);
     const note = notes[key] || { weather: '', body: '' };
     note.body = (note.body ? note.body + '\n\n' : '') + text;
+    // If the caller supplied origin metadata, also record a structured
+    // pin entry so the Almanac can render a Jump-to-source chip. The
+    // body text is still appended for legacy excerpt/search behaviour.
+    if (origin && origin.module) {
+      note.pins = note.pins || [];
+      note.pins.push({ text, origin, ts: Date.now() });
+    }
     note.updated = Date.now();
     notes[key] = note;
     await Vault.set('almanac-notes', notes);
     return today;
+  },
+
+  // Centralised origin navigator. Pinning callers tag an entry with
+  // origin = { module, id?, mapId?, poiId?, label }. This dispatches
+  // each one to the right room and (where possible) the right item.
+  async jumpToOrigin(origin) {
+    if (!origin || !origin.module) return;
+    const mod = origin.module;
+    if (mod === 'atlas') {
+      if (origin.mapId) await Vault.set('atlas-active', origin.mapId);
+      if (origin.poiId) await Vault.set('atlas-poi-show', origin.poiId);
+      return Keep.mount('atlas');
+    }
+    if (mod === 'cabinet' && origin.id) {
+      await Vault.set('cabinet-highlight', origin.id);
+      return Keep.mount('cabinet');
+    }
+    if (mod === 'threats' && origin.id) {
+      await Vault.set('threats-highlight', origin.id);
+      return Keep.mount('threats');
+    }
+    if (mod === 'fellowship' && origin.id) {
+      await Vault.set('fellowship-highlight', origin.id);
+      return Keep.mount('fellowship');
+    }
+    if (mod === 'faces' && origin.id) {
+      await Vault.set('faces-show', origin.id);
+      return Keep.mount('faces');
+    }
+    if (mod === 'factions' && origin.id) {
+      await Vault.set('factions-expand', origin.id);
+      return Keep.mount('factions');
+    }
+    if (mod === 'wayfarer' && origin.id) {
+      await Vault.set('wayfarer-highlight', origin.id);
+      return Keep.mount('wayfarer');
+    }
+    // For modules with no per-item navigation (oracle, augury, spark,
+    // bones, hearth, lists, quest, skirmish, tavern, loot, coffer),
+    // just mount the room.
+    return Keep.mount(mod);
   },
 
   async npcRoster() { return (await Vault.get('faces-roster')) || []; },
@@ -6806,6 +6996,47 @@ const Refs = {
            `**Mannerism:** ${npc.mannerism}\n\n` +
            `**Appearance:** ${npc.physical}\n\n` +
            `**Secret:** ${npc.secret}\n\n`;
+  },
+
+  // Atlas lookup. Returns a Map keyed by POI name AND region name,
+  // each value: { kind: 'poi'|'region', mapId, mapName, biomeName,
+  // poiId?, type?, preview }. POI keys win over region keys if a
+  // map happens to share a name with a POI (extremely unlikely).
+  async atlasByName() {
+    const maps = (await Vault.get('atlas-maps')) || [];
+    const m = new Map();
+    // Region names first; POIs overwrite if any collision (shouldn't happen).
+    for (const map of maps) {
+      if (!m.has(map.name)) {
+        m.set(map.name, {
+          kind: 'region',
+          mapId: map.id,
+          mapName: map.name,
+          biomeName: map.biome,
+          preview: 'A ' + map.biome + ' region with ' + (map.pois || []).length + ' marks.'
+        });
+      }
+    }
+    for (const map of maps) {
+      for (const poi of (map.pois || [])) {
+        m.set(poi.name, {
+          kind: 'poi',
+          mapId: map.id,
+          mapName: map.name,
+          biomeName: map.biome,
+          poiId: poi.id,
+          type: poi.type,
+          preview: (poi.backstory || '').slice(0, 220)
+        });
+      }
+    }
+    return m;
+  },
+  async openAtlasPoi(ref) {
+    if (!ref || !ref.mapId) return;
+    await Vault.set('atlas-active', ref.mapId);
+    if (ref.kind === 'poi' && ref.poiId) await Vault.set('atlas-poi-show', ref.poiId);
+    return Keep.mount('atlas');
   },
 
   async archiveEntries() { return (await Vault.get('archive-entries')) || {}; },
@@ -7145,7 +7376,7 @@ const Keep = (() => {
         const parts = key.split('-').map(Number);
         const [y, m, d] = parts;
         if (Number.isNaN(y) || Number.isNaN(m) || Number.isNaN(d)) continue;
-        const title = d + ' ' + (cal.months[m] || '?') + ', ' + y;
+        const title = Refs.formatDateWith({ year: y, month: m, day: d }, cal);
         idx.push({
           group: 'The Almanac',
           moduleId: 'almanac',
@@ -7171,6 +7402,39 @@ const Keep = (() => {
           onSelect: () => mount('oracle')
         });
       });
+    } catch {}
+
+    // The Atlas: each region and each POI within it
+    try {
+      const maps = (await Vault.get('atlas-maps')) || [];
+      for (const m of maps) {
+        idx.push({
+          group: 'The Atlas',
+          moduleId: 'atlas',
+          title: m.name,
+          subtitle: (m.biome ? m.biome[0].toUpperCase() + m.biome.slice(1) : '')
+                 + (m.pois ? ' \u00b7 ' + m.pois.length + ' marks' : ''),
+          body: (m.pois || []).map(p => p.name).join(' '),
+          onSelect: async () => {
+            await Vault.set('atlas-active', m.id);
+            await mount('atlas');
+          }
+        });
+        for (const p of (m.pois || [])) {
+          idx.push({
+            group: 'The Atlas',
+            moduleId: 'atlas',
+            title: p.name,
+            subtitle: (p.type ? p.type.replace(/_/g, ' ') : '') + ' \u00b7 ' + m.name,
+            body: p.backstory || '',
+            onSelect: async () => {
+              await Vault.set('atlas-active', m.id);
+              await Vault.set('atlas-poi-show', p.id);
+              await mount('atlas');
+            }
+          });
+        }
+      }
     } catch {}
 
     return idx;
@@ -7203,7 +7467,7 @@ const Keep = (() => {
     const dialog = U.el('div', { class: 'search-modal' });
     const input = U.el('input', {
       class: 'search-modal__input',
-      placeholder: 'Search NPCs, factions, finds, threats, days, lore...',
+      placeholder: 'Search NPCs, factions, places, finds, threats, days, lore...',
       autocomplete: 'off', spellcheck: 'false'
     });
     const resultsEl = U.el('div', { class: 'search-modal__results' });
@@ -7224,7 +7488,7 @@ const Keep = (() => {
       resultsEl.innerHTML = '';
       if (!input.value.trim()) {
         resultsEl.append(U.el('div', { class: 'search-modal__empty' },
-          'Type to search NPCs, factions, the cabinet, threats, day notes, and lore.'));
+          'Type to search NPCs, factions, places, the cabinet, threats, day notes, and lore.'));
         return;
       }
       if (!current.length) {
@@ -7394,10 +7658,7 @@ Keep.register({
     const sparkHistory = (await Vault.get('spark-history')) || [];
     const archiveEntries = (await Vault.get('archive-entries')) || {};
 
-    function fmtDate(d) {
-      if (!d || typeof d !== 'object') return '';
-      return d.day + ' ' + (cal.months[d.month] || '?') + ', ' + d.year;
-    }
+    function fmtDate(d) { return Refs.formatDateWith(d, cal); }
     function dayKey(d) { return d.year + '-' + d.month + '-' + d.day; }
     function previousDay(d) {
       let day = d.day - 1, month = d.month, year = d.year;
@@ -8393,7 +8654,10 @@ Keep.register({
           let text = 'ORACLE: "' + (q || '(no question asked)') + '"\n';
           text += verdict + ', ' + qualifier + '.';
           if (comp) text += '\nComplication: ' + comp + '.';
-          const today = await Refs.pinToToday(text);
+          const today = await Refs.pinToToday(text, {
+            module: 'oracle',
+            label: (q || 'a question').slice(0, 60)
+          });
           U.toast('Pinned to ' + (await Refs.formatDate(today)));
         }}, 'Pin to Almanac')
       );
@@ -8564,7 +8828,7 @@ Keep.register({
     function pinBtn(text) {
       const wrap = U.el('div', { style: { textAlign: 'center', marginTop: '1.25rem' } });
       wrap.append(U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-        const today = await Refs.pinToToday(text);
+        const today = await Refs.pinToToday(text, { module: 'augury', label: 'an augury' });
         U.toast('Pinned to ' + (await Refs.formatDate(today)));
       }}, 'Pin to Almanac'));
       return wrap;
@@ -8940,7 +9204,10 @@ Keep.register({
         onclick: async () => {
           if (!current) return;
           const text = 'SPARK [' + catName(current.category).toLowerCase() + ']: ' + current.text;
-          const today = await Refs.pinToToday(text);
+          const today = await Refs.pinToToday(text, {
+            module: 'spark',
+            label: catName(current.category)
+          });
           U.toast('Pinned to ' + (await Refs.formatDate(today)));
         }
       }, 'Pin to Almanac');
@@ -9087,7 +9354,7 @@ Keep.register({
       head.innerHTML = '';
       const todayChip = U.el('div', { class: 'almanac__today-badge' }, [
         U.el('strong', {}, 'Campaign Today'),
-        document.createTextNode(`${campaignToday.day} ${calendar.months[campaignToday.month]}, ${campaignToday.year}`)
+        document.createTextNode(Refs.formatDateWith(campaignToday, calendar))
       ]);
       head.append(
         U.el('div', {}, [
@@ -9139,15 +9406,26 @@ Keep.register({
       const phase = moonPhase(ad);
       const isToday = isCampaignToday(y, m, d);
       panel.append(
-        U.el('div', { class: 'almanac__panel-date' }, `${calendar.daynames[(d - 1) % calendar.daynames.length]}, ${d} ${calendar.months[m]} ${y}` + (isToday ? '  \u2730' : '')),
+        U.el('div', { class: 'almanac__panel-date' }, Refs.formatDateLongWith({ year: y, month: m, day: d }, calendar) + (isToday ? '  \u2730' : '')),
         U.el('div', { class: 'almanac__panel-moon' }, moonLabel(phase))
       );
       const weatherInput = U.el('input', { class: 'input', placeholder: 'Weather (e.g. cold rain, no wind)', value: note.weather });
       const bodyInput = U.el('textarea', { class: 'textarea', placeholder: 'What happened on this day?', style: { minHeight: '160px' } });
       bodyInput.value = note.body || '';
       const save = async () => {
-        notes[selectedKey] = { weather: weatherInput.value, body: bodyInput.value, updated: Date.now() };
-        if (!weatherInput.value && !bodyInput.value) delete notes[selectedKey];
+        const prior = notes[selectedKey] || {};
+        const next = {
+          weather: weatherInput.value,
+          body: bodyInput.value,
+          updated: Date.now()
+        };
+        // Preserve module-pinned entries; user editing the body should
+        // not erase the structured pin records.
+        if (prior.pins && prior.pins.length) next.pins = prior.pins;
+        notes[selectedKey] = next;
+        if (!weatherInput.value && !bodyInput.value && !(next.pins && next.pins.length)) {
+          delete notes[selectedKey];
+        }
         await Vault.set('almanac-notes', notes);
         render();
       };
@@ -9155,7 +9433,35 @@ Keep.register({
       bodyInput.addEventListener('input', save);
       panel.append(
         U.el('div', { class: 'label' }, 'Weather'),
-        weatherInput,
+        weatherInput
+      );
+
+      // Module-pinned entries: read-only chips with Jump-to-source links.
+      // The body textarea below remains the user-editable narrative; pins
+      // duplicate into the body for excerpt/search continuity, but the
+      // chips give the round-trip navigation that body text can't.
+      if (note.pins && note.pins.length) {
+        const pinsWrap = U.el('div', { class: 'almanac__pins' });
+        pinsWrap.append(U.el('div', { class: 'label', style: { marginTop: '0.8rem' } }, 'Pinned here'));
+        const row = U.el('div', { class: 'almanac__pins-row' });
+        note.pins.forEach(p => {
+          const label = (p.origin && p.origin.label) || (p.origin && p.origin.module) || 'pin';
+          const moduleName = (p.origin && p.origin.module) ? p.origin.module : '';
+          const chip = U.el('button', {
+            class: 'almanac__pin-chip',
+            title: p.text ? p.text.slice(0, 200) : '',
+            onclick: () => Refs.jumpToOrigin(p.origin)
+          }, [
+            U.el('span', { class: 'almanac__pin-chip-mod' }, moduleName),
+            U.el('span', { class: 'almanac__pin-chip-label' }, label)
+          ]);
+          row.append(chip);
+        });
+        pinsWrap.append(row);
+        panel.append(pinsWrap);
+      }
+
+      panel.append(
         U.el('div', { class: 'label', style: { marginTop: '0.8rem' } }, 'Inscription'),
         bodyInput
       );
@@ -9241,17 +9547,8 @@ Keep.register({
 
   async mount(body, actions) {
     const SEG_OPTIONS = [4, 6, 8, 12];
-    const COLORS = [
-      { id: 'wine',   var: 'var(--wine)',     hex: '#5c1f24' },
-      { id: 'forest', var: 'var(--forest)',   hex: '#2d4a35' },
-      { id: 'gold',   var: 'var(--gold-d)',   hex: '#8a6c25' },
-      { id: 'indigo', var: 'var(--indigo)',   hex: '#2a2848' },
-      { id: 'ink',    var: 'var(--ink-soft)', hex: '#3a2f24' },
-      { id: 'salt',   var: '#7a6c52',         hex: '#7a6c52' },
-      { id: 'iron',   var: '#4a5764',         hex: '#4a5764' },
-      { id: 'rust',   var: '#8a4a2c',         hex: '#8a4a2c' }
-    ];
-    function colorFor(id) { return COLORS.find(c => c.id === id) || COLORS[0]; }
+    const COLORS = U.PALETTE;
+    function colorFor(id) { return U.colorFromPalette(id); }
 
     let threats = await Vault.get('threats');
     if (!threats || !threats.length) {
@@ -9282,7 +9579,7 @@ Keep.register({
         total: 8,
         filled: 0,
         description: threatHint.backstory || ('A threat from ' + (threatHint.region || 'the map') + '.'),
-        color: 'wine',
+        color: threatHint.suggestedColor || 'wine',
         factionId: null,
         created: Date.now(),
         updated: Date.now()
@@ -9438,7 +9735,11 @@ Keep.register({
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
           const text = 'THREAT: ' + t.name + ' (' + t.filled + '/' + t.total + ')' +
             (t.description ? '\n' + t.description : '');
-          const today = await Refs.pinToToday(text);
+          const today = await Refs.pinToToday(text, {
+            module: 'threats',
+            id: t.id,
+            label: t.name
+          });
           U.toast('Pinned to ' + (await Refs.formatDate(today)));
         }}, 'Pin'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openThreatForm(t) }, 'Edit'),
@@ -9464,7 +9765,11 @@ Keep.register({
       if (!wasComplete && isComplete) {
         const text = 'THREAT FULFILLED: ' + t.name + '.' +
           (t.description ? '\n' + t.description : '');
-        const today = await Refs.pinToToday(text);
+        const today = await Refs.pinToToday(text, {
+          module: 'threats',
+          id: t.id,
+          label: t.name + ' fulfilled'
+        });
         U.toast('"' + t.name + '" fulfilled. Pinned to ' + (await Refs.formatDate(today)));
       }
       render();
@@ -9594,6 +9899,7 @@ Keep.register({
 
     let entries = await Vault.get('archive-entries') || {};
     let npcByName = await Refs.npcByName();
+    let atlasByName = await Refs.atlasByName();
     if (!Object.keys(entries).length) {
       entries = {
         'The Keep': { title: 'The Keep', type: 'place', body: '# The Keep\n\nA fortress at the cleft of the [[Greyfern Pass]], held in trust since the [[Long Comet]] of year 712. The walls have weathered six sieges. The seventh, they say, is yet to come.\n\nSee also: [[Margrave of Ashlow]].', updated: Date.now() },
@@ -9764,9 +10070,22 @@ Keep.register({
       });
       main.append(typeRow);
 
-      main.append(U.el('div', { class: 'archive__meta' }, [
+      const metaRow = U.el('div', { class: 'archive__meta' }, [
         U.el('span', { class: 'tag' }, new Date(e.updated || Date.now()).toLocaleDateString())
-      ]));
+      ]);
+      // If this entry was forged from another room (Atlas POI, future
+      // tavern dossier, faction record, etc.), surface a chip that
+      // navigates back to its origin.
+      if (e.origin && e.origin.module) {
+        const o = e.origin;
+        const moduleLabel = o.module.charAt(0).toUpperCase() + o.module.slice(1);
+        metaRow.append(U.el('button', {
+          class: 'tag archive__origin-chip',
+          title: 'Jump to ' + moduleLabel + (o.label ? ' \u00b7 ' + o.label : ''),
+          onclick: () => Refs.jumpToOrigin(o)
+        }, '\u21AA  ' + moduleLabel + (o.label ? ' \u00b7 ' + o.label : '')));
+      }
+      main.append(metaRow);
       if (editing) {
         const ta = U.el('textarea', { class: 'archive__editor' });
         ta.value = e.body || '';
@@ -9779,9 +10098,18 @@ Keep.register({
         const rendered = U.el('div', { class: 'archive__rendered' });
         rendered.innerHTML = renderMarkdown(e.body || '');
         rendered.querySelectorAll('.archive__wikilink').forEach(link => {
-          link.addEventListener('click', () => {
+          link.addEventListener('click', async () => {
             hideTooltip();
             const tgt = link.dataset.target;
+            // Resolution order: Atlas POI/region first (navigates out of
+            // Archive into the map), then existing Archive entry, then
+            // NPC (auto-forges an Archive page from the roster), then a
+            // blank Archive page as a forging hook.
+            const atlasRef = atlasByName.get(tgt);
+            if (atlasRef) {
+              await Refs.openAtlasPoi(atlasRef);
+              return;
+            }
             if (!entries[tgt]) {
               const npc = npcByName.get(tgt);
               const body = npc ? Refs.npcAsMarkdown(npc) : `# ${tgt}\n\n`;
@@ -9809,8 +10137,18 @@ Keep.register({
       const tgt = link.dataset.target;
       const archived = entries[tgt];
       const npc = npcByName.get(tgt);
+      const atlasRef = atlasByName.get(tgt);
       let kind, body;
-      if (archived) {
+      if (atlasRef) {
+        if (atlasRef.kind === 'poi') {
+          kind = { label: 'Atlas POI', cls: 'wikilink-tooltip__type--atlas' };
+          const typeLabel = (atlasRef.type || '').replace(/_/g, ' ');
+          body = (typeLabel ? typeLabel + ' \u00b7 ' : '') + atlasRef.mapName + '. ' + (atlasRef.preview || '');
+        } else {
+          kind = { label: 'Atlas Region', cls: 'wikilink-tooltip__type--atlas' };
+          body = atlasRef.preview || '';
+        }
+      } else if (archived) {
         kind = { label: 'Archive', cls: '' };
         const lines = (archived.body || '').split('\n');
         const para = lines.find(l => l.trim() && !/^#+\s/.test(l) && !/^>\s/.test(l)) || '';
@@ -9935,17 +10273,8 @@ Keep.register({
       { id: 'grievous', name: 'Grievous' },
       { id: 'fallen',   name: 'Fallen' }
     ];
-    const COLORS = [
-      { id: 'wine',   var: 'var(--wine)',     varD: 'var(--wine-d)',   soft: 'rgba(92,31,36,0.10)',   hex: '#5c1f24' },
-      { id: 'forest', var: 'var(--forest)',   varD: 'var(--forest-d)', soft: 'rgba(45,74,53,0.12)',   hex: '#2d4a35' },
-      { id: 'indigo', var: 'var(--indigo)',   varD: '#1a1834',         soft: 'rgba(42,40,72,0.13)',   hex: '#2a2848' },
-      { id: 'gold',   var: 'var(--gold-d)',   varD: '#5a4715',         soft: 'rgba(184,146,58,0.16)', hex: '#8a6c25' },
-      { id: 'ink',    var: 'var(--ink-soft)', varD: 'var(--ink)',      soft: 'rgba(58,47,36,0.10)',   hex: '#3a2f24' },
-      { id: 'salt',   var: '#7a6c52',         varD: '#4f4530',         soft: 'rgba(122,108,82,0.13)', hex: '#7a6c52' },
-      { id: 'iron',   var: '#4a5764',         varD: '#2a3340',         soft: 'rgba(74,87,100,0.14)',  hex: '#4a5764' },
-      { id: 'rust',   var: '#8a4a2c',         varD: '#5a2f1c',         soft: 'rgba(138,74,44,0.14)',  hex: '#8a4a2c' }
-    ];
-    function colorOf(id)  { return COLORS.find(c => c.id === id) || COLORS[0]; }
+    const COLORS = U.PALETTE;
+    function colorOf(id)  { return U.colorFromPalette(id); }
     function statusOf(id) { return STATUSES.find(s => s.id === id) || STATUSES[0]; }
 
     // ----- Crossing (Odyssey interop) -----------------------------
@@ -11082,7 +11411,11 @@ Keep.register({
           onclick: async () => {
             if (!c.lastSpoken) return;
             const text = c.name.toUpperCase() + ' SAID: \u201C' + c.lastSpoken + '\u201D';
-            const today = await Refs.pinToToday(text);
+            const today = await Refs.pinToToday(text, {
+              module: 'fellowship',
+              id: c.id,
+              label: c.name
+            });
             U.toast('Pinned to ' + (await Refs.formatDate(today)));
           }
         }, '\u2767')
@@ -11106,7 +11439,11 @@ Keep.register({
               title: 'Pin this line to the Almanac',
               onclick: async () => {
                 const text = c.name.toUpperCase() + ' SAID: \u201C' + line + '\u201D';
-                const today = await Refs.pinToToday(text);
+                const today = await Refs.pinToToday(text, {
+                  module: 'fellowship',
+                  id: c.id,
+                  label: c.name
+                });
                 U.toast('Pinned to ' + (await Refs.formatDate(today)));
               }
             }, '\u2767')
@@ -12683,6 +13020,21 @@ Keep.register({
     let buildState = { biome: 'forest', poiCount: 12, name: '' };
     let popoverEl = null;
 
+    // Search and wikilink handoffs can request a specific POI be opened
+    // when Atlas mounts. One-shot: read, locate the containing map,
+    // delete the hint, render, then open the popover.
+    let pendingPoiId = await Vault.get('atlas-poi-show');
+    if (pendingPoiId) {
+      await Vault.remove('atlas-poi-show');
+      const owning = maps.find(mp => (mp.pois || []).some(p => p.id === pendingPoiId));
+      if (owning) {
+        activeMapId = owning.id;
+        await Vault.set('atlas-active', activeMapId);
+      } else {
+        pendingPoiId = null;
+      }
+    }
+
     function activeMap() { return maps.find(m => m.id === activeMapId); }
     async function saveMaps() { await Vault.set('atlas-maps', maps); }
     async function saveActive() { await Vault.set('atlas-active', activeMapId); }
@@ -12788,10 +13140,46 @@ Keep.register({
       await Keep.mount('faces');
     }
 
+    // POI type to shared palette color. Used to suggest a sensible
+    // accent when seeding a faction or threat from a place, so a
+    // bandit camp's crew and its threat clock match by default.
+    function colorForPoiType(poiType) {
+      const map = {
+        // wine: blood, cult, sacrifice
+        pirate_haven: 'wine', jaguar_shrine: 'wine', dragon_lair: 'wine',
+        battlefield: 'wine', sunken_temple: 'wine',
+        // forest: peaceful, sacred, natural
+        monastery: 'forest', druid_grove: 'forest', shrine: 'forest',
+        chapel: 'forest', hermitage: 'forest', old_oak: 'forest',
+        oasis: 'forest', mountain_pass: 'forest',
+        // gold: warm, settled, light
+        town: 'gold', windmill: 'gold', coaching_inn: 'gold',
+        lighthouse: 'gold', caravanserai: 'gold', stilt_village: 'gold',
+        river_camp: 'gold',
+        // indigo: noble, mystic, depth
+        manor: 'indigo', sunless_city: 'indigo', fungal_forest: 'indigo',
+        crystal_chamber: 'indigo', vine_temple: 'indigo', lost_city: 'indigo',
+        // ink: decay, secret, witch
+        ruin: 'ink', witch_hut: 'ink', tomb_complex: 'ink',
+        mammoth_graveyard: 'ink', graveyard: 'ink',
+        woodcutter_lodge: 'ink', hidden_cove: 'ink',
+        // salt: ancient, standing, marker
+        standing_stones: 'salt', crossroads: 'salt', bridge: 'salt',
+        // iron: military, wreck, cold
+        watchtower: 'iron', ice_fortress: 'iron', shipwreck: 'iron',
+        mine: 'iron', dungeon: 'iron', treasure_buoy: 'iron',
+        // rust: outlaws, raiders, camps
+        bandit_camp: 'rust', smugglers_cave: 'rust', castaway_camp: 'rust'
+      };
+      return map[poiType] || 'wine';
+    }
+
     async function noteThreatFromPoi(poi, map) {
       const type = POI_TYPES[poi.type];
       await Vault.set('threats-poi-hint', {
-        poiName: poi.name, poiType: type.typeLabel, region: map.name, biome: BIOMES[map.biome].name, backstory: poi.backstory
+        poiName: poi.name, poiType: type.typeLabel, region: map.name,
+        biome: BIOMES[map.biome].name, backstory: poi.backstory,
+        suggestedColor: colorForPoiType(poi.type)
       });
       closePopover();
       U.toast('Threats: noting ' + poi.name);
@@ -12816,7 +13204,9 @@ Keep.register({
       const factionName = pattern.replace('{n}', poi.name);
       await Vault.set('factions-poi-hint', {
         poiName: poi.name, poiType: type.typeLabel,
-        factionName, region: map.name, biome: BIOMES[map.biome].name
+        factionName, region: map.name, biome: BIOMES[map.biome].name,
+        mapId: map.id, poiId: poi.id,
+        suggestedColor: colorForPoiType(poi.type)
       });
       closePopover();
       U.toast('Factions: seeding ' + factionName);
@@ -12864,24 +13254,30 @@ Keep.register({
     }
 
     async function createArchiveFromPoi(poi, map) {
-      const entries = (await Vault.get('archive-entries')) || [];
+      // Archive entries are object-keyed by title; previous Atlas code
+      // pushed into an array, which the rest of the codebase never read.
+      // Migrate to the correct schema and tag origin so the entry can
+      // jump back to this POI on the map.
+      const entries = (await Vault.get('archive-entries')) || {};
       const type = POI_TYPES[poi.type];
       const body = poi.backstory + '\n\nLocated in ' + map.name + ' (' + BIOMES[map.biome].name.toLowerCase() + '). Type: ' + type.typeLabel + '.';
-      const existing = entries.find(e => e.title === poi.name);
+      const origin = { module: 'atlas', mapId: map.id, poiId: poi.id, label: poi.name };
+      const existing = entries[poi.name];
       if (existing) {
         existing.body = body;
+        existing.origin = origin;
         existing.updated = Date.now();
         await Vault.set('archive-entries', entries);
         U.toast('Archive entry updated.');
       } else {
-        entries.push({
-          id: U.uid(),
+        entries[poi.name] = {
           title: poi.name,
           body,
-          tag: 'Place',
+          type: 'place',
+          origin,
           created: Date.now(),
           updated: Date.now()
-        });
+        };
         await Vault.set('archive-entries', entries);
         U.toast('Added to the Archive.');
       }
@@ -12890,7 +13286,12 @@ Keep.register({
     async function pinPoiToAlmanac(poi, map) {
       const type = POI_TYPES[poi.type];
       const text = 'ATLAS [' + map.name + ']: ' + poi.name + ' (' + type.typeLabel + '). ' + poi.backstory;
-      const t = await Refs.pinToToday(text);
+      const t = await Refs.pinToToday(text, {
+        module: 'atlas',
+        mapId: map.id,
+        poiId: poi.id,
+        label: poi.name + ' \u00b7 ' + type.typeLabel
+      });
       U.toast('Pinned to ' + (await Refs.formatDate(t)));
     }
 
@@ -12934,7 +13335,7 @@ Keep.register({
       document.querySelectorAll('.atlas__poi--selected').forEach(el => el.classList.remove('atlas__poi--selected'));
     }
 
-    function openPopover(poi, map, anchorEl) {
+    async function openPopover(poi, map, anchorEl) {
       closePopover();
       const type = POI_TYPES[poi.type];
       const canvas = document.querySelector('.atlas__canvas');
@@ -12950,6 +13351,25 @@ Keep.register({
       pop.append(head);
       pop.append(U.el('div', { class: 'atlas__popover-type' }, type.typeLabel));
       pop.append(U.el('div', { class: 'atlas__popover-story' }, poi.backstory));
+
+      // Archive backlinks: any chronicle entry that wikilinks this POI.
+      try {
+        const links = await Refs.backlinks(poi.name);
+        if (links.length) {
+          const linksWrap = U.el('div', { class: 'atlas__popover-backlinks' });
+          linksWrap.append(U.el('div', { class: 'atlas__popover-backlinks-label' }, 'Mentioned in'));
+          const row = U.el('div', { class: 'atlas__popover-backlinks-row' });
+          links.forEach(name => {
+            row.append(U.el('button', {
+              class: 'tag',
+              onclick: () => { closePopover(); Refs.openArchiveEntry(name); }
+            }, name));
+          });
+          linksWrap.append(row);
+          pop.append(linksWrap);
+        }
+      } catch (e) { /* backlinks are nice-to-have */ }
+
       const acts = U.el('div', { class: 'atlas__popover-actions' });
       if (type.questSetting) {
         acts.append(U.el('button', {
@@ -13117,6 +13537,21 @@ Keep.register({
       canvas.append(renderMapSVG(map));
       view.append(canvas);
       view.append(renderLegend(map));
+
+      // If search or wikilink asked for a specific POI, open its popover
+      // after the SVG settles in the DOM. Only fires when the active map
+      // owns the pending POI; cleared either way.
+      if (pendingPoiId) {
+        const target = map.pois.find(p => p.id === pendingPoiId);
+        const wantedId = pendingPoiId;
+        pendingPoiId = null;
+        if (target) {
+          setTimeout(() => {
+            const anchor = document.querySelector('.atlas__poi[data-poi-id="' + wantedId + '"]');
+            if (anchor) openPopover(target, map, anchor);
+          }, 50);
+        }
+      }
 
       // Dismiss popover on outside click
       setTimeout(() => {
@@ -13763,7 +14198,7 @@ Keep.register({
       if (lastHaul.wonder) {
         text += '; ' + lastHaul.wonder.name + ' (' + lastHaul.wonder.desc + ')';
       }
-      const t = await Refs.pinToToday(text);
+      const t = await Refs.pinToToday(text, { module: 'loot', label: 'a haul' });
       U.toast('Pinned to ' + (await Refs.formatDate(t)));
     }
   }
@@ -13808,8 +14243,7 @@ Keep.register({
     const calendar = await Refs.calendar();
     const todayDate = await Refs.today();
     function fmtDate(d) {
-      if (!d || typeof d !== 'object') return '(unknown)';
-      return d.day + ' ' + calendar.months[d.month] + ', ' + d.year;
+      return d ? Refs.formatDateWith(d, calendar) : '(unknown)';
     }
 
     let items = await Vault.get('cabinet');
@@ -13859,7 +14293,8 @@ Keep.register({
       return ['held','lost','hidden','given','destroyed'].indexOf(s) + 1 || 99;
     }
 
-    function render() {
+    async function render() {
+      await refreshBacklinks();
       head.innerHTML = '';
       const counts = { all: items.length };
       STATUSES.forEach(s => { counts[s.id] = items.filter(i => i.status === s.id).length; });
@@ -13919,6 +14354,25 @@ Keep.register({
       pendingHighlight = null;
     }
 
+    // Cache of archive-entries-by-wikilink for the current render pass.
+    // Rebuilt on every render() so newly forged Archive references show
+    // up after a tab-back.
+    let backlinksByName = new Map();
+    async function refreshBacklinks() {
+      const entries = await Refs.archiveEntries();
+      backlinksByName = new Map();
+      for (const [title, e] of Object.entries(entries)) {
+        const body = e.body || '';
+        const re = /\[\[([^\]]+)\]\]/g;
+        let m;
+        while ((m = re.exec(body))) {
+          const tgt = m[1];
+          if (!backlinksByName.has(tgt)) backlinksByName.set(tgt, []);
+          if (!backlinksByName.get(tgt).includes(title)) backlinksByName.get(tgt).push(title);
+        }
+      }
+    }
+
     function renderCard(it) {
       const k = kindOf(it.kind);
       const s = statusOf(it.status);
@@ -13956,14 +14410,47 @@ Keep.register({
       if (it.worth) {
         row('Worth', document.createTextNode(it.worth));
       }
+      // If this item was forged by another room (Quest find, Atlas
+      // POI loot, etc.), the meta dl gets a "From" row with a
+      // clickable Jump-to-source chip.
+      if (it.origin && it.origin.module) {
+        const o = it.origin;
+        const moduleLabel = o.module.charAt(0).toUpperCase() + o.module.slice(1);
+        const chip = U.el('button', {
+          class: 'tag cabinet-card__origin-chip',
+          title: 'Jump to ' + moduleLabel + (o.label ? ' \u00b7 ' + o.label : ''),
+          onclick: () => Refs.jumpToOrigin(o)
+        }, '\u21AA  ' + moduleLabel + (o.label ? ' \u00b7 ' + o.label : ''));
+        row('From', chip);
+      }
       if (meta.children.length) bodyEl.append(meta);
+
+      // Archive backlinks: any chronicle entry that wikilinks this item.
+      const links = backlinksByName.get(it.name);
+      if (links && links.length) {
+        const linksWrap = U.el('div', { class: 'cabinet-card__backlinks' });
+        linksWrap.append(U.el('div', { class: 'cabinet-card__backlinks-label' }, 'Mentioned in'));
+        const row = U.el('div', { class: 'cabinet-card__backlinks-row' });
+        links.forEach(name => {
+          row.append(U.el('button', {
+            class: 'tag',
+            onclick: () => Refs.openArchiveEntry(name)
+          }, name));
+        });
+        linksWrap.append(row);
+        bodyEl.append(linksWrap);
+      }
 
       const acts = U.el('div', { class: 'cabinet-card__actions' });
       acts.append(
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
           const text = 'CABINET: ' + it.name + ' [' + s.name.toLowerCase() + '].' +
             (it.description ? '\n' + it.description : '');
-          const today = await Refs.pinToToday(text);
+          const today = await Refs.pinToToday(text, {
+            module: 'cabinet',
+            id: it.id,
+            label: it.name
+          });
           U.toast('Pinned to ' + (await Refs.formatDate(today)));
         }}, 'Pin'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openItemForm(it) }, 'Edit'),
@@ -14374,7 +14861,10 @@ Keep.register({
           const g = worthInGold();
           const text = 'COFFER: ' + (parts.length ? parts.join(', ') : 'empty') +
             ' (worth ' + fmtGold(g) + ' gold)';
-          const t = await Refs.pinToToday(text);
+          const t = await Refs.pinToToday(text, {
+            module: 'coffer',
+            label: fmtGold(g) + ' gold'
+          });
           U.toast('Pinned to ' + (await Refs.formatDate(t)));
         }
       }, 'Pin Balance'),
@@ -14554,7 +15044,10 @@ Keep.register({
       }}, 'Reveal Rumours'),
       U.el('button', { class: 'btn btn--ghost', onclick: async () => {
         const text = formatTavernForPin(state);
-        const today = await Refs.pinToToday(text);
+        const today = await Refs.pinToToday(text, {
+          module: 'tavern',
+          label: state.name || 'the tavern'
+        });
         U.toast('Pinned to ' + (await Refs.formatDate(today)));
       }}, 'Pin to Almanac')
     );
@@ -14677,6 +15170,7 @@ Keep.register({
                   physical: '',
                   secret: '',
                   created: Date.now(),
+                  location: state.name || 'a tavern',
                   recruitedFrom: state.name || 'a tavern'
                 };
                 roster.push(npc);
@@ -14721,7 +15215,10 @@ Keep.register({
                   ? ' [' + (r.truth === 'half' ? 'half-true' : r.truth) + ']'
                   : ' [unverified]';
                 const text = 'RUMOUR at ' + (state.name || 'the tavern') + ': ' + r.text + truthTag;
-                const today = await Refs.pinToToday(text);
+                const today = await Refs.pinToToday(text, {
+                  module: 'tavern',
+                  label: 'rumour at ' + (state.name || 'the tavern')
+                });
                 U.toast('Pinned to ' + (await Refs.formatDate(today)));
               }
             }, '\u2767'));
@@ -14750,16 +15247,7 @@ Keep.register({
 
   async mount(body, actions) {
     const SIGILS = ['\u2694','\u269C','\u26B0','\u271D','\u2625','\u2628','\u2693','\u2696','\u269D','\u2734','\u2735','\u2736','\u2766','\u2767','\u269A','\u2698','\u26A1','\u2620','\u2604','\u2616','\u2617','\u26AB','\u25C6','\u25D8'];
-    const COLORS = [
-      { id: 'wine',   var: 'var(--wine)',   soft: 'rgba(92,31,36,0.10)',  hex: '#5c1f24' },
-      { id: 'forest', var: 'var(--forest)', soft: 'rgba(45,74,53,0.12)',  hex: '#2d4a35' },
-      { id: 'gold',   var: 'var(--gold-d)', soft: 'rgba(184,146,58,0.16)', hex: '#8a6c25' },
-      { id: 'indigo', var: 'var(--indigo)', soft: 'rgba(42,40,72,0.13)',   hex: '#2a2848' },
-      { id: 'ink',    var: 'var(--ink-soft)', soft: 'rgba(58,47,36,0.10)', hex: '#3a2f24' },
-      { id: 'salt',   var: '#7a6c52',       soft: 'rgba(122,108,82,0.12)', hex: '#7a6c52' },
-      { id: 'iron',   var: '#4a5764',       soft: 'rgba(74,87,100,0.13)',  hex: '#4a5764' },
-      { id: 'rust',   var: '#8a4a2c',       soft: 'rgba(138,74,44,0.13)',  hex: '#8a4a2c' }
-    ];
+    const COLORS = U.PALETTE;
 
     function standingLabel(v) {
       v = Math.max(-10, Math.min(10, v|0));
@@ -14771,7 +15259,7 @@ Keep.register({
       if (v <= 7)  return 'Allied';
       return 'Sworn';
     }
-    function colorFor(id) { return COLORS.find(c => c.id === id) || COLORS[0]; }
+    function colorFor(id) { return U.colorFromPalette(id); }
 
     let factions = await Vault.get('factions');
     if (!factions || !factions.length) {
@@ -14798,17 +15286,28 @@ Keep.register({
     const factionHint = await Vault.get('factions-poi-hint');
     if (factionHint && factionHint.factionName) {
       await Vault.remove('factions-poi-hint');
-      factions.push({
+      const newFaction = {
         id: U.uid(),
         name: factionHint.factionName,
         sigil: SIGILS[Math.floor(Math.random() * SIGILS.length)],
-        color: 'wine',
+        color: factionHint.suggestedColor || 'wine',
         motto: '',
         goal: 'Their grip on ' + factionHint.poiName + ' (' + factionHint.region + ').',
         party: 0,
         notes: '',
         relations: {}
-      });
+      };
+      // If the hint included POI references, stamp origin so the
+      // faction card can jump back to the map.
+      if (factionHint.mapId && factionHint.poiId) {
+        newFaction.origin = {
+          module: 'atlas',
+          mapId: factionHint.mapId,
+          poiId: factionHint.poiId,
+          label: factionHint.poiName + (factionHint.poiType ? ' \u00b7 ' + factionHint.poiType : '')
+        };
+      }
+      factions.push(newFaction);
       await Vault.set('factions', factions);
       U.toast('Faction added: ' + factionHint.factionName);
     }
@@ -15029,6 +15528,21 @@ Keep.register({
         U.el('button', { class: 'faction-card__expand', title: 'expand', onclick: () => { card.classList.toggle('faction-card--open'); } }, '\u25BE')
       );
       card.append(top);
+
+      // Origin chip: when this faction was seeded by another room
+      // (currently Atlas only), surface a Jump-to-source chip so the
+      // ledger remembers where the faction came from.
+      if (f.origin && f.origin.module) {
+        const o = f.origin;
+        const moduleLabel = o.module.charAt(0).toUpperCase() + o.module.slice(1);
+        const chipRow = U.el('div', { class: 'faction-card__origin' });
+        chipRow.append(U.el('button', {
+          class: 'tag faction-card__origin-chip',
+          title: 'Jump to ' + moduleLabel + (o.label ? ' \u00b7 ' + o.label : ''),
+          onclick: () => Refs.jumpToOrigin(o)
+        }, '\u21AA  ' + moduleLabel + (o.label ? ' \u00b7 ' + o.label : '')));
+        card.append(chipRow);
+      }
 
       const gauge = U.el('div', { class: 'faction-card__gauge' });
       gauge.append(
@@ -16271,6 +16785,16 @@ Keep.register({
       const items = (await Vault.get('cabinet')) || [];
       const today = await Refs.today();
       const settingName = SETTINGS[state.setting].name.toLowerCase();
+      // If this quest was launched from an Atlas POI, the find traces
+      // back to the place. Otherwise it traces back to the quest type.
+      const origin = state.originPoi
+        ? {
+            module: 'atlas',
+            mapId: state.originPoi.mapId,
+            poiId: state.originPoi.poiId,
+            label: state.originPoi.name + ' \u00b7 ' + (state.originPoi.type || 'site')
+          }
+        : { module: 'quest', label: SETTINGS[state.setting].name + ' quest' };
       items.push({
         id: U.uid(),
         name: state.findData.name,
@@ -16281,6 +16805,7 @@ Keep.register({
         foundAt: 'on a quest into the ' + settingName,
         foundOn: { ...today },
         worth: 'priceless',
+        origin,
         created: Date.now(),
         updated: Date.now()
       });
@@ -16311,7 +16836,18 @@ Keep.register({
       const summary = (state.summary || '').trim();
       const text = 'QUEST [' + settingName + ']: ' +
         (summary || (climaxLabel + ' at the end.'));
-      await Refs.pinToToday(text);
+      // If the quest was launched from an Atlas POI, the chronicle
+      // chip jumps back to the POI on the map rather than to the
+      // singleton quest room. Falls back to the quest setting label.
+      const origin = state.originPoi
+        ? {
+            module: 'atlas',
+            mapId: state.originPoi.mapId,
+            poiId: state.originPoi.poiId,
+            label: state.originPoi.name + ' \u00b7 ' + settingName
+          }
+        : { module: 'quest', label: settingName };
+      await Refs.pinToToday(text, origin);
     }
 
     // ===== RENDER ====================================================
@@ -16956,7 +17492,10 @@ Keep.register({
       const text = (summaryText && summaryText.trim())
         ? 'SKIRMISH: ' + summaryText.trim() + ' (' + rounds + ' round' + (rounds === 1 ? '' : 's') + ')'
         : auto;
-      const t = await Refs.pinToToday(text);
+      const t = await Refs.pinToToday(text, {
+        module: 'skirmish',
+        label: rounds + ' round' + (rounds === 1 ? '' : 's')
+      });
 
       // 3. clear active encounter
       state = emptyEncounter();
@@ -17660,6 +18199,23 @@ Keep.register({
           }
         }, 'Cancel'),
         U.el('button', {
+          class: 'btn btn--ghost',
+          onclick: async () => {
+            // Compute a tier suggestion from the foe count BEFORE
+            // endEncounter clears state. Heuristic: 1 foe paltry,
+            // 2-3 modest, 4-5 rich, 6+ royal.
+            const foeCount = state.combatants.filter(c => c.side === 'foe').length;
+            const suggestedTier =
+              foeCount <= 1 ? 'paltry' :
+              foeCount <= 3 ? 'modest' :
+              foeCount <= 5 ? 'rich' :
+              'royal';
+            await endEncounter(summaryInp.value, casualtyDecisions);
+            await Vault.set('loot-tier', suggestedTier);
+            await Keep.mount('loot');
+          }
+        }, 'End, Pin, and Roll Loot'),
+        U.el('button', {
           class: 'btn btn--primary',
           onclick: async () => {
             await endEncounter(summaryInp.value, casualtyDecisions);
@@ -17888,7 +18444,10 @@ Keep.register({
               : '';
             const text = 'BONES: ' + roll.expression + ' \u2192 ' + roll.total +
               ' (' + breakdownText + modText + ')';
-            const today = await Refs.pinToToday(text);
+            const today = await Refs.pinToToday(text, {
+              module: 'bones',
+              label: roll.expression + ' = ' + roll.total
+            });
             U.toast('Pinned to ' + (await Refs.formatDate(today)));
           }
         }, 'Pin to Almanac'),
