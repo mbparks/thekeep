@@ -7492,7 +7492,7 @@ const Keep = (() => {
         return;
       }
       if (!current.length) {
-        resultsEl.append(U.el('div', { class: 'search-modal__empty' }, 'Nothing found.'));
+        resultsEl.append(U.el('div', { class: 'search-modal__empty' }, 'Nothing matches.'));
         return;
       }
       // group by source
@@ -9622,7 +9622,7 @@ Keep.register({
 
       grid.innerHTML = '';
       if (!threats.length) {
-        grid.append(U.el('div', { class: 'empty' }, 'No clocks yet. Set one above.'));
+        grid.append(U.el('div', { class: 'empty' }, 'No threats turning yet. Note one above.'));
         return;
       }
       // active first, then completed
@@ -9744,11 +9744,11 @@ Keep.register({
         }}, 'Pin'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openThreatForm(t) }, 'Edit'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-          if (!confirm('Retire "' + t.name + '"? The clock will be erased.')) return;
+          if (!confirm('Delete "' + t.name + '"? The clock cannot be recovered.')) return;
           threats = threats.filter(x => x.id !== t.id);
           await save();
           render();
-        }}, 'Retire')
+        }}, 'Delete')
       );
       bodyEl.append(acts);
 
@@ -9990,7 +9990,7 @@ Keep.register({
       });
 
       if (!matches.length) {
-        list.append(U.el('li', { class: 'empty', style: { padding: '1rem 0.5rem' } }, q ? 'No entries match.' : 'No entries yet.'));
+        list.append(U.el('li', { class: 'empty', style: { padding: '1rem 0.5rem' } }, q ? 'No entries match.' : 'The Archive is empty. Forge an entry above.'));
       }
       sidebar.append(list);
     }
@@ -10510,8 +10510,8 @@ Keep.register({
     body.append(head, grid);
 
     actions.append(
-      U.el('button', { class: 'btn btn--primary', onclick: () => openWayfarerForm() }, 'Name Yourself'),
-      U.el('button', { class: 'btn btn--ghost', onclick: () => openCrossingImport() }, 'Bring from Odyssey')
+      U.el('button', { class: 'btn btn--ghost', onclick: () => openCrossingImport() }, 'Bring from Odyssey'),
+      U.el('button', { class: 'btn btn--primary', onclick: () => openWayfarerForm() }, 'Name Yourself')
     );
 
     async function save() { await Vault.set('wayfarer', pcs); }
@@ -10620,11 +10620,11 @@ Keep.register({
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openWayfarerForm(pc) }, 'Edit'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openCrossingExport(pc) }, 'Send to Odyssey'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-          if (!confirm('Retire "' + pc.name + '"? Their card will be erased.')) return;
+          if (!confirm('Delete "' + pc.name + '"? Their card cannot be recovered.')) return;
           pcs = pcs.filter(x => x.id !== pc.id);
           await save();
           render();
-        }}, 'Retire')
+        }}, 'Delete')
       );
       card.append(acts);
 
@@ -11473,7 +11473,7 @@ Keep.register({
       acts.append(
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openCompanionForm(c) }, 'Edit'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-          if (!confirm('Release "' + c.name + '" from the Fellowship?')) return;
+          if (!confirm('Release "' + c.name + '" from the Fellowship? Their card cannot be recovered.')) return;
           companions = companions.filter(x => x.id !== c.id);
           await save();
           render();
@@ -14455,11 +14455,11 @@ Keep.register({
         }}, 'Pin'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openItemForm(it) }, 'Edit'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-          if (!confirm('Remove "' + it.name + '" from the catalogue?')) return;
+          if (!confirm('Delete "' + it.name + '" from the catalogue? It cannot be recovered.')) return;
           items = items.filter(x => x.id !== it.id);
           await save();
           render();
-        }}, 'Remove')
+        }}, 'Delete')
       );
       bodyEl.append(acts);
 
@@ -14871,7 +14871,7 @@ Keep.register({
       U.el('button', {
         class: 'btn btn--ghost btn--small',
         onclick: async () => {
-          if (!confirm('Empty the coffer and clear the ledger?')) return;
+          if (!confirm('Empty the coffer? The ledger cannot be recovered.')) return;
           state = { cu: 0, ag: 0, au: 0, pt: 0, ledger: [] };
           await save();
           renderBalance();
@@ -15036,7 +15036,6 @@ Keep.register({
     body.append(wrap);
 
     actions.append(
-      U.el('button', { class: 'btn btn--primary', onclick: async () => { state = rollTavern(); await save(); render(); } }, 'New Tavern'),
       U.el('button', { class: 'btn btn--ghost', onclick: async () => {
         state.rumours.forEach(r => r.revealed = true);
         await save();
@@ -15049,7 +15048,8 @@ Keep.register({
           label: state.name || 'the tavern'
         });
         U.toast('Pinned to ' + (await Refs.formatDate(today)));
-      }}, 'Pin to Almanac')
+      }}, 'Pin to Almanac'),
+      U.el('button', { class: 'btn btn--primary', onclick: async () => { state = rollTavern(); await save(); render(); } }, 'New Tavern')
     );
 
     async function save() { await Vault.set('tavern-current', state); }
@@ -15685,13 +15685,13 @@ Keep.register({
       cardActions.append(
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: () => openFactionForm(f) }, 'Edit'),
         U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-          if (!confirm(`Retire "${f.name}"? Relations to and from this faction will be lost.`)) return;
+          if (!confirm(`Disband "${f.name}"? Relations to and from this faction cannot be recovered.`)) return;
           factions = factions.filter(x => x.id !== f.id);
           // clean relations on others
           for (const x of factions) { if (x.relations && x.relations[f.id]) delete x.relations[f.id]; }
           await save();
           render();
-        }}, 'Retire')
+        }}, 'Disband')
       );
       bodyEl.append(cardActions);
 
@@ -17525,7 +17525,7 @@ Keep.register({
           U.el('button', {
             class: 'btn btn--ghost btn--small',
             onclick: async () => {
-              if (!confirm('Clear the entire roster?')) return;
+              if (!confirm('Clear the entire roster? It cannot be recovered.')) return;
               state = emptyEncounter();
               await save();
               render();
@@ -18493,7 +18493,7 @@ Keep.register({
         class: 'btn btn--ghost btn--small',
         onclick: async () => {
           if (!history.length) return;
-          if (!confirm('Clear all past casts?')) return;
+          if (!confirm('Clear all past casts? They cannot be recovered.')) return;
           history.length = 0;
           await Vault.set('bones-history', history);
           renderHistory();
@@ -18892,7 +18892,7 @@ Keep.register({
     }
 
     async function removeStream(s) {
-      if (!confirm('Remove "' + s.name + '"?')) return;
+      if (!confirm('Delete "' + s.name + '"? It cannot be recovered.')) return;
       if (self.currentStreamId === s.id) stopStream();
       const idx = streams.findIndex(x => x.id === s.id);
       if (idx >= 0) streams.splice(idx, 1);
@@ -19740,7 +19740,7 @@ Keep.register({
           downloadJson(json, c.name);
         }}, 'Export'));
         acts.append(U.el('button', { class: 'btn btn--small btn--ghost', onclick: async () => {
-          if (!confirm(`Retire "${c.name}"? Its inscriptions cannot be recovered.`)) return;
+          if (!confirm(`Delete "${c.name}"? Its inscriptions cannot be recovered.`)) return;
           try {
             await Campaigns.remove(c.id);
             await Keep.renderChip();
@@ -19751,7 +19751,7 @@ Keep.register({
               Keep.mount(last && Keep.modules.has(last) ? last : 'home');
             }
           } catch (e) { alert(e.message); }
-        }}, 'Retire'));
+        }}, 'Delete'));
         card.append(acts);
         list.append(card);
       }
